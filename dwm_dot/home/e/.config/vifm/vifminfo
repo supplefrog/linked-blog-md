@@ -1,0 +1,414 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/root/
+	..
+1743048959
+'b
+	/root/bin/
+	..
+1743049463
+'h
+	/root/
+	..
+1743049463
+'v
+	/
+	file2.txt
+1743049135
+
+# Bookmarks:
+
+# TUI:
+al
+q1
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root/de/feh
+	bg
+1
+d/root/de/feh/bg
+	b.jpg
+2
+d/root/de/feh
+	bg
+1
+d/root/de
+	feh
+2
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root/de/feh
+	bg
+1
+d/root/de
+	dwm
+1
+d/root/de/dwm
+	..
+0
+d/root/de
+	st
+3
+d/root
+	de
+10
+d/
+	root
+15
+d/root
+	de
+10
+d/root/de
+	st
+3
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root/de/feh
+	bg
+1
+d/root/de/feh/bg
+	d.jpg
+3
+d/root/de/feh
+	bg
+1
+d/root/de
+	feh
+2
+d/root
+	de
+10
+d/
+	root
+15
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	..
+0
+d/
+	root
+15
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root/de/feh
+	bg
+1
+d/root/de/feh/bg
+	r.jpg
+16
+d/root/de/feh
+	bg
+1
+d/root/de
+	feh
+2
+d/root
+	..
+0
+d/
+	root
+15
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Pictures
+6
+d/root/Pictures
+	..
+0
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Pictures
+6
+d/root/Pictures
+	..
+0
+d/root
+	Pictures
+6
+d/root/Pictures
+	..
+0
+d/root
+	Documents
+2
+d/root/Documents
+	mysqldb.md
+1
+d/root
+	Documents
+2
+d/
+	root
+15
+d/root
+	Documents
+2
+d/
+	root
+15
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Documents
+2
+d/root/Documents
+	Operating Systems.md
+1
+d/root
+	Documents
+2
+d/
+	root
+15
+d/root
+	Documents
+2
+d/root/Documents
+	Operating Systems.md
+1
+d/root
+	Documents
+2
+d/root/Documents
+	Operating Systems.md
+1
+d/root
+	Documents
+2
+d/
+	root
+15
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root
+	de
+10
+d/root/de
+	dwm
+1
+d/root/de/dwm
+	de.sh
+7
+d/root/de
+	dwm
+1
+d/root
+	de
+10
+d/root/de
+	dwm
+1
+d/root
+	de
+10
+d/root/de
+	dwm
+1
+d/root
+	..
+0
+d/
+	root
+15
+d/root
+	..
+0
+d/
+	root
+15
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	de
+10
+d/root/de
+	dwm
+1
+d/root
+	de
+10
+d/root/de
+	feh
+2
+d/root/de/feh
+	bg
+1
+d/root/de
+	dwm
+1
+d/root
+	Downloads
+3
+d/root/Downloads
+	..
+0
+d/root
+	Documents
+2
+d/root/Documents
+	Operating Systems.md
+1
+d
+
+# Right window history (oldest to newest):
+D/root/st/patches
+	..
+0
+D/root
+	..
+0
+D/
+	root
+15
+D/root
+	Desktop
+1
+D/
+	root
+15
+D/root
+	Desktop
+1
+D/root/Desktop
+	..
+0
+D/root
+	Public
+7
+D/
+	proc
+14
+D/proc
+	1
+1
+D/
+	media
+11
+D
+
+# Command line history (oldest to newest):
+:colorscheme desert
+:colorscheme default
+:colorscheme dracula
+:colorscheme?
+:colorscheme -d palenight
+:colorscheme palenight
+:colorscheme
+:rename
+:vim mysqldb.md
+:!vim mysqldb.md
+
+# Search history (oldest to newest):
+/yum
+
+# Prompt history (oldest to newest):
+pfile2.txt
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/.vifm-Trash-0/000_file2.txt
+	/file2.txt
+t/.vifm-Trash-0/000_newshell.sh
+	/root/st/patches/newshell.sh
+t/.vifm-Trash-0/000_palenight.vifm
+	/root/Downloads/palenight.vifm
+t/.vifm-Trash-0/000_feh-3.10.3.tar.bz2
+	/root/Downloads/feh-3.10.3.tar.bz2
+
+# State:
+f
+i1
+[.1
+[F
+F
+I1
+].1
+]F
+s0

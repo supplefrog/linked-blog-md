@@ -1,0 +1,6 @@
+[Desktop Entry]
+  Encoding=UTF-8
+  Name=DWM
+  Comment=Dynamic Window Manager
+  Exec=/bin/sh -c 'source ~/.xinitrc;' 
+  Type=XSession
