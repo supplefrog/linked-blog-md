@@ -1,4 +1,4 @@
-Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md/pulls)
+- Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md/pulls)
 
 # Table of Contents
 - [[#Components]]
@@ -7,7 +7,7 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
   - [[#File System Management]]
   - [[#Security]]
   - [[#Device Management]]
-- [[Operating Systems#Boot Process]]
+- [[#Boot Process]]
 - [[#Windows]]
 - [[#Linux]]
   - [[#Directory Structure]]
