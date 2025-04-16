@@ -16,3 +16,5 @@ excerpt: Eliminate needless suffering
 
 ![[pot.jpg]]  
 ![[horse.jpeg]]  
+
+[[Operating Systems]]  
