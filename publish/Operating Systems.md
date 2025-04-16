@@ -1,20 +1,20 @@
 - Offer suggestions
 
 # Table of Contents
-- [Components](#components)
-  - [Process Scheduling](#process-scheduling)
-  - [Memory Management](#memory-management)
-  - [File System Management](#file-system-management)
-  - [Security](#security)
-  - [Device Management](#device-management)
-- [Boot Process](#boot-process)
-- [Windows](#windows)
-- [Linux](#linux)
-  - [Directory Structure](#directory-structure)
-  - [CLI (Terminal Emulators)](#cli-terminal-emulators)
-  - [Shell](#shell)
-  - [GNU Utils](#gnu-utils)
-  - [Commands](#commands)
+- [[#Components]]
+  - [[#Process Scheduling]]
+  - [[#Memory Management]]
+  - [[#File System Management]]
+  - [[#Security]]
+  - [[#Device Management]]
+- [[#Boot Process]]
+- [[#Windows]]
+- [[#Linux]]
+  - [[#Directory Structure]]
+  - [[#CLI (Terminal Emulators)]]
+  - [[#Shell]]
+  - [[#GNU Utils]
+  - [[#Commands]]
 
 ---
 
