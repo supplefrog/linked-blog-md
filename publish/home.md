@@ -1,18 +1,25 @@
 ---
-title: "An Extendable Obsidian Publish alternative using Next.JS"
-excerpt: "Create your own template or use someone else's. Changing the template is a matter of updating one line"
+title: Welcome, peasant.
+excerpt: Create your own template or use someone else's. Changing the template is a matter of updating one line
 ---
-Publish your Obsidian Notes with a highly customizable Next.JS blog starter template. Features:
-- Supports most Obsidian syntax (e.g. Link Previews,  Links, etc.). Uses [obsidian-export](https://github.com/zoni/obsidian-export).
-- URLs are based on folder structure
-- Backlinks can be added outside of the markdown files (using the [PreviewLink](https://github.com/matthewwong525/linked-blog-starter/blob/main/components/misc/preview-link.tsx) component)
-- Full-text search
 
+```markdown
+> **"त्यज दुःखमात्मनः — संसारेण तव क्लेशं समूलं नाशय।  
+> संस्कारशुद्धेन त्वं पुनर्जन्मं प्राप्नुहि।  
+> इदानीं ते नवजीवनस्य प्रभातः सम्प्रारभते॥"**  
+
+---
+
+> **"Cast off the suffering of your soul —  
+> Let the torment of your worldly existence be destroyed from its very roots.  
+> With your purified essence, be reborn anew.  
+> Now begins the dawn of your new life."**  
+```
 ## [[how-linked-blog-starter-works|How it works]]
 ![[how-linked-blog-starter-works]]
 
 ## Getting Started
-### [[home|Demo]]
+### [[remote-blog 1/publish/home|Demo]]
 Additionally, you can deploy the example using [Vercel](https://vercel.com/new/git/external?repository-url=https://github.com/matthewwong525/linked-blog-starter&project-name=linked-blog-starter&repository-name=linked-blog-starter) or preview live with [StackBlitz](https://stackblitz.com/github/matthewwong525/linked-blog-starter)
 
 ### [[publish-your-obsidian-notes-with-linked-blog-starter|Publish your Obsidian Vault]]
