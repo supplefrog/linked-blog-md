@@ -344,7 +344,9 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 ```
 command -f --flag arguments
 (Case Sensitive)
-Help
+```
+### Help  
+```
 	which
 		List path of binary
 	find
@@ -361,7 +363,7 @@ Help
 		Long desc
 	--help
 		List flags
-    df -h (filename)
+	df -h (filename)
 		Space used in filesystems (of specified filenames)
 	du -h
 		space used by dir
@@ -396,13 +398,15 @@ Help
     date
 	Print/set date and time
 hostnamectl
-	    Systemd binary
-	    Query/change hostname
-	    Display OS and kernel details also present in
-	    /etc/os-release
-	uname
-	    Print sys info
-File Management
+	Systemd binary
+	Query/change hostname
+	Display OS and kernel details also present in
+	/etc/os-release
+uname
+	Print sys info
+```
+### File Management  
+```
 	cd
 		change **directory**
 			absolute
@@ -467,7 +471,7 @@ File Management
 	    Ctrl
 		+w +arrow_keys
 		    switch window
-grep
+    grep
 	-v word
 	    exclude line containing word
 	-w search whole word
@@ -477,22 +481,24 @@ grep
     sed -n '5p' filename
 	-n prevent printing every line
 	prints 5th line
-	| less
-		print output in pages
-	head/tail
-		print first/last part of file
-	tar archive_name.tar(.gzip) path_to_dir
-		tape archive saves many files into a single archive (uncompressed)
-		-A append tar to ar
-		-c create
-		-v verbosely list files processed
-		-f use archive file
-		-r append files to end of ar
-		-t list ar contents
-		-z filter the archive through gzip
-	gzip path_to_file
-		compresses files
-File Permission Management
+    | less
+	print output in pages
+    head/tail
+	print first/last part of file
+    tar archive_name.tar(.gzip) path_to_dir
+	tape archive saves many files into a single archive (uncompressed)
+	-A append tar to ar
+	-c create
+	-v verbosely list files processed
+	-f use archive file
+	-r append files to end of ar
+	-t list ar contents
+	-z filter the archive through gzip
+    gzip path_to_file
+	compresses files
+```
+### File Permission Management  
+```
 	chown username:groupname dir
 	chgroup groupname dir 
 	chmod
@@ -516,44 +522,48 @@ File Permission Management
 		subtracted from
 			777 dir -022
 			666 files -002
-User/Group Management
-    adduser username
-    useradd username
-	 Needs -m to create home dir if it doesn't not exist
-	 Manual password setting with passwd
-	 -g
-	 -G
-	 -d custom\_home_dir
-    passwd username
-	usermod 
-		-a append used with -G
-		-g gid/gname
-			Initial login group, initially same as username
-		-G gid/gname
-			Groups user is also part of
-	    -d
-	userdel
-	gpasswd -M user1,user2,user3 groupname
-	    Add multiple users to groupname
-	groups username
-		list groups username is part of
-	id username
-		list gids username is part of
-	groupadd gname
-		-g 1003 
-			groupid, must be unique
-	groupmod
-		-n newname oldname
-			change name
-		-g newid gname
-	groupdel
-Process Management
-    top
+```
+### User/Group Management  
+```
+adduser username
+useradd username
+	Needs -m to create home dir if it doesn't not exist
+	Manual password setting with passwd
+	-g
+	-G
+	-d custom\_home_dir
+passwd username
+usermod 
+	-a append used with -G
+	-g gid/gname
+		Initial login group, initially same as username
+	-G gid/gname
+		Groups user is also part of
+	-d
+userdel
+gpasswd -M user1,user2,user3 groupname
+	Add multiple users to groupname
+groups username
+	list groups username is part of
+id username
+	list gids username is part of
+groupadd gname
+	-g 1003 
+		groupid, must be unique
+groupmod
+	-n newname oldname
+		change name
+	-g newid gname
+groupdel
+```
+### Process Management  
+```
+top
 	L locate process_name
 	k kill
 	r renice - change priority
 	h help
-    ps -aux
+ps -aux
 	-a all users
 	-u show users
 	-x processes without a TTY
@@ -568,18 +578,18 @@ kill -signal_no pid
 			SIGCONT (18)
 			    Resume paused p fg/bg chosen automatically by p type
 	    -l list signal
-	pkill process_name
+pkill process_name
 ​Ctrl
-		​+c
+	+c
 		​sends SIGINT (2)
-				Interrupt process execution and terminate. CBI     
-	    ​+z
+			Interrupt process execution and terminate. CBI     
+	​+z
 		​sends SIGSTP (20)
 			Suspends and sends p to background (paused state). Can have custom handling but not be ignored
-	    ​+\
+	​+\
 		​sends SIGQUIT (3)
-			    Interrupt + core dump for debugging. CBI
-    crontab
+			Interrupt + core dump for debugging. CBI
+crontab
 	manage crontab files for user
 	-l list
 	-e edit
@@ -594,59 +604,65 @@ kill -signal_no pid
 	​bg (%job_id)
 	    Resume bg process
 sar -u 1 3
-	   interval_time(s) number_of_times
-	System Activity Report
-	-u CPU utilization
-    vmstat virtual memory statistics
-    iostat CPU and I/O stats for block devices
-Network Management
+    interval_time(s) number_of_times
+    System Activity Report
+    -u CPU utilization
+vmstat virtual memory statistics
+iostat CPU and I/O stats for block devices
+```
+### Network Management  
+```
 nmcli
-BSD style command
-d[evice] show devices
-    connect/disconnect device_name
-    wifi connect "SSID" password "your_password"
+	BSD style command
+	d[evice] show devices
+	    connect/disconnect device_name
+	    wifi connect "SSID" password "your_password"
 netstat/ss
--t tcp sockets
--u udp sockets
--l listening/open ports
--n numerical, ip instead of hostname
+	-t tcp sockets
+	-u udp sockets
+	-l listening/open ports
+	-n numerical, ip instead of hostname
 Change IP
-dhclient -r
-nmcli d reapply p8p1
-ip a[ddr] add/del 192.168.x.x/24 dev p8p1
-ip a flush dev p8p1 #remove current IPs
-dhclient #get new ip from DHCP
+	dhclient -r
+	nmcli d reapply p8p1
+	ip a[ddr] add/del 192.168.x.x/24 dev p8p1
+	ip a flush dev p8p1 #remove current IPs
+	dhclient #get new ip from DHCP
 scp uses sftp uses ssh uses port 22
-​Security
-    Password Policy
-Aging
-    Shadow Utils
-	/etc/login.defs
-	Per-User
-	(/etc/shadow)
-	chage -m[inimum] 7 -M[aximum] 90 -W[arning_period] 7 username
-Complexity
-    Enforce policies when users change or create passwords (passwd)
-    Pluggable Authentication Modules (PAM)
-	    /etc/pam.d/system-auth
+```
+### Security
+```
+Password Policy
+    Aging
+	Shadow Utils
+	    /etc/login.defs
+        Per-User
+	    (/etc/shadow)
+	    chage -m[inimum] 7 -M[aximum] 90 -W[arning_period] 7 username
+	Complexity
+	    Enforce policies when users change or create passwords (passwd)
+	    Pluggable Authentication Modules (PAM)
+	        /etc/pam.d/system-auth
 	    Additional parameters, ensure consistency
-	    /etc/security/pwquality.conf
-    Manage System Resources
-	View current shell session soft and hard limits 
-	    ulimit (-S/H) -a
+	        /etc/security/pwquality.conf
+Manage System Resources
+    View current shell session soft and hard limits 
+        ulimit (-S/H) -a
     Set
-	ulimit (-S/H) <resource_flag> <value>
-Set permanently for username
-    /etc/security/limits.conf
-Partition Management
-	​fdisk
-		List/change partition table 
-	partprobe
-		Make kernel read updated partition table without reboot
-	gdisk
-		used for gpt drives
-	mkfs.ext4 /dev/sda1
-	or
-	mke2fs -t ext4 /dev/sda1
-		Create ext4 filesystem
+        ulimit (-S/H) <resource_flag> <value>
+    Set permanently for username
+        /etc/security/limits.conf
+```
+### Partition Management
+```
+​fdisk
+    List/change partition table 
+partprobe
+    Make kernel read updated partition table without reboot
+gdisk
+    used for gpt drives
+mkfs.ext4 /dev/sda1
+or
+mke2fs -t ext4 /dev/sda1
+    Create ext4 filesystem
 ```
