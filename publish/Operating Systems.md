@@ -397,13 +397,13 @@ command -f --flag arguments
 	     change time - metadata including permissions, ownership & modification time
     date
 	Print/set date and time
-hostnamectl
-	Systemd binary
-	Query/change hostname
-	Display OS and kernel details also present in
-	/etc/os-release
-uname
-	Print sys info
+    hostnamectl
+    	Systemd binary
+    	Query/change hostname
+    	Display OS and kernel details also present in
+    	/etc/os-release
+    uname
+    	Print sys info
 ```
 ### File Management  
 ```
@@ -421,8 +421,8 @@ uname
 			Human readable
 		-u
 		    Show access time instead of modification time
-	lsof 
-	     List open files
+    lsof 
+        List open files
 	cp
 		copy files
 		cp /source /dest
@@ -454,48 +454,48 @@ uname
 	    -o open multiple files vertically
 	    -O horizontally
 	    :r file_name
-		appends file
+		    appends file
 	    :set textwidth=80
-		warps lines after 80 characters
+		    warps lines after 80 characters
 	    :split (file_name)
-		Split into two windows
+		    Split into two windows
 	    :vsplit (file_name)
-		.. two vertical windows
+		    .. two vertical windows
 	    :qa
-		Quit all
+		    Quit all
 	    :only
-		Quit all windows other than current one
+		    Quit all windows other than current one
 	    ZZ
-		Shorthand for :wq
-		Save and quit if changes made
+		    Shorthand for :wq
+		    Save and quit if changes made
 	    Ctrl
-		+w +arrow_keys
-		    switch window
+		    +w +arrow_keys
+		        switch window
     grep
-	-v word
-	    exclude line containing word
-	-w search whole word
+	    -v word
+	        exclude line containing word
+	    -w search whole word
     awk '{print $column#, $column#}' filename
     cut -c1 filename
-	print first character of each line
+	    print first character of each line
     sed -n '5p' filename
-	-n prevent printing every line
-	prints 5th line
+	    -n prevent printing every line
+	    prints 5th line
     | less
-	print output in pages
+	    print output in pages
     head/tail
-	print first/last part of file
+	    print first/last part of file
     tar archive_name.tar(.gzip) path_to_dir
-	tape archive saves many files into a single archive (uncompressed)
-	-A append tar to ar
-	-c create
-	-v verbosely list files processed
-	-f use archive file
-	-r append files to end of ar
-	-t list ar contents
-	-z filter the archive through gzip
+	    tape archive saves many files into a single archive (uncompressed)
+    	-A append tar to ar
+    	-c create
+    	-v verbosely list files processed
+    	-f use archive file
+    	-r append files to end of ar
+    	-t list ar contents
+    	-z filter the archive through gzip
     gzip path_to_file
-	compresses files
+	    compresses files
 ```
 ### File Permission Management  
 ```
@@ -506,129 +506,130 @@ uname
 			Add/remove sticky bit
 			to directory for maintaining write but denying deletion/renaming of files within it
 			Only appears as  T if others x perm missing because it appears in its place 
-		u(,)g(,)o+/-/=
-		x = 1, executing commands (binaries)
-		r = 2
-		w = 4
-		Numbers corresponding to ugo
-		777
+		u(,)g(,)o(+/-/=)
+		    x = 1, executing commands (binaries)
+		    r = 2
+		    w = 4
+        777
+            Numbers corresponding to ugo
 	chattr
-	     change file attributes
-	     File cannot be modified by even root unless attr removed
-	     +a append only
-	lsattr
-	     List attributes
+        change file attributes
+        File cannot be modified by even root unless attr removed
+        +a append only
+    lsattr
+        List attributes
 	umask
 		subtracted from
-			777 dir -022
+            777 dir -022
 			666 files -002
 ```
 ### User/Group Management  
 ```
-adduser username
-useradd username
-	Needs -m to create home dir if it doesn't not exist
-	Manual password setting with passwd
-	-g
-	-G
-	-d custom\_home_dir
-passwd username
-usermod 
-	-a append used with -G
-	-g gid/gname
-		Initial login group, initially same as username
-	-G gid/gname
-		Groups user is also part of
-	-d
-userdel
-gpasswd -M user1,user2,user3 groupname
-	Add multiple users to groupname
-groups username
-	list groups username is part of
-id username
-	list gids username is part of
-groupadd gname
-	-g 1003 
-		groupid, must be unique
-groupmod
-	-n newname oldname
-		change name
-	-g newid gname
-groupdel
+    adduser username
+    useradd username
+    	Needs -m to create home dir if it doesn't not exist
+    	Manual password setting with passwd
+    	-g
+    	-G
+    	-d custom\_home_dir
+    passwd username
+    usermod 
+    	-a append used with -G
+    	-g gid/gname
+    		Initial login group, initially same as username
+    	-G gid/gname
+    		Groups user is also part of
+    	-d
+    userdel
+    gpasswd -M user1,user2,user3 groupname
+    	Add multiple users to groupname
+    groups username
+    	list groups username is part of
+    id username
+    	list gids username is part of
+    groupadd gname
+    	-g 1003 
+    		groupid, must be unique
+    groupmod
+    	-n newname oldname
+    		change name
+    	-g newid gname
+    groupdel
 ```
 ### Process Management  
 ```
-top
-	L locate process_name
-	k kill
-	r renice - change priority
-	h help
-ps -aux
-	-a all users
-	-u show users
-	-x processes without a TTY
-	-Z zombie processes
-kill -signal_no pid
-	sends SIGTERM signal (15) by default
-	    Does not immediately terminate, allows process to cleanup resources
-		Can be ignored by processes with signal handler
-	    -s specify signal
-		    SIGKILL (9)
-			    Immediately terminate
-			SIGCONT (18)
-			    Resume paused p fg/bg chosen automatically by p type
-	    -l list signal
-pkill process_name
-​Ctrl
-	+c
-		​sends SIGINT (2)
-			Interrupt process execution and terminate. CBI     
-	​+z
-		​sends SIGSTP (20)
-			Suspends and sends p to background (paused state). Can have custom handling but not be ignored
-	​+\
-		​sends SIGQUIT (3)
-			Interrupt + core dump for debugging. CBI
-crontab
-	manage crontab files for user
-	-l list
-	-e edit
-	    * * * * * command
-	    min hour day_of_month month day_of_week
-	    @monthly command
-	​jobs
-	    List paused process id and names
-	​fg (%job_id)
-	    Resume fg process
-	    Most recent w/o argument
-	​bg (%job_id)
-	    Resume bg process
-sar -u 1 3
-    interval_time(s) number_of_times
-    System Activity Report
-    -u CPU utilization
-vmstat virtual memory statistics
-iostat CPU and I/O stats for block devices
+    top
+    	L locate process_name
+    	k kill
+    	r renice - change priority
+    	h help
+    ps -aux
+    	-a all users
+    	-u show users
+    	-x processes without a TTY
+    	-Z zombie processes
+    kill -signal_no pid
+    	sends SIGTERM signal (15) by default
+    	    Does not immediately terminate, allows process to cleanup resources
+    		Can be ignored by processes with signal handler
+    	    -s specify signal
+    		    SIGKILL (9)
+    			    Immediately terminate
+    			SIGCONT (18)
+    			    Resume paused p fg/bg chosen automatically by p type
+    	    -l list signal
+    pkill process_name
+    ​Ctrl
+    	+c
+    		​sends SIGINT (2)
+    			Interrupt process execution and terminate. CBI     
+    	​+z
+    		​sends SIGSTP (20)
+    			Suspends and sends p to background (paused state). Can have custom handling but not be ignored
+    	​+\
+    		​sends SIGQUIT (3)
+    			Interrupt + core dump for debugging. CBI
+    crontab
+    	manage crontab files for user
+    	-l list
+    	-e edit
+    	    * * * * * command
+    	    min hour day_of_month month day_of_week
+    	    @monthly command
+    	​jobs
+    	    List paused process id and names
+    	​fg (%job_id)
+    	    Resume fg process
+    	    Most recent w/o argument
+    	​bg (%job_id)
+    	    Resume bg process
+    sar -u 1 3
+        interval_time(s) number_of_times
+        System Activity Report
+        -u CPU utilization
+    vmstat virtual memory statistics
+    iostat CPU and I/O stats for block devices
 ```
 ### Network Management  
 ```
-nmcli
-	BSD style command
-	d[evice] show devices
-	    connect/disconnect device_name
-	    wifi connect "SSID" password "your_password"
-netstat/ss
-	-t tcp sockets
-	-u udp sockets
-	-l listening/open ports
-	-n numerical, ip instead of hostname
-Change IP
-	dhclient -r
-	nmcli d reapply p8p1
-	ip a[ddr] add/del 192.168.x.x/24 dev p8p1
-	ip a flush dev p8p1 #remove current IPs
-	dhclient #get new ip from DHCP
-scp uses sftp uses ssh uses port 22
+    nmcli
+    	BSD style command
+    	d[evice] show devices
+    	    connect/disconnect device_name
+    	    wifi connect "SSID" password "your_password"
+    netstat/ss
+    	-t tcp sockets
+    	-u udp sockets
+    	-l listening/open ports
+    	-n numerical, ip instead of hostname
+    Change IP
+    	dhclient -r
+            DHCP Client
+        nmcli d reapply p8p1
+
+        ip a[ddr] add/del 192.168.x.x/24 dev p8p1
+    	ip a flush dev p8p1 #remove current IPs
+    scp uses sftp uses ssh uses port 22
 ```
 ### Security
 ```
