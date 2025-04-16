@@ -266,7 +266,7 @@
 #### Corporate License
 - Employees/competitors can report unlicensed software to organizations like BSA through their channels for investigation and potential enforcement actions
 
-### Software vendors often engage intermediary audit firms, such as KPMG, whose compliance and regulatory officers conduct audits to ensure corps comply with software license agreements
+- Software vendors often engage intermediary audit firms, such as KPMG, whose compliance and regulatory officers conduct audits to ensure corps comply with software license agreements
 
 ## Linux
 ### Multiple distributions
@@ -340,7 +340,7 @@
 ## GNU Utils
 - FOSS utilities analogous to UNIX OS in function written from scratch
 
-Commands
+## Commands  
 		command -f --flag arguments
 		(Case Sensitive)
 		Help
