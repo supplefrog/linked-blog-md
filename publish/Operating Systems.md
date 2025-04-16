@@ -342,311 +342,311 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 
 ## Commands  
 ```
-		command -f --flag arguments
-		(Case Sensitive)
-		Help
-			which
-				List path of binary
-			find
-				search for files in a directory hierarchy
-				Can be used with * (wildcard)
-			locate
-				find files by name/directory from db
-			updatedb
-				Updates locate's db /etc/updatedb.conf
-			    -a all
-			whatis
-				Short desc
-			man
-				Long desc
-			--help
-				List flags
-		    df -h (filename)
-				Space used in filesystems (of specified filenames)
-			du -h
-				space used by dir
-				-d=1
-					max depth for subdirectory list
-			lsblk
-				list block devices
-				-f display their filesystems
-			findmnt
-				display currently mounted filesystems
-			mount /dev/devicename /mountpoint
-				mount block device to mount point
-			umount /mountpoint
-			whoami
-			    current shell logged in username
-			who am i
-				+tty & login@
-			users
-				logged in usernames 
-		    who
-			    +tty + login@
-			last
-				++IP + login till
-		    w
-			    ++cpu usage + shell info 
-		    finger
-				++ user ID details
-			stat filename
-			     access/read time
-			     modification/write time
-			     change time - metadata including permissions, ownership & modification time
-		    date
-		        Print/set date and time
-	        hostnamectl
-			    Systemd binary
-			    Query/change hostname
-			    Display OS and kernel details also present in
-			    /etc/os-release
-			uname
-			    Print sys info
-		File Management
-			cd
-				change **directory**
-					absolute
-					relative
-			ls
-				list
-				-l => ll
-					long list
-			    -a
-					--all do not ignore entries starting with .
-			    -h
-					Human readable
-				-u
-				    Show access time instead of modification time
-			lsof 
-			     List open files
-			cp
-				copy files
-				cp /source /dest
-				-r copy directories recursively
-			mv
-				Move/rename files/directories
-			mkdir
-				make directory
-				mkdir rel_dir_name 
-				-p make parent directories as needed
-			rm
-				remove file
-				rm path_to_file
-				-r/R remove directories and their contents recursively
-				-f ignore non existent files and args, never prompt
-			rmdir
-				remove dir
-				rmdir path_to_dir
-				Used to prevent accidental deletion of directories with files, binary released after rm (-rf)
-			touch
-				create empty file
-			echo "text" > new/existing_file
-			    > / 1> redirect stdout, overwrites
-			        2> redirect stderr
-				>> append
-			cat (file1) (file2) > new/existing_file
-				Write/append existing files to new/existing ​file
-			vim
-			    -o open multiple files vertically
-			    -O horizontally
-			    :r file_name
-			        appends file
-			    :set textwidth=80
-			        warps lines after 80 characters
-			    :split (file_name)
-			        Split into two windows
-			    :vsplit (file_name)
-			        .. two vertical windows
-			    :qa
-			        Quit all
-			    :only
-			        Quit all windows other than current one
-			    ZZ
-			        Shorthand for :wq
-			        Save and quit if changes made
-			    Ctrl
-			        +w +arrow_keys
-			            switch window
-            grep
-		        -v word
-		            exclude line containing word
-		        -w search whole word
-		    awk '{print $column#, $column#}' filename
-		    cut -c1 filename
-		        print first character of each line
-		    sed -n '5p' filename
-		        -n prevent printing every line
-		        prints 5th line
-			| less
-				print output in pages
-			head/tail
-				print first/last part of file
-			tar archive_name.tar(.gzip) path_to_dir
-				tape archive saves many files into a single archive (uncompressed)
-				-A append tar to ar
-				-c create
-				-v verbosely list files processed
-				-f use archive file
-				-r append files to end of ar
-				-t list ar contents
-				-z filter the archive through gzip
-			gzip path_to_file
-				compresses files
-        File Permission Management
-			chown username:groupname dir
-			chgroup groupname dir 
-			chmod
-				+/-t 
-					Add/remove sticky bit
-					to directory for maintaining write but denying deletion/renaming of files within it
-					Only appears as  T if others x perm missing because it appears in its place 
-				u(,)g(,)o+/-/=
-				x = 1, executing commands (binaries)
-				r = 2
-				w = 4
-				Numbers corresponding to ugo
-			        777
-			chattr
-			     change file attributes
-			     File cannot be modified by even root unless attr removed
-			     +a append only
-			lsattr
-			     List attributes
-			umask
-				subtracted from
-					777 dir -022
-					666 files -002
-	    User/Group Management
-		    adduser username
-		    useradd username
-		         Needs -m to create home dir if it doesn't not exist
-		         Manual password setting with passwd
-		         -g
-		         -G
-		         -d custom\_home_dir
-		    passwd username
-			usermod 
-				-a append used with -G
-				-g gid/gname
-					Initial login group, initially same as username
-				-G gid/gname
-					Groups user is also part of
-			    -d
-			userdel
-			gpasswd -M user1,user2,user3 groupname
-			    Add multiple users to groupname
-			groups username
-				list groups username is part of
-			id username
-				list gids username is part of
-			groupadd gname
-				-g 1003 
-					groupid, must be unique
-			groupmod
-				-n newname oldname
-					change name
-				-g newid gname
-			groupdel
-		Process Management
-		    top
-		        L locate process_name
-		        k kill
-		        r renice - change priority
-		        h help
-		    ps -aux
-		        -a all users
-		        -u show users
-		        -x processes without a TTY
-		        -Z zombie processes
-	        kill -signal_no pid
-		        sends SIGTERM signal (15) by default
-		            Does not immediately terminate, allows process to cleanup resources
-			        Can be ignored by processes with signal handler
-			    -s specify signal
-				    SIGKILL (9)
-					    Immediately terminate
-					SIGCONT (18)
-					    Resume paused p fg/bg chosen automatically by p type
-			    -l list signal
-			pkill process_name
-	        ​Ctrl
-				​+c
-			        ​sends SIGINT (2)
-						Interrupt process execution and terminate. CBI     
-			    ​+z
-			        ​sends SIGSTP (20)
-				        Suspends and sends p to background (paused state). Can have custom handling but not be ignored
-			    ​+\
-			        ​sends SIGQUIT (3)
-					    Interrupt + core dump for debugging. CBI
-		    crontab
-		        manage crontab files for user
-		        -l list
-		        -e edit
-		            * * * * * command
-		            min hour day_of_month month day_of_week
-		            @monthly command
-			​jobs
-			    List paused process id and names
-			​fg (%job_id)
-			    Resume fg process
-			    Most recent w/o argument
-			​bg (%job_id)
-			    Resume bg process
-            sar -u 1 3
-		           interval_time(s) number_of_times
-		        System Activity Report
-		        -u CPU utilization
-		    vmstat virtual memory statistics
-		    iostat CPU and I/O stats for block devices
-        Network Management
-            nmcli
-                BSD style command
-                d[evice] show devices
-                    connect/disconnect device_name
-                    wifi connect "SSID" password "your_password"
-            netstat/ss
-            -t tcp sockets
-            -u udp sockets
-            -l listening/open ports
-            -n numerical, ip instead of hostname
-            Change IP
-                dhclient -r
-                nmcli d reapply p8p1
-                ip a[ddr] add/del 192.168.x.x/24 dev p8p1
-                ip a flush dev p8p1 #remove current IPs
-                dhclient #get new ip from DHCP
-            scp uses sftp uses ssh uses port 22
-		​Security
-		    Password Policy
-                Aging
-                    Shadow Utils
-                        /etc/login.defs
-                        Per-User
-                        (/etc/shadow)
-                        chage -m[inimum] 7 -M[aximum] 90 -W[arning_period] 7 username
-                Complexity
-                    Enforce policies when users change or create passwords (passwd)
-                    Pluggable Authentication Modules (PAM)
-	                    /etc/pam.d/system-auth
-	                    Additional parameters, ensure consistency
-                            /etc/security/pwquality.conf
-		    Manage System Resources
-		        View current shell session soft and hard limits 
-		            ulimit (-S/H) -a
-                    Set
-                        ulimit (-S/H) <resource_flag> <value>
-                Set permanently for username
-                    /etc/security/limits.conf
-		Partition Management
-			​fdisk
-				List/change partition table 
-			partprobe
-				Make kernel read updated partition table without reboot
-			gdisk
-				used for gpt drives
-			mkfs.ext4 /dev/sda1
-			or
-			mke2fs -t ext4 /dev/sda1
-				Create ext4 filesystem
+command -f --flag arguments
+(Case Sensitive)
+Help
+	which
+		List path of binary
+	find
+		search for files in a directory hierarchy
+		Can be used with * (wildcard)
+	locate
+		find files by name/directory from db
+	updatedb
+		Updates locate's db /etc/updatedb.conf
+	    -a all
+	whatis
+		Short desc
+	man
+		Long desc
+	--help
+		List flags
+    df -h (filename)
+		Space used in filesystems (of specified filenames)
+	du -h
+		space used by dir
+		-d=1
+			max depth for subdirectory list
+	lsblk
+		list block devices
+		-f display their filesystems
+	findmnt
+		display currently mounted filesystems
+	mount /dev/devicename /mountpoint
+		mount block device to mount point
+	umount /mountpoint
+	whoami
+	    current shell logged in username
+	who am i
+		+tty & login@
+	users
+		logged in usernames 
+    who
+	    +tty + login@
+	last
+		++IP + login till
+    w
+	    ++cpu usage + shell info 
+    finger
+		++ user ID details
+	stat filename
+	     access/read time
+	     modification/write time
+	     change time - metadata including permissions, ownership & modification time
+    date
+	Print/set date and time
+hostnamectl
+	    Systemd binary
+	    Query/change hostname
+	    Display OS and kernel details also present in
+	    /etc/os-release
+	uname
+	    Print sys info
+File Management
+	cd
+		change **directory**
+			absolute
+			relative
+	ls
+		list
+		-l => ll
+			long list
+	    -a
+			--all do not ignore entries starting with .
+	    -h
+			Human readable
+		-u
+		    Show access time instead of modification time
+	lsof 
+	     List open files
+	cp
+		copy files
+		cp /source /dest
+		-r copy directories recursively
+	mv
+		Move/rename files/directories
+	mkdir
+		make directory
+		mkdir rel_dir_name 
+		-p make parent directories as needed
+	rm
+		remove file
+		rm path_to_file
+		-r/R remove directories and their contents recursively
+		-f ignore non existent files and args, never prompt
+	rmdir
+		remove dir
+		rmdir path_to_dir
+		Used to prevent accidental deletion of directories with files, binary released after rm (-rf)
+	touch
+		create empty file
+	echo "text" > new/existing_file
+	    > / 1> redirect stdout, overwrites
+		2> redirect stderr
+		>> append
+	cat (file1) (file2) > new/existing_file
+		Write/append existing files to new/existing ​file
+	vim
+	    -o open multiple files vertically
+	    -O horizontally
+	    :r file_name
+		appends file
+	    :set textwidth=80
+		warps lines after 80 characters
+	    :split (file_name)
+		Split into two windows
+	    :vsplit (file_name)
+		.. two vertical windows
+	    :qa
+		Quit all
+	    :only
+		Quit all windows other than current one
+	    ZZ
+		Shorthand for :wq
+		Save and quit if changes made
+	    Ctrl
+		+w +arrow_keys
+		    switch window
+grep
+	-v word
+	    exclude line containing word
+	-w search whole word
+    awk '{print $column#, $column#}' filename
+    cut -c1 filename
+	print first character of each line
+    sed -n '5p' filename
+	-n prevent printing every line
+	prints 5th line
+	| less
+		print output in pages
+	head/tail
+		print first/last part of file
+	tar archive_name.tar(.gzip) path_to_dir
+		tape archive saves many files into a single archive (uncompressed)
+		-A append tar to ar
+		-c create
+		-v verbosely list files processed
+		-f use archive file
+		-r append files to end of ar
+		-t list ar contents
+		-z filter the archive through gzip
+	gzip path_to_file
+		compresses files
+File Permission Management
+	chown username:groupname dir
+	chgroup groupname dir 
+	chmod
+		+/-t 
+			Add/remove sticky bit
+			to directory for maintaining write but denying deletion/renaming of files within it
+			Only appears as  T if others x perm missing because it appears in its place 
+		u(,)g(,)o+/-/=
+		x = 1, executing commands (binaries)
+		r = 2
+		w = 4
+		Numbers corresponding to ugo
+		777
+	chattr
+	     change file attributes
+	     File cannot be modified by even root unless attr removed
+	     +a append only
+	lsattr
+	     List attributes
+	umask
+		subtracted from
+			777 dir -022
+			666 files -002
+User/Group Management
+    adduser username
+    useradd username
+	 Needs -m to create home dir if it doesn't not exist
+	 Manual password setting with passwd
+	 -g
+	 -G
+	 -d custom\_home_dir
+    passwd username
+	usermod 
+		-a append used with -G
+		-g gid/gname
+			Initial login group, initially same as username
+		-G gid/gname
+			Groups user is also part of
+	    -d
+	userdel
+	gpasswd -M user1,user2,user3 groupname
+	    Add multiple users to groupname
+	groups username
+		list groups username is part of
+	id username
+		list gids username is part of
+	groupadd gname
+		-g 1003 
+			groupid, must be unique
+	groupmod
+		-n newname oldname
+			change name
+		-g newid gname
+	groupdel
+Process Management
+    top
+	L locate process_name
+	k kill
+	r renice - change priority
+	h help
+    ps -aux
+	-a all users
+	-u show users
+	-x processes without a TTY
+	-Z zombie processes
+kill -signal_no pid
+	sends SIGTERM signal (15) by default
+	    Does not immediately terminate, allows process to cleanup resources
+		Can be ignored by processes with signal handler
+	    -s specify signal
+		    SIGKILL (9)
+			    Immediately terminate
+			SIGCONT (18)
+			    Resume paused p fg/bg chosen automatically by p type
+	    -l list signal
+	pkill process_name
+​Ctrl
+		​+c
+		​sends SIGINT (2)
+				Interrupt process execution and terminate. CBI     
+	    ​+z
+		​sends SIGSTP (20)
+			Suspends and sends p to background (paused state). Can have custom handling but not be ignored
+	    ​+\
+		​sends SIGQUIT (3)
+			    Interrupt + core dump for debugging. CBI
+    crontab
+	manage crontab files for user
+	-l list
+	-e edit
+	    * * * * * command
+	    min hour day_of_month month day_of_week
+	    @monthly command
+	​jobs
+	    List paused process id and names
+	​fg (%job_id)
+	    Resume fg process
+	    Most recent w/o argument
+	​bg (%job_id)
+	    Resume bg process
+sar -u 1 3
+	   interval_time(s) number_of_times
+	System Activity Report
+	-u CPU utilization
+    vmstat virtual memory statistics
+    iostat CPU and I/O stats for block devices
+Network Management
+nmcli
+BSD style command
+d[evice] show devices
+    connect/disconnect device_name
+    wifi connect "SSID" password "your_password"
+netstat/ss
+-t tcp sockets
+-u udp sockets
+-l listening/open ports
+-n numerical, ip instead of hostname
+Change IP
+dhclient -r
+nmcli d reapply p8p1
+ip a[ddr] add/del 192.168.x.x/24 dev p8p1
+ip a flush dev p8p1 #remove current IPs
+dhclient #get new ip from DHCP
+scp uses sftp uses ssh uses port 22
+​Security
+    Password Policy
+Aging
+    Shadow Utils
+	/etc/login.defs
+	Per-User
+	(/etc/shadow)
+	chage -m[inimum] 7 -M[aximum] 90 -W[arning_period] 7 username
+Complexity
+    Enforce policies when users change or create passwords (passwd)
+    Pluggable Authentication Modules (PAM)
+	    /etc/pam.d/system-auth
+	    Additional parameters, ensure consistency
+	    /etc/security/pwquality.conf
+    Manage System Resources
+	View current shell session soft and hard limits 
+	    ulimit (-S/H) -a
+    Set
+	ulimit (-S/H) <resource_flag> <value>
+Set permanently for username
+    /etc/security/limits.conf
+Partition Management
+	​fdisk
+		List/change partition table 
+	partprobe
+		Make kernel read updated partition table without reboot
+	gdisk
+		used for gpt drives
+	mkfs.ext4 /dev/sda1
+	or
+	mke2fs -t ext4 /dev/sda1
+		Create ext4 filesystem
 ```
