@@ -623,12 +623,15 @@ command -f --flag arguments
     	-l listening/open ports
     	-n numerical, ip instead of hostname
     Change IP
-    	dhclient -r
-            DHCP Client
+    	dhclient -r && dhclient p8p1
+			DHCP Client
+            Release the current IP and request a new one for specific interface
         nmcli d reapply p8p1
 
         ip a[ddr] add/del 192.168.x.x/24 dev p8p1
-    	ip a flush dev p8p1 #remove current IPs
+			Add/del specific IP to/from interface
+    	ip a flush dev p8p1
+	 		Remove all IPs from interface
     scp uses sftp uses ssh uses port 22
 ```
 ### Security
