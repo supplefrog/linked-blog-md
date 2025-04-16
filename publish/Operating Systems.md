@@ -13,7 +13,7 @@
   - [[#Directory Structure]]
   - [[#CLI (Terminal Emulators)]]
   - [[#Shell]]
-  - [[#GNU Utils]
+  - [[#GNU Utils]]
   - [[#Commands]]
 
 ---
