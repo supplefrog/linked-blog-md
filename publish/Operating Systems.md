@@ -1,4 +1,4 @@
-- Offer suggestions
+Offer suggestions
 
 # Table of Contents
 - [[#Components]]
