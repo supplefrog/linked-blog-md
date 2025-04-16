@@ -341,6 +341,7 @@
 - FOSS utilities analogous to UNIX OS in function written from scratch
 
 ## Commands  
+```
 		command -f --flag arguments
 		(Case Sensitive)
 		Help
@@ -648,4 +649,4 @@
 			or
 			mke2fs -t ext4 /dev/sda1
 				Create ext4 filesystem
-
+```
