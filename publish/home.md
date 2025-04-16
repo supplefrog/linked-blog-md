@@ -2,7 +2,7 @@
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering 
 ---
-###Thou hast struck gold.  
+### Thou hast struck gold.  
 
 
 > **"त्यज दुःखमात्मनः — संसारेण तव क्लेशं समूलं नाशय।  
