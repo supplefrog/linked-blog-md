@@ -6,7 +6,7 @@ author:
 name: "Supplefrog"
 url: "https://avatars.githubusercontent.com/u/78985073?v=4"
 ogImage:
-url: "https://github.com/supplefrog/linked-blog-md/blob/main/publish/attachments/pot.jpg"
+url: "https://raw.githubusercontent.com/supplefrog/linked-blog-md/refs/heads/main/publish/attachments/pot.jpg"
 ---
 ### Thou hast struck gold.  
 
