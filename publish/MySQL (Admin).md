@@ -206,17 +206,17 @@
 
 #### InnoDB (Default in 5.5)
 - **> MyISAM**
-    - Adheres to ACID properties - ensures proper transaction support
-        - Atomicity
-            - Transaction is either completed successfully or rolled back
-        - Consistency
-            - Amount deducted from sender is equal to amount received by recipient
-        - Isolation
-            - Multiple transactions occur independently without interference
-        - Durability
-            - Transaction must be committed even in case of system-failure
-        - Foreign Key support
-        - Row level locking - better concurrency
+- Adheres to ACID properties - ensures proper transaction support
+    - Atomicity
+        - Transaction is either completed successfully or rolled back
+    - Consistency
+        - Amount deducted from sender is equal to amount received by recipient
+    - Isolation
+        - Multiple transactions occur independently without interference
+    - Durability
+        - Transaction must be committed even in case of system-failure
+- Foreign Key support
+- Row level locking - better concurrency
     - **Data**
         - **Page**
             - Unit of data storage - block
