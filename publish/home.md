@@ -1,6 +1,12 @@
 ---
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
+date: "2025-04-17"
+author:
+	name: "Supplefrog"
+	url: "URL to a pic for the author"
+ogImage:
+	url: "URL to an image to set the og Image for SEO"
 ---
 ### Thou hast struck gold.  
 
