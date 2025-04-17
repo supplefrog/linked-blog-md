@@ -20,3 +20,4 @@ excerpt: Eliminate needless suffering
 ![[horse.jpeg]]  
 
 [[Operating Systems]]  
+[[MySQL (Admin)]]
