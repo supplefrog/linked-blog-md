@@ -4,9 +4,9 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 - [Components](#components)
   - [Process Scheduling](#process-scheduling)
   - [Memory Management](#memory-management)
+  - [Device Management](#device-management)
   - [File System Management](#file-system-management)
   - [Security](#security)
-  - [Device Management](#device-management)
 - [Boot Process](#boot-process)
 - [Windows](#windows)
 - [Linux](#linux)
@@ -73,37 +73,6 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 
 ---
 
-## File System Management
-- Organize files, metadata hierarchically in directories for easy access.
-- File data storage allocation.
-
-### Encryption
-- During storage and transit.
-
-### Authorization
-#### Discretionary Access Control (DAC)
-- Manages user permissions (rwx).
-- Defined in Access Control Lists.
-
----
-
-## Security
-### Authentication
-- Verifies identity.
-- Username-password login, biometrics, SSH keys.
-
-### Authorization
-#### SELinux
-- Implements Mandatory Access Control (MAC) at kernel level.
-- Establish roles and permissions for users and processes, overriding DAC based on resource ownership.
-- Enforces security policies that restrict access to system resources (e.g., Port access for applications).
-
-#### Firewall
-- Block incoming traffic based on rich rules.
-  - Example: block traffic on specific port from certain services/IPs.
-
----
-
 ## Device Management
 ### Kernel Modules
 #### Drivers
@@ -140,6 +109,37 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
     - Processor Mode switch: user to kernel mode (OS core functions).
     - Execute privileged operation.
     - Return to user mode.
+
+---
+
+## File System Management
+- Organize files, metadata hierarchically in directories for easy access.
+- File data storage allocation.
+
+### Encryption
+- During storage and transit.
+
+### Authorization
+#### Discretionary Access Control (DAC)
+- Manages user permissions (rwx).
+- Defined in Access Control Lists.
+
+---
+
+## Security
+### Authentication
+- Verifies identity.
+- Username-password login, biometrics, SSH keys.
+
+### Authorization
+#### SELinux
+- Implements Mandatory Access Control (MAC) at kernel level.
+- Establish roles and permissions for users and processes, overriding DAC based on resource ownership.
+- Enforces security policies that restrict access to system resources (e.g., Port access for applications).
+
+#### Firewall
+- Block incoming traffic based on rich rules.
+  - Example: block traffic on specific port from certain services/IPs.
 
 ---
 
