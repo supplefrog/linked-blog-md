@@ -396,7 +396,7 @@ command -f --flag arguments
 	     modification/write time
 	     change time - metadata including permissions, ownership & modification time
     date
-	Print/set date and time
+	    Print/set date and time
     hostnamectl
     	Systemd binary
     	Query/change hostname
