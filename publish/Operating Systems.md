@@ -659,14 +659,14 @@ Manage System Resources
 ```
 ### Partition Management
 ```
-​fdisk
-    List/change partition table 
-partprobe
-    Make kernel read updated partition table without reboot
-gdisk
-    used for gpt drives
-mkfs.ext4 /dev/sda1
-or
-mke2fs -t ext4 /dev/sda1
-    Create ext4 filesystem
+    ​fdisk
+        List/change partition table 
+    partprobe
+        Make kernel read updated partition table without reboot
+    gdisk
+        used for gpt drives
+    mkfs.ext4 /dev/sda1
+    or
+    mke2fs -t ext4 /dev/sda1
+        Create ext4 filesystem
 ```
