@@ -4,9 +4,9 @@ excerpt: Eliminate needless suffering
 date: "2025-04-17"
 author:
 name: "Supplefrog"
-url: "[URL to a pic for the author](https://avatars.githubusercontent.com/u/78985073?v=4)"
+url: "https://avatars.githubusercontent.com/u/78985073?v=4"
 ogImage:
-url: "URL to an image to set the og Image for SEO"
+url: "https://github.com/supplefrog/linked-blog-md/blob/main/publish/attachments/pot.jpg"
 ---
 ### Thou hast struck gold.  
 
