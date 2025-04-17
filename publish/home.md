@@ -1,12 +1,14 @@
 ---
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
+%%
 date: "2021-11-11"
 author:
 	name: "Name"
 	url: "URL to a pic for the author"
 ogImage:
 	url: "URL to an image to set the og Image for SEO"
+ %%
 ---
 ### Thou hast struck gold.  
 
