@@ -2,11 +2,6 @@
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
 date: "2025-04-17"
-author:
-name: "Supplefrog"
-url: "https://avatars.githubusercontent.com/u/78985073?v=4"
-ogImage:
-url: "https://raw.githubusercontent.com/supplefrog/linked-blog-md/refs/heads/main/publish/attachments/pot.jpg"
 ---
 ### Thou hast struck gold.  
 
