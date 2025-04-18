@@ -1,7 +1,6 @@
 ---
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
-date: "2025-04-17"
 ---
 ### Thou hast struck gold.  
 
