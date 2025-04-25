@@ -210,17 +210,20 @@ Contains server connectors and APIs
 - Smaller and faster than InnoDB
 - Can be used for read-intensive apps
 
-#### InnoDB (Default in 5.5)
-- **> MyISAM**
-- Adheres to ACID properties - ensures proper transaction support
+#### InnoDB (Default in 5.5) 
+- \> MyISAM for transactions
     - Atomicity
         - Transaction is either completed successfully or rolled back
+        - Undo tablespaces
     - Consistency
-        - Amount deducted from sender is equal to amount received by recipient
+        - A transaction can only commit if it satisfies all integrity rules, ensuring the database transitions from one consistent state to another
+        - Foreign keys
     - Isolation
         - Multiple transactions occur independently without interference
+        - Row level locking
     - Durability
         - Transaction must be committed even in case of system-failure
+        - Transaction/redo logs and Doublewrite Buffer
 - Foreign Key support
 - Row level locking - better concurrency
     - **Data**
