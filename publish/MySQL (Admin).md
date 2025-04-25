@@ -208,24 +208,16 @@ Contains server connectors and APIs
 
 #### MyISAM
 - Smaller and faster than InnoDB
-- Can be used for read-intensive apps
+- More suitable for read-heavy applications
 
 #### InnoDB (Default in 5.5) 
-- \> MyISAM for transactions
-    - Atomicity
-        - Transaction is either completed successfully or rolled back
-        - Undo tablespaces
-    - Consistency
-        - A transaction can only commit if it satisfies all integrity rules, ensuring the database transitions from one consistent state to another
-        - Foreign keys
-    - Isolation
-        - Multiple transactions occur independently without interference
-        - Row level locking
-    - Durability
-        - Transaction must be committed even in case of system-failure
-        - Transaction/redo logs and Doublewrite Buffer
-- Foreign Key support
-- Row level locking - better concurrency
+| **ACID Property**    | **InnoDB (Default in 5.5)**                                                                                         | **MyISAM**                                    |
+|----------------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| **Atomicity**         | Transactions are atomic. Uses **undo tablespaces** for rollback.                                                    | No support for transactions or atomicity.    |
+| **Consistency**       | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency.            | No support for transactions or referential integrity. |
+| **Isolation**         | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions.     | No transaction support. **Table-level locking** leads to lack of isolation. |
+| **Durability**        | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.            | No durability support. No recovery in case of crashes. |
+
     - **Data**
         - **Page**
             - Unit of data storage - block
