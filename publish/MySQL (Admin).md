@@ -69,7 +69,11 @@
 ## Logical
 
 ### Client
-- **CLI/GUI/API**
+Contains server connectors and APIs
+- CLI - mysql
+- GUI - MySQL Workbench     
+
+### Server
 - **Thread (connection) handler**
     - Checks for available threads in thread pool or assigns a new one
     - Each client gets a thread
@@ -77,8 +81,6 @@
     - `username@hostname` identified by `password;`
 - **Security**
     - Verifies if user has privilege for each query
-
-### Server
 - **Optimization and Execution**
     - **Lexer**
         - Lexical Analysis/Tokenization
