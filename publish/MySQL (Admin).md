@@ -211,12 +211,12 @@ Contains server connectors and APIs
 - More suitable for read-heavy applications
 
 #### InnoDB (Default in 5.5) 
-| **ACID Property**    | **InnoDB (Default in 5.5)**                                                                                         | **MyISAM**                                    |
-|----------------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| **Atomicity**         | Transactions are atomic. Uses **undo tablespaces** for rollback.                                                    | No support for transactions or atomicity.    |
-| **Consistency**       | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency.            | No support for transactions or referential integrity. |
-| **Isolation**         | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions.     | No transaction support. **Table-level locking** leads to lack of isolation. |
-| **Durability**        | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.            | No durability support. No recovery in case of crashes. |
+| **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM** |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| **Atomicity**     | Transactions are atomic. Uses **undo tablespaces** for rollback.                                                            | X |
+| **Consistency**   | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency.        | X |
+| **Isolation**     | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions.       | **Table-level locking** leads to lack of isolation. |
+| **Durability**    | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.         | No recovery in case of crashes. |
 
 - **Data**
     - **Page**
