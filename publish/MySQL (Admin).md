@@ -218,86 +218,86 @@ Contains server connectors and APIs
 | **Isolation**         | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions.     | No transaction support. **Table-level locking** leads to lack of isolation. |
 | **Durability**        | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.            | No durability support. No recovery in case of crashes. |
 
-    - **Data**
-        - **Page**
-            - Unit of data storage - block
-            - Default - 16kb
-        - **Table Data**
-            - Rows
-        - **Index**
-            - Used to locate rows
-            - Primary
-                - Automatically generated with primary keys
-                - Each entry in primary index corresponds to unique value in primary key column
-                - Clustering - Data stored in same order as index
-            - Secondary
-                - Created on non-primary key/unique column
-                - Explicitly created by user to optimize query performance
-                - Non-clustering - Do not influence data storage order
-    - **In-Memory Data**
-        - **Buffer Pool**
-            - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
-            - Least Recently Used (LRU) algorithm
-                - New (Young) Sublist (5/8)
-                    - Head
-                        - Most accessed pages
-                    - Tail
-                - Old Sublist (3/8)
-                    - Head
-                        - New pages
-                        - Less accessed pages
-                    - Tail
-                    - Flushed to data files
-            - **Change Buffer (25%, up to 50%)**
-                - Caches changes to secondary index pages not currently in buffer pool
-                - Merged later when index pages are loaded by buffer pool
-            - **Adaptive Hash Index**
-                - Constructed dynamically by InnoDB
-                - Stores frequently used indexes
-                - Speeds up data retrieval from buffer pool
-                    - B-Tree index lookups -> faster hash-based search
-        - **Log Buffer**
-            - Maintains record of dirty pages in buffer pool
-            - Transaction commit/log buffer reaches threshold/regular interval
-                - Flush to redo log files
-    - **On-Disk Data**
-        - **Redo Logs**
-            - Write-ahead logging
-                - Persistent log of changes, before applied to on-disk pages
-            - Changes can be reapplied to data pages if system crashes before/during writing
-            - Durability - committed transactions are not lost
-            - Temporary redo logs
-        - **Tablespaces**
-            - **System Tablespace - ibdata1**
-                - Change buffer
-                    - Persists secondary index buffered changes across restarts (durability)
-                - Doublewrite Buffer
-                    - Protects against partial page writes due to crash while writing pages to tables
-                - Data Dictionary
-                    - Metadata about database objects
-                    - Used to create cfg files during tablespace export
-                - Table and Index Data
-                    - For tables without innodb_file_per_table option
-                - Undo logs
-                    - In case instance isn't started with undo tablespace
-            - **General Tablespace .ibd**
-                - Can host multiple tables
-            - **File-Per-Table Tablespace .ibd**
-                - Each table has own .ibd file
-            - **Temporary Tablespace**
-                - Handle operations involving temporary tables and intermediate data processing e.g. sorting, grouping
-                - Global Temporary Tablespace
-                - Session Temporary Tablespace
-            - **Undo Tablespaces**
-                - Store undo logs
-                    - Records original data before changes
-                    - Enable rollback in case transaction not reflected on receiver's end
-    - **Metadata**
-        - .cfg contains config information for tablespace import
-            - **Source**
-                - flush tables table_name for export;
-                - cp ibd and cfg files
-                - unlock tables;
-            - **Destination**
-                - alter table table_name discard tablespace;
-                - alter table table_name import tablespace;
+- **Data**
+    - **Page**
+        - Unit of data storage - block
+        - Default - 16kb
+    - **Table Data**
+        - Rows
+    - **Index**
+        - Used to locate rows
+        - Primary
+            - Automatically generated with primary keys
+            - Each entry in primary index corresponds to unique value in primary key column
+            - Clustering - Data stored in same order as index
+        - Secondary
+            - Created on non-primary key/unique column
+            - Explicitly created by user to optimize query performance
+            - Non-clustering - Do not influence data storage order
+- **In-Memory Data**
+    - **Buffer Pool**
+        - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
+        - Least Recently Used (LRU) algorithm
+            - New (Young) Sublist (5/8)
+                - Head
+                    - Most accessed pages
+                - Tail
+            - Old Sublist (3/8)
+                - Head
+                    - New pages
+                    - Less accessed pages
+                - Tail
+                - Flushed to data files
+        - **Change Buffer (25%, up to 50%)**
+            - Caches changes to secondary index pages not currently in buffer pool
+            - Merged later when index pages are loaded by buffer pool
+        - **Adaptive Hash Index**
+            - Constructed dynamically by InnoDB
+            - Stores frequently used indexes
+            - Speeds up data retrieval from buffer pool
+                - B-Tree index lookups -> faster hash-based search
+    - **Log Buffer**
+        - Maintains record of dirty pages in buffer pool
+        - Transaction commit/log buffer reaches threshold/regular interval
+            - Flush to redo log files
+- **On-Disk Data**
+    - **Redo Logs**
+        - Write-ahead logging
+            - Persistent log of changes, before applied to on-disk pages
+        - Changes can be reapplied to data pages if system crashes before/during writing
+        - Durability - committed transactions are not lost
+        - Temporary redo logs
+    - **Tablespaces**
+        - **System Tablespace - ibdata1**
+            - Change buffer
+                - Persists secondary index buffered changes across restarts (durability)
+            - Doublewrite Buffer
+                - Protects against partial page writes due to crash while writing pages to tables
+            - Data Dictionary
+                - Metadata about database objects
+                - Used to create cfg files during tablespace export
+            - Table and Index Data
+                - For tables without innodb_file_per_table option
+            - Undo logs
+                - In case instance isn't started with undo tablespace
+        - **General Tablespace .ibd**
+            - Can host multiple tables
+        - **File-Per-Table Tablespace .ibd**
+            - Each table has own .ibd file
+        - **Temporary Tablespace**
+            - Handle operations involving temporary tables and intermediate data processing e.g. sorting, grouping
+            - Global Temporary Tablespace
+            - Session Temporary Tablespace
+        - **Undo Tablespaces**
+            - Store undo logs
+                - Records original data before changes
+                - Enable rollback in case transaction not reflected on receiver's end
+- **Metadata**
+    - .cfg contains config information for tablespace import
+        - **Source**
+            - flush tables table_name for export;
+            - cp ibd and cfg files
+            - unlock tables;
+        - **Destination**
+            - alter table table_name discard tablespace;
+            - alter table table_name import tablespace;
