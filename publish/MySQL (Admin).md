@@ -91,14 +91,18 @@ Contains server connectors and APIs
                 - Literals
     - **Parser**
         - Analyzes if tokens follow syntax structure based on rules
-        - If valid, creates Abstract Syntax Tree (AST) - structure server can work with instead of raw string (like these notes)
+        - If valid, creates parse tree (Abstract Syntax Tree) - represents query logical structure
             - Each node represents a SQL operation
             - Edges represent relationships between operations
     - **Query Optimizer**
-        - Decides most efficient plan to execute the AST - reordering operations, applying indexes depending on storage engine support
-        - Doesn't change the query per se
+        - Logical query plan derived from parse tree -> optimized query plan, for resp storage engine
+        - Cost/rules based optimization
+            - Reorders operations like joins, filtering before/after joining
+            - Chooses join method e.g. hash, nested loop
+            - Chooses primary/secondary index
+            - how to perform join by considering data distribution, available indices
     - **Execution Engine**
-        - Executes query
+        - Executes optimized query execution plan
     - **Query Cache**
         - 5.7.20 deprecated
         - 8.0 removed
