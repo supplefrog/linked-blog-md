@@ -219,22 +219,6 @@ Contains server connectors and APIs
 | **Durability**    | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability          | No recovery in case of crashes |
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
-- **Data**
-    - **Page**
-        - Unit of data storage - block
-        - Default - 16kb
-    - **Table Data**
-        - Rows
-    - **Index**
-        - Used to locate rows
-        - Primary
-            - Automatically generated with primary keys
-            - Each entry in primary index corresponds to unique value in primary key column
-            - Clustering - Data stored in same order as index
-        - Secondary
-            - Created on non-primary key/unique column
-            - Explicitly created by user to optimize query performance
-            - Non-clustering - Do not influence data storage order
 - **In-Memory Data**
     - **Buffer Pool**
         - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
@@ -302,3 +286,20 @@ Contains server connectors and APIs
         - **Destination**
             - alter table table_name discard tablespace;
             - alter table table_name import tablespace;
+#### Glossary
+- **Data**
+    - **Page**
+        - Unit of data storage - block
+        - Default - 16kb
+    - **Table Data**
+        - Rows
+    - **Index**
+        - Used to locate rows
+        - Primary
+            - Automatically generated with primary keys
+            - Each entry in primary index corresponds to unique value in primary key column
+            - Clustering - Data stored in same order as index
+        - Secondary
+            - Created on non-primary key/unique column
+            - Explicitly created by user to optimize query performance
+            - Non-clustering - Do not influence data storage order
