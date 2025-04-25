@@ -210,7 +210,6 @@ Contains server connectors and APIs
 - Smaller and faster than InnoDB
 - More suitable for read-heavy applications
 
-#### InnoDB (Default in 5.5) 
 | **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM** |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails                                                                                           | X |
@@ -219,6 +218,7 @@ Contains server connectors and APIs
 | **Durability**    | Uses **redo log** (**write-ahead logging**), **doublewrite buffer**, and **crash recovery** for durability          | No recovery in case of crashes |
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
+
 - **In-Memory Data**
     - **Buffer Pool**
         - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
