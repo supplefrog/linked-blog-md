@@ -218,6 +218,7 @@ Contains server connectors and APIs
 | **Isolation**     | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions        | **Table-level locking** leads to lack of isolation |
 | **Durability**    | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability          | No recovery in case of crashes |
 
+![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 - **Data**
     - **Page**
         - Unit of data storage - block
