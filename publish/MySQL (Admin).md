@@ -213,10 +213,10 @@ Contains server connectors and APIs
 #### InnoDB (Default in 5.5) 
 | **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM** |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback if any part of the transaction fails. Uses **undo tablespaces** for rollback.                                                                                 | X |
+| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails.                                                                                          | X |
 | **Consistency**   | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency.        | X |
 | **Isolation**     | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions.       | **Table-level locking** leads to lack of isolation. |
-| **Durability**    | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.         | No recovery in case of crashes. |
+| **Durability**    | Uses **write-ahead logging**, **redo log**, **doublewrite buffer**, and **crash recovery** for durability.         | No recovery in case of crashes |
 
 - **Data**
     - **Page**
