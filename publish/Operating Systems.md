@@ -305,7 +305,7 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
         - LVM RAID
 
 ## Directory Structure
-- / (Root Dir)
+- / : Root directory
     - /bin: User command binaries
     - /boot: Bootloader and kernel files
     - /etc: Config/setting files
