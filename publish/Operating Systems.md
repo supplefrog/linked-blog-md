@@ -330,11 +330,10 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 - Userspace interface to interact with applications
     - Interactive: User can enter commands
     - Non-interactive: `/sbin/nologin`
-
-### Login
-- Loads user environment
-### Non-login
-- Loads only global config without user environment
+- **Login**
+    - Loads user environment
+- **Non-login**
+    - Loads only global config without user environment
 
 ## GNU Utils
 - FOSS utilities analogous to UNIX OS in function written from scratch
