@@ -29,11 +29,11 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 
 ### Process Control Blocks (PCB)
 - Data Structure
-	- Process State
-	- PID
-	- Registers
-	- Memory Limits
-	- Open Files
+    - Process State
+    - PID
+    - Registers
+    - Memory Limits
+    - Open Files
 
 - PCBs of particular process states placed in their respective queues:
   - **Job Queue**: All processes
