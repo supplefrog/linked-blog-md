@@ -22,10 +22,10 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 
 ## Process Scheduling
 ### Non-preemptive
-- Resources allocated until process completes execution.
+- Resources allocated until process completes execution
 
 ### Preemptive
-- Resources allocated for fixed time.
+- Resources allocated for fixed time
 
 ### Process Control Blocks (PCB)
 - Data Structure
@@ -137,103 +137,103 @@ Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md
 - Enforces security policies that restrict access to system resources (e.g., Port access for applications)
 
 #### Firewall
-- Block incoming traffic based on rich rules.
-  - Example: block traffic on specific port from certain services/IPs.
+- Block incoming traffic based on rich rules
+  - Example: block traffic on specific port from certain services/IPs
 
 ---
 
 # Boot Process
 ## Power ON
-- CPU fetches reset vector from Firmware ROM.
-  - Reset vector: Points CPU to the start of firmware execution.
+- CPU fetches reset vector from Firmware ROM
+  - Reset vector: Points CPU to the start of firmware execution
 
 ## Firmware
 #### BIOS
 - POST (Power On Self-Test):
-  - Checks CPU, RAM, MoBo, I/O devices.
+  - Checks CPU, RAM, MoBo, I/O devices
   - If successful:
-    - Locates bootable media.
+    - Locates bootable media
   - Else:
-    - Stops and shows error (Beeps/LED codes).
+    - Stops and shows error (Beeps/LED codes)
 
 - Load boot sector from SD.
 - **MBR** (Master Boot Record) - 512 bytes data structure stored in LBA 0:
   - Contains:
-    - Bootstrap loader: scans partition table for a primary partition marked bootable mounted on `/boot`.
-    - Partition table.
-    - Disk signature.
-  - Loads bootloader.
+    - Bootstrap loader: scans partition table for a primary partition marked bootable mounted on `/boot`
+    - Partition table
+    - Disk signature
+  - Loads bootloader
 
 #### UEFI
-- SEC (Security Initialization).
-- PEI (Pre-EFI Initialization).
-- DXE (Driver Execution Environment).
-- BDS (Boot Device Selection).
+- SEC (Security Initialization)
+- PEI (Pre-EFI Initialization)
+- DXE (Driver Execution Environment)
+- BDS (Boot Device Selection)
 - Reads GPT header & partition table:
-  - LBA 0: Protective MBR.
-  - LBA 1: Primary GPT Header (partitioning scheme).
-  - LBA 2: Primary partition table.
-  - Backup header and PT at the end of the disk.
+  - LBA 0: Protective MBR
+  - LBA 1: Primary GPT Header (partitioning scheme)
+  - LBA 2: Primary partition table
+  - Backup header and PT at the end of the disk
 
 - **ESP (EFI System Partition - FAT32)** mounted on `/boot/efi`:
   - Contains `.efi` executable files:
-    - Bootloader (systemd-boot, GRUB2).
-    - Secure boot ensures only signed `.efi` are executed.
-  - Loads bootloader.
+    - Bootloader (systemd-boot, GRUB2)
+    - Secure boot ensures only signed `.efi` are executed
+  - Loads bootloader
 
 ## Bootloader
 #### GRUB
 - Reads `/boot`.
 - `/efi/EFI/redhat/grub.cfg`:
-  - Boot menu.
-  - Command line parameters (can customize kernel behavior).
+  - Boot menu
+  - Command line parameters (can customize kernel behavior)
 - Loads into RAM:
-  - **vmlinuz** (supports virtual memory).
-  - **initramfs img**.
+  - **vmlinuz** (supports virtual memory)
+  - **initramfs img**
 
 #### systemd-boot
-- `/boot/efi/EFI/systemd/systemd-bootx64.efi`.
-- Boot menu.
-- Loads `vmlinuz` and `initramfs` into RAM and hands over execution.
+- `/boot/efi/EFI/systemd/systemd-bootx64.efi`
+- Boot menu
+- Loads `vmlinuz` and `initramfs` into RAM and hands over execution
 
 ## Kernel
-- `vmlinuz` contains a small stub (decompression code) that extracts itself.
+- `vmlinuz` contains a small stub (decompression code) that extracts itself
 - Initializes:
   - **CPU**:
-    - Configures CPU registers.
-    - Sets up exception and interrupt handling mechanisms.
+    - Configures CPU registers
+    - Sets up exception and interrupt handling mechanisms
   - **Memory**:
-    - Physical.
-    - Virtual.
+    - Physical
+    - Virtual
   - Device detection:
-    - Storage controllers.
-    - Network Interfaces.
-    - Peripherals.
+    - Storage controllers
+    - Network Interfaces
+    - Peripherals
 
 - Load modules (e.g., drivers) compiled into kernel:
-  - Initialized during boot.
-- Mounts temporary RAM-based filesystem (`tmpfs`) as `/`.
-- Extracts `initramfs img` into `/`.
+  - Initialized during boot
+- Mounts temporary RAM-based filesystem (`tmpfs`) as `/`
+- Extracts `initramfs img` into `/`
 - Executes `/init` script:
-  - Loads modules (e.g., Intel/AMD microcode).
-  - Mounts SD `/` as Read-only for consistency checks, then remounts it as RW and switches to it.
-  - Executes PID 1 (`/sbin/init`, sym-linked to `/usr/lib/systemd/systemd`).
+  - Loads modules (e.g., Intel/AMD microcode)
+  - Mounts SD `/` as Read-only for consistency checks, then remounts it as RW and switches to it
+  - Executes PID 1 (`/sbin/init`, sym-linked to `/usr/lib/systemd/systemd`)
 
 ## Init System
 - `/etc/fstab` invoked:
-  - Filesystem Table - mounts defined filesystems on boot.
-    - Example: `Device Mount_point Filesystem Options Dump Pass`.
+  - Filesystem Table - mounts defined filesystems on boot
+    - Example: `Device Mount_point Filesystem Options Dump Pass`
 
 - Manages services based on targets (systemd) or runlevels (older init system):
-  - Reads unit files in `/usr/lib/systemd/system` and `/etc/systemd/system`.
-  - Executes them in order.
+  - Reads unit files in `/usr/lib/systemd/system` and `/etc/systemd/system`
+  - Executes them in order
 
 #### Systemd Targets
-- 0: `poweroff.target`.
-- 1: `rescue.target` (Getty - single-user mode for minimal maintenance).
-- 2-4: `multi-user.target` (Multi-user mode).
-- 5: `graphical.target` (GUI).
-- 6: `reboot.target` (Reboot).
+- 0: `poweroff.target`
+- 1: `rescue.target` (Getty - single-user mode for minimal maintenance)
+- 2-4: `multi-user.target` (Multi-user mode)
+- 5: `graphical.target` (GUI)
+- 6: `reboot.target` (Reboot)
 
 - Show currently loaded targets/runlevel:
     - `systemctl list-units --type=target`
@@ -416,7 +416,7 @@ command -f --flag arguments
 			--all do not ignore entries starting with .
 	    -h
 			Human readable
-		-u
+        -u
 		    Show access time instead of modification time
     lsof 
         List open files
