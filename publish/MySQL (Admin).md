@@ -270,7 +270,7 @@ Contains server connectors and APIs
         - **File-Per-Table Tablespace .ibd**
             - Each table has own .ibd file
         - **Temporary Tablespace**
-            - Session
+            - Session (#innodb_temp dir)
                 - User-created
                     - ```
                       CREATE TEMPORARY TABLE table_name ();
@@ -278,8 +278,9 @@ Contains server connectors and APIs
                 - Internal temp tables - auto created by optimizer for operations like sorting, grouping
             - Global (ibtmp1)
                 - Stores rollback segments for changes to  user-created temp tables
+                - Redo logs not needed since not persistent
                 - Auto-extending
-                - Removed on normal shutdown, recreated on server startup 
+                - Removed on normal shutdown, recreated on server startup
         - **Undo Tablespaces**
             - Store undo logs
                 - Records original data before changes
