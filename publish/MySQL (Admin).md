@@ -1,5 +1,5 @@
 ### RDBMS - Tables have relations
-# Editions
+# Editions (complete comparison and convert to table format)
 ## Community Edition
 - **FOSS**
 - **Operator for Kubernetes**
