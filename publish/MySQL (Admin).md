@@ -104,8 +104,9 @@ Contains server connectors and APIs
     - **Execution Engine**
         - Executes optimized query execution plan
     - **Query Cache**
+        Query + result set
         - 5.7.20 deprecated
-        - 8.0 removed
+        - 8.0 removed (hard to scale)
         - Frequently served result sets cached in Redis
     - **Key Cache stores index blocks**
         - Used by MyISAM
