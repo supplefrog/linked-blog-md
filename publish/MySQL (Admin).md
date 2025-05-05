@@ -348,7 +348,7 @@ socket=/var/run/mysql/mysqld.sock
 
 ## Security Management
 ### firewalld
-- Identifies incoming traffic from data frame layer 3/network/IP & 4/transport/TCP headers 
+- Identifies incoming traffic from data frame **layer 3/network/IP** & **4/transport/TCP headers** 
 - Use rich rules to block service names based on source ips, destination ports
 ```
 firewalld --list-services
