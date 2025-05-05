@@ -325,6 +325,7 @@ Components divided amongst packages as per function:
     - common - common files for db and client libs e.g. config files
     - client
     - server
+
     **Optional:**
     - test - test suite for server
     - devel - development header files and libraries
@@ -333,6 +334,7 @@ Components divided amongst packages as per function:
 - All components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
+
 **my.cnf**
 ```    
 [mysqld]
