@@ -323,7 +323,7 @@ Contains server connectors and APIs
     - client
     - server
 
-    **Optional:**
+    **Optional:**  
     - test - test suite for server
     - devel - development header files and libraries
 
