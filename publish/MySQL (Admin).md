@@ -272,9 +272,9 @@ Contains server connectors and APIs
         - **Temporary Tablespace**
             - Session (#innodb_temp dir)
                 - User-created
-                    - ```
-                      CREATE TEMPORARY TABLE table_name ();
-                      ```
+                ```
+                CREATE TEMPORARY TABLE table_name ();
+                ```
                 - Internal temp tables - auto created by optimizer for operations like sorting, grouping
             - Global (ibtmp1)
                 - Stores rollback segments for changes to  user-created temp tables
