@@ -289,7 +289,7 @@ Contains server connectors and APIs
         - alter table table_name discard tablespace;
         - alter table table_name import tablespace;
 #### Glossary
-**Data**
+**Data**  
     - **Page**
         - Unit of data storage - block
         - Default - 16kb
