@@ -162,22 +162,16 @@ Contains server connectors and APIs
             - Triggers
                 - Procedures that auto execute in response to specific events like DML on particular table or view
     - Logs
+        - General Query Log - all SQL queries received by the server regardless of execution time
+        - Slow Query Log - queries > specified exec time
+        - DDL Log - DDL statements
         - Binary Log
+            - Used for replication and point-in-time recovery
             - Events that describe changes to DB
             - Server decides which format to use depending on the query:
-                - Statement Based Logging
-                    - Logs queries that modify data
-                - Row-Based Logging
-                    - Logs row level data changes - before and after
-                - Mixed Logging
-                    - Combines both
-            - Used for replication and point-in-time recovery
-        - General Query Log
-            - Log all SQL queries received by the server regardless of execution time
-        - Slow Query Log
-            - Log queries > specified exec time
-        - DDL Log
-            - Log DDL statements
+                - Statement Based Logging - queries that modify data
+                - Row-Based Logging - row level data changes - before and after
+                - Mixed Logging - combines both
         - Relay Log
             - Replica server data dir/replica-server-name-relay.bin.000001
             - Store events read from source's bin log
