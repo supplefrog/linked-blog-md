@@ -270,9 +270,16 @@ Contains server connectors and APIs
         - **File-Per-Table Tablespace .ibd**
             - Each table has own .ibd file
         - **Temporary Tablespace**
-            - Handle operations involving temporary tables and intermediate data processing e.g. sorting, grouping
-            - Global Temporary Tablespace
-            - Session Temporary Tablespace
+            - Session
+                - User-created
+                    - ```
+                      CREATE TEMPORARY TABLE table_name ();
+                      ```
+                - Internal temp tables - auto created by optimizer for operations like sorting, grouping
+            - Global (ibtmp1)
+                - Stores rollback segments for changes to  user-created temp tables
+                - Auto-extending
+                - Removed on normal shutdown, recreated on server startup 
         - **Undo Tablespaces**
             - Store undo logs
                 - Records original data before changes
