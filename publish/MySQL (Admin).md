@@ -62,6 +62,8 @@
 # System Variables
 ```
 show [global/session/ ] variables [like ' '];
+```
+```
 set persist variable_name = value;
 ```
 
