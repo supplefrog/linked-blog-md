@@ -316,13 +316,21 @@ Contains server connectors and APIs
 
 # Installation
 
-8.0
-    support files
-        systemctl service
-        Auto initializes server
-5.7
-    sysVinit service
-    needs to be initialized before starting
+Packages - 
+Auto install in dirs 
+Dependency resolution including glibc version
+Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
+    libs - shared libs for client apps
+    common - common files for db and client libs e.g. config files
+    client
+    server
+    Optional:
+    test - test suite for server
+    devel - development header files and libraries
+
+Generic Linux - tarball - prebuilt binaries for specific glibc dependency
+    support-files
+        SysVinit service files for backward compatibility 
 my.cnf
     [mysqld]
     user=mysql
