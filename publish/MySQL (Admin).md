@@ -335,7 +335,7 @@ Components divided amongst packages as per function:
     - support-files
         - SysVinit service files for backward compatibility
 
-**my.cnf**
+## my.cnf**
 ```    
 [mysqld]
 user=mysql
@@ -346,7 +346,9 @@ socket=
 [mysql]
 socket=
 ```
---help verbose
-    lists referenced variables
-systemctl status
-journalctl -xe
+
+## Troubleshoot
+- --help --verbose
+    - lists referenced variables
+- systemctl status
+- journalctl -xe
