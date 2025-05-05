@@ -109,12 +109,11 @@ Contains server connectors and APIs
         - Frequently served result sets cached in Redis
     - **Key Cache stores index blocks**
         - Used by MyISAM
-    - **Table Open Cache**
-        - Stores file descriptors for open tables
-            - Needed for accessing tables
-        - Reduces overhead of opening and closing tables
+    - **Table Open Cache (I/O)**
+        - Caches file descriptors for open table files
+        - Used to avoid reopening tables
     - **Metadata Cache**
-        - Stores metadata about database objects
+        - Caches structural info e.g., schema, column info
 
 ## Physical
 
