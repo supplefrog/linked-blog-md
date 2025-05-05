@@ -276,7 +276,7 @@ Contains server connectors and APIs
                     CREATE TEMPORARY TABLE table_name ();
                     ```
                 - Internal temp tables - auto created by optimizer for operations like sorting, grouping
-                    - Optimizer may materialize Common Table Expressions' (CTE - modular query) result sets into temp table if they are frequently referenced in a query
+                    - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
             - Global (ibtmp1)
                 - Stores rollback segments for changes to  user-created temp tables
                 - Redo logs not needed since not persistent
