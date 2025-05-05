@@ -317,10 +317,10 @@ Contains server connectors and APIs
 # Installation
 
 ## Packages
-- Auto install in dirs
 - Dependency resolution including glibc version
+- Auto install in dirs
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
-- Divided as per function
+Components divided amongst packages as per function:
     - libs - shared libs for client apps
     - common - common files for db and client libs e.g. config files
     - client
@@ -329,19 +329,21 @@ Contains server connectors and APIs
     - test - test suite for server
     - devel - development header files and libraries
 
-## Tarball
-- Generic Linux - prebuilt binaries for specific glibc dependency
+## Generic Linux - Tarball
+- All components, and prebuilt binaries for specific glibc dependency
     - support-files
-        - SysVinit service files for backward compatibility 
-my.cnf
-    [mysqld]
-    user=mysql
-    datadir=
-    pid-file=
-    socket=
+        - SysVinit service files for backward compatibility
+**my.cnf**
+```    
+[mysqld]
+user=mysql
+datadir=
+pid-file=
+socket=
     
-    [mysql]
-    socket=
+[mysql]
+socket=
+```
 --help verbose
     lists referenced variables
 systemctl status
