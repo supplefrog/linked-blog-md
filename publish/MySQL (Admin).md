@@ -280,6 +280,7 @@ Contains server connectors and APIs
                 - Records original data before changes
                 - Enable rollback in case transaction not reflected on receiver's end
 - **Metadata**
+
 .cfg contains config information for tablespace import
     - **Source**
         - flush tables table_name for export;
