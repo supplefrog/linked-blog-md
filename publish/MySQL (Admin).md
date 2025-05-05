@@ -279,9 +279,8 @@ Contains server connectors and APIs
             - Store undo logs
                 - Records original data before changes
                 - Enable rollback in case transaction not reflected on receiver's end
-- **Metadata**
-
-.cfg contains config information for tablespace import
+- **Metadata**  
+  .cfg contains config information for tablespace import  
     - **Source**
         - flush tables table_name for export;
         - cp ibd and cfg files
