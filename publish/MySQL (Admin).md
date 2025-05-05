@@ -280,14 +280,14 @@ Contains server connectors and APIs
                 - Records original data before changes
                 - Enable rollback in case transaction not reflected on receiver's end
 - **Metadata**
-    - .cfg contains config information for tablespace import
-        - **Source**
-            - flush tables table_name for export;
-            - cp ibd and cfg files
-            - unlock tables;
-        - **Destination**
-            - alter table table_name discard tablespace;
-            - alter table table_name import tablespace;
+.cfg contains config information for tablespace import
+    - **Source**
+        - flush tables table_name for export;
+        - cp ibd and cfg files
+        - unlock tables;
+    - **Destination**
+        - alter table table_name discard tablespace;
+        - alter table table_name import tablespace;
 #### Glossary
 - **Data**
     - **Page**
