@@ -102,7 +102,7 @@ Contains server connectors and APIs
             - how to perform join by considering data distribution, available indices
     - **Execution Engine**
         - Executes optimized query execution plan
-    - **Query Cache**
+    - **Query Cache**  
         Query + result set
         - 5.7.20 deprecated
         - 8.0 removed (hard to scale)
