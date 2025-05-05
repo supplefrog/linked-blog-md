@@ -321,7 +321,7 @@ Contains server connectors and APIs
 - Auto install in dirs
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
 
-Components divided amongst packages as per function:
+- Components divided amongst packages as per function:
     - libs - shared libs for client apps
     - common - common files for db and client libs e.g. config files
     - client
