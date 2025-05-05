@@ -346,14 +346,23 @@ socket=/var/run/mysql/mysqld.sock
 - systemctl status
 - journalctl -xe
 
-Installation
+## Security Management
+### firewalld
+- Identifies incoming traffic from data frame layer 3/network/IP & 4/transport/TCP headers 
+- Use rich rules to block service names based on source ips, destination ports
+```
 firewalld --list-services
 firewalld --list-ports
-selinux show enabled ports
-    semanage port -l
-    
-add to systemctl service file before starting service
-mysqld
+```
+
+### selinux
+- show ports enabled for services
+```
+semanage port -l
+``` 
+
+## Upgrade
+
 --upgrade=AUTO (or omitting the option): This is the default behavior. The server automatically determines if upgrades are needed for the data dictionary and system tables based on the detected versions. If an upgrade is required, it will be performed.
 
 --upgrade=MINIMAL: This option tells the server to upgrade the data dictionary, Performance Schema, and INFORMATION_SCHEMA if necessary. It skips the upgrade of other system tables and user schemas. This can be useful for a faster startup when you intend to run mysql_upgrade later to handle the remaining upgrades.
@@ -363,3 +372,5 @@ mysqld
 --upgrade=NONE: This is the option you're likely remembering as a way to avoid automatic upgrades. When you use --upgrade=NONE, the server skips all automatic upgrade attempts.
 
 Crucially, if the data dictionary requires an upgrade when you use --upgrade=NONE, the server will refuse to start and exit with an error. This option is not intended for regular use but rather for specific situations where you want to prevent any automatic upgrade and handle it entirely manually (if needed) using mysql_upgrade.
+
+## Downgrade
