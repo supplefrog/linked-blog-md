@@ -332,3 +332,7 @@ my.cnf
     
     [mysql]
     socket=
+--help verbose
+    lists referenced variables
+systemctl status
+journalctl -xe
