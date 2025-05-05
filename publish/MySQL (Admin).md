@@ -1,4 +1,4 @@
-## RDBMS - Tables have relations
+### RDBMS - Tables have relations
 # Editions
 ## Community Edition
 - **FOSS**
