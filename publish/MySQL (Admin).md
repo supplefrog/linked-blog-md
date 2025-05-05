@@ -331,7 +331,7 @@ Contains server connectors and APIs
     - test - test suite for server
     - devel - development header files and libraries
 
-## Generic Linux - Tarball
+## [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
 - All components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
