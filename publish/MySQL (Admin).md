@@ -314,7 +314,7 @@ Contains server connectors and APIs
             - Explicitly created by user to optimize query performance
             - Non-clustering - Do not influence data storage order
 
-# Installation
+# [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
 ## Packages
 - Dependency resolution including glibc version
