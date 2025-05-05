@@ -60,7 +60,7 @@
 - Advanced monitoring and management tools
 
 # System Variables
-- show [ /global/session ] variables[ ; ] like ' ';
+- show [ /global/session ] variables [ ; ] like ' ';
 - set persist variable_name = value;
 
 # Architecture
