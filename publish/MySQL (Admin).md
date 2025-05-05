@@ -290,22 +290,21 @@ Contains server connectors and APIs
         - alter table table_name import tablespace;
 #### Glossary
 **Data**
-
-    - **Page**
-        - Unit of data storage - block
-        - Default - 16kb
-    - **Table Data**
-        - Rows
-    - **Index**
-        - Used to locate rows
-        - Primary
-            - Automatically generated with primary keys
-            - Each entry in primary index corresponds to unique value in primary key column
-            - Clustering - Data stored in same order as index
-        - Secondary
-            - Created on non-primary key/unique column
-            - Explicitly created by user to optimize query performance
-            - Non-clustering - Do not influence data storage order
+- **Page**
+    - Unit of data storage - block
+    - Default - 16kb
+- **Table Data**
+    - Rows
+- **Index**
+    - Used to locate rows
+    - Primary
+        - Automatically generated with primary keys
+        - Each entry in primary index corresponds to unique value in primary key column
+        - Clustering - Data stored in same order as index
+    - Secondary
+        - Created on non-primary key/unique column
+        - Explicitly created by user to optimize query performance
+        - Non-clustering - Do not influence data storage order
 
 # [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
