@@ -335,7 +335,7 @@ Components divided amongst packages as per function:
     - support-files
         - SysVinit service files for backward compatibility
 
-## my.cnf**
+## my.cnf
 ```    
 [mysqld]
 user=mysql
