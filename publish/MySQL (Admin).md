@@ -340,12 +340,12 @@ Contains server connectors and APIs
 ```    
 [mysqld]
 user=mysql
-datadir=
-pid-file=
-socket=
+datadir=/var/lib/mysql
+pid-file=/var/run/mysql/mysqld.pid
+socket=/var/run/mysql/mysqld.sock
     
 [mysql]
-socket=
+socket=/var/run/mysql/mysqld.sock
 ```
 
 ## Troubleshoot
