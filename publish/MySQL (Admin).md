@@ -313,3 +313,22 @@ Contains server connectors and APIs
             - Created on non-primary key/unique column
             - Explicitly created by user to optimize query performance
             - Non-clustering - Do not influence data storage order
+
+# Installation
+
+8.0
+    support files
+        systemctl service
+        Auto initializes server
+5.7
+    sysVinit service
+    needs to be initialized before starting
+my.cnf
+    [mysqld]
+    user=mysql
+    datadir=
+    pid-file=
+    socket=
+    
+    [mysql]
+    socket=
