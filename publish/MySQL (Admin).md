@@ -290,18 +290,18 @@ Contains server connectors and APIs
         - alter table table_name import tablespace;
 #### Glossary
 **Data**
-- **Page**
+- Page
     - Unit of data storage - block
     - Default - 16kb
-- **Table Data**
+- Table Data
     - Rows
 - **Index**
     - Used to locate rows
-    - Primary
+    - **Primary**
         - Automatically generated with primary keys
         - Each entry in primary index corresponds to unique value in primary key column
         - Clustering - Data stored in same order as index
-    - Secondary
+    - **Secondary**
         - Created on non-primary key/unique column
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
