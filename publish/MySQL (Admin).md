@@ -81,17 +81,6 @@ Contains server connectors and APIs
 
 ### MySQL Config File
 - `/etc/my.cnf`
-    - Buffer Pool Size - MB
-        - Default 80% of RAM for server
-    - Default Authentication Plugin
-    - Locations for
-        - Datadir
-        - Socket File
-        - Error/Server Log
-            - /var/log/mysqld.log
-            - Can be redirected to System (wide) Log
-        - PID File
-            - /var/run/mysqld
 
 ### Data Directory
 - `/var/lib/mysql`
@@ -294,11 +283,12 @@ pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
 user = mysql
+default_authentication_plugin = sha256_password
 default_storage_engine = InnoDB
-innodb_buffer_pool_size = 128M
+innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 [mysql]
-socket = /var/run/mysql/mysqld.sock
+# socket = /var/run/mysql/mysqld1.sock
 ```
 
 ## Systemd Service
