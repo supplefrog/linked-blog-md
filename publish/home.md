@@ -19,5 +19,10 @@ excerpt: Eliminate needless suffering
 ![[pot.jpg]]  
 ![[horse.jpeg]]  
 
+> Paste in terminal for my dot files:
+```bash
+sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
+```
+
 [[Operating Systems]]  
 [[MySQL (Admin)]]
