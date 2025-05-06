@@ -301,6 +301,8 @@ innodb_buffer_pool_size = 128M
 socket = /var/run/mysql/mysqld.sock
 ```
 
+## Systemd Service
+
 ## Troubleshoot
 - --help --verbose
     - lists referenced variables
