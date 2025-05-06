@@ -256,7 +256,7 @@ Contains server connectors and APIs
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
 
-# Administration
+# Admin
 
 ## [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
