@@ -336,10 +336,12 @@ set persist variable_name = value;
 
 - MyISAM -> InnoDB
 - Cold Backup - import table, mysqldump - logical, vs physical backup
+- Try and modify architecture notes to merge InnoDB data dir w Physical
+- elaborate data flow in Logical
 
 ## Backup and Restore/Recovery
 
-## Upgrade
+## Upgrade/Downgrade
 
 --upgrade=AUTO (or omitting the option): This is the default behavior. The server automatically determines if upgrades are needed for the data dictionary and system tables based on the detected versions. If an upgrade is required, it will be performed.
 
@@ -350,5 +352,3 @@ set persist variable_name = value;
 --upgrade=NONE: This is the option you're likely remembering as a way to avoid automatic upgrades. When you use --upgrade=NONE, the server skips all automatic upgrade attempts.
 
 Crucially, if the data dictionary requires an upgrade when you use --upgrade=NONE, the server will refuse to start and exit with an error. This option is not intended for regular use but rather for specific situations where you want to prevent any automatic upgrade and handle it entirely manually (if needed) using mysql_upgrade.
-
-## Downgrade
