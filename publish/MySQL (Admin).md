@@ -151,7 +151,7 @@ Contains server connectors and APIs
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 
-- **In-Memory Data**
+- **In-Memory Data** - located completely in RAM
     - **Buffer Pool**
         - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
         - Least Recently Used (LRU) algorithm
