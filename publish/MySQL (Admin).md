@@ -68,56 +68,58 @@ Contains server connectors and APIs
 ## Physical
 
 ### Base Directory
-- `/bin -> /usr/bin`
-    - Executables
-        - mysql - CLI
-        - mysqladmin 
-            - CLI to interact with mysql server
-        - mysqlbinlog
-        - myisamlog
-        - mysqlcheck
-        - mysql_config_editor
-        - mysqldump
+`/bin -> /usr/bin`
+
+- Executables
+    - mysql - CLI
+    - mysqladmin 
+        - CLI to interact with mysql server
+    - mysqlbinlog
+    - myisamlog
+    - mysqlcheck
+    - mysql_config_editor
+    - mysqldump
 
 ### MySQL Config File
-- `/etc/my.cnf`
+`/etc/my.cnf`
 
 ### Data Directory
-- `/var/lib/mysql`
-    - System Tablespace - ibdata1
-    - Object Structures
-        - Data Subdirectory - Database
-            - File-Per-Table Tablespaces
-                - Tables - ibd
-                - Indexes - ibd
-        - System Schema
-            - Views
-                - Virtual tables representing query result
-            - Stored Procedures
-                - Set of SQL statements that can be saved and reused
-                - Encapsulate DML logic and accept params
-            - Triggers
-                - Procedures that auto execute in response to specific events like DML on particular table or view
-    - Logs
-        - General Query Log - all SQL queries received by the server regardless of execution time
-        - Slow Query Log - queries > specified exec time
-        - DDL Log - DDL statements
-        - Binary Log
-            - Used for replication and point-in-time recovery
-            - Events that describe changes to DB
-            - Server decides which format to use depending on the query:
-                - Statement Based Logging - queries that modify data
-                - Row-Based Logging - row level data changes - before and after
-                - Mixed Logging - combines both
-        - Relay Log
-            - Replica server data dir/replica-server-name-relay.bin.000001
-            - Store events read from source's bin log
-            - Processed to replicated changes
-    - InnoDB Log Files
-        - Redo Logs
-        - Undo Logs
-    - Socket File
-    - *PIDs under Socket* File
+`/var/lib/mysql`
+
+- System Tablespace - ibdata1
+- Object Structures
+    - Data Subdirectory - Database
+        - File-Per-Table Tablespaces
+            - Tables - ibd
+            - Indexes - ibd
+    - System Schema
+        - Views
+            - Virtual tables representing query result
+        - Stored Procedures
+            - Set of SQL statements that can be saved and reused
+            - Encapsulate DML logic and accept params
+        - Triggers
+            - Procedures that auto execute in response to specific events like DML on particular table or view
+- Logs
+    - General Query Log - all SQL queries received by the server regardless of execution time
+    - Slow Query Log - queries > specified exec time
+    - DDL Log - DDL statements
+    - Binary Log
+        - Used for replication and point-in-time recovery
+        - Events that describe changes to DB
+        - Server decides which format to use depending on the query:
+            - Statement Based Logging - queries that modify data
+            - Row-Based Logging - row level data changes - before and after
+            - Mixed Logging - combines both
+    - Relay Log
+        - Replica server data dir/replica-server-name-relay.bin.000001
+        - Store events read from source's bin log
+        - Processed to replicated changes
+- InnoDB Log Files
+    - Redo Logs
+    - Undo Logs
+- Socket File
+- *PIDs under Socket* File
 
 ### Storage Engines
 
