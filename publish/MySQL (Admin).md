@@ -22,6 +22,7 @@
 
 ### Client
 Contains server connectors and APIs
+
 - CLI - mysql
 - GUI - MySQL Workbench     
 
@@ -30,7 +31,10 @@ Contains server connectors and APIs
     - Checks for available threads in thread pool or assigns a new one
     - Each client gets a thread
 - **Authentication**
-    - `username@hostname` identified by `password;`
+```
+'username'@'hostname' identified by 'password';
+```
+
 - **Security**
     - Verifies if user has privilege for each query
 - **Optimization and Execution**
