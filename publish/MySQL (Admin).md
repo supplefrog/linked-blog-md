@@ -278,7 +278,7 @@ log = /var/log/mysqld_multi.log
 
 [mysqld1]
 port = 3306
-socket = /var/run/mysql/mysqld1.sock
+socket = /var/run/mysql/mysqld1.sock  # temp file deleted upon service stop
 pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
@@ -290,6 +290,8 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 [mysql]
 # socket = /var/run/mysql/mysqld1.sock
 ```
+
+Multi-instance - mysqld_mutli vs nohup (refer GPT chats)
 
 ## Systemd Service
 
@@ -308,11 +310,15 @@ firewalld --list-services
 firewalld --list-ports
 ```
 
+add firewalld rules
+
 ### selinux
 - show ports enabled for services
 ```
 semanage port -l
 ``` 
+
+add selinux rules
 
 ## System Variables
 ```
@@ -322,7 +328,10 @@ show [global/session/ ] variables [like ' '];
 set persist variable_name = value;
 ```
 
-## User Management
+## User Management (refer GPT chats)
+- Reset password
+- Create/drop
+- Privileges
 
 ## Upgrade
 
