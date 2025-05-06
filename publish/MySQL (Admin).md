@@ -46,11 +46,13 @@
         - Identifiers
         - Operators
         - Literals
+
 **Parser**
 - Analyzes if tokens follow syntax structure based on rules
 - If valid, creates parse tree (Abstract Syntax Tree) - represents query logical structure
     - Each node represents a SQL operation
     - Edges represent relationships between operations
+
 **Query Optimizer**
 - Logical query plan derived from parse tree -> optimized query plan, for resp storage engine
 - Cost/rules based optimization
@@ -58,19 +60,25 @@
     - Chooses join method e.g. hash, nested loop
     - Chooses primary/secondary index
     - how to perform join by considering data distribution, available indices
+
 **Execution Engine**
 - Executes optimized query execution plan
-**Query Cache**  
+
+**Query Cache**
+
 Query + result set
 
 - 5.7.20 deprecated
 - 8.0 removed (hard to scale)
 - Frequently served result sets cached in Redis
+
 **Key Cache stores index blocks**
 - Used by MyISAM
+
 **Table Open Cache (I/O)**
 - Caches file descriptors for open table files
 - Used to avoid reopening tables
+
 **Metadata Cache**
 - Caches structural info e.g., schema, column info
 
