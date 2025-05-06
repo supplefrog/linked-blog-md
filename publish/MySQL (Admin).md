@@ -1,73 +1,13 @@
 ### RDBMS - Tables have relations
-# Editions (complete comparison and convert to table format)
-## Community Edition
-- **FOSS**
-- **Operator for Kubernetes**
-    - Manages InnoDB & NDB cluster setups inside a Kubernetes cluster
-    - Full lifecycle - set up, automating upgrades, backup
-
-## Enterprise Edition
-
-### Backup
-- **Hot backup**
-    - Online, without interrupting transactions
-- **Magnitudes faster (backup and restore) than mysqldump**
-- **Compression**
-    - Uses heuristics to reduce backups
-    - Assesses usage patterns
-
-### Streaming "zero storage" single step backup and restore
-- From one server to another without staged storage
-
-### Selective backup & restore (to separate location)
-- InnoDB tables using transportable tablespaces (TTS)
-- Table renaming on restore of TTS
-
-### Availability
-
-#### InnoDB Cluster
-- Data replication across clusters
-    - fault tolerance, automated failover, elasticity
-    - Built-in group membership management, data consistency guarantees, node failure detection and database failover without manual intervention
-
-#### InnoDB ClusterSet
-- Automatic replication from primary to replica clusters
-- Failure - primary cluster can be replaced with replica cluster
-
-### Scalability
-- **Thread pool**
-    - Highly scalable thread handling model
-    - reduces overhead in managing client connections and statement execution threads
-
-### JS Stored Programs
-- Apps within the MySQL server to minimize client-server data movement
-
-### Security
-
-#### Authentication
-- Supports additional plugins (modular components)/modules to integrate external authentication services e.g. Linux PAM, Windows Active Directory
-- Allows single sign on - same usernames, passwords, perms
-- Eliminates individual system credential management
-- More secure - existing password policy
-
-#### Transparent Data Encryption (TDE)
-- Enables data-at-rest encryption. Meets regulatory requirements - Payment Card Industry Data Security Standard (PCI DSS), GDPR
-- Encrypted before write, decrypted when read
-
-#### Firewall
-
-#### Auditing
-- Advanced monitoring and management tools
-
 | Feature Category                | Community Edition                                                                 | Enterprise Edition                                                                                                                                                                                                                                                                               |
 |-------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **License**                   | FOSS (Free and Open Source Software)                                               | Commercial License                                                                                                                                                                                                                                                                                |
 | **Kubernetes Support**        | Operator for Kubernetes (InnoDB & NDB clusters, full lifecycle management)         | Same features as Community, with potential enhancements depending on support level                                                                                                                                                                                                               |
-| **Backup**                    | Limited (e.g., `mysqldump`)                                                        | Hot backup (online), faster than `mysqldump`, compression with heuristics, zero-storage streaming backup and restore, selective TTS-based backup and restore with table renaming                                                                                                                  |
-| **Availability**              | Manual failover and clustering setups                                              | InnoDB Cluster: auto failover, fault tolerance, data consistency; InnoDB ClusterSet: primary-replica clusters with automatic failover                                                                                                                                                           |
+| **Backup**                    | Limited (e.g., `mysqldump`)                                                        | Hot backup (server ↑ & running), faster than `mysqldump`, compression with heuristics, zero-storage streaming backup and restore, selective TTS-based backup and restore with table renaming                                                                                                                  |
+| **Availability**              | Manual failover and clustering setups                                              | InnoDB Cluster: fault tolerance, data consistency; InnoDB ClusterSet: primary-replica clusters with automatic failover (replacement)                                                                                                                                                           |
 | **Scalability**               | Basic concurrency features                                                         | Thread pool for scalable thread management, reduced overhead                                                                                                                                                                                                                                     |
-| **Stored Programs**           | Standard SQL stored procedures/functions                                           | JavaScript (JS) Stored Programs – run inside server, reduce client-server data movement                                                                                                                                                                                                          |
-| **Security: Authentication** | Native MySQL users/passwords                                                       | External authentication modules (Linux PAM, Windows AD), single sign-on, unified credential management, enhanced password policies                                                                                                                                                              |
+| **Stored Programs**           | Standard SQL stored procedures/functions                                           | JavaScript Stored Programs – run inside server, reduce client-server data movement                                                                                                                                                                                                          |
+| **Security: Authentication** | Native MySQL users/passwords                                                       | External authentication modules (Linux PAM, Windows AD), single sign-on, (OS - DBMS) unified credential management, enhanced password policies                                                                                                                                                              |
 | **Security: Encryption**      | Basic support (e.g., SSL/TLS)                                                     | Transparent Data Encryption (TDE) for data-at-rest, PCI DSS and GDPR compliance                                                                                                                                                                                                                   |
 | **Security: Firewall**        | Not available                                                                      | Enterprise firewall to block unwanted queries                                                                                                                                                                                                                                                    |
 | **Security: Auditing**        | Not available                                                                      | Advanced auditing tools for compliance and monitoring                                                                                                                                                                                                                                             |
