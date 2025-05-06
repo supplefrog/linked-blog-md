@@ -16,8 +16,8 @@ excerpt: Eliminate needless suffering
 > With your purified essence, be reborn anew.  
 > Now begins the dawn of your new life."**  
 
-![[pot.jpg]]  
-![[horse.jpeg]]  
+![[pot.jpg|300x]]  
+![[horse.jpeg|300x]]  
 
 > Paste in terminal for my dot files:
 > ```bash
