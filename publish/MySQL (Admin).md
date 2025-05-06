@@ -342,6 +342,7 @@ set persist variable_name = value;
 - Privileges
 - Auto increment
 
+## Table Management (refer GPT chats)
 - MyISAM -> InnoDB
 - Cold Backup - import table, mysqldump - logical, vs physical backup
 
