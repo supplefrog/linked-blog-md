@@ -15,6 +15,9 @@
 
 # Architecture
 
+- Try and modify architecture notes to merge InnoDB data dir w Physical
+- elaborate data flow in Logical
+
 ## Logical
 
 ### Client
@@ -337,8 +340,6 @@ set persist variable_name = value;
 
 - MyISAM -> InnoDB
 - Cold Backup - import table, mysqldump - logical, vs physical backup
-- Try and modify architecture notes to merge InnoDB data dir w Physical
-- elaborate data flow in Logical
 
 ## Backup and Restore/Recovery
 
