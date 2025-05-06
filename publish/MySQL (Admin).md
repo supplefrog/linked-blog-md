@@ -33,16 +33,12 @@
 ```
 
 **Connection Manager**
-
-Check thread cache; 
-
-if thread available: provide thread; else create new thread - 1 per client
-
-Establish connection
+- Check thread cache; 
+- if thread available: provide thread; else create new thread - 1 per client
+- Establish connection
 
 **Security**
-
-Verify if user has privilege for each query
+- Verify if user has privilege for each query
 
 **Optimization and Execution**
     - **Lexer**
