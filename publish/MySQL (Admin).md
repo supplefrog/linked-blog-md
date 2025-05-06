@@ -332,6 +332,12 @@ set persist variable_name = value;
 - Reset password
 - Create/drop
 - Privileges
+- Auto increment
+
+- MyISAM -> InnoDB
+- Cold Backup - import table, mysqldump - logical, vs physical backup
+
+## Backup and Restore/Recovery
 
 ## Upgrade
 
@@ -346,5 +352,3 @@ set persist variable_name = value;
 Crucially, if the data dictionary requires an upgrade when you use --upgrade=NONE, the server will refuse to start and exit with an error. This option is not intended for regular use but rather for specific situations where you want to prevent any automatic upgrade and handle it entirely manually (if needed) using mysql_upgrade.
 
 ## Downgrade
-
-## Backup and Recovery
