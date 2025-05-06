@@ -14,30 +14,37 @@
 | **Monitoring/Management**     | Limited (manual tools or 3rd-party)                                                | Advanced monitoring, built-in enterprise management suite                                                                                                                                                                                                                                        |
 
 # Architecture
-
 - Try and modify architecture notes to merge InnoDB data dir w Physical
 - elaborate data flow in Logical
 
 ## Logical
 
 ### Client
-Contains server connectors and APIs
-
+- Contains server connectors and APIs
+- Sends connection request to server
 - CLI - mysql
 - GUI - MySQL Workbench     
 
 ### Server
-- **Thread (connection) handler**
-    - Checks for available threads in thread pool or assigns a new one
-    - Each client gets a thread
-- **Authentication**
+
+**Authentication**
 ```
 'username'@'hostname' identified by 'password';
 ```
 
-- **Security**
-    - Verifies if user has privilege for each query
-- **Optimization and Execution**
+**Connection Manager**
+
+Check thread cache; 
+
+if thread available: provide thread; else create new thread - 1 per client
+
+Establish connection
+
+**Security**
+
+Verify if user has privilege for each query
+
+**Optimization and Execution**
     - **Lexer**
         - Lexical Analysis/Tokenization
             - Breaks string into tokens - meaningful element
