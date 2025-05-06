@@ -256,9 +256,11 @@ Contains server connectors and APIs
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
 
-# [Installation](https://dev.mysql.com/downloads/repo/yum/)
+# Administration
 
-## Packages
+## [Installation](https://dev.mysql.com/downloads/repo/yum/)
+
+**Packages**
 - Dependency resolution including glibc version
 - Auto install in dirs
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
@@ -273,7 +275,7 @@ Contains server connectors and APIs
     - test - test suite for server
     - devel - development header files and libraries
 
-## [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
+### [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
 - All components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
