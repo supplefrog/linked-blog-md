@@ -40,12 +40,11 @@
 - Verify if user has privilege for each query
 
 **Lexer**
-- Lexical Analysis/Tokenization
-    - Breaks string into tokens - meaningful element
-        - Keywords
-        - Identifiers
-        - Operators
-        - Literals
+- Lexical Analysis/Tokenization - breaks string into tokens (meaningful element)
+    - Keywords
+    - Identifiers
+    - Operators
+    - Literals
 
 **Parser**
 - Analyzes if tokens follow syntax structure based on rules
@@ -62,7 +61,8 @@
     - how to perform join by considering data distribution, available indices
 
 **Execution Engine**
-- Executes optimized query execution plan
+
+Executes optimized query execution plan
 
 **Query Cache**
 
@@ -73,14 +73,17 @@ Query + result set
 - Frequently served result sets cached in Redis
 
 **Key Cache stores index blocks**
+
 - Used by MyISAM
 
 **Table Open Cache (I/O)**
+
 - Caches file descriptors for open table files
 - Used to avoid reopening tables
 
 **Metadata Cache**
-- Caches structural info e.g., schema, column info
+
+Caches structural info e.g., schema, column info
 
 ## Physical
 
