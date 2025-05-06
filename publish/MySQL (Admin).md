@@ -279,15 +279,24 @@ Contains server connectors and APIs
         - SysVinit service files for backward compatibility
 
 ## my.cnf
-```    
-[mysqld]
-user=mysql
-datadir=/var/lib/mysql
-pid-file=/var/run/mysql/mysqld.pid
-socket=/var/run/mysql/mysqld.sock
-    
+```
+[mysqld_multi]
+mysqld = /usr/bin/mysqld_safe
+mysqladmin = /usr/bin/mysqladmin
+log = /var/log/mysqld_multi.log
+
+[mysqld1]
+port = 3306
+socket = /var/run/mysql/mysqld1.sock
+pid-file = /var/run/mysql/mysqld1.pid
+datadir = /var/lib/mysql1
+log-error = /var/log/mysqld1.log
+user = mysql
+default_storage_engine = InnoDB
+innodb_buffer_pool_size = 128M
+
 [mysql]
-socket=/var/run/mysql/mysqld.sock
+socket = /var/run/mysql/mysqld.sock
 ```
 
 ## Troubleshoot
@@ -311,7 +320,7 @@ firewalld --list-ports
 semanage port -l
 ``` 
 
-# System Variables
+## System Variables
 ```
 show [global/session/ ] variables [like ' '];
 ```
