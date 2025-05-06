@@ -59,13 +59,19 @@
 #### Auditing
 - Advanced monitoring and management tools
 
-# System Variables
-```
-show [global/session/ ] variables [like ' '];
-```
-```
-set persist variable_name = value;
-```
+| Feature Category                | Community Edition                                                                 | Enterprise Edition                                                                                                                                                                                                                                                                               |
+|-------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **License**                   | FOSS (Free and Open Source Software)                                               | Commercial License                                                                                                                                                                                                                                                                                |
+| **Kubernetes Support**        | Operator for Kubernetes (InnoDB & NDB clusters, full lifecycle management)         | Same features as Community, with potential enhancements depending on support level                                                                                                                                                                                                               |
+| **Backup**                    | Limited (e.g., `mysqldump`)                                                        | Hot backup (online), faster than `mysqldump`, compression with heuristics, zero-storage streaming backup and restore, selective TTS-based backup and restore with table renaming                                                                                                                  |
+| **Availability**              | Manual failover and clustering setups                                              | InnoDB Cluster: auto failover, fault tolerance, data consistency; InnoDB ClusterSet: primary-replica clusters with automatic failover                                                                                                                                                           |
+| **Scalability**               | Basic concurrency features                                                         | Thread pool for scalable thread management, reduced overhead                                                                                                                                                                                                                                     |
+| **Stored Programs**           | Standard SQL stored procedures/functions                                           | JavaScript (JS) Stored Programs – run inside server, reduce client-server data movement                                                                                                                                                                                                          |
+| **Security: Authentication** | Native MySQL users/passwords                                                       | External authentication modules (Linux PAM, Windows AD), single sign-on, unified credential management, enhanced password policies                                                                                                                                                              |
+| **Security: Encryption**      | Basic support (e.g., SSL/TLS)                                                     | Transparent Data Encryption (TDE) for data-at-rest, PCI DSS and GDPR compliance                                                                                                                                                                                                                   |
+| **Security: Firewall**        | Not available                                                                      | Enterprise firewall to block unwanted queries                                                                                                                                                                                                                                                    |
+| **Security: Auditing**        | Not available                                                                      | Advanced auditing tools for compliance and monitoring                                                                                                                                                                                                                                             |
+| **Monitoring/Management**     | Limited (manual tools or 3rd-party)                                                | Advanced monitoring, built-in enterprise management suite                                                                                                                                                                                                                                        |
 
 # Architecture
 
@@ -364,6 +370,16 @@ firewalld --list-ports
 ```
 semanage port -l
 ``` 
+
+# System Variables
+```
+show [global/session/ ] variables [like ' '];
+```
+```
+set persist variable_name = value;
+```
+
+## User Management
 
 ## Upgrade
 
