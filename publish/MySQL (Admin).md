@@ -67,18 +67,17 @@ Contains server connectors and APIs
 
 ## Physical
 
-### Base Directory
+### Base Directory - Executables
 `/bin -> /usr/bin`
 
-- Executables
-    - mysql - CLI
-    - mysqladmin 
-        - CLI to interact with mysql server
-    - mysqlbinlog
-    - myisamlog
-    - mysqlcheck
-    - mysql_config_editor
-    - mysqldump
+- mysql_secure_installation
+- mysql - CLI
+- mysqladmin - admin CLI
+- mysqlbinlog - read binary logs
+- myisamlog
+- mysqlcheck - check, repair, optimize, or analyze multiple tables
+- mysql_config_editor 
+- mysqldump - cold backup
 
 ### MySQL Config File
 `/etc/my.cnf`
@@ -123,24 +122,24 @@ Contains server connectors and APIs
 
 ### Storage Engines
 
-#### NDBCluster
+**NDBCluster**
 - Clustered storage engine for high-availability and scalability
 
-#### Memory
+**Memory**
 - Store data in RAM for fast access
 - For temp, non-persistent data
 
-#### CSV
+**CSV**
 - Store and retrieve data from csv files
 
-#### Blackhole
+**Blackhole**
 - Discards all data written to it
 - For testing or logging purposes
 
-#### Archive
+**Archive**
 - Store and retrieve data from compressed files
 
-#### MyISAM
+**MyISAM**
 - Smaller and faster than InnoDB
 - More suitable for read-heavy applications
 
