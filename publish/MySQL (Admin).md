@@ -311,7 +311,7 @@ Multi-instance - mysqld_mutli vs nohup (refer GPT chats)
 
 ## Security Management
 ### firewalld
-- Identifies incoming traffic from data frame **network/IP** layer & **transport/TCP** layer **headers** 
+- Identifies incoming traffic from data frame **Network/IP** Layer & **Transport/TCP** Layer **headers** 
 - Use rich rules to block service names based on source ips, destination ports
 ```
 firewalld --list-services
