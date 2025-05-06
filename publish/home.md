@@ -16,13 +16,13 @@ excerpt: Eliminate needless suffering
 > With your purified essence, be reborn anew.  
 > Now begins the dawn of your new life."**  
 
-![[pot.jpg|300x]]  
-![[horse.jpeg|300x]]  
+<img src="pot.jpg" width="300" />
+<img src="horse.jpeg" width="300" />
 
 > Paste in terminal for my dot files:
-> ```bash
-> sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
-> ```
+```bash
+sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
+```
 
 [[Operating Systems]]  
 [[MySQL (Admin)]]
