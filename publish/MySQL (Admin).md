@@ -45,7 +45,7 @@
 - Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals
 
 **Parser**
-- Analyzes if tokens follow syntax structure based on rules
+- Checks if tokens follow syntax structure based on rules
 - If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
     - Each node represents a SQL operation
     - Edges represent relationships between operations
@@ -181,6 +181,7 @@ Caches structural info e.g., schema, column info
 
 - **In-Memory Data** - located completely in RAM
     - **Buffer Pool**
+        - Default 128M, up to 80% server
         - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
         - Least Recently Used (LRU) algorithm
             - New (Young) Sublist (5/8)
