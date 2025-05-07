@@ -271,6 +271,8 @@ Caches structural info e.g., schema, column info
 ## [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
 **Packages**
+- Check package integrity
+  `rpm -K pkg.rpm`
 - Dependency resolution including glibc version
 - Auto install in dirs
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
