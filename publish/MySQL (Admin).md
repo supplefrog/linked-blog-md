@@ -272,6 +272,7 @@ Caches structural info e.g., schema, column info
 
 **Packages**
 - Check package integrity
+
   `rpm -K pkg.rpm`
 - Dependency resolution including glibc version
 - Auto install in dirs
