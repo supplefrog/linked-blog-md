@@ -40,6 +40,7 @@
 - Verify if user has privilege for each query
 
 **Parsing**
+
 **Lexer/Scanner**
 - Lexical Analysis/Tokenization - breaks string into tokens (meaningful element)
     - Keywords
