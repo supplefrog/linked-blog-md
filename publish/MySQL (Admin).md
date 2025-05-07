@@ -13,7 +13,7 @@
 | **Security: Auditing**        | Not available                                                                      | Advanced auditing tools for compliance and monitoring                                                                                                                                                                                                                                             |
 | **Monitoring/Management**     | Limited (manual tools or 3rd-party)                                                | Advanced monitoring, built-in enterprise management suite                                                                                                                                                                                                                                        |
 
-# Architecture
+# MySQL Architecture
 - Try and modify architecture notes to merge InnoDB data dir w Physical
 - elaborate data flow in Logical
 
@@ -48,17 +48,26 @@
 
 **Parser**
 - Analyzes if tokens follow syntax structure based on rules
-- If valid, creates parse tree (Abstract Syntax Tree) - represents query logical structure
+- If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
     - Each node represents a SQL operation
     - Edges represent relationships between operations
 
-**Query Optimizer**
-- Logical query plan derived from parse tree -> optimized query plan, for resp storage engine
-- Cost/rules based optimization
-    - Reorders operations like joins, filtering before/after joining
-    - Chooses join method e.g. hash, nested loop
-    - Chooses primary/secondary index
-    - how to perform join by considering data distribution, available indices
+**Optimizer**
+- Reads AST
+- Generates multiple candidate execution plans compatible with storage engine:
+    - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
+    - Evaluates possible primary/secondary index usage
+    - Considers various join orders (sequence of joining tables)
+    - Chooses join methods (e.g., nested loop, hash join)
+    - Reorders operations (e.g., applies filters before or after joins) to improve efficiency
+    - Considers data distribution and available indexes for join strategies
+- Can be influenced by index and join hints:
+
+  (USE INDEX, FORCE INDEX, IGNORE INDEX, STRAIGHT_JOIN)
+- Cost-based optimization:
+    - References the cost model (I/O, CPU, memory) for every operation in each plan
+    - Uses data statistics (row counts, index selectivity, data distribution)
+- selects plan with lowest total estimated cost as optimized query plan
 
 **Execution Engine**
 
