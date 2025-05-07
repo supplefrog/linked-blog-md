@@ -63,6 +63,7 @@
     - Reorders operations (e.g., applies filters before or after joins) to improve efficiency
     - Considers data distribution and available indexes for join strategies
 - Can be influenced by index and join hints:
+
   `USE INDEX, FORCE INDEX, IGNORE INDEX, STRAIGHT_JOIN`
 - Cost-based optimization:
     - References the cost model (I/O, CPU, memory) for every operation in each plan
