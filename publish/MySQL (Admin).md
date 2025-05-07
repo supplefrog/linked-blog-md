@@ -290,6 +290,20 @@ Caches structural info e.g., schema, column info
     - support-files
         - SysVinit service files for backward compatibility
 
+## Multiple Instances
+| Parameter            | Multiple Instances                                      | Multiple Databases                                    |
+|---------------------|------------------------------------------------------|---------------------------------------------------|
+| **Security**        | Banks create separate instances for each region to prevent customer financial data leaks. | E-commerce stores keep all customer records in one database, increasing risk if breached. |
+| **Performance**     | Streaming services allocate dedicated instances per country for smooth playback. | A global news site uses one database, leading to slowdowns during high traffic. |
+| **Backup & Recovery** | Healthcare systems back up patient records separately to ensure quick individual recovery. | A hospital keeps all patient data in one database—restoring it takes longer if one fails. |
+| **Maintenance**     | Enterprises patch instances separately, avoiding downtime for unaffected customers. | Social media platforms update the entire database at once—potentially disrupting all users. |
+| **Resource Utilization** | Gaming companies run separate instances per title to ensure peak performance. | A gaming hub shares resources across databases—one overloaded game can slow others down. |
+| **High Availability** | Stock markets use instance-based failover to prevent downtime during peak hours. | Travel booking sites rely on database replication—if the primary database fails, all bookings stall. |
+| **Compliance**      | Government databases separate classified data by instance for strict access control. | Educational platforms keep all course data in one place—risking accidental access to restricted content. |
+| **Cost Efficiency** | A multinational retailer invests in separate instances for high-traffic countries. | Small startups opt for multiple databases within one instance to cut costs. |
+
+Multi-instance - mysqld_mutli vs nohup (refer GPT chats)
+
 ## my.cnf
 ```
 [mysqld_multi]
@@ -311,8 +325,6 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 [mysql]
 # socket = /var/run/mysql/mysqld1.sock
 ```
-
-Multi-instance - mysqld_mutli vs nohup (refer GPT chats)
 
 ## Systemd Service
 
