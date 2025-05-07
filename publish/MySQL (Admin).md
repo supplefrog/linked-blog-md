@@ -39,7 +39,8 @@
 **Security**
 - Verify if user has privilege for each query
 
-**Lexer**
+**Parsing**
+**Lexer/Scanner**
 - Lexical Analysis/Tokenization - breaks string into tokens (meaningful element)
     - Keywords
     - Identifiers
@@ -69,9 +70,9 @@
     - Uses data statistics (row counts, index selectivity, data distribution)
 - selects plan with lowest total estimated cost as optimized query plan
 
-**Execution Engine**
-
-Executes optimized query execution plan
+- Storage engine performs data lookup in caches & buffers
+    - if not found, fetch from disk
+    - updates to disk
 
 **Query Cache**
 
