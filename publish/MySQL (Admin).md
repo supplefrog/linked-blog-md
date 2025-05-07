@@ -42,11 +42,8 @@
 **Parsing**
 
 **Lexer/Scanner**
-- Lexical Analysis/Tokenization - breaks string into tokens (meaningful element)
-    - Keywords
-    - Identifiers
-    - Operators
-    - Literals
+- Lexical Analysis/Tokenization - breaks string into tokens (meaningful elements) - keywords, identifiers
+, operators, literals
 
 **Parser**
 - Analyzes if tokens follow syntax structure based on rules
