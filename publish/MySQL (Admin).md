@@ -17,7 +17,7 @@
 
 ## Logical
 
-[Logical Architecture](https://minervadb.xyz/wp-content/uploads/2024/01/MySQL-Thread-Diagram-768x366.jpg)
+![Logical Architecture](https://minervadb.xyz/wp-content/uploads/2024/01/MySQL-Thread-Diagram-768x366.jpg)
 
 ### Client
 - Contains server connectors and APIs
