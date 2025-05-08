@@ -112,7 +112,7 @@ Caches structural info e.g., schema, column info
 `/etc/my.cnf`
 
 ### Data Directory
-`/var/lib/mysql`
+`/var/lib/mysql/`
 
 Contains databases and their objects
 
@@ -308,8 +308,9 @@ Default shared tablespace for internal InnoDB structures
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
 
 - Components divided amongst packages as per function:
-    - libs - shared libs for client apps
-    - common - common files for db and client libs e.g. config files
+    - common - config files and data shared by all MySQL components
+    - libs - client libraries
+    - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
     - client
     - server
 
