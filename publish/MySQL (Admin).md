@@ -138,15 +138,15 @@ Contains databases and their objects
 
 `performance_schema/`
 
-In-memory tables for server performance/event monitoring
+ In-memory tables for server performance/event monitoring
 
 `sys/`
 
-Helper views and routines for interpreting performance_schema data
+ Helper views and routines for interpreting performance_schema data
 
 `ibdata1`
 
-Default shared tablespace internal InnoDB structures
+ Default shared tablespace internal InnoDB structures
 
 **User databases**
 
