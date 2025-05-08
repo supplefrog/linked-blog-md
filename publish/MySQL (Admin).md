@@ -308,11 +308,16 @@ Default shared tablespace for internal InnoDB structures
 - Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
 
 - Components divided amongst packages as per function:
-    - common - config files and data shared by all MySQL components
-    - libs - client libraries
+mysql-community-server   
+ ├── mysql-community-client
+ ├── mysql-community-libs
+ │     └── mysql-community-common
+ ├── mysql-community-client-plugins
+ │     └── mysql-community-common
+ └── mysql-community-common
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
-    - client
-    - server
+    - icu-data-files - 
+    - debuginfo - debugging symbols for MySQL binaries, allowing developers to debug or analyze crashes with detailed stack traces
 
     **Optional:**  
     - test - test suite for server
