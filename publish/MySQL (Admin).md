@@ -114,7 +114,7 @@ Caches structural info e.g., schema, column info
 
 - System Tablespace - ibdata1
 - Object Structures
-    - Data Subdirectory - Database
+    - Data Subdirectory (Database)
         - File-Per-Table Tablespaces
             - Tables - ibd
             - Indexes - ibd
