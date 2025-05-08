@@ -134,8 +134,10 @@ System schemas and their tablespaces
 
 `performance_schema/`
 - In-memory tables for server performance/event monitoring
+
 `sys/`
 - Helper views and routines for interpreting performance_schema data
+
 `ibdata1`
 - < 5.66 - default shared tablespace for InnoDB table data and indexes
 - Exists for backward compatibility, used if innodb_file_per_table is OFF
