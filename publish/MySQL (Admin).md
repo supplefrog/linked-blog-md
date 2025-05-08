@@ -121,7 +121,7 @@ System schemas and their tablespaces
           - mysql.db
           - mysql.tables_priv
           - mysql.columns_priv
-    - data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
+      - data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
           - mysql.tables
           - mysql.columns
           - mysql.indexes
