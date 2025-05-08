@@ -126,7 +126,9 @@ Caches structural info e.g., schema, column info
     - mysql.columns_priv
 - data dictionary tables (8.0 - removed .frm, .trg, .par files)
 
-    All metadata, not queriable, only INFORMATION_SCHEMA or `SHOW` cmd
+  All metadata for DB objects, not queriable, only INFORMATION_SCHEMA or `SHOW` cmd
+
+  Used to create .cfg during table export 
     - mysql.tables
     - mysql.columns
     - mysql.indexes
@@ -146,7 +148,7 @@ Caches structural info e.g., schema, column info
 
 `ibdata1`
 
- Default shared tablespace internal InnoDB structures
+ Default shared tablespace for internal InnoDB structures
 
 **User databases**
 
@@ -208,74 +210,71 @@ Caches structural info e.g., schema, column info
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 
-- **In-Memory Data** - located completely in RAM
-    - **Buffer Pool**
-        - Default 128M, up to 80% server
-        - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
-        - Least Recently Used (LRU) algorithm
-            - New (Young) Sublist (5/8)
-                - Head
-                    - Most accessed pages
-                - Tail
-            - Old Sublist (3/8)
-                - Head
-                    - New pages
-                    - Less accessed pages
-                - Tail
-                - Flushed to data files
-        - **Change Buffer (25%, up to 50%)**
-            - Caches changes to secondary index pages not currently in buffer pool
-            - Merged later when index pages are loaded by buffer pool
-        - **Adaptive Hash Index**
-            - Constructed dynamically by InnoDB
-            - Stores frequently used indexes
-            - Speeds up data retrieval from buffer pool
-                - B-Tree index lookups -> faster hash-based search
-    - **Log Buffer**
-        - Maintains record of dirty pages in buffer pool
-        - Transaction commit/log buffer reaches threshold/regular interval
-            - Flush to redo log files
-- **On-Disk Data**
-    - **Redo Logs**
-        - Write-ahead logging
-            - Persistent log of changes, before applied to on-disk pages
-        - Changes can be reapplied to data pages if system crashes before/during writing
-        - Durability - committed transactions are not lost
-        - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
-    - **Tablespaces**
-        - **InnoDB** (System) **Tablespace** `ibdata1`
-            - Change buffer
-                - Persists secondary index buffered changes across restarts (durability)
-            - Doublewrite Buffer
-                - Protects against partial page writes due to crash while writing pages to tables
-            - Undo logs
-                - In case instance isn't started with undo tablespace
-            - Data Dictionary
-                - Metadata about database objects (8.0 -> mysql.ibd)
-                - Used to create cfg files during tablespace export
-            - Table and Index Data
-                - For tables without innodb_file_per_table option
-        - **General Tablespace .ibd**
-            - Can host multiple tables
-        - **File-Per-Table Tablespace .ibd**
-            - Each table has its own .ibd file
-        - **Temporary Tablespace**
-            - Session (#innodb_temp dir)
-                - User-created
-                    ```
-                    CREATE TEMPORARY TABLE table_name ();
-                    ```
-                - Internal temp tables - auto created by optimizer for operations like sorting, grouping
-                    - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
-            - Global (ibtmp1)
-                - Stores rollback segments for changes to  user-created temp tables
-                - Redo logs not needed since not persistent
-                - Auto-extending
-                - Removed on normal shutdown, recreated on server startup
-        - **Undo Tablespaces**
-            - Store undo logs
-                - Records original data before changes
-                - Enable rollback in case transaction not reflected on receiver's end
+**In-Memory Data** - located completely in RAM
+- **Buffer Pool**
+    - Default 128M, up to 80% server
+    - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
+    - Least Recently Used (LRU) algorithm
+        - New (Young) Sublist (5/8)
+            - Head
+                - Most accessed pages
+            - Tail
+        - Old Sublist (3/8)
+            - Head
+                - New pages
+                - Less accessed pages
+            - Tail
+            - Flushed to data files
+    - **Change Buffer (25%, up to 50%)**
+        - Caches changes to secondary index pages not currently in buffer pool
+        - Merged later when index pages are loaded by buffer pool
+    - **Adaptive Hash Index**
+        - Constructed dynamically by InnoDB
+        - Stores frequently used indexes
+        - Speeds up data retrieval from buffer pool
+            - B-Tree index lookups -> faster hash-based search
+- **Log Buffer**
+    - Maintains record of dirty pages in buffer pool
+    - Transaction commit/log buffer reaches threshold/regular interval
+        - Flush to redo log files
+**On-Disk Data**
+- **Redo Logs**
+    - Write-ahead logging
+        - Persistent log of changes, before applied to on-disk pages
+    - Changes can be reapplied to data pages if system crashes before/during writing
+    - Durability - committed transactions are not lost
+    - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
+- **Tablespaces**
+    - **InnoDB** (System) **Tablespace** `ibdata1`
+        - Change buffer
+            - Persists secondary index buffered changes across restarts (durability)
+        - Doublewrite Buffer
+            - Protects against partial page writes due to crash while writing pages to tables
+        - Undo logs
+            - In case instance isn't started with undo tablespace
+        - Data Dictionary (**8.0 -> mysql.ibd**)
+        - Table and Index Data (**5.7 -> For tables without innodb_file_per_table option**)
+    - **General Tablespace .ibd**
+        - Can host multiple tables
+    - **File-Per-Table Tablespace .ibd**
+        - Each table has its own .ibd file
+    - **Temporary Tablespace**
+        - Session (#innodb_temp dir)
+            - User-created
+                ```
+                CREATE TEMPORARY TABLE table_name ();
+                ```
+            - Internal temp tables - auto created by optimizer for operations like sorting, grouping
+                - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
+        - Global (ibtmp1)
+            - Stores rollback segments for changes to  user-created temp tables
+            - Redo logs not needed since not persistent
+            - Auto-extending
+            - Removed on normal shutdown, recreated on server startup
+    - **Undo Tablespaces**
+        - Store undo logs
+            - Records original data before changes
+            - Enable rollback in case transaction not reflected on receiver's end
 
 #### Glossary
 **Data**
