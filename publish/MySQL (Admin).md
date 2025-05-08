@@ -115,6 +115,7 @@ Caches structural info e.g., schema, column info
 Contains databases and their objects
 
 System schemas and their tablespaces
+
 `mysql.ibd` (innodb tablespace)
     - System tables
         - mysql.user
