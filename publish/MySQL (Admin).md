@@ -117,11 +117,19 @@ Contains databases and their objects
 System schemas and their tablespaces
 - mysql.ibd (innodb tablespace)
     - System tables
-    - data dictionary tables
+          - mysql.user
+          - mysql.db
+          - mysql.tables_priv
+          - mysql.columns_priv
+    - data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
+          - mysql.tables
+          - mysql.columns
+          - mysql.indexes
+          - mysql.events
+          - mysql.schemata
           - mysql.routines (stored procedures, reusable SQL statements)
           - mysql.triggers (auto-execute procedures in response to events like DML)
           - mysql.views (virtual tables rep. query result)
-    - Metadata for all objects
 - performance_schema/
     - In memory tables for server performance/event monitoring
 - sys/
