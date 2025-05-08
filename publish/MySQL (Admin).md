@@ -15,6 +15,8 @@
 
 # MySQL Architecture
 
+(Merge InnoDB Architecture into Physical arch)
+
 ## Logical
 
 ### Client
