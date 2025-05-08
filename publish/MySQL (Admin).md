@@ -236,7 +236,7 @@ System schemas and their tablespaces
             - Doublewrite Buffer
                 - Protects against partial page writes due to crash while writing pages to tables
             - Data Dictionary
-                - Metadata about database objects (8.0 -> file-per-table tablespaces)
+                - Metadata about database objects (8.0 -> mysql.ibd)
                 - Used to create cfg files during tablespace export
             - Table and Index Data
                 - For tables without innodb_file_per_table option
