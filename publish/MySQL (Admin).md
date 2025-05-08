@@ -240,7 +240,7 @@ Contains databases and their objects
         - Durability - committed transactions are not lost
         - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
     - **Tablespaces**
-        - **System Tablespace - ibdata1**
+        - **InnoDB** (System) **Tablespace - `ibdata1`**
             - Change buffer
                 - Persists secondary index buffered changes across restarts (durability)
             - Doublewrite Buffer
