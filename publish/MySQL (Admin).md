@@ -237,6 +237,7 @@ Caches structural info e.g., schema, column info
     - Maintains record of dirty pages in buffer pool
     - Transaction commit/log buffer reaches threshold/regular interval
         - Flush to redo log files
+
 **On-Disk Data**
 - **Redo Logs**
     - Write-ahead logging
