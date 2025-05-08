@@ -407,19 +407,21 @@ set persist variable_name = value;
 
 ### Cold Backup
 **Logical**
+
 mysqldump 
+
 **Tables**
-    - **Source**
-      ```
-      # export metadata as .cfg for importing into destination
-      flush tables table_name for export;
-      cp table_name.ibd table_name.cfg destination/
-      unlock tables;
-      ```
-    - **Destination**
-      ```  
-      alter table table_name discard tablespace;
-      alter table table_name import tablespace;
+- **Source**
+  ```
+  # export metadata as .cfg for importing into destination
+  flush tables table_name for export;
+  cp table_name.ibd table_name.cfg destination/
+  unlock tables;
+  ```
+- **Destination**
+  ```  
+  alter table table_name discard tablespace;
+  alter table table_name import tablespace;
       ```
 physical backup
 
