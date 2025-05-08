@@ -117,28 +117,28 @@ Contains databases and their objects
 System schemas and their tablespaces
 
 `mysql.ibd` (innodb tablespace)
-    - System tables
-        - mysql.user
-        - mysql.db
-        - mysql.tables_priv
-        - mysql.columns_priv
-    - data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
-        - mysql.tables
-        - mysql.columns
-        - mysql.indexes
-        - mysql.events
-        - mysql.schemata
-        - mysql.routines (stored procedures, reusable SQL statements)
-        - mysql.triggers (auto-execute procedures in response to events like DML)
-        - mysql.views (virtual tables rep. query result)
-`performance_schema/`
-    - In-memory tables for server performance/event monitoring
-`sys/`
-    - Helper views and routines for interpreting performance_schema data
-`ibdata1`
-    - < 5.66 - default shared tablespace for InnoDB table data and indexes
-    - Exists for backward compatibility, used if innodb_file_per_table is OFF
+- System tables
+    - mysql.user
+    - mysql.db
+    - mysql.tables_priv
+    - mysql.columns_priv
+- data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
+    - mysql.tables
+    - mysql.columns
+    - mysql.indexes
+    - mysql.events
+    - mysql.schemata
+    - mysql.routines (stored procedures, reusable SQL statements)
+    - mysql.triggers (auto-execute procedures in response to events like DML)
+    - mysql.views (virtual tables rep. query result)
 
+`performance_schema/`
+- In-memory tables for server performance/event monitoring
+`sys/`
+- Helper views and routines for interpreting performance_schema data
+`ibdata1`
+- < 5.66 - default shared tablespace for InnoDB table data and indexes
+- Exists for backward compatibility, used if innodb_file_per_table is OFF
 - User databases - `dbname/` (data subdirectory)
     - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
     - MyISAM - .myd (data )& .myi (index)
