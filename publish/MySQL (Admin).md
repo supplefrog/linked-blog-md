@@ -138,17 +138,17 @@ Caches structural info e.g., schema, column info
     - mysql.triggers (auto-execute procedures in response to events like DML)
     - mysql.views (virtual tables rep. query result)
 
-```performance_schema/```
+`performance_schema/`
 
-    In-memory tables for server performance/event monitoring
+In-memory tables for server performance/event monitoring
 
-```sys/```
+`sys/`
 
-    Helper views and routines for interpreting performance_schema data
+Helper views and routines for interpreting performance_schema data
 
-```ibdata1```
+`ibdata1`
 
-    Default shared tablespace for internal InnoDB structures
+Default shared tablespace for internal InnoDB structures
 
 **User databases**
 
