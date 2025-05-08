@@ -131,7 +131,7 @@ System schemas and their tablespaces
           - mysql.triggers (auto-execute procedures in response to events like DML)
           - mysql.views (virtual tables rep. query result)
 - performance_schema/
-    - In memory tables for server performance/event monitoring
+    - In-memory tables for server performance/event monitoring
 - sys/
     - Helper views and routines for interpreting performance_schema data
 - ibdata1
