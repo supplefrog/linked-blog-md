@@ -145,7 +145,8 @@ Contains databases and their objects
 
 **User databases**
 
-`dbname/` (data subdirectory)
+`dbname/` 
+- (data subdirectory)
 - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
 - MyISAM - .myd (data ) & .myi (index)
 
