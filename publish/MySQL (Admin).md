@@ -275,8 +275,10 @@ System schemas and their tablespaces
       unlock tables;
       ```
     - **Destination**
-        - alter table table_name discard tablespace;
-        - alter table table_name import tablespace;
+      ```  
+      alter table table_name discard tablespace;
+      alter table table_name import tablespace;
+      ```
 #### Glossary
 **Data**
 - Page
