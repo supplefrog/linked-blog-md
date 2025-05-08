@@ -122,7 +122,9 @@ System schemas and their tablespaces
     - mysql.db
     - mysql.tables_priv
     - mysql.columns_priv
-- data dictionary tables (all metadata, not queriable, only INFORMATION_SCHEMA or SHOW cmd)
+- data dictionary tables (8.0 - removed .frm, .trg, .par files)
+
+    All metadata, not queriable, only INFORMATION_SCHEMA or `SHOW` cmd
     - mysql.tables
     - mysql.columns
     - mysql.indexes
@@ -139,8 +141,7 @@ System schemas and their tablespaces
 - Helper views and routines for interpreting performance_schema data
 
 `ibdata1`
-- < 5.66 - default shared tablespace for InnoDB table data and indexes
-- Exists for backward compatibility, used if innodb_file_per_table is OFF
+- Default shared tablespace internal InnoDB structures
 
 - User databases - `dbname/` (data subdirectory)
     - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
@@ -239,13 +240,13 @@ System schemas and their tablespaces
                 - Persists secondary index buffered changes across restarts (durability)
             - Doublewrite Buffer
                 - Protects against partial page writes due to crash while writing pages to tables
+            - Undo logs
+                - In case instance isn't started with undo tablespace
             - Data Dictionary
                 - Metadata about database objects (8.0 -> mysql.ibd)
                 - Used to create cfg files during tablespace export
             - Table and Index Data
                 - For tables without innodb_file_per_table option
-            - Undo logs
-                - In case instance isn't started with undo tablespace
         - **General Tablespace .ibd**
             - Can host multiple tables
         - **File-Per-Table Tablespace .ibd**
