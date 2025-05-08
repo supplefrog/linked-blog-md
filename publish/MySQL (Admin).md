@@ -15,9 +15,9 @@
 
 # MySQL Architecture
 
-(Compare and bifurcate physical.system tablespaces and innodb.ibdata1 into appropriate sections) 
-
 ## Logical
+
+[Logical Architecture](https://minervadb.xyz/wp-content/uploads/2024/01/MySQL-Thread-Diagram-768x366.jpg)
 
 ### Client
 - Contains server connectors and APIs
