@@ -143,7 +143,7 @@ System schemas and their tablespaces
 - Exists for backward compatibility, used if innodb_file_per_table is OFF
 - User databases - `dbname/` (data subdirectory)
     - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
-    - MyISAM - .myd (data )& .myi (index)
+    - MyISAM - .myd (data ) & .myi (index)
 
 - Logs
     - General Query Log - all SQL queries received by the server regardless of execution time
