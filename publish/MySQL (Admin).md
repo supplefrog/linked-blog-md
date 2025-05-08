@@ -116,7 +116,7 @@ Contains databases and their objects
 
 **System schemas and their tablespaces**
 
-`mysql.ibd` (innodb tablespace)
+`mysql.ibd` (data dictionary tablespace)
 - System tables
     - mysql.user
     - mysql.db
