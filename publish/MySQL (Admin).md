@@ -112,20 +112,24 @@ Caches structural info e.g., schema, column info
 ### Data Directory
 `/var/lib/mysql`
 
-- System Tablespace - ibdata1
+Contains databases and their objects
+
+System schemas and their tablespaces
+- mysql/ and mysql.ibd (innodb tablespace)
+    - System tables, data dictionary tables, metadata for all objects
+    - Definitions for views (virtual tables rep. query result), triggers (auto-execute procedures in response to events like DML), stored procedures (reusable SQL statements)
+- performance_schema/
+    - In memory tables for server performance/event monitoring
+- sys/
+    - Helper views and routines for interpreting performance_schema data
+- ibdata1
     - < 5.66 - default shared tablespace for InnoDB table data and indexes
     - Exists for backward compatibility, used if innodb_file_per_table is OFF
-- Object Structures
-    - Data Subdirectory (Database)
-        - File-Per-Table Tablespace (.ibd) - contains table and its indexes
-    - System Schema - mysql.ibd
-        - Views
-            - Virtual tables representing query result
-        - Stored Procedures
-            - Set of SQL statements that can be saved and reused
-            - Encapsulate DML logic and accept params
-        - Triggers
-            - Procedures that auto execute in response to specific events like DML on particular table or view
+
+- User databases - dbname/ (data subdirectory)
+    - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
+    - MyISAM - .myd (data )& .myi (index)
+
 - Logs
     - General Query Log - all SQL queries received by the server regardless of execution time
     - Slow Query Log - queries > specified exec time
