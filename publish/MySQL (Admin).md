@@ -15,7 +15,7 @@
 
 # MySQL Architecture
 
-(Merge InnoDB Architecture into Physical arch)
+(Compare and bifurcate physical.system tablespaces and innodb.ibdata1 into appropriate sections) 
 
 ## Logical
 
