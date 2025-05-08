@@ -114,7 +114,7 @@ Caches structural info e.g., schema, column info
 
 Contains databases and their objects
 
-System schemas and their tablespaces
+**System schemas and their tablespaces**
 
 `mysql.ibd` (innodb tablespace)
 - System tables
@@ -143,9 +143,9 @@ System schemas and their tablespaces
 `ibdata1`
 - Default shared tablespace internal InnoDB structures
 
-- User databases - `dbname/` (data subdirectory)
-    - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
-    - MyISAM - .myd (data ) & .myi (index)
+**User databases** - `dbname/` (data subdirectory)
+- InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
+- MyISAM - .myd (data ) & .myi (index)
 
 - Logs
     - General Query Log - all SQL queries received by the server regardless of execution time
