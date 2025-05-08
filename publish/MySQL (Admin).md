@@ -114,7 +114,7 @@ Caches structural info e.g., schema, column info
 ### Data Directory
 `/var/lib/mysql`
 
-  Contains databases and their objects
+    Contains databases and their objects
 
 **System schemas and their tablespaces**
 
@@ -140,15 +140,15 @@ Caches structural info e.g., schema, column info
 
 `performance_schema/`
 
-  In-memory tables for server performance/event monitoring
+    In-memory tables for server performance/event monitoring
 
 `sys/`
 
-  Helper views and routines for interpreting performance_schema data
+    Helper views and routines for interpreting performance_schema data
 
 `ibdata1`
 
-  Default shared tablespace for internal InnoDB structures
+    Default shared tablespace for internal InnoDB structures
 
 **User databases**
 
