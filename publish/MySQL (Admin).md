@@ -266,19 +266,7 @@ System schemas and their tablespaces
             - Store undo logs
                 - Records original data before changes
                 - Enable rollback in case transaction not reflected on receiver's end
-- **Metadata**  
-  .cfg contains config information for tablespace import  
-    - **Source**
-      ```
-      flush tables table_name for export;
-      cp ibd and cfg files
-      unlock tables;
-      ```
-    - **Destination**
-      ```  
-      alter table table_name discard tablespace;
-      alter table table_name import tablespace;
-      ```
+
 #### Glossary
 **Data**
 - Page
@@ -413,9 +401,26 @@ set persist variable_name = value;
 
 ## Table Management (refer GPT chats)
 - MyISAM -> InnoDB
-- Cold Backup - import table, mysqldump - logical, vs physical backup
 
 ## Backup and Restore/Recovery
+
+### Cold Backup
+**Logical**
+mysqldump 
+**Tables**
+    - **Source**
+      ```
+      # export metadata as .cfg for importing into destination
+      flush tables table_name for export;
+      cp table_name.ibd table_name.cfg destination/
+      unlock tables;
+      ```
+    - **Destination**
+      ```  
+      alter table table_name discard tablespace;
+      alter table table_name import tablespace;
+      ```
+physical backup
 
 ## Upgrade/Downgrade
 
