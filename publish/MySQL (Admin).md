@@ -115,9 +115,13 @@ Caches structural info e.g., schema, column info
 Contains databases and their objects
 
 System schemas and their tablespaces
-- mysql/ and mysql.ibd (innodb tablespace)
-    - System tables, data dictionary tables, metadata for all objects
-    - Definitions for views (virtual tables rep. query result), triggers (auto-execute procedures in response to events like DML), stored procedures (reusable SQL statements)
+- mysql.ibd (innodb tablespace)
+    - System tables
+    - data dictionary tables
+          - mysql.routines (stored procedures, reusable SQL statements)
+          - mysql.triggers (auto-execute procedures in response to events like DML)
+          - mysql.views (virtual tables rep. query result)
+    - Metadata for all objects
 - performance_schema/
     - In memory tables for server performance/event monitoring
 - sys/
