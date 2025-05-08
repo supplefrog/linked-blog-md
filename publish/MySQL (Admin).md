@@ -14,8 +14,6 @@
 | **Monitoring/Management**     | Limited (manual tools or 3rd-party)                                                | Advanced monitoring, built-in enterprise management suite                                                                                                                                                                                                                                        |
 
 # MySQL Architecture
-- Try and modify architecture notes to merge InnoDB data dir w Physical
-- elaborate data flow in Logical
 
 ## Logical
 
@@ -266,9 +264,11 @@ System schemas and their tablespaces
 - **Metadata**  
   .cfg contains config information for tablespace import  
     - **Source**
-        - flush tables table_name for export;
-        - cp ibd and cfg files
-        - unlock tables;
+      ```
+      flush tables table_name for export;
+      cp ibd and cfg files
+      unlock tables;
+      ```
     - **Destination**
         - alter table table_name discard tablespace;
         - alter table table_name import tablespace;
