@@ -114,7 +114,7 @@ Caches structural info e.g., schema, column info
 ### Data Directory
 `/var/lib/mysql`
 
-Contains databases and their objects
+ Contains databases and their objects
 
 **System schemas and their tablespaces**
 
