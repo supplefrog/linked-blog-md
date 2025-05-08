@@ -37,12 +37,14 @@
 > Establish connection
 
 **Security**
-- Verify if user has privilege for each query
+
+Verify if user has privilege for each query
 
 **Parsing**
 
 **Lexer/Lexical Analyzer/Tokenizer/Scanner**
-- Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals
+
+Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals
 
 **Parser**
 - Checks if tokens follow syntax structure based on rules
@@ -81,7 +83,7 @@ Query + result set
 
 **Key Cache stores index blocks**
 
-- Used by MyISAM
+Used by MyISAM
 
 **Table Open Cache (I/O)**
 
