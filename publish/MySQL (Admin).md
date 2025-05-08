@@ -320,8 +320,8 @@ mysql-community-server
 - Optional:
     - icu-data-files - 
     - test - test suite for server
+    - debuginfo - debugging symbols - function/variable names, filepaths that is usually stripped from compiled binaries (to secure internal working) for debugging crashes with detailed stack traces
     - devel - development header files and libraries
-    - debuginfo - debugging symbols for MySQL binaries, allowing developers to debug or analyze crashes with detailed stack traces
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
 
 ### [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
