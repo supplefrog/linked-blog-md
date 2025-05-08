@@ -113,10 +113,12 @@ Caches structural info e.g., schema, column info
 `/var/lib/mysql`
 
 - System Tablespace - ibdata1
+    - < 5.66 - default shared tablespace for InnoDB table data and indexes
+    - Exists for backward compatibility, used if innodb_file_per_table is OFF
 - Object Structures
     - Data Subdirectory (Database)
-        - File-Per-Table Tablespaces (.ibd) - contains table and its indexes
-    - System Schema
+        - File-Per-Table Tablespace (.ibd) - contains table and its indexes
+    - System Schema - mysql.ibd
         - Views
             - Virtual tables representing query result
         - Stored Procedures
