@@ -141,6 +141,7 @@ System schemas and their tablespaces
 `ibdata1`
 - < 5.66 - default shared tablespace for InnoDB table data and indexes
 - Exists for backward compatibility, used if innodb_file_per_table is OFF
+
 - User databases - `dbname/` (data subdirectory)
     - InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
     - MyISAM - .myd (data ) & .myi (index)
@@ -231,7 +232,7 @@ System schemas and their tablespaces
             - Persistent log of changes, before applied to on-disk pages
         - Changes can be reapplied to data pages if system crashes before/during writing
         - Durability - committed transactions are not lost
-        - Temporary redo logs
+        - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
     - **Tablespaces**
         - **System Tablespace - ibdata1**
             - Change buffer
