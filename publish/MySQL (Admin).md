@@ -374,6 +374,23 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 ```
 
 ## Systemd Service
+`/etc/systemd/system/service/mysqld.service` - preferred over `/usr/lib/` to prevent overwriting during updates
+```
+[Unit]
+Description=MySQL Server
+After=network.target
+
+[Service]
+User=mysql
+Group=mysql
+ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/etc/my.cnf #default location
+LimitNOFILE = 5000
+Restart=on-failure
+TimeoutSec=600
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ## Troubleshoot
 - --help --verbose
