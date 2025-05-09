@@ -330,18 +330,13 @@ mysql-community-server
 ## Multiple Instances
 | Parameter             | Multiple Instances                                   | Multiple Databases                                |
 |-----------------------|------------------------------------------------------|---------------------------------------------------|
-| **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced <br> Increased complexity, cost, management overhead | Focus on logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
+| **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced | logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
 | **High Availability** | Stock markets use instance-based failover (clusters) to prevent downtime during peak hours. | X |
 | **Security**          | Diff memory, configs, users. <br> Banks create separate instances for savings, credit cards, loans and each region for isolating technical problems or security breaches, meeting strict risk and regulatory requirements. <br> Government databases separate classified data by instance for strict access control | Smaller orgs like educational institutes may centralize restricted data for easier management of their platforms due to less risk and compliance needs |
-| **Backup & Recovery** | Large enterprises have to backup & recover each instance separately, or automate with a script. <br> | Easier to manage |
-| **Maintenance**       | Enterprises like in SaaS (tenant isolation and + high availability priority) patch instances separately, avoiding downtime for unaffected customers.   | Many large social media platforms update the entire database at once—potentially disrupting all users for a short time. |
+| **Backup, Maintenance & Recovery**  | Enterprises like SaaS providers (prioritize tenant isolation and + high availability) have to backup, monitor, perform routine mainenance, update (patch) and recover for each instance separately, or automate with a script <br> Avoids downtime for unaffected customers | Easier to manage <br> Many large social media platforms update the entire database at once—potentially disrupting all users for a short time |
 | **Cost Efficiency**   | A multinational retailer invests in separate instances for high-traffic countries. | Small startups opt for multiple databases within one instance to cut costs. |
 | **Performance**       | Each instance has its own dedicated resources (CPU, memory, storage). <br> In a financial institution, a spike in mortgage processing won’t slow down credit card transactions, as each runs on its own instance. | X |
 | **Scalability**       | A SaaS provider gives large customers their own dedicated instances, allowing them to scale up or move independently, even to different servers or data centers without affecting others. | Easy to add more databases, but all share the same instance limits. |
-
-| Feature                | Multiple Instances                                                                                          | Multiple Databases (Single Instance)                                                                |
-|------------------------|------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| **Administration**     | Each instance must be managed, updated, and backed up separately. <br>**Example:** A managed service provider hosting databases for different clients keeps each client in a separate instance, so updates or issues for one client never affect another. | Centralized management-updates, backups, and monitoring can be done in one place. <br>**Example:** An IT team manages all internal company apps in one instance, saving time and effort. |
 
 ---
 
