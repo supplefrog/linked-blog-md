@@ -33,7 +33,7 @@
 
 **Connection Manager**
 > Check thread cache;  
-> if thread available: provide thread; else create new thread - 1 per client  
+> if thread available: provide thread; else create new thread, 1 per client  
 > Establish connection
 
 **Security**
