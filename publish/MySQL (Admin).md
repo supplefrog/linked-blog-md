@@ -381,11 +381,13 @@ Description=MySQL Server
 After=network.target
 
 [Service]
+Type=simple
 User=mysql
 Group=mysql
 ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/etc/my.cnf #default location
 LimitNOFILE = 5000
 Restart=on-failure
+LimitNOFILE=5000
 TimeoutSec=600
 
 [Install]
