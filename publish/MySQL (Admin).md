@@ -316,7 +316,7 @@ mysql-community-server
         └── mysql-community-common
 ```
 - Optional:
-    - icu-data-files - 
+    - icu-data-files - Unicode support 
     - test - test suite for server
     - debuginfo - debugging symbols - function/variable names, filepaths that is usually stripped from compiled binaries (to secure internal working) for debugging crashes with detailed stack traces
     - devel - development header files and libraries
