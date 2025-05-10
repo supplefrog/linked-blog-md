@@ -406,12 +406,21 @@ firewall-cmd --reload
 ```
 
 ### selinux
-- show ports enabled for services
 ```
-semanage port -l
-``` 
-
-add selinux rules
+semanage [-h]
+```
+- show ports enabled for specific service
+```
+semanage port -l | grep mysql
+```
+- add port for specific service
+```
+semanage port -a -t mysqld_port_t -p tcp 3307
+```
+- delete
+```
+semanage port -d -t mysqld_port_t -p tcp 3307
+```
 
 ## System Variables
 ```
