@@ -355,6 +355,9 @@ socket = /var/run/mysql/mysqld1.sock  # temp file deleted upon service stop
 pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
+language = english
+lc-messages-dir = /usr/local/mysql/share/english 
+
 user = mysql
 default_authentication_plugin = sha256_password  # 8.0 -> authentication_policy
 default_storage_engine = InnoDB
