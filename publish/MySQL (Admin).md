@@ -201,12 +201,12 @@ Default shared tablespace for internal InnoDB structures
 - Smaller and faster than InnoDB
 - More suitable for read-heavy applications
 
-| **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM** |
+| **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM**          |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails                                                                                           | X |
-| **Consistency**   | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency         | X |
+| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails                                                                                                                 | X |
+| **Consistency**   | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency                | X |
 | **Isolation**     | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions        | **Table-level locking** leads to lack of isolation |
-| **Durability**    | Uses **redo log** (**write-ahead logging**), **doublewrite buffer**, and **crash recovery** for durability          | No recovery in case of crashes |
+| **Durability**    | Uses **redo log** (**write-ahead logging**), **doublewrite buffer**, and **crash recovery** for durability              | No recovery in case of crashes  |
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 
@@ -332,10 +332,10 @@ mysql-community-server
 |-----------------------|------------------------------------------------------|---------------------------------------------------|
 | **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced | logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
 | **High Availability** | Stock markets use instance-based failover (clusters) to prevent downtime during peak hours. | X |
-| **Security**          | Diff memory, configs, users. <br> Banks create separate instances for savings, credit cards, loans and each region for isolating technical problems or security breaches, meeting strict risk and regulatory requirements. <br> Government databases separate classified data by instance for strict access control | Smaller orgs like educational institutes may centralize restricted data for easier management of their platforms due to less risk and compliance needs |
-| **Backup, Maintenance & Recovery**  | Enterprises like SaaS providers (prioritize tenant isolation and + high availability) have to backup, monitor, perform routine mainenance, update (patch) and recover for each instance separately, or automate with a script <br> Avoids downtime for unaffected customers | Easier to manage <br> Many large social media platforms update the entire database at once—potentially disrupting all users for a short time |
+| **Security**          | Diff memory, configs, users. Banks create separate instances for savings, credit cards, loans and each region for isolating technical problems or security breaches, meeting strict risk and regulatory requirements. <br> Government databases separate classified data by instance for strict access control | Smaller orgs like educational institutes may centralize restricted data for easier management of their platforms due to less risk and compliance needs |
+| **Backup, Maintenance & Recovery**  | Enterprises like SaaS providers (prioritize tenant isolation and + high availability) have to backup, monitor, perform routine mainenance, update (patch) and recover for each instance separately, or automate with a script. Avoids downtime for unaffected customers | Easier to manage. Many large social media platforms update the entire database at once—potentially disrupting all users for a short time |
 | **Cost Efficiency**   | A multinational retailer invests in separate instances for high-traffic countries. | Small startups opt for multiple databases within one instance to cut costs. |
-| **Performance**       | Each instance has its own dedicated resources (CPU, memory, storage). <br> In a financial institution, a spike in mortgage processing won’t slow down credit card transactions, as each runs on its own instance. | X |
+| **Performance**       | Each instance has its own dedicated resources (CPU, memory, storage). In a financial institution, a spike in mortgage processing won’t slow down credit card transactions, as each runs on its own instance. | X |
 | **Scalability**       | A SaaS provider gives large customers their own dedicated instances, allowing them to scale up or move independently, even to different servers or data centers without affecting others. | Easy to add more databases, but all share the same instance limits. |
 
 ---
