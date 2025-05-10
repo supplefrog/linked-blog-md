@@ -357,8 +357,8 @@ datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
 language = english
 lc-messages-dir = /usr/local/mysql/share/english 
-
 user = mysql
+
 default_authentication_plugin = sha256_password  # 8.0 -> authentication_policy
 default_storage_engine = InnoDB
 innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
