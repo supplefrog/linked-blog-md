@@ -399,11 +399,11 @@ WantedBy=multi-user.target
 - Identifies incoming traffic from data frame **Network/IP** Layer & **Transport/TCP** Layer **headers** 
 - Use rich rules to block service names based on source ips, destination ports
 ```
-firewalld --list-services
-firewalld --list-ports
+firewall-cmd --list-all #services, ports
+firewall-cmd --permanent --add-service=mysql
+firewall-cmd --permanent --add-service=portid/protocol
+firewall-cmd --reload
 ```
-
-add firewalld rules
 
 ### selinux
 - show ports enabled for services
