@@ -413,13 +413,9 @@ semanage [-h]
 ```
 semanage port -l | grep mysql
 ```
-- add port for specific service
+- add/delete port for specific service
 ```
-semanage port -a -t mysqld_port_t -p tcp 3307
-```
-- delete
-```
-semanage port -d -t mysqld_port_t -p tcp 3307
+semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 ```
 
 ## System Variables
