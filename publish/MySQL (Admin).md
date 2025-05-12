@@ -535,7 +535,7 @@ Login:
 
 `select user, host, select_priv, insert_priv, update_priv, delete_priv from mysql.user;`
 
-`GRANT select (column1, column2), insert, delete ON db_name.table_name to 'user'[@'hostname'];`
+`GRANT select (column1, column2), insert, update, delete, create, drop ON db_name.table_name to 'user'[@'hostname'];`
 
 `GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
 
