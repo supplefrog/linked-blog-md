@@ -336,8 +336,8 @@ log = /var/log/mysqld_multi.log
 
 [mysqld1]
 port = 3306
-socket = /var/run/mysql/mysqld1.sock
-pid-file = /var/run/mysql/mysqld1.pid
+# socket = /var/run/mysql/mysqld1.sock
+# pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
 language = english
