@@ -492,11 +492,14 @@ set persist variable_name = value;
 **Status**
 
 Connection id, current db - user, server ver, connection, uptime, threads, open tables, query per sec avg
+
 `status` or `\s`
 
 `mysqladmin [ -u root -p | login-path=local ] status`
 
 `show processlist`
+
+`mysqladmin [ -u root -p | login-path=local ] processlist`
 
 **Authentication**
 
