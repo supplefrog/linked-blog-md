@@ -406,17 +406,18 @@ TimeoutSec=0
 PermissionsStartOnly=true
 
 # Create system tables
-# ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=1 && /usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=2'
+# ExecStartPre=/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS
+ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=1 && /usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=2'
 
 # Start/Stop main service
-ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
 # ExecStart=/usr/sbin/mysqld $MYSQLD_OPTS
+ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
 ExecStop=/usr/bin/mysqladmin shutdown
 PIDFile=/var/run/mysqld/mysqld.pid
 
 # Used to reference $MYSQLD_OPTS including to switch malloc implementation
-EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
 # EnvironmentFile=/etc/sysconfig/mysql
+EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
 
 # Sets open_files_limit
 LimitNOFILE=10000
