@@ -105,7 +105,7 @@ Caches structural info e.g., schema, column info
 - mysqlbinlog - read binary logs
 - myisamlog
 - mysqlcheck - check, repair, optimize, or analyze multiple tables
-- mysql_config_editor -  Store MySQL client authentication credentials in an obfuscated login path file called .mylogin.cnf
+- mysql_config_editor -  Stores MYSQL client authentication credentials in encrypted .mylogin.cnf for secure and easier login
 - mysqldump - cold backup
 
 ### MySQL Config File
@@ -468,6 +468,24 @@ set persist variable_name = value;
 ```
 
 ## User Management (refer GPT chats)
+
+**Authentication**
+
+`mysql_config_editor print --all` 
+
+Set:
+
+`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
+
+Remove:
+
+`mysql_config_editor remove --login-path=client`
+
+Login:
+
+`mysql --login-path=local`
+
+
 - Reset password
 - Create/drop
 - Privileges
