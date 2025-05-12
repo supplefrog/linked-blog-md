@@ -101,11 +101,11 @@ Caches structural info e.g., schema, column info
 
 - mysql_secure_installation
 - mysql - CLI
-- mysqladmin - admin CLI
+- mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db
 - mysqlbinlog - read binary logs
 - myisamlog
 - mysqlcheck - check, repair, optimize, or analyze multiple tables
-- mysql_config_editor 
+- mysql_config_editor -  Store MySQL client authentication credentials in an obfuscated login path file called .mylogin.cnf
 - mysqldump - cold backup
 
 ### MySQL Config File
