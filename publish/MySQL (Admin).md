@@ -380,7 +380,7 @@ Starts background process which exits if TTY closes
 - setsid (set session id)
 - creates a new session and process group and makes process its leader, fully independent from TTY, no accidental read or write to closed terminal
 
-`setsid mysqld --defaults-group-suffix=1 &` **OR** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
+`setsid mysqld --defaults-group-suffix=1 &` **or** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
 
 **`mysqld_mutli start 1,2`** - mysqld wrapper to start multiple instances
 
