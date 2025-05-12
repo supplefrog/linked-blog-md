@@ -375,7 +375,7 @@ Partially detaches process from terminal:
 
 `nohup mysqld --defaults-group-suffix=1 &`
 
-`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - starts process in new session, free from shell TTY
+`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - detatches process from TTY session, closes stdin/out/err. Orphaned process auto reparented to PID 1
 
 **`mysqld_mutli start 1,2`** - mysqld wrapper to start multiple instances
 
