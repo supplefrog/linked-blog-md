@@ -537,6 +537,8 @@ Login:
 
 `GRANT select (column1, column2), insert, delete ON db_name.table_name to 'user'[@'hostname'];`
 
+`GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
+
 **Auto-increment**
 
 
