@@ -68,7 +68,9 @@ Breaks string into tokens (meaningful elements) - keywords, identifiers, operato
     - References the cost model (I/O, CPU, memory) for every operation in each plan
     - Uses data statistics (row counts, index selectivity, data distribution)
 - selects plan with lowest total estimated cost as optimized query plan
+- **display query execution plan:**
 
+  `EXPLAIN QUERY;`
 - Storage engine performs data lookup in caches & buffers
     - if not found, fetch from disk
     - updates to disk
