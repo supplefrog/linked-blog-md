@@ -430,10 +430,12 @@ PrivateTmp=false
 ```
 
 ## Troubleshoot
-- --help --verbose
-    - lists referenced variables
 - systemctl status
 - journalctl -xe
+- Reset start limit
+`sudo systemctl reset-failed mysql.service`
+- --help --verbose
+    - lists referenced variables
 
 ## Security Management
 ### firewalld
