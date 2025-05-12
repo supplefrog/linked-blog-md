@@ -365,17 +365,17 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 ---
 
-**& -> background process but exits if TTY closes**
+- **& -> background process but exits if TTY closes**
 
-**nohup (No Hang Up)**
+- **nohup (No Hang Up)**
 
 Partially detaches process from terminal:
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
 - Closes stidn, redirects stdout and stderr to nohup.out
 
-`setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
+- `setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
 
-**`mysqld_mutli start 1,2`**
+- **`mysqld_mutli start 1,2`**
 
 ## Systemd Service(s)
 `/etc/systemd/system/service/mysqld.service` - preferred over `/usr/lib/` to prevent overwriting during updates
