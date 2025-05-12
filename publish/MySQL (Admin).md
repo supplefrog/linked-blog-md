@@ -376,7 +376,7 @@ Starts background process which exits if TTY closes
 
 `nohup mysqld --defaults-group-suffix=1 &`
 
-**Completely make process independent from TTY**
+**Completely make process independent from TTY:**
 - setsid (set session id)
 - creates a new session and process group and makes process its leader, fully independent from TTY, no accidental read or write to closed terminal
 
