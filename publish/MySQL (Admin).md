@@ -365,17 +365,22 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 ---
 
-**& -> background process but exits if TTY closes**
+### & 
+Starts background process which exits if TTY closes
 
-**nohup (No Hang Up)**
-
-Partially detaches process from terminal:
+### Change parent to init if parent dies: 
+**Partially detach process from TTY:**
+- nohup (No Hang Up)
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
 - Closes stidn, redirects stdout and stderr to nohup.out
 
 `nohup mysqld --defaults-group-suffix=1 &`
 
-`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - detatches process from TTY session, closes stdin/out/err. Orphaned process auto reparented to PID 1
+**Completely make process independent from TTY**
+- setsid (set session id)
+- creates a new session and process group and makes process its leader, fully independent from TTY, no accidental read or write to closed terminal
+
+`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
 
 **`mysqld_mutli start 1,2`** - mysqld wrapper to start multiple instances
 
