@@ -365,6 +365,10 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 ---
 
+### mysqld wrapper to start multiple instances
+
+`mysqld_mutli start 1,2`
+
 ### & 
 Starts background process which exits if TTY closes
 
@@ -381,8 +385,6 @@ Starts background process which exits if TTY closes
 - creates a new session and process group and makes process its leader, fully independent from TTY, no accidental read or write to closed terminal
 
 `setsid mysqld --defaults-group-suffix=1 &` **or** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
-
-**`mysqld_mutli start 1,2`** - mysqld wrapper to start multiple instances
 
 ## Systemd Service(s)
 `/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
