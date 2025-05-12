@@ -487,7 +487,16 @@ show [global/session/ ] variables [like ' '];
 set persist variable_name = value;
 ```
 
-## User Management (refer GPT chats)
+## User Management
+
+**Status**
+
+Connection id, current db - user, server ver, connection, uptime, threads, open tables, query per sec avg
+`status` or `\s`
+
+`mysqladmin [ -u root -p | login-path=local ] status`
+
+`show processlist`
 
 **Authentication**
 
