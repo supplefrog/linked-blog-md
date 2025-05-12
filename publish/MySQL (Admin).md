@@ -495,8 +495,9 @@ mysqldump
   ```  
   alter table table_name discard tablespace;
   alter table table_name import tablespace;
-      ```
-physical backup
+  ```
+  
+**Physical**
 
 ## Upgrade/Downgrade
 
