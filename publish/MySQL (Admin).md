@@ -340,7 +340,22 @@ mysql-community-server
 
 ---
 
-Multi-instance - mysqld_mutli vs nohup (refer GPT chats)
+### nohup (No Hang Up)
+& -> background process but exits if TTY closes
+
+partially detaches process from terminal:
+- Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
+- Closes stidn, redirects stdout and stderr to nohup.out
+
+More options:
+
+`setsid pname` or `setsid bash -c 'cmd'` (bash run command) 
+
+Create Systemd service(s)
+
+### mysqld_mutli
+
+
 
 ## my.cnf
 ```
@@ -356,7 +371,7 @@ pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
 language = english
-lc-messages-dir = /usr/local/mysql/share/english 
+lc-messages-dir = /usr/local/mysql/share/english
 user = mysql
 
 default_authentication_plugin = sha256_password  # 8.0 -> authentication_policy
@@ -378,8 +393,7 @@ After=network.target
 Type=simple
 User=mysql
 Group=mysql
-ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/etc/my.cnf #default location
-LimitNOFILE = 5000
+ExecStart=/usr/local/mysql/bin/mysqld [--defaults-group-suffix=1] [--defaults-file=/etc/my.cnf] #1 - if not using mysqld_multi, 2 - diff cnf dir
 Restart=on-failure
 LimitNOFILE=5000
 TimeoutSec=600
