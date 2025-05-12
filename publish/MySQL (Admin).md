@@ -394,6 +394,8 @@ After=syslog.target
 WantedBy=multi-user.target
 
 [Service]
+# Type=simple # default, or forking - service considered running after daemon forks, like classic daemon - fork and detach. Requires --daemonize
+
 User=mysql
 Group=mysql
 
