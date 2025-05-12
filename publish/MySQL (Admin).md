@@ -380,7 +380,7 @@ Partially detaches process from terminal:
 **`mysqld_mutli start 1,2`**
 
 ## Systemd Service(s)
-`/etc/systemd/system/service/mysqld.service` - preferred over `/usr/lib/` to prevent overwriting during updates
+`/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
 ```
 [Unit]
 Description=MySQL Server
@@ -405,16 +405,14 @@ TimeoutSec=0
 # Execute pre and post scripts as root
 PermissionsStartOnly=true
 
-# Create system tables
-# ExecStartPre=/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS
-ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=1 && /usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=2'
+# Needed to create system tables
+ExecStartPre=/usr/bin/mysqld_pre_systemd %I
 
-# Start/Stop main service
-# ExecStart=/usr/sbin/mysqld $MYSQLD_OPTS
-ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
-ExecStop=/usr/bin/mysqladmin shutdown
+# Start main service
+# ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
+ExecStart=/usr/sbin/mysqld --defaults-group-suffix=@%I $MYSQLD_OPTS
 
-# Used to reference $MYSQLD_OPTS including to switch malloc implementation
+# Use to reference $MYSQLD_OPTS including to switch malloc implementation
 # EnvironmentFile=/etc/sysconfig/mysql
 EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
 
