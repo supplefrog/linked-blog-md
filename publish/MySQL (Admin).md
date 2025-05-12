@@ -497,7 +497,7 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 
 `mysqladmin [ -u root -p | login-path=local ] status`
 
-`show processlist`
+`show processlist;`
 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
 
