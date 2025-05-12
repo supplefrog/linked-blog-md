@@ -406,7 +406,7 @@ TimeoutSec=0
 PermissionsStartOnly=true
 
 # Create system tables
-# ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd --defaults-group-suffix=1 $MYSQLD_OPTS && /usr/bin/mysqld_pre_systemd --defaults-group-suffix=2 $MYSQLD_OPTS'
+# ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=1 && /usr/bin/mysqld_pre_systemd $MYSQLD_OPTS --defaults-group-suffix=2'
 
 # Start/Stop main service
 ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
