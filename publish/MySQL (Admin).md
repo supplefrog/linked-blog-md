@@ -414,7 +414,7 @@ PIDFile=/var/run/mysqld/mysqld.pid
 
 # Used to reference $MYSQLD_OPTS including to switch malloc implementation
 EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
-#EnvironmentFile=/etc/sysconfig/mysql
+# EnvironmentFile=/etc/sysconfig/mysql
 
 # Sets open_files_limit
 LimitNOFILE=10000
