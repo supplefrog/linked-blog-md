@@ -349,7 +349,7 @@ partially detaches process from terminal:
 
 More options:
 
-`setsid pname` or `setsid bash -c 'cmd'` (bash run command) 
+- `setsid pname` or `setsid bash -c 'cmd'` (bash run command) 
 
 - Create Systemd service(s)
 
