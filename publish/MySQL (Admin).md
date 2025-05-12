@@ -507,8 +507,21 @@ Login:
 
 
 - Reset password
-- Create/drop
-- Privileges
+
+**Create/drop**
+
+`create user 'user'[@'hostname'] identified by 'P@55w0rd';`
+
+`drop user 'user'[@'hostname'], 'user1'[@'hostname'];`
+
+**Privileges**
+
+`show grants [for current_user/'username'@'hostname']`
+
+`select user, host from mysql.user;`
+
+
+
 - Auto increment
 
 ## Table Management (refer GPT chats)
