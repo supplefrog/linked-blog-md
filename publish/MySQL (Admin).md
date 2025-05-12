@@ -340,22 +340,19 @@ mysql-community-server
 
 ---
 
-### nohup (No Hang Up)
-& -> background process but exits if TTY closes
+**& -> background process but exits if TTY closes**
 
-partially detaches process from terminal:
+### nohup (No Hang Up)
+
+Partially detaches process from terminal:
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
 - Closes stidn, redirects stdout and stderr to nohup.out
 
-More options:
+`setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
 
-- `setsid pname` or `setsid bash -c 'cmd'` (bash run command) 
+**Create Systemd service(s)**
 
-- Create Systemd service(s)
-
-### mysqld_mutli
-
-
+**`mysqld_mutli start 1,2`**
 
 ## my.cnf
 ```
