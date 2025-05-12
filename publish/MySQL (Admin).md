@@ -22,7 +22,7 @@
 ### Client
 - Contains server connectors and APIs
 - Sends connection request to server
-- CLI - mysql, GUI - MySQL Workbench     
+- CLI - mysql, required by GUI - MySQL Workbench     
 
 ### Server
 
