@@ -373,7 +373,9 @@ Partially detaches process from terminal:
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
 - Closes stidn, redirects stdout and stderr to nohup.out
 
-`setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
+`nohup mysqld --defaults-group-suffix=1 &`
+
+`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - starts process in new session, free from shell TTY 
 
 **`mysqld_mutli start 1,2`**
 
