@@ -382,20 +382,51 @@ Partially detaches process from terminal:
 ```
 [Unit]
 Description=MySQL Server
-After=network.target
-
-[Service]
-Type=simple
-User=mysql
-Group=mysql
-ExecStart=/usr/local/mysql/bin/mysqld_multi start 1,2
-# ExecStart=/usr/local/mysql/bin/mysqld [--defaults-group-suffix=1] [--defaults-file=/etc/my.cnf] #1 - if not using mysqld_multi, 2 - diff cnf dir
-Restart=on-failure
-LimitNOFILE=5000
-TimeoutSec=600
+Documentation=man:mysqld(8)
+Documentation=http://dev.mysql.com/doc/refman/en/using-systemd.html
+After=network-online.target
+Wants=network-online.target
+After=syslog.target
 
 [Install]
 WantedBy=multi-user.target
+
+[Service]
+User=mysql
+Group=mysql
+
+Type=notify
+
+# Disable service start and stop timeout logic of systemd for mysqld service.
+TimeoutSec=0
+
+# Execute pre and post scripts as root
+PermissionsStartOnly=true
+
+# Create system tables
+# ExecStartPre=/bin/bash -c '/usr/bin/mysqld_pre_systemd --defaults-group-suffix=1 $MYSQLD_OPTS && /usr/bin/mysqld_pre_systemd --defaults-group-suffix=2 $MYSQLD_OPTS'
+
+# Start/Stop main service
+ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
+# ExecStart=/usr/sbin/mysqld $MYSQLD_OPTS
+ExecStop=/usr/bin/mysqladmin shutdown
+PIDFile=/var/run/mysqld/mysqld.pid
+
+# Used to reference $MYSQLD_OPTS including to switch malloc implementation
+EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
+#EnvironmentFile=/etc/sysconfig/mysql
+
+# Sets open_files_limit
+LimitNOFILE=10000
+
+Restart=on-failure
+
+RestartPreventExitStatus=1
+
+# Set enviroment variable MYSQLD_PARENT_PID. This is required for restart.
+Environment=MYSQLD_PARENT_PID=1
+
+PrivateTmp=false
 ```
 
 ## Troubleshoot
