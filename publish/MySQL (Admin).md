@@ -505,24 +505,27 @@ Login:
 
 `mysql --login-path=local`
 
+**Reset password**
 
-- Reset password
+
 
 **Create/drop**
 
 `create user 'user'[@'hostname'] identified by 'P@55w0rd';`
 
-`drop user 'user'[@'hostname'], 'user1'[@'hostname'];`
+`drop user 'user1'[@'hostname'], 'user2'[@'hostname'];`
 
 **Privileges**
 
 `show grants [for current_user/'username'@'hostname']`
 
-`select user, host from mysql.user;`
+`select user, host, select_priv, insert_priv, update_priv, delete_priv from mysql.user;`
+
+`GRANT select (column1, column2), insert, delete ON db_name.table_name to 'user'[@'hostname'];`
+
+**Auto-increment**
 
 
-
-- Auto increment
 
 ## Table Management (refer GPT chats)
 - MyISAM -> InnoDB
