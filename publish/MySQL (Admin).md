@@ -175,8 +175,8 @@ Default shared tablespace for internal InnoDB structures
 - InnoDB Log Files
     - Redo Logs
     - Undo Logs
-- Socket File
-- *PIDs under Socket* File
+- Socket File # temporary file deleted upon service stop
+-  File for *PIDs under Socket*
 
 ### Storage Engines
 
@@ -327,33 +327,6 @@ mysql-community-server
     - support-files
         - SysVinit service files for backward compatibility
 
-## Multiple Instances
-| Parameter             | Multiple Instances                                   | Multiple Databases                                |
-|-----------------------|------------------------------------------------------|---------------------------------------------------|
-| **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced | logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
-| **High Availability** | Stock markets use instance-based failover (clusters) to prevent downtime during peak hours | X |
-| **Security**          | Diff memory, configs, users. Banks create separate instances for savings, credit cards, loans and each region for isolating technical problems or security breaches, meeting strict risk and regulatory requirements. <br> Government databases separate classified data by instance for strict access control | Smaller orgs like educational institutes may centralize restricted data for easier management of their platforms due to less risk and compliance needs |
-| **Backup, Maintenance & Recovery**  | Enterprises like SaaS providers (prioritize tenant isolation and + high availability) have to backup, monitor, perform routine mainenance, update (patch) and recover for each instance separately, or automate with a script. Avoids downtime for unaffected customers | Easier to manage. Many large social media platforms update the entire database at once—potentially disrupting all users for a short time |
-| **Cost Efficiency**   | A multinational retailer invests in separate instances for high-traffic countries | Small startups opt for multiple databases within one instance to cut costs |
-| **Performance**       | Each instance has its own dedicated resources (CPU, memory, storage). In a financial institution, a spike in mortgage processing won’t slow down credit card transactions, as each runs on its own instance | X |
-| **Scalability**       | A SaaS provider gives large customers their own dedicated instances, allowing them to scale up or move independently, even to different servers or data centers without affecting others | Easy to add more databases, but all share the same instance limits |
-
----
-
-**& -> background process but exits if TTY closes**
-
-### nohup (No Hang Up)
-
-Partially detaches process from terminal:
-- Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
-- Closes stidn, redirects stdout and stderr to nohup.out
-
-`setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
-
-**Create Systemd service(s)**
-
-**`mysqld_mutli start 1,2`**
-
 ## my.cnf
 ```
 [mysqld_multi]
@@ -363,7 +336,7 @@ log = /var/log/mysqld_multi.log
 
 [mysqld1]
 port = 3306
-socket = /var/run/mysql/mysqld1.sock  # temp file deleted upon service stop
+socket = /var/run/mysql/mysqld1.sock
 pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
@@ -379,7 +352,32 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 # socket = /var/run/mysql/mysqld1.sock
 ```
 
-## Systemd Service
+## Multiple Instances
+| Parameter             | Multiple Instances                                   | Multiple Databases                                |
+|-----------------------|------------------------------------------------------|---------------------------------------------------|
+| **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced | logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
+| **High Availability** | Stock markets use instance-based failover (clusters) to prevent downtime during peak hours | X |
+| **Security**          | Diff memory, configs, users. Banks create separate instances for savings, credit cards, loans and each region for isolating technical problems or security breaches, meeting strict risk and regulatory requirements. <br> Government databases separate classified data by instance for strict access control | Smaller orgs like educational institutes may centralize restricted data for easier management of their platforms due to less risk and compliance needs |
+| **Backup, Maintenance & Recovery**  | Enterprises like SaaS providers (prioritize tenant isolation and + high availability) have to backup, monitor, perform routine mainenance, update (patch) and recover for each instance separately, or automate with a script. Avoids downtime for unaffected customers | Easier to manage. Many large social media platforms update the entire database at once—potentially disrupting all users for a short time |
+| **Cost Efficiency**   | A multinational retailer invests in separate instances for high-traffic countries | Small startups opt for multiple databases within one instance to cut costs |
+| **Performance**       | Each instance has its own dedicated resources (CPU, memory, storage). In a financial institution, a spike in mortgage processing won’t slow down credit card transactions, as each runs on its own instance | X |
+| **Scalability**       | A SaaS provider gives large customers their own dedicated instances, allowing them to scale up or move independently, even to different servers or data centers without affecting others | Easy to add more databases, but all share the same instance limits |
+
+---
+
+**& -> background process but exits if TTY closes**
+
+**nohup (No Hang Up)**
+
+Partially detaches process from terminal:
+- Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
+- Closes stidn, redirects stdout and stderr to nohup.out
+
+`setsid pname` or `setsid bash -c 'cmd'` (bash run command) - starts process in new session, free from shell TTY 
+
+**`mysqld_mutli start 1,2`**
+
+## Systemd Service(s)
 `/etc/systemd/system/service/mysqld.service` - preferred over `/usr/lib/` to prevent overwriting during updates
 ```
 [Unit]
@@ -390,7 +388,8 @@ After=network.target
 Type=simple
 User=mysql
 Group=mysql
-ExecStart=/usr/local/mysql/bin/mysqld [--defaults-group-suffix=1] [--defaults-file=/etc/my.cnf] #1 - if not using mysqld_multi, 2 - diff cnf dir
+ExecStart=/usr/local/mysql/bin/mysqld_multi start 1,2
+# ExecStart=/usr/local/mysql/bin/mysqld [--defaults-group-suffix=1] [--defaults-file=/etc/my.cnf] #1 - if not using mysqld_multi, 2 - diff cnf dir
 Restart=on-failure
 LimitNOFILE=5000
 TimeoutSec=600
