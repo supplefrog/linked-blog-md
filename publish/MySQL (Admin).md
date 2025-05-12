@@ -394,7 +394,7 @@ After=syslog.target
 WantedBy=multi-user.target
 
 [Service]
-# Type=simple # default, or forking - service considered running after daemon forks, like classic daemon - fork and detach. Requires --daemonize
+# Type=exec # default - service considered started if binary running, or simple/forking - immediately after daemon forks/waiting for parent to exit; for classic daemons - fork and detach. Requires mysqld --daemonize
 
 User=mysql
 Group=mysql
