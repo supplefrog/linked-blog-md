@@ -71,6 +71,8 @@ Breaks string into tokens (meaningful elements) - keywords, identifiers, operato
 - **display query execution plan:**
 
   `EXPLAIN QUERY;`
+  
+  `EXPLAIN ANALYZE QUERY;` (8.0+)
 
 **Storage engine performs data lookup in caches & buffers**
 - if not found, fetch from disk
