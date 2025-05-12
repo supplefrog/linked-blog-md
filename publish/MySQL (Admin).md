@@ -351,7 +351,7 @@ More options:
 
 `setsid pname` or `setsid bash -c 'cmd'` (bash run command) 
 
-Create Systemd service(s)
+- Create Systemd service(s)
 
 ### mysqld_mutli
 
