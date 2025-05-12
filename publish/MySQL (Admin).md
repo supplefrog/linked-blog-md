@@ -375,9 +375,9 @@ Partially detaches process from terminal:
 
 `nohup mysqld --defaults-group-suffix=1 &`
 
-`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - starts process in new session, free from shell TTY 
+`setsid mysqld --defaults-group-suffix=1 &` or `setsid bash -c 'mysqld --defaults-group-suffix=1' &` (bash run command) - starts process in new session, free from shell TTY
 
-**`mysqld_mutli start 1,2`**
+**`mysqld_mutli start 1,2`** - mysqld wrapper to start multiple instances
 
 ## Systemd Service(s)
 `/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
