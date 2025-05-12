@@ -501,6 +501,8 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
 
+`SELECT * FROM performance_schema.events_statements_current;`
+
 **Authentication**
 
 `mysql_config_editor print --all` 
