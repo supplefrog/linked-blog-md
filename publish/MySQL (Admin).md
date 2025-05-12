@@ -487,7 +487,7 @@ show [global/session/ ] variables [like ' '];
 set persist variable_name = value;
 ```
 
-## User Management
+## Management
 
 **Status**
 
