@@ -396,6 +396,7 @@ WantedBy=multi-user.target
 [Service]
 User=mysql
 Group=mysql
+
 # StartLimitIntervalSec=500
 # StartLimitBurst=5
 
