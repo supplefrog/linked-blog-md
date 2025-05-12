@@ -72,7 +72,7 @@ Breaks string into tokens (meaningful elements) - keywords, identifiers, operato
 
   `EXPLAIN QUERY;`
 
-Storage engine performs data lookup in caches & buffers
+**Storage engine performs data lookup in caches & buffers**
 - if not found, fetch from disk
 - updates to disk
 
