@@ -175,7 +175,7 @@ Default shared tablespace for internal InnoDB structures
 - InnoDB Log Files
     - Redo Logs
     - Undo Logs
-- Socket File # temporary file deleted upon service stop
+- Socket File - temporary file deleted upon service stop
 -  File for *PIDs under Socket*
 
 ### Storage Engines
