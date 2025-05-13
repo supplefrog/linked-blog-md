@@ -364,10 +364,12 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 ---
 
-### & 
-Starts background process which exits if TTY closes
+### Start background process 
+**Exits if TTY (parent) closes**
+`process &`
 
-### Daemonize / Change parent to init (PID=1) if parent dies: 
+### Daemonize process 
+**Changes parent to init (PID=1) if parent dies** 
 **Partially detach process from TTY:**
 - nohup (No Hang Up)
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
