@@ -367,7 +367,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 ### Start background process 
 **Exits if TTY (parent) closes**
 
-`process &`
+`processname &`
 
 ### Daemonize process 
 **Changes parent to init (PID=1) if parent dies**
