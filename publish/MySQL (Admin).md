@@ -553,8 +553,14 @@ pkill mysql
 
 **Auto-increment**
 
+```
+CREATE TABLE table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
+    ...
+);
 
-
+ALTER TABLE table_name AUTO_INCREMENT = value; # Next insertion starts w this value, conflicting - throws error
+```
 ## Table Management (refer GPT chats)
 - MyISAM -> InnoDB
 
