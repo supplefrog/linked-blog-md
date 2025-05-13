@@ -370,14 +370,10 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 ---
 
-### mysqld wrapper to start multiple instances
-
-`mysqld_mutli start 1,2`
-
 ### & 
 Starts background process which exits if TTY closes
 
-### Change parent to init if parent dies: 
+### Change parent to init (PID=1) if parent dies: 
 **Partially detach process from TTY:**
 - nohup (No Hang Up)
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
