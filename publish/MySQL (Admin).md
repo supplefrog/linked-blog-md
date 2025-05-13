@@ -109,7 +109,7 @@ Caches structural info e.g., schema, column info
 - mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db
 - mysqlbinlog - read binary logs
 - myisamlog
-- mysqlcheck - check, repair, optimize, or analyze multiple tables
+- mysqlcheck - -c check -a analyze -o optimize database [tables]
 - mysql_config_editor -  Stores MYSQL client authentication credentials in encrypted .mylogin.cnf for secure and easier login
 - mysqldump - cold backup
 
