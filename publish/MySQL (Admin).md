@@ -521,7 +521,15 @@ Login:
 
 **Reset password**
 
+`systemctl stop mysqld`
 
+Run mysql as mysql user, not root (my.cnf/param)
+
+`mysqld --skip-grant-tables --skip-networking &`
+
+`flush privileges;`
+
+`alter user 'root'@'localhost' identified by 'P@55w0rd';`
 
 **Create/drop**
 
