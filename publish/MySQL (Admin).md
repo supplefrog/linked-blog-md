@@ -386,6 +386,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 `setsid mysqld --defaults-group-suffix=1 &` **or** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
 
 ## Systemd Service(s)
+**Used to start daemon(s) on boot**
 `/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
 ```
 [Unit]
