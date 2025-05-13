@@ -334,18 +334,12 @@ mysql-community-server
 
 ## my.cnf
 ```
-[mysqld_multi]
-mysqld = /usr/bin/mysqld_safe
-mysqladmin = /usr/bin/mysqladmin
-log = /var/log/mysqld_multi.log
-
 [mysqld1]
-port = 3306
-# socket = /var/run/mysql/mysqld1.sock
+port = 3307
+# socket = /var/run/mysql/mysql1.sock
 # pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
 log-error = /var/log/mysqld1.log
-language = english
 lc-messages-dir = /usr/local/mysql/share/english
 user = mysql
 
@@ -354,7 +348,7 @@ default_storage_engine = InnoDB
 innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 [mysql]
-# socket = /var/run/mysql/mysqld1.sock
+# socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
 ```
 
 ## Multiple Instances
