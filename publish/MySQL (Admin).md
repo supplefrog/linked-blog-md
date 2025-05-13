@@ -551,6 +551,41 @@ pkill mysql
 
 `GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
 
+**Change storage engine**
+
+Backup before conversion
+
+`ALTER TABLE table_name ENGINE = InnoDB;`
+
+**Stored procedure to convert all MyISAM tables in DB**
+
+```
+DROP PROCEDURE IF EXISTS convertToInnodb;
+DELIMITER //
+
+CREATE PROCEDURE convertToInnodb()
+BEGIN
+  mainloop: LOOP
+    SELECT TABLE_NAME INTO @convertTable FROM information_schema.TABLES
+      WHERE TABLE_SCHEMA = DATABASE()
+        AND ENGINE = 'MyISAM'
+      ORDER BY TABLE_NAME LIMIT 1;
+    IF @convertTable IS NULL THEN
+      LEAVE mainloop;
+    END IF;
+    SET @sqltext := CONCAT('ALTER TABLE `', DATABASE(), '`.`', @convertTable, '` ENGINE = InnoDB');
+    PREPARE convertTables FROM @sqltext;
+    EXECUTE convertTables;
+    DEALLOCATE PREPARE convertTables;
+    SET @convertTable = NULL;
+  END LOOP mainloop;
+END//
+
+DELIMITER ;
+CALL convertToInnodb();
+DROP PROCEDURE IF EXISTS convertToInnodb;
+```
+
 **Auto-increment**
 
 ```
@@ -561,8 +596,6 @@ CREATE TABLE table_name (
 
 ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
 ```
-## Table Management (refer GPT chats)
-- MyISAM -> InnoDB
 
 ## Backup and Restore/Recovery
 
