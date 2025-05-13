@@ -559,7 +559,7 @@ CREATE TABLE table_name (
     ...
 );
 
-ALTER TABLE table_name AUTO_INCREMENT = value; # Next insertion starts w this value, conflicting value throws error
+ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
 ```
 ## Table Management (refer GPT chats)
 - MyISAM -> InnoDB
