@@ -503,22 +503,6 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 
 `SELECT * FROM performance_schema.events_statements_current;`
 
-**Authentication**
-
-`mysql_config_editor print --all` 
-
-Set:
-
-`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
-
-Remove:
-
-`mysql_config_editor remove --login-path=client`
-
-Login:
-
-`mysql --login-path=local`
-
 **Reset password**
 
 `systemctl stop mysqld`
@@ -535,11 +519,32 @@ exit
 pkill mysql
 ```
 
-**Create/drop**
+**Authentication**
 
-`create user 'user'[@'hostname'] identified by 'P@55w0rd';`
+`mysql_config_editor print --all` 
 
-`drop user 'user1'[@'hostname'], 'user2'[@'hostname'];`
+Set:
+
+`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
+
+Remove:
+
+`mysql_config_editor remove --login-path=client`
+
+Login:
+
+`mysql --login-path=local`
+
+**Auto-increment**
+
+```
+CREATE TABLE table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
+    ...
+);
+
+ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
+```
 
 **Privileges**
 
@@ -550,6 +555,12 @@ pkill mysql
 `GRANT select (column1, column2), insert, update, delete, create, drop ON db_name.table_name to 'user'[@'hostname'];`
 
 `GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
+
+**Create/drop user**
+
+`create user 'user'[@'hostname'] identified by 'P@55w0rd';`
+
+`drop user 'user1'[@'hostname'], 'user2'[@'hostname'];`
 
 **Change storage engine**
 
@@ -586,15 +597,18 @@ CALL convertToInnodb();
 DROP PROCEDURE IF EXISTS convertToInnodb;
 ```
 
-**Auto-increment**
+**Switch data dir after install**
 
 ```
-CREATE TABLE table_name (
-    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
-    ...
-);
-
-ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
+mkdir /newpath
+chown -R mysql:mysql /newpath
+chmod -R 750 /newpath
+systemctl stop mysqld
+cp -r /var/lib/mysql /newpath
+```
+Edit my.cnf datadir
+```
+systemctl restart mysqld
 ```
 
 ## Backup and Restore/Recovery
