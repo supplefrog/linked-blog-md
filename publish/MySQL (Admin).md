@@ -121,35 +121,30 @@ Caches structural info e.g., schema, column info
 
 Contains databases and their objects
 
-**System schemas and their tablespaces**
+**Tablespaces and their system schemas**
 
-`mysql.ibd` (data dictionary tablespace)
-- System tables
-    - mysql.user
-    - mysql.db
-    - mysql.tables_priv
-    - mysql.columns_priv
-- data dictionary tables (8.0 - removed .frm, .trg, .par files)
+`mysql.ibd`
 
-  All metadata for DB objects, not queriable, only INFORMATION_SCHEMA or `SHOW` cmd
+mysql.  
+user, db, tables_priv, columns_priv, tables, columns, indexes, schemata,
+- mysql.events
+- mysql.routines - stored procedures, reusable SQL statements
+- mysql.triggers - auto-execute procedures in response to events like DML
+- mysql.views - virtual tables rep. query result 
 
-  Used to create .cfg during table export 
-    - mysql.tables
-    - mysql.columns
-    - mysql.indexes
-    - mysql.events
-    - mysql.schemata
-    - mysql.routines (stored procedures, reusable SQL statements)
-    - mysql.triggers (auto-execute procedures in response to events like DML)
-    - mysql.views (virtual tables rep. query result)
+Data dictionary - internal InnoDB tables
+
+INFORMATION_SCHEMA - virtual schema containing views read from data dictionary
+Read only metadata displayed with 'SHOW' command (Used to create .cfg during table export, 8.0 - removed .frm, .trg, .par files)
 
 `performance_schema/`
 
-In-memory tables for server performance/event monitoring
+.sdi - Serialized Dictionary Information, metadata for objects within performance_schema db
+
+Performance Schema contains in-memory tables of the type performance schema engine for monitoring server execution at runtime
 
 `sys/`
-
-Helper views and routines for interpreting performance_schema data
+`sysconfig.ibd`
 
 `ibdata1`
 
