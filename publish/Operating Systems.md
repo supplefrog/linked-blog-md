@@ -654,6 +654,28 @@ Manage System Resources
     Set permanently for username
         /etc/security/limits.conf
 ```
+### Reset root password
+- reboot to GRUB, press e
+- **Mount root file system as rw instead of ro during early boot, run sh as init (PID 1)** 
+- add to the end of linux16 boot params:
+```
+rw init=/sysroot/bin/sh
+```
+```
+chroot /sysroot
+passwd root
+```
+
+Re-label SELinux contexts:
+
+```
+touch /.autorelabel
+```
+```
+exit
+reboot
+```
+
 ### Partition Management
 ```
     ​fdisk
