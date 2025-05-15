@@ -556,6 +556,8 @@ command -f --flag arguments
 ### Process Management  
 ```
     top
+	o filter with custom param
+		e.g. COMMAND=chrome - superior to L
     	L locate process_name
     	k kill
     	r renice - change priority
