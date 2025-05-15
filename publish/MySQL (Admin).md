@@ -136,24 +136,25 @@ Contains databases and their objects
 **Tablespaces and their system schemas**
 
 `mysql.ibd`
+Contains: 
+- mysql. (8.0 - removed .frm, .trg, .par files)
+  
+    user, db, tables_priv, columns_priv, tables, columns, indexes, schemata,
+    - mysql.events
+    - mysql.routines - stored procedures, reusable SQL statements
+    - mysql.triggers - auto-execute procedures in response to events like DML
+    - mysql.views - virtual tables rep. query result 
 
-mysql.  
-user, db, tables_priv, columns_priv, tables, columns, indexes, schemata,
-- mysql.events
-- mysql.routines - stored procedures, reusable SQL statements
-- mysql.triggers - auto-execute procedures in response to events like DML
-- mysql.views - virtual tables rep. query result 
+- Data dictionary - internal InnoDB tables
 
-Data dictionary - internal InnoDB tables
-
-INFORMATION_SCHEMA - virtual schema containing views read from data dictionary
-Read only metadata displayed with 'SHOW' command (Used to create .cfg during table export, 8.0 - removed .frm, .trg, .par files)
+INFORMATION_SCHEMA - virtual schema containing **virtual tables** dynamically generated from data dictionary
+Read only metadata displayed with 'SHOW' command (Used to create .cfg during table export)
 
 `performance_schema/`
 
 .sdi - Serialized Dictionary Information, metadata for objects within performance_schema db
 
-Performance Schema contains in-memory tables of the type performance schema engine for monitoring server execution at runtime
+Performance Schema contains in-memory **tables** of the type performance schema engine for monitoring server execution at runtime
 
 `sys/`
 `sysconfig.ibd`
