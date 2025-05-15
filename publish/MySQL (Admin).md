@@ -520,7 +520,7 @@ Each row = active client connection - connection id, username, hostname, db in u
 
 `SELECT * FROM performance_schema.events_statements_current;`
 
-**Identify high loag users/problematic queries**
+**Identify high load users/problematic queries**
 
 `SELECT * FROM sys.user_summary;`
 
