@@ -510,6 +510,10 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 
 `mysqladmin [ -u root -p | login-path=local ] status`
 
+**List currently running threads/processes**
+
+Each row = active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
+
 `show processlist;`
 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
