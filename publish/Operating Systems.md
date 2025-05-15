@@ -631,6 +631,16 @@ command -f --flag arguments
 	 		Remove all IPs from interface
     scp uses sftp uses ssh uses port 22
 ```
+#### SSH key-based authentication
+**Generate key on client**
+
+
+`ssh-keygen -t rsa -b 4096 -C "abc@example.com"`
+
+**Copy key to server**
+
+`ssh-copy-id user@server_ip`
+
 ### Security
 ```
 Password Policy
