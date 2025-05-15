@@ -157,7 +157,16 @@ Read only metadata displayed with 'SHOW' command (Used to create .cfg during tab
 Performance Schema contains in-memory **tables** of the type performance schema engine for monitoring server execution at runtime
 
 `sys/`
-`sysconfig.ibd`
+
+`sysconfig.ibd` - tablespace for sys_config table - stores sys schema configuration settings
+
+sys schema - obtains the following from data dictionary
+
+Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable way. Examples include views for I/O latency, memory usage, statement summaries, schema information, and more.
+
+Stored Procedures: Automate common diagnostic and performance tasks, such as configuring the Performance Schema or generating reports.
+
+Stored Functions: Provide formatting and querying services related to Performance Schema data.
 
 `ibdata1`
 
