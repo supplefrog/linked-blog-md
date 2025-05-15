@@ -555,7 +555,7 @@ command -f --flag arguments
 ```
 ### Process Management  
 ```
-    top
+    top -p (monitor specific pid)
 	o filter with custom param
 		e.g. COMMAND=chrome - superior to L
     	L locate process_name
