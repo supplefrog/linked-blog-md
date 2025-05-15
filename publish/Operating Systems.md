@@ -1,4 +1,4 @@
-Offer suggestions by opening a [PR](https://github.com/supplefrog/linked-blog-md/pulls)
+Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
 - [Components](#components)
