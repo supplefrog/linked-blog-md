@@ -160,7 +160,7 @@ Performance Schema contains in-memory **tables** of the type performance schema 
 
 `sysconfig.ibd` - tablespace for sys_config table - stores sys schema configuration settings
 
-sys schema - obtains the following from data dictionary
+sys schema - obtains the following info from resp schemas
 
 Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable way. Examples include views for I/O latency, memory usage, statement summaries, schema information, and more.
 
@@ -515,6 +515,14 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
 
 `SELECT * FROM performance_schema.events_statements_current;`
+
+**Query Table Data without using DB**
+
+```
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'your_database_name' AND table_type = '';
+```
 
 **Reset password**
 
