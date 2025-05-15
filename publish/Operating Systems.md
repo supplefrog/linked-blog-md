@@ -660,8 +660,7 @@ Manage System Resources
 - add to the end of linux16 boot params:
 ```
 rw init=/sysroot/bin/sh
-```
-```
+
 chroot /sysroot
 passwd root
 ```
@@ -670,8 +669,7 @@ Re-label SELinux contexts:
 
 ```
 touch /.autorelabel
-```
-```
+
 exit
 reboot
 ```
