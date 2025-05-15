@@ -521,7 +521,7 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 ```
 SELECT table_name
 FROM information_schema.tables
-WHERE table_schema = 'your_database_name' AND table_type = '';
+WHERE table_schema = 'db_name' AND table_type = '';
 ```
 
 **Reset password**
