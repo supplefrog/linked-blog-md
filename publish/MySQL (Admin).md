@@ -1,3 +1,15 @@
+Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
+
+# Table of Contents
+- [MySQL Community vs Enterprise](#rdbms---tables-have-relations)
+- [MySQL Architecture](#mysql-architecture)
+    - [Logical](#logical)
+    - [Physical](#physical)
+    - [InnoDB](#storage-engines)
+- [Administration](#admin)
+
+---
+
 ### RDBMS - Tables have relations
 | Feature Category              | Community Edition                                                                  | Enterprise Edition                                                                                                                       |
 |-------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
