@@ -516,6 +516,10 @@ Connection id, current db - user, server ver, connection, uptime, threads, open 
 
 `SELECT * FROM performance_schema.events_statements_current;`
 
+**Identify high loag users/problematic queries**
+
+`SELECT * FROM sys.user_summary;`
+
 **Query Table Data without using DB**
 
 ```
