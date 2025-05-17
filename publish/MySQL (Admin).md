@@ -159,7 +159,7 @@ Performance Schema contains in-memory **tables** of the type performance schema 
 
 `sys/`
 
-`sysconfig.ibd` - tablespace for sys_config table - stores sys schema configuration settings
+`sysconfig.ibd` - sys_config table - stores sys schema configuration settings
 
 sys schema - obtains the following info from resp schemas
 
