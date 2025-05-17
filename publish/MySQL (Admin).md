@@ -136,6 +136,7 @@ Contains databases and their objects
 **Tablespaces and their system schemas**
 
 `mysql.ibd`
+
 contains: 
 - mysql. (8.0 - removed .frm, .trg, .par files)
   
