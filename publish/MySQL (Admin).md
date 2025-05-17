@@ -465,7 +465,7 @@ PrivateTmp=false
 - journalctl -xe
 - Reset start limit
 
-`sudo systemctl reset-failed mysql.service`
+`sudo systemctl reset-failed mysqld`
 - --help --verbose
     - lists referenced variables
 
