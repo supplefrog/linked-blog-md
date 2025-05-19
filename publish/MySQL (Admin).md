@@ -381,7 +381,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 # password = P@55w0rd
 ```
 
-## Multiple Instances
+### Multiple Instances
 | Parameter             | Multiple Instances                                   | Multiple Databases                                |
 |-----------------------|------------------------------------------------------|---------------------------------------------------|
 | **Data Integrity**    | Data is physically separate; relationships between data in different instances cannot be enforced | logical controls like access controls, data classification, rest & transit encryption, regular monitoring & audits to comply with data protection laws |
