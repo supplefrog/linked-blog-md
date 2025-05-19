@@ -614,12 +614,10 @@ Login:
 Run mysql as mysql user, not root (my.cnf/param)
 
 `mysqld --skip-grant-tables --skip-networking &`
-
 ```
 flush privileges;` # Loads the grant tables
 alter user 'root'@'localhost' identified by 'P@55w0rd';
 ```
-
 ```
 exit
 pkill mysql
@@ -715,7 +713,6 @@ Logs
 set login-path=client
 
 `/etc/logrotate.d/mysql`
-
 ```
 /var/log/mysql/mysql_error.log /var/log/mysql/slow_query.log {
 compress
