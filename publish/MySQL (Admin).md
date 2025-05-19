@@ -710,7 +710,7 @@ mysqldump
 
 Logs
 
-set login-path=client
+[set login-path=client](#authentication)
 
 `/etc/logrotate.d/mysql`
 ```
