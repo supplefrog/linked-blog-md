@@ -695,7 +695,7 @@ mysqldump
 **Tables**
 - **Source**
   ```
-  flush tables table_name for export; # export metadata as .cfg
+  flush tables table_name for export;  # export metadata as .cfg
   cp table_name.ibd table_name.cfg destination/
   unlock tables;
   ```
