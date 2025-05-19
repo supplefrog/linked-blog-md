@@ -585,7 +585,7 @@ Remove:
 
 Login:
 
-`mysql --login-path=local`
+`mysql --login-path=client`
 
 **Privileges**
 
@@ -709,6 +709,27 @@ mysqldump
   ```
   
 **Physical**
+Logs
+
+set login-path=client
+
+`/etc/logrotate.d/mysql`
+
+```
+/var/log/mysql/mysql_error.log /var/log/mysql/slow_query.log {
+compress
+create 660 mysql mysql
+size 1G
+dateext
+missingok
+notifempty
+sharedscripts
+postrotate
+    /usr/bin/mysql -e 'FLUSH SLOW LOGS; FLUSH ERROR LOGS;'
+endscript
+rotate 30
+}
+```
 
 ## Upgrade/Downgrade
 
