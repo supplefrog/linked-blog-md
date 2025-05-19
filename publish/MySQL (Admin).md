@@ -709,6 +709,7 @@ mysqldump
   ```
   
 **Physical**
+
 Logs
 
 set login-path=client
