@@ -146,10 +146,11 @@ contains:
     - mysql.triggers - auto-execute procedures in response to events like DML
     - mysql.views - virtual tables rep. query result 
 
-- Data dictionary - internal InnoDB tables
+- Data dictionary - internal InnoDB tables for table metadata (Used to create .cfg during table export)
 
-INFORMATION_SCHEMA - virtual schema containing **virtual tables** dynamically generated from data dictionary
-Read only metadata displayed with 'SHOW' command (Used to create .cfg during table export)
+INFORMATION_SCHEMA 
+- Provides (read only) views (virtual tables) on metadata stored in data dictionary and privilege and grant info in mysql system schema
+- refered by `SHOW` command 
 
 `performance_schema/`
 
