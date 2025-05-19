@@ -162,13 +162,13 @@ Performance Schema contains in-memory **tables** of the type performance schema 
 
 `sysconfig.ibd` - sys_config table - stores sys schema configuration settings
 
-sys schema - obtains the following info from resp schemas
+sys schema
 
-Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable way. Examples include views for I/O latency, memory usage, statement summaries, schema information, and more.
+Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable format. e.g., views for I/O latency, memory usage, statement summaries, wait events, schema information, etc
 
-Stored Procedures: Automate common diagnostic and performance tasks, such as configuring the Performance Schema or generating reports.
+Stored Procedures: Automate common diagnostic and performance tasks, such as configuring the Performance Schema or generating reports
 
-Stored Functions: Provide formatting and querying services related to Performance Schema data.
+Stored Functions: Provide formatting and querying services related to Performance Schema data
 
 `ibdata1`
 
@@ -506,9 +506,25 @@ set persist variable_name = value;
 
 ## Management
 
+**Performance Tuning**
+
+high I/O latency
+
+sys.user_summary_by_file_io 
+
+full table scans
+
+sys.schema_tables_with_full_table_scans
+
+Database Maintenance:
+
+Monitor buffer pool usage
+
+sys.innodb_buffer_stats_by_table
+
 **Status**
 
-Connection id, current db - user, server ver, connection, uptime, threads, open tables, query per sec avg
+Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
 `status` or `\s`
 
