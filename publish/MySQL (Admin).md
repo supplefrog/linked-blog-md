@@ -505,7 +505,7 @@ semanage port -l | grep mysql
 semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 ```
 
-## Management
+## mysqld Management
 
 ### Status
 
