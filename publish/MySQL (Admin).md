@@ -690,6 +690,8 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 ### Cold Backup
 **Logical**
 
+Produce a set of SQL statements that can be executed to reproduce the original database object definitions and table data
+
 mysqldump 
 
 **Tables**
@@ -706,6 +708,8 @@ mysqldump
   ```
   
 **Physical**
+
+Actual DB backup
 
 Logs
 
