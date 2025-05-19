@@ -138,7 +138,7 @@ Contains databases and their objects
 `mysql.ibd`
 
 contains: 
-- mysql. (8.0 - removed .frm, .trg, .par files)
+- **mysql**. (8.0 - removed .frm, .trg, .par files)
   
     user, db, tables_priv, columns_priv, tables, columns, indexes, schemata,
     - mysql.events
@@ -148,7 +148,7 @@ contains:
 
 - Data dictionary - internal InnoDB tables for table metadata (Used to create .cfg during table export)
 
-INFORMATION_SCHEMA 
+**information_schema** 
 - Provides (read only) views (virtual tables) on metadata stored in data dictionary and privilege and grant info in mysql system schema
 - refered by `SHOW` command 
 
@@ -156,13 +156,13 @@ INFORMATION_SCHEMA
 
 .sdi - Serialized Dictionary Information, metadata for objects within performance_schema db
 
-Performance Schema contains in-memory **tables** of the type performance schema engine for monitoring server execution at runtime
+**performance_schema** contains in-memory **tables** of the type performance schema engine for monitoring server execution at runtime
 
 `sys/`
 
 `sysconfig.ibd` - sys_config table - stores sys schema configuration settings
 
-sys schema
+**sys** schema
 
 Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable format. e.g., views for I/O latency, memory usage, statement summaries, wait events, schema information, etc
 
