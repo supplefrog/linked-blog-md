@@ -507,36 +507,6 @@ semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 
 ## Management
 
-### System Variables
-
-**Show variables**
-
-`show [global/session/ ] variables [like '%var%'];`
-
-**Set for session**
-
-`set [global/local] variable_name='value';`
-
-**Set persist** - stored in `data_dir/mysqld-auto.cnf`
-
-`set persist variable_name = value;`
-
-### Performance Tuning
-
-**high I/O latency files**
-
-`sys.user_summary_by_file_io`
-
-**full table scan tables**
-
-`sys.schema_tables_with_full_table_scans`
-
-**Database Maintenance**
-
-Monitor buffer pool usage:
-
-`sys.innodb_buffer_stats_by_table`
-
 ### Status
 
 Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
@@ -567,9 +537,39 @@ FROM information_schema.tables
 WHERE table_schema = 'db_name' AND table_type = '';
 ```
 
-###
+### Performance Monitoring / Tuning
 
-### Authentication
+**high I/O latency files**
+
+`sys.user_summary_by_file_io`
+
+**full table scan tables**
+
+`sys.schema_tables_with_full_table_scans`
+
+**Database Maintenance**
+
+Monitor buffer pool usage:
+
+`sys.innodb_buffer_stats_by_table`
+
+### System Variables
+
+**Show variables**
+
+`show [global/session/ ] variables [like '%var%'];`
+
+**Set for session**
+
+`set [global/local] variable_name='value';`
+
+**Set persist** - stored in `data_dir/mysqld-auto.cnf`
+
+`set persist variable_name = value;`
+
+### User Management
+
+**Authentication**
 
 `mysql_config_editor print --all` 
 
@@ -584,33 +584,6 @@ Remove:
 Login:
 
 `mysql --login-path=local`
-
-**Reset password**
-
-`systemctl stop mysqld`
-
-Run mysql as mysql user, not root (my.cnf/param)
-
-`mysqld --skip-grant-tables --skip-networking &`
-```
-flush privileges;` # Loads the grant tables
-alter user 'root'@'localhost' identified by 'P@55w0rd';
-```
-```
-exit
-pkill mysql
-```
-
-**Auto-increment**
-
-```
-CREATE TABLE table_name (
-    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
-    ...
-);
-
-ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
-```
 
 **Privileges**
 
@@ -631,6 +604,51 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 `create user 'user'[@'hostname'] identified by 'P@55w0rd';`
 
 `drop user 'user1'[@'hostname'], 'user2'[@'hostname'];`
+
+**Reset root password**
+
+`systemctl stop mysqld`
+
+Run mysql as mysql user, not root (my.cnf/param)
+
+`mysqld --skip-grant-tables --skip-networking &`
+
+```
+flush privileges;` # Loads the grant tables
+alter user 'root'@'localhost' identified by 'P@55w0rd';
+```
+
+```
+exit
+pkill mysql
+```
+
+### Table Management
+
+**Auto-increment**
+
+```
+CREATE TABLE table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
+    ...
+);
+
+ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
+```
+
+**Switch data dir after install**
+
+```
+mkdir /newpath
+chown -R mysql:mysql /newpath
+chmod -R 750 /newpath
+systemctl stop mysqld
+cp -r /var/lib/mysql /newpath
+```
+- Edit my.cnf datadir
+```
+systemctl restart mysqld
+```
 
 **Change storage engine**
 
@@ -665,20 +683,6 @@ END//
 DELIMITER ;
 CALL convertToInnodb();
 DROP PROCEDURE IF EXISTS convertToInnodb;
-```
-
-**Switch data dir after install**
-
-```
-mkdir /newpath
-chown -R mysql:mysql /newpath
-chmod -R 750 /newpath
-systemctl stop mysqld
-cp -r /var/lib/mysql /newpath
-```
-- Edit my.cnf datadir
-```
-systemctl restart mysqld
 ```
 
 ## Backup and Restore/Recovery
