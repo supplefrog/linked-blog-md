@@ -353,11 +353,12 @@ mysql-community-server
 ## my.cnf
 ```
 [mysqld1]
-server-id = 1
+# server-id = 1
 port = 3307
 # socket = /var/run/mysql/mysql1.sock
 # pid-file = /var/run/mysql/mysqld1.pid
 datadir = /var/lib/mysql1
+# log-bin = 
 log-error = /var/log/mysqld1.log
 lc-messages-dir = /usr/local/mysql/share/english
 user = mysql
