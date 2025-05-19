@@ -7,6 +7,8 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     - [Physical](#physical)
     - [InnoDB](#storage-engines)
 - [Administration](#administration)
+    - [Installation](#installation)
+    - [mysqld Management](#mysqld-management)
 
 ---
 
