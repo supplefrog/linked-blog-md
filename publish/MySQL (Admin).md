@@ -6,7 +6,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     - [Logical](#logical)
     - [Physical](#physical)
     - [InnoDB](#storage-engines)
-- [Administration](#admin)
+- [Administration](#administration)
 
 ---
 
