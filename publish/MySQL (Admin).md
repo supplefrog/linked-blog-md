@@ -377,6 +377,8 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
+# user = root
+# password = P@55w0rd
 ```
 
 ## Multiple Instances
