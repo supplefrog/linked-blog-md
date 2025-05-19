@@ -547,7 +547,7 @@ Each row = active client connection - connection id, username, hostname, db in u
 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
 
-`SELECT * FROM performance_schema.events_statements_current;`
+`SELECT * FROM sys.processlist;`
 
 **Identify high load users/problematic queries**
 
