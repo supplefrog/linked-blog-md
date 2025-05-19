@@ -517,17 +517,17 @@ set persist variable_name = value;
 
 **Performance Tuning**
 
-high I/O latency
+high I/O latency files:
 
 `sys.user_summary_by_file_io`
 
-full table scans
+full table scan tables:
 
 `sys.schema_tables_with_full_table_scans`
 
 Database Maintenance:
 
-Monitor buffer pool usage
+Monitor buffer pool usage:
 
 `sys.innodb_buffer_stats_by_table`
 
