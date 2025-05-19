@@ -505,27 +505,33 @@ semanage port -l | grep mysql
 semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 ```
 
-## System Variables
-```
-show [global/session/ ] variables [like ' '];
-```
-```
-set persist variable_name = value;
-```
-
 ## Management
 
-**Performance Tuning**
+### System Variables
 
-high I/O latency files:
+**Show variables**
+
+`show [global/session/ ] variables [like '%var%'];`
+
+**Set for session**
+
+`set [global/local] variable_name='value';`
+
+**Set persist** - stored in `data_dir/mysqld-auto.cnf`
+
+`set persist variable_name = value;`
+
+### Performance Tuning
+
+**high I/O latency files**
 
 `sys.user_summary_by_file_io`
 
-full table scan tables:
+**full table scan tables**
 
 `sys.schema_tables_with_full_table_scans`
 
-Database Maintenance:
+**Database Maintenance**
 
 Monitor buffer pool usage:
 
