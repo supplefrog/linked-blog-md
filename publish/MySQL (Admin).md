@@ -319,7 +319,7 @@ Default shared tablespace for internal InnoDB structures
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
 
-# Admin
+# Administration
 
 ## [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
