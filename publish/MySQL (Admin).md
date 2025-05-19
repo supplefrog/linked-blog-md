@@ -580,7 +580,11 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 
 **Privileges**
 
-`show grants [for current_user/'username'@'hostname']`
+`show grants [for current_user/'username'@'hostname']` 
+
+**or**
+
+`select * from information_schema.table_privileges;`
 
 `select user, host, select_priv, insert_priv, update_priv, delete_priv from mysql.user;`
 
