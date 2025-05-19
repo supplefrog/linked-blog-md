@@ -577,7 +577,7 @@ Monitor buffer pool usage:
 
 Set:
 
-`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
+`mysql_config_editor set --login-path=client --host=localhost --user=root --password`
 
 Remove:
 
