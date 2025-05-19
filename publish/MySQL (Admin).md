@@ -537,7 +537,7 @@ Monitor buffer pool usage:
 
 `sys.innodb_buffer_stats_by_table`
 
-**Status**
+### Status
 
 Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
@@ -567,6 +567,24 @@ FROM information_schema.tables
 WHERE table_schema = 'db_name' AND table_type = '';
 ```
 
+###
+
+### Authentication
+
+`mysql_config_editor print --all` 
+
+Set:
+
+`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
+
+Remove:
+
+`mysql_config_editor remove --login-path=client`
+
+Login:
+
+`mysql --login-path=local`
+
 **Reset password**
 
 `systemctl stop mysqld`
@@ -582,22 +600,6 @@ alter user 'root'@'localhost' identified by 'P@55w0rd';
 exit
 pkill mysql
 ```
-
-**Authentication**
-
-`mysql_config_editor print --all` 
-
-Set:
-
-`mysql_config_editor set --login-path=local --host=localhost --user=root --password`
-
-Remove:
-
-`mysql_config_editor remove --login-path=client`
-
-Login:
-
-`mysql --login-path=local`
 
 **Auto-increment**
 
@@ -616,9 +618,9 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 
 **or**
 
-`select * from information_schema.table_privileges;`
-
 `select user, host, select_priv, insert_priv, update_priv, delete_priv from mysql.user;`
+
+`select * from information_schema.table_privileges;`
 
 `GRANT select (column1, column2), insert, update, delete, create, drop ON db_name.table_name to 'user'[@'hostname'];`
 
