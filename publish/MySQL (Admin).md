@@ -545,7 +545,7 @@ WHERE table_schema = 'db_name' AND table_type = '';
 
 **Log client statements and output**
 
-`tee filename.txt` # appends
+`tee filename` # appends
 
 Stop
 
