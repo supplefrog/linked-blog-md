@@ -134,7 +134,7 @@ Client Apps
 Server Apps
 - mysqld_pre_systemd - initializes data-dir / creates system tables on systemd service ExecStartPre
 - mysqldumpslow - find and prioritize slow queries for optimization
-- mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
+- mysql_secure_installation - set root password, remove anonymous user, disallow remote root login, remove test databases, reload privilege tables
 - mysql_tzinfo_to_sql - load system time zones into mysql system schema
 
 ### MySQL Config File
