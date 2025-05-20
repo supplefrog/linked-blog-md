@@ -133,7 +133,7 @@ Default `/bin -> /usr/bin`
 
 **Server Apps**
 - mysqld - server
-- mysqld_pre_systemd - initializes data-dir (create system tables) on systemd service ExecStartPre
+- mysqld_pre_systemd - initializes datadir (create system tables) on systemd service ExecStartPre
 - mysqldumpslow - find and prioritize slow queries for optimization
 - mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
 - mysql_tzinfo_to_sql - load system time zones into mysql system schema
@@ -352,7 +352,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 - Components divided amongst packages as per function:
 
-`mysql-community-server (`[server apps](#base-directory---executables)`, my.cnf, data-dir w ownership, mysqld.service)`
+`mysql-community-server (`[server apps](#base-directory---executables)`, my.cnf, datadir w ownership, mysqld.service)`
 
 `└── mysql-community-client (`[client apps](#base-directory---executables)`)`
 ```
