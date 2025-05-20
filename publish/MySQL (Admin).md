@@ -326,6 +326,12 @@ Default shared tablespace for internal InnoDB structures
 ## [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
 **Packages**
+- Import gpg keys
+```
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+```
 - Check package integrity
 
   `rpm -K pkg.rpm`
