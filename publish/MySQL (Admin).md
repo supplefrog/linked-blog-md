@@ -132,7 +132,8 @@ Client Apps
 - mysqlslap - emulate multiple client load for a MySQL server and to report the timing of each stage
 
 Server Apps
-- mysqld_pre_systemd - initializes data-dir / creates system tables on systemd service ExecStartPre
+- mysqld - server
+- mysqld_pre_systemd - initializes data-dir (create system tables) on systemd service ExecStartPre
 - mysqldumpslow - find and prioritize slow queries for optimization
 - mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
 - mysql_tzinfo_to_sql - load system time zones into mysql system schema
@@ -351,7 +352,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 - Components divided amongst packages as per function:
 
-`mysql-community-server` (mysqld, my.cnf, data-dir, mysqld.service, [server apps](#physical-architecture))
+`mysql-community-server` ([server apps](#physical-architecture), my.cnf, data-dir w ownership, mysqld.service)
 
 `└── mysql-community-client` ([client apps](#physical-architecture))
 ```
