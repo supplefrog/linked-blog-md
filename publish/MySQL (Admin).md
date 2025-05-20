@@ -335,11 +335,11 @@ Default shared tablespace for internal InnoDB structures
 
 - Components divided amongst packages as per function:
 ```
-mysql-community-server
-└── mysql-community-client
-    └── mysql-community-libs
-        ├── mysql-community-client-plugins
-        └── mysql-community-common
+mysql-community-server (DB server and related tools)
+└── mysql-community-client (client applications)
+    └── mysql-community-libs (shared libraries for MySQL client applications)
+        ├── mysql-community-client-plugins 
+        └── mysql-community-common (common files for client and server binaries)
 ```
 - Optional:
     - icu-data-files - Unicode support 
