@@ -511,7 +511,6 @@ semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 
 ### Status
 
-
 Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
 `status` or `\s`
@@ -543,6 +542,14 @@ SELECT table_name
 FROM information_schema.tables
 WHERE table_schema = 'db_name' AND table_type = '';
 ```
+
+**Log client statements and output**
+
+`tee filename.txt` # appends
+
+Stop
+
+`notee`
 
 ### Performance Monitoring / Tuning
 
