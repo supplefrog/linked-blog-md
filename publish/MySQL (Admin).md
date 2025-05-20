@@ -352,9 +352,9 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 - Components divided amongst packages as per function:
 
-`mysql-community-server` ([server apps](#physical-architecture), my.cnf, data-dir w ownership, mysqld.service)
+`mysql-community-server (`[server apps](#physical-architecture)`, my.cnf, data-dir w ownership, mysqld.service)`
 
-`└── mysql-community-client` ([client apps](#physical-architecture))
+`└── mysql-community-client (`[client apps](#physical-architecture)`)`
 ```
     └── mysql-community-libs (shared libraries for MySQL client applications)
         ├── mysql-community-client-plugins`
