@@ -514,16 +514,20 @@ firewall-cmd --reload
 ```
 
 ### selinux
-```
-semanage [-h]
-```
+`semanage [-h]`
+
 - show ports enabled for specific service
-```
-semanage port -l | grep mysql
-```
+
+`semanage port -l | grep mysql`
+
 - add/delete port for specific service
+
+`semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
+
+- set file context for custom data-dir
 ```
-semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
+semanage fcontext -a -t mysql_db_t "/datadir(/.*)?"
+restorecon -Rv /datadir
 ```
 
 ## mysqld Management
