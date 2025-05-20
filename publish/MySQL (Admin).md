@@ -511,6 +511,7 @@ semanage port [-a][-d] -t mysqld_port_t -p tcp 3307
 
 ### Status
 
+
 Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
 `status` or `\s`
@@ -530,6 +531,10 @@ Each row = active client connection - connection id, username, hostname, db in u
 **Identify high load users/problematic queries**
 
 `SELECT * FROM sys.user_summary;`
+
+**Change prompt**
+
+`PROMPT (\u@\h) [\d]\`
 
 **Query Table Data without using DB**
 
