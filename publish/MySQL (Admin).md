@@ -709,7 +709,7 @@ mysqldump
   
 **Physical**
 
-Actual DB backup
+Actual DB data dir files
 
 Logs
 
