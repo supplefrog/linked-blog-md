@@ -118,7 +118,7 @@ Caches structural info e.g., schema, column info
 ### Base Directory - Executables
 Default `/bin -> /usr/bin`
 
-Client Apps
+**Client Apps**
 - mysql - CLI
 - mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db, flush logs
 - mysqlbinlog - read binary logs
@@ -131,7 +131,7 @@ Client Apps
 - mysqlshow - quickly see which databases exist, their tables, or a table's columns or indexes
 - mysqlslap - emulate multiple client load for a MySQL server and to report the timing of each stage
 
-Server Apps
+**Server Apps**
 - mysqld - server
 - mysqld_pre_systemd - initializes data-dir (create system tables) on systemd service ExecStartPre
 - mysqldumpslow - find and prioritize slow queries for optimization
