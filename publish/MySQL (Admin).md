@@ -116,16 +116,26 @@ Caches structural info e.g., schema, column info
 ## Physical
 
 ### Base Directory - Executables
-`/bin -> /usr/bin`
+Default `/bin -> /usr/bin`
 
-- mysql_secure_installation
+Client Apps
 - mysql - CLI
-- mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db
+- mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db, flush logs
 - mysqlbinlog - read binary logs
 - myisamlog
 - mysqlcheck - -c check -a analyze -o optimize database [tables]
-- mysql_config_editor -  Stores MYSQL client authentication credentials in encrypted .mylogin.cnf for secure and easier login
+- mysql_config_editor - store encrypted authentication credentials in .mylogin.cnf for secure & easier login, useful for scripts
 - mysqldump - cold backup
+- mysqlimport - import data files in text format - CSV or TSV directly into tables
+- mysql_migrate_keyring - migrate keys between one keyring component and another
+- mysqlshow - quickly see which databases exist, their tables, or a table's columns or indexes
+- mysqlslap - emulate multiple client load for a MySQL server and to report the timing of each stage
+
+Server Apps
+- mysqld_pre_systemd - initializes data-dir / creates system tables on systemd service ExecStartPre
+- mysqldumpslow - find and prioritize slow queries for optimization
+- mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
+- mysql_tzinfo_to_sql - load system time zones into mysql system schema
 
 ### MySQL Config File
 `/etc/my.cnf`
