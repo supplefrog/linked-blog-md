@@ -524,7 +524,7 @@ firewall-cmd --reload
 
 `semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
 
-- set file context for custom data-dir
+- set file context for custom datadir
 ```
 semanage fcontext -a -t mysql_db_t "/datadir(/.*)?"
 restorecon -Rv /datadir
