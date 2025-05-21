@@ -664,16 +664,18 @@ pkill mysql
 
 [**Create dummy test data**](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
 
-```
-use test;
+`use test;`
 
+```
 CREATE TABLE hashes (
   id INT PRIMARY KEY AUTO_INCREMENT,
   hash CHAR(64)
 );
+```
 
-SET SESSION cte_max_recursion_depth = 1000000;
+`SET SESSION cte_max_recursion_depth = 1000000;`
 
+```
 INSERT INTO hashes(hash)
 WITH RECURSIVE cte (n) AS
 (
