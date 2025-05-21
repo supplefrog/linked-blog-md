@@ -766,6 +766,8 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqldump**
 
+- Full backup
+
 `mysqldump [authentication] -A [--all-databases / --databases db1 db2 / db3 tb1 tb2] -R -E --triggers --single-transaction > full_backup.sql`
 
 -R - routines (stored procedures & functions)
@@ -775,6 +777,13 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 --single-transaction - for both backup and R/W by other user, no table lock
 
 --no-data - only table structure
+
+**Binlog for PITR**
+
+- Incremental
+- Convert binary logs to SQL statements and pipe them into the server:
+
+`mysqlbinlog binlog.000001 binlog.000002 | mysql [authentication]`
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
