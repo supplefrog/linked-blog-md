@@ -531,7 +531,7 @@ firewall-cmd --reload
 
 - set file context for custom datadir
 ```
-semanage fcontext -a -t mysql_db_t "/datadir(/.*)?"
+semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
 restorecon -Rv /datadir
 ```
 
