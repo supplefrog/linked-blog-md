@@ -676,14 +676,7 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 **Create general tablespace and add tables**
 ```
 CREATE TABLESPACE ts
-    ADD DATAFILE '/datadir/ts.ibINSERT INTO hashes(hash)
-WITH RECURSIVE cte (n) AS
-(
-  SELECT 1
-  UNION ALL
-  SELECT n + 1 FROM cte WHERE n < 1000000
-)
-SELECT SHA2(n, 256) FROM cte;d'
+    ADD DATAFILE '/datadir/ts.ibd'
     ENGINE=InnoDB;
 
 CREATE TABLE t1 (
