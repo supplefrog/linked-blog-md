@@ -362,7 +362,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ```
 - Optional:
     - icu-data-files - Unicode support 
-    - test - test suite for server
+    - test - test apps for server
     - debuginfo - debugging symbols - function/variable names, filepaths that is usually stripped from compiled binaries (to secure internal working) for debugging crashes with detailed stack traces
     - devel - development header files and libraries
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
