@@ -639,6 +639,10 @@ command -f --flag arguments
 
 `ssh-keygen -t rsa -b 4096 -C "abc@example.com"`
 
+**Remove corrupt key**
+
+`ssh-keygen -R ip_addr`
+
 **Copy key to server**
 
 `ssh-copy-id user@server_ip`
