@@ -719,7 +719,7 @@ systemctl restart mysqld
 
 **Change storage engine**
 
-Backup before conversion
+[Backup](#backup-and-restore) before conversion
 
 `ALTER TABLE table_name ENGINE = InnoDB;`
 
