@@ -734,15 +734,15 @@ mysqldump
 **Tables**
 - **Source**
   ```
-  flush tables table_name for export;  # locks table during export
+  flush tables db.table_name for export;  # locks table during export
   cp table_name.ibd table_name.cfg destination/
   unlock tables;
   ```
 - **Destination**
   ```
-  create table table_name(id int);
-  alter table table_name discard tablespace;
-  alter table table_name import tablespace;
+  create table db.table_name(id int);
+  alter table db.table_name discard tablespace;
+  alter table db.table_name import tablespace;
   ```
   
 **Physical**
