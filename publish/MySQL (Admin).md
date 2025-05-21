@@ -748,15 +748,25 @@ Restore - original state
 
 Recover - salvage missing data using specialized tools, partial or full retrieval
 
-**Logical**
+### Logical**
 
 Produce a set of SQL statements that can be executed to reproduce the original database object definitions and table data
 
-mysqldump - Cold Backup 
-  
-**Physical**
+**mysqlpump**
+
+**mysqldump - Cold Backup**
+
+**mydumper**
+
+**MySQL Shell**
+
+### Physical
 
 - Actual DB data dir files
+
+**Percona XtraBackup** 
+
+**MySQL Enterprise Backup**
 
 **Tables - Warm Backup**
 - **Source**
