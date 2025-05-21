@@ -790,9 +790,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 `mysql [authentication] database_name < backup.sql`
 
-**Binlog for PITR**
-
-- Incremental
+**Binlog for PITR (Point in Time Recovery - Incremental)**
 
 `SHOW BINARY LOGS;`
 
