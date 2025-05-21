@@ -676,7 +676,7 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 **Create general tablespace and add tables**
 ```
 CREATE TABLESPACE ts
-    ADD DATAFILE '/datadir/ts.ibd'
+    ADD DATAFILE 'ts.ibd'  # base dir is datadir by default
     ENGINE=InnoDB;
 
 CREATE TABLE t1 (
