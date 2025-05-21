@@ -809,9 +809,9 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 - Actual DB data dir files
 
-[**Percona XtraBackup**](https://www.percona.com/downloads) 
-
 **MySQL Enterprise Backup**
+
+[**Percona XtraBackup**](https://www.percona.com/downloads) 
 
 **Tables - Warm Backup**
 - **Source**
