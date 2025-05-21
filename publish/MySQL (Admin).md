@@ -767,8 +767,6 @@ Recover - salvage missing data using specialized tools, partial or full retrieva
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
-**mysqlpump**
-
 **mysqldump**
 
 - Full backup
@@ -800,6 +798,8 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
 **MySQL Shell**
+
+**mysqlpump**
 
 ### Physical
 
