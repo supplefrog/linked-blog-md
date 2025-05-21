@@ -743,7 +743,7 @@ Recover - salvage missing data using specialized tools, partial or full retrieva
 
 ### Logical
 
-Produce a set of SQL statements (.sql) to restore the original database object definitions and data
+Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
 **mysqlpump**
 
