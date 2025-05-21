@@ -768,11 +768,13 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 `mysqldump [authentication] -A [--all-databases / --databases db1 db2 / db3 tb1 tb2] -R -E --triggers --single-transaction > full_backup.sql`
 
--R - routines (stored procedures & triggers)
+-R - routines (stored procedures & functions)
 
 -E - events
 
 --single-transaction - for both backup and R/W by other user, no table lock
+
+--no-data - only table structure
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
