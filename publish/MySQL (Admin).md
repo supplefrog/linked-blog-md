@@ -715,9 +715,7 @@ cp -r /var/lib/mysql /newpath
 
 Edit my.cnf datadir
 
-```
-systemctl restart mysqld
-```
+`systemctl restart mysqld`
 
 **Change storage engine**
 
