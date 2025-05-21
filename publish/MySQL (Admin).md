@@ -544,7 +544,7 @@ Connection/thread id, (server) uptime, connection (socket), threads, open tables
 
 Each row = active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
 
-`show processlist;`
+`show processlist -i 1;` # interval = 1s
 
 `mysqladmin [ -u root -p | login-path=local ] processlist`
 
