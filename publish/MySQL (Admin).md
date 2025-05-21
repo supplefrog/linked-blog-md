@@ -662,6 +662,28 @@ pkill mysql
 
 ### Table Management
 
+[**Create dummy test data**](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
+
+```
+use test;
+
+CREATE TABLE hashes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  hash CHAR(64)
+);
+
+SET SESSION cte_max_recursion_depth = 1000000;
+
+INSERT INTO hashes(hash)
+WITH RECURSIVE cte (n) AS
+(
+  SELECT 1
+  UNION ALL
+  SELECT n + 1 FROM cte WHERE n < 1000000
+)
+SELECT SHA2(n, 256) FROM cte;
+```
+
 **Auto-increment**
 
 ```
