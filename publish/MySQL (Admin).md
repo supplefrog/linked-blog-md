@@ -807,7 +807,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 ### Physical
 
-- Actual DB data dir files
+Actual DB data dir files
 
 **MySQL Enterprise Backup**
 
