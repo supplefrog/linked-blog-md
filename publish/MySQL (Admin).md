@@ -782,9 +782,12 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 **Binlog for PITR**
 
 - Incremental
-- Convert binary logs to SQL statements and pipe them into the server:
 
-`mysqlbinlog binlog.000001 binlog.000002 | mysql [authentication]`
+`SHOW BINARY LOGS;`
+
+- Convert binary logs to SQL statements and pipe them into the server
+
+`mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`  # only replay changes for specific time/position 
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
