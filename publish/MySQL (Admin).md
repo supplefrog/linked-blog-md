@@ -673,6 +673,10 @@ CREATE TABLE table_name (
 ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
 ```
 
+**Create general tablespace**
+
+`CREATE TABLESPACE ts_name ADD DATAFILE '/datadir/ts_name.ibd' ENGINE=InnoDB;`
+
 **Switch data dir after install**
 
 ```
