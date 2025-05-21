@@ -641,7 +641,7 @@ command -f --flag arguments
 
 **Remove corrupt key**
 
-`ssh-keygen -R ip_addr`
+`ssh-keygen -R server_ip`
 
 **Copy key to server**
 
