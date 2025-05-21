@@ -710,7 +710,7 @@ mkdir /newpath
 chown -R mysql:mysql /newpath
 chmod -R 750 /newpath
 
-systemctl stop mysqld
+systemctl stop mysqld  # copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
 cp -r /var/lib/mysql /newpath
 
 vi /etc/my.cnf # datadir=/newpath
@@ -781,7 +781,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 **Tables - Warm Backup**
 - **Source**
   ```
-  flush tables db.table_name for export;  # locks table during export
+  flush tables db.table_name for export;  # locks table for export - copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
   cp table_name.ibd table_name.cfg destination/
   unlock tables;
   ```
