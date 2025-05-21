@@ -712,7 +712,9 @@ chmod -R 750 /newpath
 systemctl stop mysqld
 cp -r /var/lib/mysql /newpath
 ```
-- Edit my.cnf datadir
+
+Edit my.cnf datadir
+
 ```
 systemctl restart mysqld
 ```
