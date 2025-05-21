@@ -771,9 +771,7 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
-**mysqldump**
-
-- Full backup
+**mysqldump (Full Backup)**
 
 `mysqldump [authentication] -A [--all-databases / --databases db1 db2 / db3 tb1 tb2] -R -E --triggers --single-transaction > full_backup.sql`
 ```
