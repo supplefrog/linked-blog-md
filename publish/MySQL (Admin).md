@@ -546,7 +546,7 @@ Each row = active client connection - connection id, username, hostname, db in u
 
 `show processlist -i 1;` # interval = 1s
 
-`mysqladmin [ -u root -p | login-path=local ] processlist`
+`mysqladmin [ -u root -p | login-path=local ] processlist -i 1`
 
 `SELECT * FROM sys.processlist;`
 
