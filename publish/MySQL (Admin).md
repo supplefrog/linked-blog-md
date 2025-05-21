@@ -742,7 +742,10 @@ CALL convertToInnodb();
 DROP PROCEDURE IF EXISTS convertToInnodb;
 ```
 
-## Backup and Restore/Recovery
+## Backup and Restore
+
+Restore - original state
+Recover - salvage missing data using specialized tools, partial or full retrieval
 
 **Logical**
 
