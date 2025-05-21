@@ -377,20 +377,25 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 [mysqld1]
 # server-id = 1
 port = 3307
+datadir = /var/lib/mysql1
+
+log-error = /var/log/mysqld1.log
+lc-messages-dir = /usr/local/mysql/share/english
+user = mysql
+
 # socket = /var/run/mysql/mysql1.sock
 # pid-file = /var/run/mysql/mysqld1.pid
-datadir = /var/lib/mysql1
+
+# binlog_encryption = ON
 # expire_logs_days = 7 # binlog expiry
 # binlog_expire_logs_seconds = 604800
+
 # log_bin =
 # general_log = 1
 # general_log_file =
 # slow_query_log =
 # slow_query_log_file =
 # long_query_time = 2
-log-error = /var/log/mysqld1.log
-lc-messages-dir = /usr/local/mysql/share/english
-user = mysql
 
 default_authentication_plugin = sha256_password  # 8.0 -> authentication_policy
 default_storage_engine = InnoDB
@@ -398,7 +403,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
-# user = root
+# user = root  # not recommended
 # password = P@55w0rd
 ```
 
