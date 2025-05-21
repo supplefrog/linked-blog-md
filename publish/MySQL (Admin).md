@@ -798,7 +798,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 --read-from-remote-server - if binlog encrypted
 ```
-
+# Check other mysql utils in /bin
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
 **MySQL Shell**
