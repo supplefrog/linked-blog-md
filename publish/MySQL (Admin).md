@@ -9,7 +9,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Administration](#administration)
     - [Installation](#installation)
     - [mysqld Management](#mysqld-management)
-
+- [Backup and Restore](#backup-and-restore)
 ---
 
 ### RDBMS - Tables have relations
