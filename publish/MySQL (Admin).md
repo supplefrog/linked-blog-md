@@ -748,7 +748,7 @@ Restore - original state
 
 Recover - salvage missing data using specialized tools, partial or full retrieval
 
-### Logical**
+### Logical
 
 Produce a set of SQL statements that can be executed to reproduce the original database object definitions and table data
 
