@@ -709,13 +709,13 @@ CREATE TABLE t1 (
 mkdir /newpath
 chown -R mysql:mysql /newpath
 chmod -R 750 /newpath
+
 systemctl stop mysqld
 cp -r /var/lib/mysql /newpath
+
+vi /etc/my.cnf # datadir=/newpath
+systemctl restart mysqld
 ```
-
-Edit my.cnf datadir
-
-`systemctl restart mysqld`
 
 **Change storage engine**
 
