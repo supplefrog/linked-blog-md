@@ -668,7 +668,7 @@ pkill mysql
 
 ```
 CREATE TABLE hashes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT, # or UNIQUE
   hash CHAR(64)
 );
 ```
@@ -686,16 +686,9 @@ WITH RECURSIVE cte (n) AS
 SELECT SHA2(n, 256) FROM cte;
 ```
 
-**Auto-increment**
+**Change auto-increment value**
 
-```
-CREATE TABLE table_name (
-    id INT AUTO_INCREMENT PRIMARY KEY, # or UNIQUE
-    ...
-);
-
-ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect
-```
+`ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect`
 
 **Create general tablespace and add tables**
 ```
