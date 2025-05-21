@@ -749,7 +749,7 @@ Produce a set of SQL statements that can be executed to reproduce the original d
 
 **mysqldump - Cold Backup**
 
-**mydumper**
+[**mydumper**](https://github.com/mydumper/mydumper/releases)
 
 **MySQL Shell**
 
