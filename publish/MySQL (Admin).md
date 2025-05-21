@@ -676,7 +676,14 @@ ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next inse
 **Create general tablespace and add tables**
 ```
 CREATE TABLESPACE ts
-    ADD DATAFILE '/datadir/ts.ibd'
+    ADD DATAFILE '/datadir/ts.ibINSERT INTO hashes(hash)
+WITH RECURSIVE cte (n) AS
+(
+  SELECT 1
+  UNION ALL
+  SELECT n + 1 FROM cte WHERE n < 1000000
+)
+SELECT SHA2(n, 256) FROM cte;d'
     ENGINE=InnoDB;
 
 CREATE TABLE t1 (
@@ -737,14 +744,17 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 
 ## Backup and Restore/Recovery
 
-### Cold Backup
 **Logical**
 
 Produce a set of SQL statements that can be executed to reproduce the original database object definitions and table data
 
-mysqldump 
+mysqldump - Cold Backup 
+  
+**Physical**
 
-**Tables**
+- Actual DB data dir files
+
+**Tables - Warm Backup**
 - **Source**
   ```
   flush tables db.table_name for export;  # locks table during export
@@ -753,16 +763,12 @@ mysqldump
   ```
 - **Destination**
   ```
-  create table db.table_name(id int);
+  create table db.table_name(exact table_definition);
   alter table db.table_name discard tablespace;
   alter table db.table_name import tablespace;
   ```
-  
-**Physical**
 
-Actual DB data dir files
-
-Logs
+**Logs**
 
 [set login-path=client](#authentication)
 
