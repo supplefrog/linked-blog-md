@@ -120,7 +120,7 @@ Default `/bin -> /usr/bin`
 
 **Client Apps**
 - mysql - CLI
-- mysqladmin - CLI for quick management - status, shutdown, reload privileges, create/drop db, flush logs
+- mysqladmin - CLI for quick management - status, processlist, kill, flush (reload) tables/logs/privileges, create/drop db, shutdown
 - mysqlbinlog - read binary logs
 - myisamlog
 - mysqlcheck - -c check -a analyze -o optimize database [tables]
@@ -544,9 +544,11 @@ Connection/thread id, (server) uptime, connection (socket), threads, open tables
 
 Each row = active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
 
-`show processlist -i 1;` # interval = 1s
+`show processlist -i 2;` # interval = 2s
 
-`mysqladmin [ -u root -p | login-path=local ] processlist -i 1`
+`mysqladmin [ -u root -p | login-path=local ] processlist -i 2`
+
+`mysqladmin kill pid`
 
 `SELECT * FROM sys.processlist;`
 
