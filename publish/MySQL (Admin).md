@@ -786,6 +786,10 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 --no-data - only table structure
 ```
 
+- Restore
+
+`mysql [authentication] database_name < backup.sql`
+
 **Binlog for PITR**
 
 - Incremental
