@@ -764,7 +764,15 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqlpump**
 
-**mysqldump - Cold Backup**
+**mysqldump**
+
+`mysqldump [authentication] -A [--all-databases] -R -E --triggers --single-transaction > full_backup.sql`
+
+-R - routines (stored procedures & triggers)
+
+-E - events
+
+--single-transaction - for both backup and R/W by other user, no table lock
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
