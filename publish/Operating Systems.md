@@ -228,24 +228,31 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
   - Reads unit files in `/usr/lib/systemd/system` and `/etc/systemd/system`
   - Executes them in order
 
-#### Systemd Targets
-- 0: `poweroff.target`
-- 1: `rescue.target` (Getty - single-user mode for minimal maintenance)
-- 2-4: `multi-user.target` (Multi-user mode)
-- 5: `graphical.target` (GUI)
-- 6: `reboot.target` (Reboot)
+| Runlevel target symlinked to | Systemd Target |
+|------------------------------|----------------|
+| 0 			       | poweroff.target|
+| 1 			 | rescue.target (Getty)|
+| 2-4 			 | multi-user.target	|
+| 5 			 | graphical.target	|
+| 6 			 | reboot.target  	|	
 
-- Show currently loaded targets/runlevel:
-    - `systemctl list-units --type=target`
-    - `runlevel`
+**Show currently loaded targets/runlevel**
 
-- Temporarily switch target:
-    - `systemctl isolate name.target`
-    - `init #`
+`systemctl list-units --type=target` or
 
-- Permanent target:
-    - `systemctl get-default`
-    - `systemctl set-default name.target`
+`runlevel`
+
+**Temporarily switch target**
+
+`systemctl isolate name.target` or
+
+`init #`
+
+**Permanent target**
+
+`systemctl get-default`
+
+`systemctl set-default name.target`
 
 ### Namespaces
 - Isolate processes within their own environments
