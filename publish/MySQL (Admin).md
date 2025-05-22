@@ -119,7 +119,7 @@ Caches structural info e.g., schema, column info
 Default `/bin -> /usr/bin`
 
 | Client Apps            | Use                                                                               |
-|------------------------|-----------------------------------------------------------------------------------|
+|:-----------------------|:----------------------------------------------------------------------------------|
 | mysql                  | Command-line client for MySQL queries and operations                              |
 | mysqladmin             | CLI for quick server management tasks (status, processlist, kill, flush, etc.)    |
 | mysqlbinlog            | Read and process binary logs                                                      |
@@ -133,7 +133,7 @@ Default `/bin -> /usr/bin`
 | mysqlslap              | Load testing tool to simulate multiple clients and measure performance            |
 
 | Server Apps                | Use                                                                                         |
-|----------------------------|---------------------------------------------------------------------------------------------|
+|:---------------------------|:--------------------------------------------------------------------------------------------|
 | mysqld                     | MySQL server daemon                                                                         |
 | mysqld_pre_systemd         | Prepares data directory before server starts (systemd integration)                          |
 | mysqldumpslow              | Summarize and prioritize slow queries for tuning                                            |
@@ -142,7 +142,7 @@ Default `/bin -> /usr/bin`
 | my_print_defaults          | Print default config options for a program                                                  |
 
 | Additional Utilities | Use                                                                      |
-|----------------------|--------------------------------------------------------------------------|
+|:---------------------|:-------------------------------------------------------------------------|
 | mysqltuner           | Script to analyze and suggest MySQL server optimizations                 |
 | mysqlreport          | Generate readable reports from MySQL status and variables                |
 | mysqlauditadmin      | Manage MySQL audit plugins and logs                                      |
