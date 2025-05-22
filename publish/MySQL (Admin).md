@@ -120,26 +120,26 @@ Default `/bin -> /usr/bin`
 
 | Client Apps            | Use                                                                               |
 |:-----------------------|:----------------------------------------------------------------------------------|
-| mysql                  | Command-line client for MySQL queries and operations                              |
-| mysqladmin             | CLI for quick server management tasks (status, processlist, kill, flush, etc.)    |
-| mysqlbinlog            | Read and process binary logs                                                      |
-| myisamlog              | Analyze MyISAM log files                                                          |
-| mysqlcheck             | Check, analyze, or optimize tables in a database                                  |
-| mysql_config_editor    | Securely store login credentials for scripts                                      |
-| mysqldump              | Export database for backup (cold backup)                                          |
-| mysqlimport            | Import CSV/TSV data files directly into tables                                    |
+| mysql                  | CLI client                                                                        |
+| mysqladmin             | CLI for quick server management - status, processlist, kill, flush (reload) tables/logs/privileges, create/drop db, shutdown |
+| mysqlbinlog            | Read binary logs                                                                  |
+| myisamlog              | Read MyISAM log                                                                   |
+| mysqlcheck             | -c check -a analyze -o optimize db [table_name]                                   |
+| mysql_config_editor    | Store encrypted authentication credentials in .mylogin.cnf for easier secure login, useful for scripts |
+| mysqldump              | Logical backup                                                                    |
+| mysqlimport            | Import CSV/TSV - text format data files directly into tables                  |
 | mysql_migrate_keyring  | Migrate encryption keys between keyring components                                |
 | mysqlshow              | Quick overview of databases, tables, columns, or indexes                          |
-| mysqlslap              | Load testing tool to simulate multiple clients and measure performance            |
+| mysqlslap              | Simulate load from multiple clients and measure performance by the timing of each stage |
 
 | Server Apps                | Use                                                                                         |
 |:---------------------------|:--------------------------------------------------------------------------------------------|
-| mysqld                     | MySQL server daemon                                                                         |
-| mysqld_pre_systemd         | Prepares data directory before server starts (systemd integration)                          |
-| mysqldumpslow              | Summarize and prioritize slow queries for tuning                                            |
-| mysql_secure_installation  | Secure initial MySQL setup (root password, remove test db/users, etc.)                      |
-| mysql_tzinfo_to_sql        | Load system time zones into MySQL                                                           |
-| my_print_defaults          | Print default config options for a program                                                  |
+| mysqld                     | Server                                                                                      |
+| mysqld_pre_systemd         | Initializes datadir (create system tables). Systemd integration -> ExecStartPre -  before server starts |
+| mysqldumpslow              | Summarize slow query logs to prioritize queries for tuning                                  |
+| mysql_secure_installation  | Set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables |
+| mysql_tzinfo_to_sql        | Load system time zones into `mysql` schema                                                  |
+| my_print_defaults          | Print options in options groups of option files                                             |
 
 | Additional Utils     | Use                                                                      |
 |:---------------------|:-------------------------------------------------------------------------|
