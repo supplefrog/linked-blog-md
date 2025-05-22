@@ -141,7 +141,7 @@ Default `/bin -> /usr/bin`
 | mysql_tzinfo_to_sql        | Load system time zones into MySQL                                                           |
 | my_print_defaults          | Print default config options for a program                                                  |
 
-| Additional Utilities | Use                                                                      |
+| Additional Utils     | Use                                                                      |
 |:---------------------|:-------------------------------------------------------------------------|
 | mysqltuner           | Script to analyze and suggest MySQL server optimizations                 |
 | mysqlreport          | Generate readable reports from MySQL status and variables                |
