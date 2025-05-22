@@ -118,9 +118,7 @@ Caches structural info e.g., schema, column info
 ### Base Directory - Executables
 Default `/bin -> /usr/bin`
 
-**Client Apps**
-
-|                        |                                                                                   |
+| Client Apps            | Use                                                                               |
 |------------------------|-----------------------------------------------------------------------------------|
 | mysql                  | Command-line client for MySQL queries and operations                              |
 | mysqladmin             | CLI for quick server management tasks (status, processlist, kill, flush, etc.)    |
@@ -134,9 +132,7 @@ Default `/bin -> /usr/bin`
 | mysqlshow              | Quick overview of databases, tables, columns, or indexes                          |
 | mysqlslap              | Load testing tool to simulate multiple clients and measure performance            |
 
-**Server Apps**
-
-|                            |                                                                                             |
+| Server Apps                | Use                                                                                         |
 |----------------------------|---------------------------------------------------------------------------------------------|
 | mysqld                     | MySQL server daemon                                                                         |
 | mysqld_pre_systemd         | Prepares data directory before server starts (systemd integration)                          |
@@ -145,9 +141,7 @@ Default `/bin -> /usr/bin`
 | mysql_tzinfo_to_sql        | Load system time zones into MySQL                                                           |
 | my_print_defaults          | Print default config options for a program                                                  |
 
-**Additional Utils**
-
-|                      |                                                                          |
+| Additional Utilities | Use                                                                      |
 |----------------------|--------------------------------------------------------------------------|
 | mysqltuner           | Script to analyze and suggest MySQL server optimizations                 |
 | mysqlreport          | Generate readable reports from MySQL status and variables                |
