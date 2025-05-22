@@ -430,11 +430,10 @@ command -f --flag arguments
 		make directory
 		mkdir rel_dir_name 
 		-p make parent directories as needed
-	rm
-		remove file
-		rm path_to_file
-		-r/R remove directories and their contents recursively
-		-f ignore non existent files and args, never prompt
+	rm [absolute / relative path] file000{1,2,3} # bash arg for passing multiple files with same base name
+		removes file
+		-r/R recursively remove dir and its contents
+		-f force - ignore non-existent files and args, never prompt
 	rmdir
 		remove dir
 		rmdir path_to_dir
