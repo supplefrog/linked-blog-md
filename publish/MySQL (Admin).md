@@ -119,49 +119,59 @@ Caches structural info e.g., schema, column info
 Default `/bin -> /usr/bin`
 
 **Client Apps**
-- mysql - CLI
-- mysqladmin - CLI for quick management - status, processlist, kill, flush (reload) tables/logs/privileges, create/drop db, shutdown
-- mysqlbinlog - read binary logs
-- myisamlog
-- mysqlcheck - -c check -a analyze -o optimize database [tables]
-- mysql_config_editor - store encrypted authentication credentials in .mylogin.cnf for secure & easier login, useful for scripts
-- mysqldump - cold backup
-- mysqlimport - import data files in text format - CSV or TSV directly into tables
-- mysql_migrate_keyring - migrate keys between one keyring component and another
-- mysqlshow - quickly see which databases exist, their tables, or a table's columns or indexes
-- mysqlslap - emulate multiple client load for a MySQL server and to report the timing of each stage
+
+| Tool/Command           | Simple Definition                                                                 |
+|------------------------|-----------------------------------------------------------------------------------|
+| mysql                  | Command-line client for MySQL queries and operations                              |
+| mysqladmin             | CLI for quick server management tasks (status, processlist, kill, flush, etc.)    |
+| mysqlbinlog            | Read and process binary logs                                                      |
+| myisamlog              | Analyze MyISAM log files                                                          |
+| mysqlcheck             | Check, analyze, or optimize tables in a database                                  |
+| mysql_config_editor    | Securely store login credentials for scripts                                      |
+| mysqldump              | Export database for backup (cold backup)                                          |
+| mysqlimport            | Import CSV/TSV data files directly into tables                                    |
+| mysql_migrate_keyring  | Migrate encryption keys between keyring components                                |
+| mysqlshow              | Quick overview of databases, tables, columns, or indexes                          |
+| mysqlslap              | Load testing tool to simulate multiple clients and measure performance            |
 
 **Server Apps**
-- mysqld - server
-- mysqld_pre_systemd - initializes datadir (create system tables) on systemd service ExecStartPre
-- mysqldumpslow - find and prioritize slow queries for optimization
-- mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
-- mysql_tzinfo_to_sql - load system time zones into mysql system schema
-- my_print_defaults - print arguments in default files for a program
+
+| Tool/Command               | Simple Definition                                                                           |
+|----------------------------|---------------------------------------------------------------------------------------------|
+| mysqld                     | MySQL server daemon                                                                         |
+| mysqld_pre_systemd         | Prepares data directory before server starts (systemd integration)                          |
+| mysqldumpslow              | Summarize and prioritize slow queries for tuning                                            |
+| mysql_secure_installation  | Secure initial MySQL setup (root password, remove test db/users, etc.)                      |
+| mysql_tzinfo_to_sql        | Load system time zones into MySQL                                                           |
+| my_print_defaults          | Print default config options for a program                                                  |
 
 **Additional Utils**
-- mysqltuner -
-- mysqlreport -
-- mysqlauditadmin
-- mysqlauditgrep
-- mysqldbcompare
-- mysqldbcopy
-- mysqldbexport/import
-- mysqldiff
-- mysqldiskusage
-- mysqlfailover
-- mysqlfrm
-- mysqlindexcheck
-- mysqlmetagrep
-- mysqlprocgrep
-- mysqlreplicate
-- mysqlrpladmin
-- mysqlrplcheck
-- mysqlrplshow
-- mysqlserverclone
-- mysqlserverinfo
-- mysqluc
-- mysqluserclone
+
+| Tool/Command         | Simple Definition                                                        |
+|----------------------|--------------------------------------------------------------------------|
+| mysqltuner           | Script to analyze and suggest MySQL server optimizations                 |
+| mysqlreport          | Generate readable reports from MySQL status and variables                |
+| mysqlauditadmin      | Manage MySQL audit plugins and logs                                      |
+| mysqlauditgrep       | Search/filter MySQL audit logs                                           |
+| mysqldbcompare       | Compare the structure and data of two databases                          |
+| mysqldbcopy          | Copy databases or tables between MySQL servers                           |
+| mysqldbexport        | Export database objects (schema/data)                                    |
+| mysqldbimport        | Import database objects (schema/data)                                    |
+| mysqldiff            | Find differences between database schemas                                |
+| mysqldiskusage       | Estimate MySQL disk space usage                                          |
+| mysqlfailover        | Automatic failover for MySQL replication setups                          |
+| mysqlfrm             | Recover or analyze table structure from .frm files                       |
+| mysqlindexcheck      | Check for duplicate or redundant indexes                                 |
+| mysqlmetagrep        | Search for metadata patterns in database objects                         |
+| mysqlprocgrep        | Search/filter running MySQL processes                                    |
+| mysqlreplicate       | Set up replication between MySQL servers                                 |
+| mysqlrpladmin        | Administer and monitor MySQL replication                                 |
+| mysqlrplcheck        | Check replication health and configuration                               |
+| mysqlrplshow         | Show replication topology and status                                     |
+| mysqlserverclone     | Clone a MySQL server instance                                            |
+| mysqlserverinfo      | Display detailed MySQL server information                                |
+| mysqluc              | Unified CLI for multiple MySQL utilities                                 |
+| mysqluserclone       | Clone MySQL user accounts and privileges                                 |
 
 ### MySQL Config File
 `/etc/my.cnf`
