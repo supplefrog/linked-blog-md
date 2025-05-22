@@ -137,6 +137,7 @@ Default `/bin -> /usr/bin`
 - mysqldumpslow - find and prioritize slow queries for optimization
 - mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
 - mysql_tzinfo_to_sql - load system time zones into mysql system schema
+- my_print_defaults - print arguments in default files for a program
 
 **Additional Utils**
 
