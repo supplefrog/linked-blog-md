@@ -138,6 +138,10 @@ Default `/bin -> /usr/bin`
 - mysql_secure_installation - set root password, remove anonymous users, disallow remote root login, remove test databases, reload privilege tables
 - mysql_tzinfo_to_sql - load system time zones into mysql system schema
 
+**Additional Utils**
+
+
+
 ### MySQL Config File
 `/etc/my.cnf`
 
@@ -798,7 +802,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 --read-from-remote-server - if binlog encrypted
 ```
-# Check other mysql utils in /bin
+
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
 **MySQL Shell**
