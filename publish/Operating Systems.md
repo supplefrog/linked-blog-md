@@ -346,11 +346,11 @@ command -f --flag arguments
 ```
 	which
 		List path of binary
-	find
+	find dir -name [file / dir]
 		search for files in a directory hierarchy
 		Can be used with * (wildcard)
-	locate
-		find files by name/directory from db
+	locate [file / dir]
+		Lists files & dirs with substring and subdirs from db
 	updatedb
 		Updates locate's db /etc/updatedb.conf
 	    -a all
