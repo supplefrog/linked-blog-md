@@ -120,7 +120,7 @@ Default `/bin -> /usr/bin`
 
 **Client Apps**
 
-| Tool/Command           | Simple Definition                                                                 |
+|                        |                                                                                   |
 |------------------------|-----------------------------------------------------------------------------------|
 | mysql                  | Command-line client for MySQL queries and operations                              |
 | mysqladmin             | CLI for quick server management tasks (status, processlist, kill, flush, etc.)    |
@@ -136,7 +136,7 @@ Default `/bin -> /usr/bin`
 
 **Server Apps**
 
-| Tool/Command               | Simple Definition                                                                           |
+|                            |                                                                                             |
 |----------------------------|---------------------------------------------------------------------------------------------|
 | mysqld                     | MySQL server daemon                                                                         |
 | mysqld_pre_systemd         | Prepares data directory before server starts (systemd integration)                          |
@@ -147,7 +147,7 @@ Default `/bin -> /usr/bin`
 
 **Additional Utils**
 
-| Tool/Command         | Simple Definition                                                        |
+|                      |                                                                          |
 |----------------------|--------------------------------------------------------------------------|
 | mysqltuner           | Script to analyze and suggest MySQL server optimizations                 |
 | mysqlreport          | Generate readable reports from MySQL status and variables                |
