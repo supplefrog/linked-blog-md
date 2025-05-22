@@ -140,8 +140,28 @@ Default `/bin -> /usr/bin`
 - my_print_defaults - print arguments in default files for a program
 
 **Additional Utils**
-
-
+- mysqltuner -
+- mysqlreport -
+- mysqlauditadmin
+- mysqlauditgrep
+- mysqldbcompare
+- mysqldbcopy
+- mysqldbexport/import
+- mysqldiff
+- mysqldiskusage
+- mysqlfailover
+- mysqlfrm
+- mysqlindexcheck
+- mysqlmetagrep
+- mysqlprocgrep
+- mysqlreplicate
+- mysqlrpladmin
+- mysqlrplcheck
+- mysqlrplshow
+- mysqlserverclone
+- mysqlserverinfo
+- mysqluc
+- mysqluserclone
 
 ### MySQL Config File
 `/etc/my.cnf`
