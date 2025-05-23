@@ -27,18 +27,22 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ### Preemptive
 - Resources allocated for fixed time
 
-### Process Control Blocks (PCB)
-- Data Structure
-    - Process State
-    - PID
-    - Registers
-    - Memory Limits
-    - Open Files
+### Process Control Block - Data Structure
 
-- PCBs of particular process states placed in their respective queues:
-  - **Job Queue**: All processes
-  - **Ready Queue**: In memory, waiting to execute
-  - **Device Queue**: Blocked due to unavailability of an I/O device
+| PID             |
+|:----------------|
+| State           |
+| Pointer         |
+| Priority        |
+| Program Counter |
+| CPU Registers   |
+| I/O Info        |
+| Accounting Info |
+
+PCBs of particular process states placed in their respective queues:
+- **Job Queue**: All processes
+- **Ready Queue**: In memory, waiting to execute
+- **Device Queue**: Blocked due to unavailability of an I/O device
 
 ### Scheduler
 - Loads job from queue into memory
