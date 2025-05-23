@@ -412,11 +412,11 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `stout \| less`                        | Print output in pages                                                                           |
 | `head [file]` / `tail [file]`          | Print first/last part of file                                                                   |
 | `tar -cvf archive.tar [files / dirs]`  | Create tar archive                                                                			   |
-| `    -Af archive.tar.gz dir`           | Append ar contents to tar                                                              		   |
-| `    -rvf archive.tar.gz [files / dirs]` | Append to tar                                                              				   |
+| `    -Avf a1.tar a2`           		 | Append a2 contents to a1                                                              		   |
+| `    -rvf a1.tar [files / dirs]`       | Append to tar                                                              				   |
 | `    -czvf archive.tar.gz dir`         | Create gzip-compressed tar archive                                                              |
-| `    -tf archive.tar`                  | List contents of archive                                                                        |
-| `    -xvf archive.tar`                 | Extract archive                                                                                 |
+| `    -tf a1.tar.gz`                    | List contents of archive                                                                        |
+| `    -xvf a1.tar.gz`                   | Extract archive                                                                                 |
 | `gzip [file]`                          | Compress file                                                                                   |
 
 | Vim Command                            | Description                                                                                     |
