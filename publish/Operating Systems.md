@@ -431,32 +431,18 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
 | Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
-### File Permission Management  
-```
-	chown username:groupname dir
-	chgroup groupname dir 
-	chmod
-		+/-t 
-			Add/remove sticky bit
-			to directory for maintaining write but denying deletion/renaming of files within it
-			Only appears as  T if others x perm missing because it appears in its place 
-		u(,)g(,)o(+/-/=)
-		    x = 1, executing commands (binaries)
-		    r = 2
-		    w = 4
-        777
-            Numbers corresponding to ugo
-	chattr
-        change file attributes
-        File cannot be modified by even root unless attr removed
-        +a append only
-    lsattr
-        List attributes
-	umask
-		subtracted from
-            777 dir -022
-			666 files -002
-```
+| File Permission Management Commands   | Description		                                                                                |
+|---------------------------------------|---------------------------------------------------------------------------------------------------|
+| `chown username[:groupname] file/dir` | Change owner (and group owner)                                                                    |
+| `chgrp groupname file/dir`            | Change group owner                                                                                |
+| `chmod [u,g,o][+/-/=][r][w][x]`       | Symbolically change user,group,other read (2) write (4) execute (1) permissions                   |
+| `      +/-t dir`                    	| Sticky bit to dir for denying file deletion/renaming if write provided. `T` only appears if x missing for o (for distinguishing purpose). |
+| `      nnn file/dir`					| Numerically change perms	                                                                        |
+| `chattr`                        		| Change file attributes. File cannot be modified by even root unless attribute is removed.         |
+| `       +a`                	  		| append only                                                                                       |
+| `lsattr`                        		| List attributes                                                                                   |
+| `umask`                         		| defaults: **dir** 777 - **022**, **file** 666 - **002**                                           |
+
 ### User/Group Management  
 ```
     adduser username
