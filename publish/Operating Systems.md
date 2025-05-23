@@ -397,7 +397,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `mkdir -p [parent/child]`              | Make parent directories as needed                                                               |
 | `rm file [f2] [f3*] file00{4,5,6}`     | Remove file(s); supports wildcards and brace expansion		                                   |
 | `   -r dir`                            | Recursively remove directory and its contents                                                   |
-| `   -f`                         		 | Force remove; never prompt - ignore nonexistent files                                           |
+| `   -f`                         	     | Force remove; never prompt - ignore nonexistent files                                           |
 | `rmdir dir`                            | Remove empty directory                                                                          |
 | `touch file`                           | Create empty file                                                                               |
 | `echo "text" > file`                   | Redirect stdout, overwrite file                                                                 |
@@ -426,7 +426,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:qa`                                  | Quit all windows                                                                                |
 | `:only`                                | Close all but current window                                                                    |
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
-| `Ctrl + w + arrow` 	                 | Switch window                                                                                   |
+| `Ctrl + w + arrow keys` 	             | Switch window                                                                                   |
 
 ```
 	cd
