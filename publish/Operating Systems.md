@@ -62,15 +62,13 @@ PCBs of particular process states placed in their respective queues:
 
 ## Memory Management
 ### Memory Division
-#### Pages
-- Fixed-size blocks
+**Pages** - Fixed-size blocks
 
-#### Segments
-- Variable-size logical units
+**Segments** - Variable-size logical units
 
-### Virtual Memory
-- Use SD as memory
-  - **Swap Space**: Area reserved
+### Virtual Memory 
+
+Uses reserved storage space (**swap**) to extend physical memory (RAM)
 
 ---
 
