@@ -432,7 +432,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
 | File Permission Management Commands   | Description		                                                                                |
-|---------------------------------------|---------------------------------------------------------------------------------------------------|
+|:--------------------------------------|:--------------------------------------------------------------------------------------------------|
 | `chown username[:groupname] file/dir` | Change owner (and group owner)                                                                    |
 | `chgrp groupname file/dir`            | Change group owner                                                                                |
 | `chmod [u,g,o][+/-/=][r][w][x]`       | Symbolically change user,group,other read (2) write (4) execute (1) permissions                   |
