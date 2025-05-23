@@ -350,10 +350,8 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 - FOSS utilities analogous to UNIX OS in function written from scratch
 
 ## Commands  
-```
-command -f --flag arguments
-(Case Sensitive)
-```
+`command [-f] [--flag] arguments  #case sensitive`
+
 ### Help  
 | Help Command                            | Description                                                                                         |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------|
