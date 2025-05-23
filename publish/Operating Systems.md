@@ -431,23 +431,6 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
 | Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
-```
-    awk '{print $column#, $column#}' filename
-    cut -c1 filename
-	    print first character of each line
-    sed -n '5p' filename
-	    -n prevent printing every line
-	    prints 5th line
-    tar archive_name.tar(.gzip) path_to_dir
-	    tape archive saves many files into a single archive (uncompressed)
-    	-A append tar to ar
-    	-c create
-    	-v verbosely list files processed
-    	-f use archive file
-    	-r append files to end of ar
-    	-t list ar contents
-    	-z filter the archive through gzip
-```
 ### File Permission Management  
 ```
 	chown username:groupname dir
