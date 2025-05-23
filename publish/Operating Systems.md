@@ -400,17 +400,20 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `   -f`                         	     | Force remove; never prompt - ignore nonexistent files                                           |
 | `rmdir dir`                            | Remove empty directory                                                                          |
 | `touch file`                           | Create empty file                                                                               |
-| `echo "text" > file`                   | Redirect stdout, overwrite file                                                                 |
-| `echo "text" >> file`                  | Append to file                                                                                  |
-| `cat file1 file2 > newfile`            | Concatenate files into new/existing file                                                        |
+| `echo "text"`                          | Print text on stdout                                                                            |
+| `cat [file1] [file2] 			         | Concatenate files and print on stdout                                     					   |
+| `  [1 / 2 / &]> file`                  | Redirect stdout/stderr/both, overwrite file                                                     |
+| `            >> file`                  | Append to file                                                                                  |
 | `grep -v word`                         | Exclude lines containing word                                                                   |
 | `     -w word`                         | Search for whole word                                                                           |
 | `awk '{print $1, $2}' filename`        | Print specified columns                                                                         |
 | `cut -c1 filename`                     | Print first character of each line                                                              |
 | `sed -n '5p' filename`                 | Print only the 5th line                                                                         |
-| `stout \| less`                        | View output in pages                                                                            |
+| `stout \| less`                        | Print output in pages                                                                           |
 | `head [file]` / `tail [file]`          | Print first/last part of file                                                                   |
-| `tar -cvf archive.tar dir`             | Create tar archive from directory                                                               |
+| `tar -cvf archive.tar [files / dirs]`  | Create tar archive                                                                			   |
+| `    -Af archive.tar.gz dir`           | Append ar contents to tar                                                              		   |
+| `    -rvf archive.tar.gz [files / dirs]` | Append to tar                                                              				   |
 | `    -czvf archive.tar.gz dir`         | Create gzip-compressed tar archive                                                              |
 | `    -tf archive.tar`                  | List contents of archive                                                                        |
 | `    -xvf archive.tar`                 | Extract archive                                                                                 |
@@ -426,7 +429,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:qa`                                  | Quit all windows                                                                                |
 | `:only`                                | Close all but current window                                                                    |
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
-| `Ctrl + w + arrow keys` 	             | Switch window                                                                                   |
+| Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
 ```
 	cd
