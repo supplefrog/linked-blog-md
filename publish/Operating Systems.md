@@ -382,65 +382,6 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `hostnamectl [--set-hostname]`          | Systemd binary to query/change hostname; displays OS and kernel details (also in `/etc/os-release`) |
 | `uname`                                 | Print system information                                                                            |
 
-```
-	which
-		List path of binary
-	find dir -name [file / dir]
-		search for files in a directory hierarchy
-		Can be used with * (wildcard)
-	locate [file / dir]
-		Lists files & dirs with substring and subdirs from db
-	updatedb
-		Updates locate's db /etc/updatedb.conf
-	    -a all
-	whatis
-		Short desc
-	man
-		Long desc
-	--help
-		List flags
-	df -h [filename]
-		Space used in filesystems (of specified filenames)
-	du -h
-		space used by dir
-		-d=1
-			max depth for subdirectory list
-	lsblk
-		list block devices
-		-f display their filesystems
-	findmnt
-		display currently mounted filesystems
-	mount /dev/devicename /mountpoint
-		mount block device to mount point
-	umount /mountpoint
-	whoami
-	    current shell logged in username
-	who am i
-		+tty & login@
-	users
-		logged in usernames 
-    who
-	    +tty + login@
-	last
-		++IP + login till
-    w
-	    ++cpu usage + shell info 
-    finger
-		++ user ID details
-	stat filename
-	     access/read time
-	     modification/write time
-	     change time - metadata including permissions, ownership & modification time
-    date
-	    Print/set date and time
-    hostnamectl
-    	Systemd binary
-    	Query/change hostname
-    	Display OS and kernel details also present in
-    	/etc/os-release
-    uname
-    	Print sys info
-```
 ### File Management  
 ```
 	cd
