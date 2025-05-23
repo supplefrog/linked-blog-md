@@ -372,7 +372,7 @@ command -f --flag arguments
 		Long desc
 	--help
 		List flags
-	df -h (filename)
+	df -h [filename]
 		Space used in filesystems (of specified filenames)
 	du -h
 		space used by dir
