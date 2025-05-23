@@ -426,7 +426,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:qa`                                  | Quit all windows                                                                                |
 | `:only`                                | Close all but current window                                                                    |
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
-| `Ctrl+w + arrow` (in vim)              | Switch window                                                                                   |
+| `Ctrl + w + arrow` 	                 | Switch window                                                                                   |
 
 ```
 	cd
