@@ -359,7 +359,7 @@ command -f --flag arguments
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------|
 | `which`                                 | List path of binary                                                                                 |
 | `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
-| `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy; can use * (wildcard)                                       |
+| `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                        |
 | `locate [file/dir]`                     | List files & directories with substring and subdirectories from database                            |
 | `updatedb`                              | Updates locate's database (`/etc/updatedb.conf`); `-a` for all                                      |
 | `whatis cmd`                            | Short description of a command                                                                      |
