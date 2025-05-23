@@ -21,11 +21,9 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 # Components
 
 ## Process Scheduling
-### Non-preemptive
-- Resources allocated until process completes execution
+**Non-preemptive** - CPU allocated until process completes execution
 
-### Preemptive
-- Resources allocated for fixed time
+**Preemptive** - CPU allocated for fixed time
 
 ### Process Control Block - Data Structure
 
