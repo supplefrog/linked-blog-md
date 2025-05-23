@@ -443,7 +443,28 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `lsattr`                        		| List attributes                                                                                   |
 | `umask`                         		| defaults: **dir** 777 - **022**, **file** 666 - **002**                                           |
 
-### User/Group Management  
+| User/Group Management Command                | Description / Notes                                                                                 |
+|:---------------------------------------------|:----------------------------------------------------------------------------------------------------|
+| `adduser username`                           | Add a user, interactive                                                                             |
+| `useradd username`                           | Add a user, doesn't create home dir by default                                                      |
+| `        -m`                                 | Create home directory if it doesn't exist                                                           |
+| `        -d custom_homedir`                  | Use custom home directory                                                                           |
+| `        -g gid/gname`                       | Custom primary group                                                                                |
+| `        -G g1,g2`                           | Supplementary groups                                                                                |
+| `passwd username`                            | Set or change password for user                                                                     |
+| `usermod` [-g][-G][-d]                       | Modify user account                                                                                 |
+| `        -aG group1,group2 username`         | Append user to supplementary groups                                                                 |
+| `userdel username`                           | Delete user                                                                                         |
+| `gpasswd -M user1,user2,user3 groupname`     | Add multiple users to group                                                                         |
+| `groups username`                            | List groups user is part of                                                                         |
+| `id username`                                | Show UID, GID, and group memberships                                                                |
+| `groupadd gname`                             | Add group                                                                                           |
+| `         -g 1003`                           | Specific group ID (must be unique)                                                                  |
+| `groupmod`                                   | Modify group                                                                                        |
+| `         -n newname oldname`                | Change group name                                                                                   |
+| `         -g newid gname`                    | Change group ID                                                                                     |
+| `groupdel gname`                             | Delete group                                                                                        |
+
 ```
     adduser username
     useradd username
