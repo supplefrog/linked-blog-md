@@ -419,7 +419,7 @@ user = mysql
 # expire_logs_days = 7 # binlog expiry
 # binlog_expire_logs_seconds = 604800
 
-# log_bin =
+# log_bin = /var/lib/mysql/mysql-bin.index  # creates bin logs and index file with specified name instead of binlog
 # general_log = 1
 # general_log_file =
 # slow_query_log =
