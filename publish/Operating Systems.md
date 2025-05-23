@@ -355,6 +355,35 @@ command -f --flag arguments
 (Case Sensitive)
 ```
 ### Help  
+| Help Command                            | Description                                                                                         |
+|-----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `which`                                 | List path of binary                                                                                 |
+| `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
+| `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy; can use * (wildcard)                                       |
+| `locate [file/dir]`                     | List files & directories with substring and subdirectories from database                            |
+| `updatedb`                              | Updates locate's database (`/etc/updatedb.conf`); `-a` for all                                      |
+| `whatis cmd`                            | Short description of a command                                                                      |
+| `man cmd`                               | Long manual description of a command                                                                |
+| `cmd --help`                            | List flags and options for a command                                                                |
+| `df -h [filename]`                      | Show space used in filesystems (for specified filenames)                                            |
+| `du -h -d=1` [dir]                      | Show space used by directory, with max depth for subdirectory list                                  |
+| `lsblk`                                 | List block devices                                                                                  |
+| `lsblk -f`                              | Display block devices and their filesystems                                                         |
+| `findmnt`                               | Display currently mounted filesystems                                                               |
+| `mount /dev/devicename /mountpoint`     | Mount block device to mount point                                                                   |
+| `umount /mountpoint`                    | Unmount block device from mount point                                                               |
+| `whoami`                                | Show current shell logged-in username                                                               |
+| `who am i`                              | Show username, tty, and login time                                                                  |
+| `users`                                 | List logged-in usernames                                                                            |
+| `who`                                   | List usernames, tty, and login time                                                                 |
+| `last`                                  | Show login history with IP and login duration                                                       |
+| `w`                                     | Show who is logged in, CPU usage, and shell info                                                    |
+| `finger`                                | Show user ID details                                                                                |
+| `stat filename`                         | Show access/read time, modification/write time, change time (metadata, permissions, ownership) |
+| `date`                                  | Print or set date and time                                                                          |
+| `hostnamectl [--set-hostname]`          | Systemd binary to query/change hostname; displays OS and kernel details (also in `/etc/os-release`) |
+| `uname`                                 | Print system information                                                                            |
+
 ```
 	which
 		List path of binary
