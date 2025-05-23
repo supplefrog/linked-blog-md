@@ -258,14 +258,15 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
 `systemctl set-default name.target`
 
 ### Namespaces
-- Isolate processes within their own environments
+Isolate processes within their own environments
 
 ### Control groups (cgroups)
-- Manage system resources distribution amongst processes
+Manage system resources distribution amongst processes
 
 ## User Login & Session Management
-- Init loads shell GUI/CLI shell
-    - Shell initializes user-specific configurations
+Init starts processes like getty or display managers that handle user login
+
+After login, the user’s shell (CLI/GUI) or session manager initializes user-specific configurations
 
 ## Win
 ### CLI (Terminal Emulators)
