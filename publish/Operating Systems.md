@@ -631,7 +631,7 @@ reboot
 
 | Partition Management Command           | Description                                                                          |
 |:---------------------------------------|:-------------------------------------------------------------------------------------|
-| `fdisk`                                | List and change partition table (for MBR disks only)                                 |
+| `parted`                               | List and change GPT/MBR partition tables		                                |
+| `fdisk [-l] [/dev/device]`             | List and change legacy MBR partition tables	                                        |
 | `partprobe`                            | Make the kernel re-read the partition table without rebooting                        |
-| `gdisk`                                | GPT fdisk                                                                            |
 | `mkfs.ext4 /dev/sda1` / `mke2fs -t ext4 /dev/sda1` | Create an ext4 filesystem on a partition                                 |
