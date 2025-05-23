@@ -353,7 +353,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 `command [-f] [--flag] arguments  #case sensitive`
 
 | Help Command                            | Description                                                                                         |
-|:----------------------------------------|-----------------------------------------------------------------------------------------------------|
+|:----------------------------------------|:----------------------------------------------------------------------------------------------------|
 | `which`                                 | List path of binary                                                                                 |
 | `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
 | `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                        |
@@ -381,7 +381,53 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `hostnamectl [--set-hostname]`          | Systemd binary to query/change hostname; displays OS and kernel details (also in `/etc/os-release`) |
 | `uname -a`                              | Print system information                                                                            |
 
-### File Management  
+| File Management Command                | Description                                                                                     |
+|:---------------------------------------|:------------------------------------------------------------------------------------------------|
+| `cd [absolute / relative path]`        | Change directory                                                                                |
+| `ls`                                   | List directory contents                                                                         |
+| `   -l` -> `ll`                        | Long listing format                                                                             |
+| `   -a`                                | Show all entries (including those starting with `.`)                                            |
+| `   -h`                                | Human-readable sizes                                                                            |
+| `   -u`                                | Show access time instead of modification time                                                   |
+| `lsof`                                 | List open files                                                                                 |
+| `cp source dest`                       | Copy files                                                                                      |
+| `   -r dir` 			                 | Copy directories recursively                                                                    |
+| `mv source dest`                       | Move or rename files/directories                                                                |
+| `mkdir [dir]`                          | Make directory                                                                                  |
+| `mkdir -p [parent/child]`              | Make parent directories as needed                                                               |
+| `rm file [f2] [f3*] file00{4,5,6}`     | Remove file(s); supports wildcards and brace expansion		                                   |
+| `   -r dir`                            | Recursively remove directory and its contents                                                   |
+| `   -f`                         		 | Force remove; never prompt - ignore nonexistent files                                           |
+| `rmdir dir`                            | Remove empty directory                                                                          |
+| `touch file`                           | Create empty file                                                                               |
+| `echo "text" > file`                   | Redirect stdout, overwrite file                                                                 |
+| `echo "text" >> file`                  | Append to file                                                                                  |
+| `cat file1 file2 > newfile`            | Concatenate files into new/existing file                                                        |
+| `grep -v word`                         | Exclude lines containing word                                                                   |
+| `     -w word`                         | Search for whole word                                                                           |
+| `awk '{print $1, $2}' filename`        | Print specified columns                                                                         |
+| `cut -c1 filename`                     | Print first character of each line                                                              |
+| `sed -n '5p' filename`                 | Print only the 5th line                                                                         |
+| `stout | less`                         | View output in pages                                                                            |
+| `head [file]` / `tail [file]`          | Print first/last part of file                                                                   |
+| `tar -cvf archive.tar dir`             | Create tar archive from directory                                                               |
+| `    -czvf archive.tar.gz dir`         | Create gzip-compressed tar archive                                                              |
+| `    -tf archive.tar`                  | List contents of archive                                                                        |
+| `    -xvf archive.tar`                 | Extract archive                                                                                 |
+| `gzip [file]`                          | Compress file                                                                                   |
+
+| Vim Command                            | Description                                                                                     |
+|:---------------------------------------|:------------------------------------------------------------------------------------------------|
+| `vim -o file1 file2`                   | Open multiple files vertically                                                                  |
+| `    -O file1 file2`                   | Open multiple files horizontally                                                                |
+| `:r file_name`                         | Append file into current buffer                                                                 |
+| `:set textwidth=80`                    | Wrap lines after 80 characters                                                                  |
+| `:split [file]` / `:vsplit [file]`     | Split window horizontally/vertically in vim                                                     |
+| `:qa`                                  | Quit all windows                                                                                |
+| `:only`                                | Close all but current window                                                                    |
+| `:wq` ZZ                               | Save and quit if changes made                                                                   |
+| `Ctrl+w + arrow` (in vim)              | Switch window                                                                                   |
+
 ```
 	cd
 		change directory
