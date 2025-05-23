@@ -379,7 +379,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `stat filename`                         | Show access/read time, modification/write time, change time (metadata, permissions, ownership)      |
 | `date`                                  | Print or set date and time                                                                          |
 | `hostnamectl [--set-hostname]`          | Systemd binary to query/change hostname; displays OS and kernel details (also in `/etc/os-release`) |
-| `uname`                                 | Print system information                                                                            |
+| `uname -a`                              | Print system information                                                                            |
 
 ### File Management  
 ```
