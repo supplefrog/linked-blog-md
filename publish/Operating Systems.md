@@ -628,15 +628,10 @@ reboot
 ```
 
 ### Partition Management
-```
-    ​fdisk
-        List/change partition table 
-    partprobe
-        Make kernel read updated partition table without reboot
-    gdisk
-        used for gpt drives
-    mkfs.ext4 /dev/sda1
-    or
-    mke2fs -t ext4 /dev/sda1
-        Create ext4 filesystem
-```
+
+| Partition Management Command           | Description                                                                          |
+|:---------------------------------------|:-------------------------------------------------------------------------------------|
+| `fdisk`                                | List and change partition table (for MBR disks only)                                 |
+| `partprobe`                            | Make the kernel re-read the partition table without rebooting                        |
+| `gdisk`                                | GPT fdisk                                                                            |
+| `mkfs.ext4 /dev/sda1` / `mke2fs -t ext4 /dev/sda1` | Create an ext4 filesystem on a partition                                 |
