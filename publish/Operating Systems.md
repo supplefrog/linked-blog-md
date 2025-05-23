@@ -373,7 +373,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `who am i`                              | Show username, tty, and login time                                                                  |
 | `users`                                 | Show logged-in usernames                                                                            |
 | `who`                                   | List usernames, tty, and login time                                                                 |
-| `w`                                     | Show Host/IP, login time, tty, CPU usage, shell                                                     |
+| `w`                                     | Show host/IP, login time, tty, CPU usage, shell                                                     |
 | `finger`                                | + user ID details                                                                                   |
 | `last`                                  | Show login history with IP and login duration                                                       |
 | `stat filename`                         | Show access/read time, modification/write time, change time (metadata, permissions, ownership) |
