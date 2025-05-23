@@ -431,7 +431,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `:wq` ZZ                               | Save and quit if changes made                                                                   |
 | Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
-| File Permission Management Commands   | Description		                                                                                |
+| File Permission Management Command    | Description		                                                                                |
 |:--------------------------------------|:--------------------------------------------------------------------------------------------------|
 | `chown username[:groupname] file/dir` | Change owner (and group owner)                                                                    |
 | `chgrp groupname file/dir`            | Change group owner                                                                                |
