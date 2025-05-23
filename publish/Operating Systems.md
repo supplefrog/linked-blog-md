@@ -396,7 +396,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 	    -h
 			Human readable
         -u
-		    Show access time instead of modification time
+            Show access time instead of modification time
     lsof 
         List open files
 	cp
