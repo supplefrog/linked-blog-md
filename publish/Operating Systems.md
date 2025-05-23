@@ -358,7 +358,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
 | `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                        |
 | `locate [file/dir]`                     | List files & directories with substring and subdirectories from database                            |
-| `updatedb`                              | Updates locate's database (`/etc/updatedb.conf`); `-a` for all                                      |
+| `updatedb`                              | Updates locate's database (`/etc/updatedb.conf`);                                                   |
 | `whatis cmd`                            | Short description of a command                                                                      |
 | `man cmd`                               | Long manual description of a command                                                                |
 | `cmd --help`                            | List flags and options for a command                                                                |
@@ -371,11 +371,11 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `umount /mountpoint`                    | Unmount block device from mount point                                                               |
 | `whoami`                                | Show current shell logged-in username                                                               |
 | `who am i`                              | Show username, tty, and login time                                                                  |
-| `users`                                 | List logged-in usernames                                                                            |
+| `users`                                 | Show logged-in usernames                                                                            |
 | `who`                                   | List usernames, tty, and login time                                                                 |
+| `w`                                     | Show Host/IP, login time, tty, CPU usage, shell                                                     |
+| `finger`                                | + user ID details                                                                                   |
 | `last`                                  | Show login history with IP and login duration                                                       |
-| `w`                                     | Show who is logged in, CPU usage, and shell info                                                    |
-| `finger`                                | Show user ID details                                                                                |
 | `stat filename`                         | Show access/read time, modification/write time, change time (metadata, permissions, ownership) |
 | `date`                                  | Print or set date and time                                                                          |
 | `hostnamectl [--set-hostname]`          | Systemd binary to query/change hostname; displays OS and kernel details (also in `/etc/os-release`) |
