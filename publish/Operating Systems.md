@@ -412,9 +412,9 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `stout \| less`                        | Print output in pages                                                                           |
 | `head [file]` / `tail [file]`          | Print first/last part of file                                                                   |
 | `tar -cvf archive.tar [files / dirs]`  | Create tar archive                                                                			   |
-| `    -Avf a1.tar a2`           		 | Append a2 contents to a1                                                              		   |
-| `    -rvf a1.tar [files / dirs]`       | Append to tar                                                              				   |
-| `    -czvf archive.tar.gz dir`         | Create gzip-compressed tar archive                                                              |
+| `    -Avf a1.tar a2.tar`               | Append a2 contents to a1                                                              		   |
+| `    -rvf a1.tar [files / dirs]`       | Append to tar                                                              				       |
+| `    -czvf a1.tar.gz dir`              | Create gzip-compressed tar archive                                                              |
 | `    -tf a1.tar.gz`                    | List contents of archive                                                                        |
 | `    -xvf a1.tar.gz`                   | Extract archive                                                                                 |
 | `gzip [file]`                          | Compress file                                                                                   |
@@ -432,83 +432,12 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | Ctrl + w + arrow keys 	             | Switch window                                                                                   |
 
 ```
-	cd
-		change directory
-			absolute
-			relative
-	ls
-		list
-		-l => ll
-			long list
-	    -a
-			--all do not ignore entries starting with .
-	    -h
-			Human readable
-        -u
-            Show access time instead of modification time
-    lsof 
-        List open files
-	cp
-		copy files
-		cp /source /dest
-		-r copy directories recursively
-	mv
-		Move/rename files/directories
-	mkdir
-		make directory
-		mkdir rel_dir_name 
-		-p make parent directories as needed
-	rm [absolute / relative path] file000{1,2,3} # bash arg for passing multiple files with same base name
-		removes file
-		-r/R recursively remove dir and its contents
-		-f force - ignore non-existent files and args, never prompt
-	rmdir
-		remove dir
-		rmdir path_to_dir
-		Used to prevent accidental deletion of directories with files, binary released after rm (-rf)
-	touch
-		create empty file
-	echo "text" > new/existing_file
-	    > / 1> redirect stdout, overwrites
-		2> redirect stderr
-		>> append
-	cat (file1) (file2) > new/existing_file
-		Write/append existing files to new/existing ​file
-	vim
-	    -o open multiple files vertically
-	    -O horizontally
-	    :r file_name
-		    appends file
-	    :set textwidth=80
-		    warps lines after 80 characters
-	    :split (file_name)
-		    Split into two windows
-	    :vsplit (file_name)
-		    .. two vertical windows
-	    :qa
-		    Quit all
-	    :only
-		    Quit all windows other than current one
-	    ZZ
-		    Shorthand for :wq
-		    Save and quit if changes made
-	    Ctrl
-		    +w +arrow_keys
-		        switch window
-    grep
-	    -v word
-	        exclude line containing word
-	    -w search whole word
     awk '{print $column#, $column#}' filename
     cut -c1 filename
 	    print first character of each line
     sed -n '5p' filename
 	    -n prevent printing every line
 	    prints 5th line
-    | less
-	    print output in pages
-    head/tail
-	    print first/last part of file
     tar archive_name.tar(.gzip) path_to_dir
 	    tape archive saves many files into a single archive (uncompressed)
     	-A append tar to ar
@@ -518,8 +447,6 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
     	-r append files to end of ar
     	-t list ar contents
     	-z filter the archive through gzip
-    gzip path_to_file
-	    compresses files
 ```
 ### File Permission Management  
 ```
