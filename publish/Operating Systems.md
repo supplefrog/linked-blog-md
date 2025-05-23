@@ -408,7 +408,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `awk '{print $1, $2}' filename`        | Print specified columns                                                                         |
 | `cut -c1 filename`                     | Print first character of each line                                                              |
 | `sed -n '5p' filename`                 | Print only the 5th line                                                                         |
-| `stout | less`                         | View output in pages                                                                            |
+| `stout \| less`                        | View output in pages                                                                            |
 | `head [file]` / `tail [file]`          | Print first/last part of file                                                                   |
 | `tar -cvf archive.tar dir`             | Create tar archive from directory                                                               |
 | `    -czvf archive.tar.gz dir`         | Create gzip-compressed tar archive                                                              |
