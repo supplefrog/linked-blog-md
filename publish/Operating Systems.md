@@ -352,9 +352,8 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 ## Commands  
 `command [-f] [--flag] arguments  #case sensitive`
 
-### Help  
 | Help Command                            | Description                                                                                         |
-|-----------------------------------------|-----------------------------------------------------------------------------------------------------|
+|:----------------------------------------|-----------------------------------------------------------------------------------------------------|
 | `which`                                 | List path of binary                                                                                 |
 | `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
 | `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                        |
