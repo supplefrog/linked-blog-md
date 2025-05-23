@@ -91,14 +91,18 @@ Uses reserved storage space (**swap**) to extend physical memory (RAM)
   - Example: NTFS
 
 #### Pluggable Authentication Modules (PAM)
-- Provide framework for integrating authentication methods into applications
+
+Provides framework for integrating authentication methods into applications
 
 #### Network Protocol Modules
-- TCP/IP, UDP
+
+TCP/IP, UDP
 
 #### Security Modules - Linux Security Modules (LSM)
-- Provide hooks for security decisions (file/network operations, process executions)
-- Example: SELinux
+
+Provide hooks for security decisions (file/network operations, process executions)
+
+e.g. SELinux
 
 ### Kernel Services
 - Manage software interrupts:
@@ -144,8 +148,7 @@ Uses reserved storage space (**swap**) to extend physical memory (RAM)
 
 # Boot Process
 ## Power ON
-- CPU fetches reset vector from Firmware ROM
-  - Reset vector: Points CPU to the start of firmware execution
+CPU fetches reset vector (addr) from Firmware ROM which points to first instruction of firmware
 
 ## Firmware
 #### BIOS
