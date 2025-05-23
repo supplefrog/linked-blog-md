@@ -195,7 +195,7 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
   - **initramfs img**
 
 #### systemd-boot
-- `/boot/efi/EFI/systemd/systemd-bootx64.efi`
+`/boot/efi/EFI/systemd/systemd-bootx64.efi`
 - Boot menu
 - Loads `vmlinuz` and `initramfs` into RAM and hands over execution
 
