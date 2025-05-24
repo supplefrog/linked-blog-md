@@ -443,28 +443,27 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `lsattr`                        		| List attributes                                                                                   |
 | `umask`                         		| defaults: **dir** 777 - **022**, **file** 666 - **002**                                           |
 
-| User/Group Management Command                | Description / Notes                                                                                 |
-|:---------------------------------------------|:----------------------------------------------------------------------------------------------------|
-| `adduser username`                           | Add a user, interactive on debian - create homedir, add passwd                                      |
-| `useradd username`                           | Add a user                                                      
-		               |
-| `        -m`                                 | Create home directory if it doesn't exist                                                           |
-| `        -d custom_homedir`                  | Use custom home directory                                                                           |
-| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files          |
-| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                              |
-| `passwd username`                            | Set or change password for user                                                                     |
-| `usermod` [-g][-G][-d]                       | Modify user account                                                                                 |
-| `        -aG group1,group2 username`         | Append user to supplementary groups                                                                 |
-| `userdel username`                           | Delete user                                                                                         |
-| `gpasswd -M user1,user2,user3 groupname`     | Add multiple users to group                                                                         |
-| `groups username`                            | List groups user is part of                                                                         |
-| `id username`                                | Show UID, GID, and group memberships                                                                |
-| `groupadd gname`                             | Add group                                                                                           |
-| `         -g 1003`                           | Custom group ID (must be unique)                                                                    |
-| `groupmod`                                   | Modify group                                                                                        |
-| `         -n newname oldname`                | Change group name                                                                                   |
-| `         -g newid gname`                    | Change group ID                                                                                     |
-| `groupdel gname`                             | Delete group                                                                                        |
+| User/Group Management Command                | Description / Notes                                                                        |
+|:---------------------------------------------|:-------------------------------------------------------------------------------------------|
+| `adduser username`                           | Add a user, interactive on debian - create homedir, add passwd                             |
+| `useradd username`                           | Add a user                                                                                 |
+| `        -m`                                 | Create home directory if it doesn't exist                                                  |
+| `        -d custom_homedir`                  | Use custom home directory                                                                  |
+| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files    |
+| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                     |
+| `passwd username`                            | Set or change password for user                                                            |
+| `usermod` [-g][-G][-d]                       | Modify user account                                                                        |
+| `        -aG group1,group2 username`         | Append user to supplementary groups                                                        |
+| `userdel username`                           | Delete user                                                                                |
+| `gpasswd -M user1,user2,user3 groupname`     | Add multiple users to group                                                                |
+| `groups username`                            | List groups user is part of                                                                |
+| `id username`                                | Show UID, GID, and group memberships                                                       |
+| `groupadd gname`                             | Add group                                                                                  |
+| `         -g 1003`                           | Custom group ID (must be unique)                                                           |
+| `groupmod`                                   | Modify group                                                                               |
+| `         -n newname oldname`                | Change group name                                                                          |
+| `         -g newid gname`                    | Change group ID                                                                            |
+| `groupdel gname`                             | Delete group                                                                               |
 
 ### Process Management  
 ```
