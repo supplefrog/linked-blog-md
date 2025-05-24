@@ -465,7 +465,43 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `         -g newid gname`                    | Change group ID                                                                            |
 | `groupdel gname`                             | Delete group                                                                               |
 
-### Process Management  
+### Process Management
+
+| Process/System Monitoring Command       | Description / Notes                                                                                 |
+|:----------------------------------------|:----------------------------------------------------------------------------------------------------|
+| `top -p`                                | Monitor specific pid                                                                                |
+| `    o` `COMMAND=chrome`                | Filter with custom param, superior to L                                                             |
+| `    L`                                 | Locate process_name                                                                                 |
+| `    k`                                 | Kill                                                                                                |
+| `    r`                                 | Renice - change priority                                                                            |
+| `    h`                                 | Help                                                                                                |
+| `ps `                                   | Snapshot of current process - UNIX and BSD options                                                  |
+| `   -u`                                 | User oriented format                                                                                |
+| `   -x`                                 | Include processes without a tty                                                                     |
+| `   a`                                  | All with tty, including other users                                                                 |
+| `   -a`                                 | All with tty except session leaders                                                                 |
+| `kill pid`                              | terminate a process; default signal SIGTERM(15)                                                     |
+| `     -s [name/number]`                 | Specify signal                                                                                      |
+| `     -9`                               | SIGKILL - immediately terminate                                                                     |
+| `     -18`                              | SIGCONT - resume paused process, fg/bg chosen by process type                                       |
+| `     -l`                               | List signals                                                                                        |
+| `pkill process_name`                    | Kill by process name                                                                                |
+| `Ctrl+C`                                | Send SIGINT (2) - Interrupt and terminate process (CBI)                                             |
+| `Ctrl+Z`                                | Send SIGSTP (20) - Suspend and send to background (paused, can have custom handling, not ignored)   |
+| `Ctrl+\`                                | Send SIGQUIT (3) - Interrupt + core dump for debugging (CBI)                                        |
+| `crontab`                               | Manage crontab files for user                                                                       |
+| `    -l`                                | List                                                                                                |
+| `    -e`                                | Edit                                                                                                |
+| `        * * * * * command`             | min hour day_of_month month day_of_week                                                             |
+| `        @monthly command`              | Run monthly                                                                                         |
+| `jobs`                                  | List paused process id and names                                                                    |
+| `fg (%job_id)`                          | Resume fg process, most recent without argument                                                     |
+| `bg (%job_id)`                          | Resume bg process                                                                                   |
+| `sar -u 1 3`                            | System Activity Report, interval_time(s) number_of_times                                            |
+| `    -u`                                | CPU utilization                                                                                     |
+| `vmstat`                                | Virtual memory statistics                                                                           |
+| `iostat`                                | CPU and I/O stats for block devices                                                                 |
+
 ```
     top -p (monitor specific pid)
 	o filter with custom param
