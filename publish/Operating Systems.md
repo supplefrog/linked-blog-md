@@ -445,12 +445,13 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 
 | User/Group Management Command                | Description / Notes                                                                                 |
 |:---------------------------------------------|:----------------------------------------------------------------------------------------------------|
-| `adduser username`                           | Add a user, interactive                                                                             |
-| `useradd username`                           | Add a user, doesn't create home dir by default                                                      |
+| `adduser username`                           | Add a user, interactive on debian - create homedir, add passwd                                      |
+| `useradd username`                           | Add a user                                                      
+		               |
 | `        -m`                                 | Create home directory if it doesn't exist                                                           |
 | `        -d custom_homedir`                  | Use custom home directory                                                                           |
-| `        -g gid/gname`                       | Custom primary group                                                                                |
-| `        -G g1,g2`                           | Supplementary groups                                                                                |
+| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files          |
+| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                              |
 | `passwd username`                            | Set or change password for user                                                                     |
 | `usermod` [-g][-G][-d]                       | Modify user account                                                                                 |
 | `        -aG group1,group2 username`         | Append user to supplementary groups                                                                 |
@@ -459,44 +460,12 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `groups username`                            | List groups user is part of                                                                         |
 | `id username`                                | Show UID, GID, and group memberships                                                                |
 | `groupadd gname`                             | Add group                                                                                           |
-| `         -g 1003`                           | Specific group ID (must be unique)                                                                  |
+| `         -g 1003`                           | Custom group ID (must be unique)                                                                    |
 | `groupmod`                                   | Modify group                                                                                        |
 | `         -n newname oldname`                | Change group name                                                                                   |
 | `         -g newid gname`                    | Change group ID                                                                                     |
 | `groupdel gname`                             | Delete group                                                                                        |
 
-```
-    adduser username
-    useradd username
-    	Needs -m to create home dir if it doesn't not exist
-    	Manual password setting with passwd
-    	-g
-    	-G
-    	-d custom\_home_dir
-    passwd username
-    usermod 
-    	-a append used with -G
-    	-g gid/gname
-    		Initial login group, initially same as username
-    	-G gid/gname
-    		Groups user is also part of
-    	-d
-    userdel
-    gpasswd -M user1,user2,user3 groupname
-    	Add multiple users to groupname
-    groups username
-    	list groups username is part of
-    id username
-    	list gids username is part of
-    groupadd gname
-    	-g 1003 
-    		groupid, must be unique
-    groupmod
-    	-n newname oldname
-    		change name
-    	-g newid gname
-    groupdel
-```
 ### Process Management  
 ```
     top -p (monitor specific pid)
