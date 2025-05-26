@@ -518,7 +518,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `ssh`{`scp` -> `sftp`} | 22   |
 
 | IP Command                           	      | Description                                                       |
-|---------------------------------------------|-------------------------------------------------------------------|
+|:--------------------------------------------|:------------------------------------------------------------------|
 | `dhclient -r && dhclient p8p1`              | DHCP client: release current IP and request new one for interface |
 | `ip a[ddr] show [dev p8p1]` 		          | Show interface IPs                          			          |
 | `          add/del 192.168.x.x/24 dev p8p1` | Add/delete specific IP to/from interface                          |
