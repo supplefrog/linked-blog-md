@@ -219,7 +219,7 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
 - Extracts `initramfs img` into `/`
 - Executes `/init` script:
   - Loads modules (e.g., Intel/AMD microcode)
-  - Mounts SD `/` as Read-only for consistency checks, then remounts it as RW and switches to it
+  - Mounts storage `/` as Read-only -> fsck (file system check) -> remounts `/` as RW and then chroot
   - Executes PID 1 (`/sbin/init`, sym-linked to `/usr/lib/systemd/systemd`)
 
 ## Init System
@@ -231,13 +231,13 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
   - Reads unit files in `/usr/lib/systemd/system` and `/etc/systemd/system`
   - Executes them in order
 
-| Runlevel target symlinked to | Systemd Target |
-|------------------------------|----------------|
-| 0 			       | poweroff.target|
-| 1 			 | rescue.target (Getty)|
-| 2-4 			 | multi-user.target	|
-| 5 			 | graphical.target	|
-| 6 			 | reboot.target  	|	
+| Runlevel target symlinked to | Systemd Target 	   |
+|------------------------------|-----------------------|
+| 0 			       		   | poweroff.target	   |
+| 1 			 			   | rescue.target (Getty) |
+| 2-4 			 			   | multi-user.target     |
+| 5 			 			   | graphical.target 	   |
+| 6 			 			   | reboot.target 		   |	
 
 **Show currently loaded targets/runlevel**
 
@@ -541,9 +541,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `nmcli d reapply p8p1`                      | Reapply network configuration for interface without restart       |
 | `ip a flush dev p8p1`                       | Remove all IPs from interface, including v6                       |
 
-### Security
-
-#### Password Policy
+### Password Policy
 
 | Shadow Utils Config / Command    | Description                                                                                |
 |:---------------------------------|:-------------------------------------------------------------------------------------------|
@@ -556,23 +554,21 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `/etc/pam.d/`                  | Configs for each service to control which PAM modules are used |
 | `/etc/security/pwquality.conf` | Password quality module settings used by services like passwd  |
 
-#### Reset root password
-- reboot to GRUB, press e
-- **Mount root file system as rw instead of ro during early boot, run sh as init (PID 1)** 
-- add to the end of linux16 boot params:
-```
-rw init=/sysroot/bin/sh
+### Reset root password (via GRUB)
+- Reboot
+- GRUB menu -> select boot entry -> press e
+- Find the line starting with `linux16` or `linux`, and append boot parameters to the end:
 
+`rw init=/sysroot/bin/sh	# Mount root file system as rw, start a shell (sh) as the first process (init, PID 1)` 
+
+```sh
 chroot /sysroot
+
 passwd root
-```
-
-Re-label SELinux contexts:
-
-```
-touch /.autorelabel
+touch /.autorelabel    # re-label SELinux contents
 
 exit
+
 reboot
 ```
 
