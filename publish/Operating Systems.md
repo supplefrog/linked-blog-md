@@ -502,7 +502,9 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `vmstat`                  | Virtual memory statistics           |
 | `iostat`                  | CPU and I/O stats for block devices |
 
-| Networking Command                       | Description                                                                                          |
+### Networking
+
+| Connection Management Command            | Description                                                                                          |
 |:-----------------------------------------|:-----------------------------------------------------------------------------------------------------|
 | `nmcli`                                  | BSD style command line tool for NetworkManager                                                       |
 | `      d[evice]`                         | Show network devices                                                                                 |
