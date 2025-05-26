@@ -465,14 +465,8 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `         -g newid gname`                    | Change group ID                                                                            |
 | `groupdel gname`                             | Delete group                                                                               |
 
-| Process/System Monitoring Command       | Description                                                                                         |
+| Process Management Command       	  	  | Description                                                                                         |
 |:----------------------------------------|:----------------------------------------------------------------------------------------------------|
-| `top -p`                                | Monitor specific pid                                                                                |
-| `    o` `COMMAND=chrome`                | Filter with custom param, superior to L                                                             |
-| `    L`                                 | Locate process_name                                                                                 |
-| `    k`                                 | Kill                                                                                                |
-| `    r`                                 | Renice - change priority                                                                            |
-| `    h`                                 | Help                                                                                                |
 | `ps`                                    | Snapshot of current process - UNIX and BSD options                                                  |
 | `   -ux`                                | User oriented format, include processes without a tty                                               |
 | `   a`                                  | All with tty, including other users                                                                 |
@@ -493,8 +487,20 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `fg (%job_id)`                          | Resume fg process, most recent without argument                                                     |
 | `bg (%job_id)`                          | Resume bg process                                                                                   |
 | `sar [-u] 1 3`                          | System Activity Report - CPU utilization (-u) by default, interval_time (s) number_of_times   |
-| `vmstat`                                | Virtual memory statistics                                                                           |
-| `iostat`                                | CPU and I/O stats for block devices                                                                 |
+
+| top command              | Description                             |
+|--------------------------|-----------------------------------------|
+| `top -p`                 | Monitor specific pid                    |
+| `    o` `COMMAND=chrome` | Filter with custom param, superior to L |
+| `    L`                  | Locate process_name                     |
+| `    k`                  | Kill                                    |
+| `    r`                  | Renice - change priority                |
+| `    h`                  | Help                                    |
+
+| System Monitoring Command | Description                         |
+|---------------------------|-------------------------------------|
+| `vmstat`                  | Virtual memory statistics           |
+| `iostat`                  | CPU and I/O stats for block devices |
 
 ### Network Management  
 ```
