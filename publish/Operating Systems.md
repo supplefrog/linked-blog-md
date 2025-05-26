@@ -585,9 +585,9 @@ reboot
 
 ### Partition Management
 
-| Partition Management Command           | Description                                                                          |
-|:---------------------------------------|:-------------------------------------------------------------------------------------|
-| `parted`                               | List and change GPT/MBR partition tables		                                |
-| `fdisk [-l] [/dev/device]`             | List and change legacy MBR partition tables	                                        |
-| `partprobe`                            | Make the kernel re-read the partition table without rebooting                        |
-| `mkfs.ext4 /dev/sda1` / `mke2fs -t ext4 /dev/sda1` | Create an ext4 filesystem on a partition                                 |
+| Partition Management Command                       | Description                                                   |
+|:---------------------------------------------------|:--------------------------------------------------------------|
+| `parted`                                           | List and change GPT/MBR partition tables                      |
+| `fdisk [-l] [/dev/device]`                         | List and change legacy MBR partition tables                   |
+| `partprobe`                                        | Make the kernel re-read the partition table without rebooting |
+| `mkfs.ext4 /dev/sda1` / `mke2fs -t ext4 /dev/sda1` | Create an ext4 filesystem on a partition                      |
