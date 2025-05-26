@@ -447,10 +447,10 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 |:---------------------------------------------|:-------------------------------------------------------------------------------------------|
 | `adduser username`                           | Add a user, interactive on debian - create homedir, add passwd                             |
 | `useradd username`                           | Add a user                                                                                 |
+| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files |
+| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                     |
 | `        -m`                                 | Create home directory if it doesn't exist                                                  |
 | `        -d custom_homedir`                  | Use custom home directory                                                                  |
-| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files    |
-| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                     |
 | `passwd username`                            | Set or change password for user                                                            |
 | `usermod [-g][-G][-d]`                       | Modify user account                                                                        |
 | `        -aG group1,group2 username`         | Append user to supplementary groups                                                        |
