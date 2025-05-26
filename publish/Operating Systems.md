@@ -443,50 +443,50 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `lsattr`                        		| List attributes                                                                                   |
 | `umask`                         		| defaults: **dir** 777 - **022**, **file** 666 - **002**                                           |
 
-| User/Group Management Command                | Description / Notes                                                                        |
-|:---------------------------------------------|:-------------------------------------------------------------------------------------------|
-| `adduser username`                           | Add a user, interactive on debian - create homedir, add passwd                             |
-| `useradd username`                           | Add a user                                                                                 |
-| `        -g gid/gname`                       | Custom primary group, else same name as username; gets ownership for user created files |
-| `        -G g1,g2`                           | Supplementary groups; gives files' group perms to user                                     |
-| `        -m`                                 | Create home directory if it doesn't exist                                                  |
-| `        -d custom_homedir`                  | Use custom home directory                                                                  |
-| `passwd username`                            | Set or change password for user                                                            |
-| `usermod [-g][-G][-d]`                       | Modify user account                                                                        |
-| `        -aG group1,group2 username`         | Append user to supplementary groups                                                        |
-| `userdel username`                           | Delete user                                                                                |
-| `gpasswd -M user1,user2,user3 groupname`     | Add multiple users to group                                                                |
-| `groups username`                            | List groups user is part of                                                                |
-| `id username`                                | Show UID, GID, and group memberships                                                       |
-| `groupadd gname`                             | Add group                                                                                  |
-| `         -g 1003`                           | Custom group ID (must be unique)                                                           |
-| `groupmod`                                   | Modify group                                                                               |
-| `         -n newname oldname`                | Change group name                                                                          |
-| `         -g newid gname`                    | Change group ID                                                                            |
-| `groupdel gname`                             | Delete group                                                                               |
+| User/Group Management Command            | Description / Notes                                                                        |
+|:-----------------------------------------|:-------------------------------------------------------------------------------------------|
+| `adduser username`                       | Add a user, interactive on debian - create homedir, add passwd                             |
+| `useradd username`                       | Add a user                                                                                 |
+| `        -g gid/gname`                   | Custom primary group, else same name as username; gets ownership for user created files    |
+| `        -G g1,g2`                       | Supplementary groups; gives files' group perms to user                                     |
+| `        -m`                             | Create home directory if it doesn't exist                                                  |
+| `        -d custom_homedir`              | Use custom home directory                                                                  |
+| `passwd username`                        | Set or change password for user                                                            |
+| `usermod [-g][-G][-d]`                   | Modify user account                                                                        |
+| `        -aG group1,group2 username`     | Append user to supplementary groups                                                        |
+| `userdel username`                       | Delete user                                                                                |
+| `gpasswd -M user1,user2,user3 groupname` | Add multiple users to group                                                                |
+| `groups username`                        | List groups user is part of                                                                |
+| `id username`                            | Show UID, GID, and group memberships                                                       |
+| `groupadd gname`                         | Add group                                                                                  |
+| `         -g 1003`                       | Custom group ID (must be unique)                                                           |
+| `groupmod`                               | Modify group                                                                               |
+| `         -n newname oldname`            | Change group name                                                                          |
+| `         -g newid gname`                | Change group ID                                                                            |
+| `groupdel gname`                         | Delete group                                                                               |
 
-| Process Management Command       	  	  | Description                                                                                         |
-|:----------------------------------------|:----------------------------------------------------------------------------------------------------|
-| `ps`                                    | Snapshot of current process - UNIX and BSD options                                                  |
-| `   -ux`                                | User oriented format, include processes without a tty                                               |
-| `   a`                                  | All with tty, including other users                                                                 |
-| `   -a`                                 | All with tty except session leaders                                                                 |
-| `kill pid`                              | Send signal SIGTERM(15) by default to terminate a process                                           |
-| `     -s`                 		      | Specify signal name/number                                                                          |
-| `     -9`                               | SIGKILL(9) - immediately terminate                                                                  |
-| `     -18`                              | SIGCONT(18) - resume paused process, fg/bg chosen by process type                                   |
-| `     -l`                               | List signals                                                                                        |
-| `pkill process_name`                    | Kill by process name                                                                                |
-| `Ctrl+C`                                | Send SIGINT(2) - Interrupt and terminate process, can be ignored                                    |
-| `Ctrl+Z`                                | Send SIGSTP(20) - Suspend and send to background (paused, can have custom handling, not ignored) |
-| `Ctrl+\`                                | Send SIGQUIT(3) - Interrupt + core dump for debugging, can be ignored                               |
-| `crontab [-u] [-l / -e]`                | List/edit user crontab files	                                                                |
-| `        * * * * * command`             | min hour day_of_month month day_of_week                                                             |
-| `        @monthly command`              | Run monthly                                                                                         |
-| `jobs`                                  | List paused process id and names                                                                    |
-| `fg (%job_id)`                          | Resume fg process, most recent without argument                                                     |
-| `bg (%job_id)`                          | Resume bg process                                                                                   |
-| `sar [-u] 1 3`                          | System Activity Report - CPU utilization (-u) by default, interval_time (s) number_of_times   |
+| Process Management Command  | Description                                                                                      |
+|:----------------------------|:-------------------------------------------------------------------------------------------------|
+| `ps`                        | Snapshot of current process - UNIX and BSD options                                               |
+| `   -ux`                    | User oriented format, include processes without a tty                                            |
+| `   a`                      | All with tty, including other users                                                              |
+| `   -a`                     | All with tty except session leaders                                                              |
+| `kill pid`                  | Send signal SIGTERM(15) by default to terminate a process                                        |
+| `     -s`                   | Specify signal name/number                                                                       |
+| `     -9`                   | SIGKILL(9) - immediately terminate                                                               |
+| `     -18`                  | SIGCONT(18) - resume paused process, fg/bg chosen by process type                                |
+| `     -l`                   | List signals                                                                                     |
+| `pkill process_name`        | Kill by process name                                                                             |
+| `Ctrl+C`                    | Send SIGINT(2) - Interrupt and terminate process, can be ignored                                 |
+| `Ctrl+Z`                    | Send SIGSTP(20) - Suspend and send to background (paused, can have custom handling, not ignored) |
+| `Ctrl+\`                    | Send SIGQUIT(3) - Interrupt + core dump for debugging, can be ignored                            |
+| `crontab [-u] [-l / -e]`    | List/edit user crontab files	                                                                 |
+| `        * * * * * command` | min hour day_of_month month day_of_week                                                          |
+| `        @monthly command`  | Run monthly                                                                                      |
+| `jobs`                      | List paused process id and names                                                                 |
+| `fg (%job_id)`              | Resume fg process, most recent without argument                                                  |
+| `bg (%job_id)`              | Resume bg process                                                                                |
+| `sar [-u] 1 3`              | System Activity Report - CPU utilization (-u) by default, interval_time (s) number_of_times      |
 
 | top command              | Description                             |
 |--------------------------|-----------------------------------------|
@@ -502,7 +502,30 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `vmstat`                  | Virtual memory statistics           |
 | `iostat`                  | CPU and I/O stats for block devices |
 
-### Network Management  
+### Network Management
+
+| Networking Command                       | Description                                                                                          |
+|:-----------------------------------------|:-----------------------------------------------------------------------------------------------------|
+| `nmcli`                                  | BSD style command line tool for NetworkManager                                                       |
+| `      d[evice]`                         | Show network devices                                                                                 |
+| `      d show device_name`               | Show network device details                                                                          |
+| `      d connect/disconnect device_name` | Connect or disconnect a device                                                                       |
+| `      d wifi connect "SSID" password "your_password"` | Connect to WiFi network with SSID and password                                         |
+| `netstat` / `ss -tu`                     | Show network connections and sockets, TCP, UDP sockets                                               |
+| `        -l`                             | Listening/open ports                                                                                 |
+| `        -n`                             | Numerical output, show IP instead of hostname                                                        |
+
+| Protocol               | Port |
+|------------------------|------|
+| `ssh`{`scp` -> `sftp`} | 22   |
+
+| Change IP Command                           | Description                                                       |
+|---------------------------------------------|-------------------------------------------------------------------|
+| `dhclient -r && dhclient p8p1`              | DHCP client: release current IP and request new one for interface |
+| `nmcli d reapply p8p1`                      | Reapply network configuration for interface without restart       |
+| `ip a[ddr] add/del 192.168.x.x/24 dev p8p1` | Add/delete specific IP to/from interface                          |
+| `ip a flush dev p8p1`                       | Remove all IPs from interface                                     |
+
 ```
     nmcli
     	BSD style command
