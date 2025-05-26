@@ -519,6 +519,14 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 |------------------------|------|
 | `ssh`{`scp` -> `sftp`} | 22   |
 
+| SSH Command                                      | Description                                                                                |
+|--------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `ssh user@host`                                  | Log into remote shell                                                                      |
+| `scp [-r] user@host1:/path user@host2:/path`     | Copy files/directories between hosts - remote or local (doesn't require explicit hostname) |
+| `ssh-keygen -t rsa -b 4096 -C "abc@example.com"` | Generate SSH key pair on client                                                            |
+| `ssh-copy-id user@server_ip`                     | Copy public key to server for passwordless authentication                                  |
+| `ssh-keygen -R server_ip`                        | Remove server entry from client's known hosts file (fixes host key mismatch errors)        |
+
 | IP Command                           	      | Description                                                       |
 |:--------------------------------------------|:------------------------------------------------------------------|
 | `dhclient -r && dhclient p8p1`              | DHCP client: release current IP and request new one for interface |
@@ -527,21 +535,23 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `nmcli d reapply p8p1`                      | Reapply network configuration for interface without restart       |
 | `ip a flush dev p8p1`                       | Remove all IPs from interface, including v6                       |
 
-#### SSH key-based authentication
-**Generate key on client**
-
-
-`ssh-keygen -t rsa -b 4096 -C "abc@example.com"`
-
-**Remove corrupt key**
-
-`ssh-keygen -R server_ip`
-
-**Copy key to server**
-
-`ssh-copy-id user@server_ip`
-
 ### Security
+
+| Command                                               | Description                                                                                           |
+|:------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+| Password Policy                                       |                                                                                                       |
+| `    Aging`                                           | Password expiration and renewal policies                                                              |
+| `        Shadow Utils`                                | Tools and files for managing password aging                                                           |
+| `            /etc/login.defs`                         | System-wide password aging defaults                                                                   |
+| `            Per-User`                                | Per-user password aging settings                                                                      |
+| `                /etc/shadow`                         | Stores per-user password aging info                                                                   |
+| `                chage -m 7 -M 90 -W 7 username`      | Set min 7, max 90, warn 7 days before expiry for user                                                 |
+| `    Complexity`                                      | Enforce password complexity requirements                                                              |
+| `        passwd`                                      | Policies enforced when users change/create passwords                                                  |
+| `        PAM (Pluggable Authentication Modules)`      | Modular authentication framework                                                                      |
+| `            /etc/pam.d/system-auth`                  | PAM configuration for system authentication                                                           |
+| `        /etc/security/pwquality.conf`                | Additional parameters for password quality, ensures consistency					                    |
+
 ```
 Password Policy
     Aging
