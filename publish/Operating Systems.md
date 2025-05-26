@@ -502,6 +502,12 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `vmstat`                  | Virtual memory statistics           |
 | `iostat`                  | CPU and I/O stats for block devices |
 
+| System Resource Management Command            | Description                                                        |
+|:----------------------------------------------|:-------------------------------------------------------------------|
+| `ulimit [-S/H] -a`                            | View current shell session soft and hard limits                    |
+| `ulimit [-S/H] <resource_flag> <value>`       | Set soft/hard resource limit for current shell session             |
+| `/etc/security/limits.conf`                   | Set resource limits permanently for specific users or groups       |
+
 ### Networking
 
 | Connection Management Command            | Description                                                                                          |
@@ -537,44 +543,20 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 
 ### Security
 
-| Command                                               | Description                                                                                           |
-|:------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
-| Password Policy                                       |                                                                                                       |
-| `    Aging`                                           | Password expiration and renewal policies                                                              |
-| `        Shadow Utils`                                | Tools and files for managing password aging                                                           |
-| `            /etc/login.defs`                         | System-wide password aging defaults                                                                   |
-| `            Per-User`                                | Per-user password aging settings                                                                      |
-| `                /etc/shadow`                         | Stores per-user password aging info                                                                   |
-| `                chage -m 7 -M 90 -W 7 username`      | Set min 7, max 90, warn 7 days before expiry for user                                                 |
-| `    Complexity`                                      | Enforce password complexity requirements                                                              |
-| `        passwd`                                      | Policies enforced when users change/create passwords                                                  |
-| `        PAM (Pluggable Authentication Modules)`      | Modular authentication framework                                                                      |
-| `            /etc/pam.d/system-auth`                  | PAM configuration for system authentication                                                           |
-| `        /etc/security/pwquality.conf`                | Additional parameters for password quality, ensures consistency					                    |
+#### Password Policy
 
-```
-Password Policy
-    Aging
-	Shadow Utils
-	    /etc/login.defs
-        Per-User
-	    (/etc/shadow)
-	    chage -m[inimum] 7 -M[aximum] 90 -W[arning_period] 7 username
-	Complexity
-	    Enforce policies when users change or create passwords (passwd)
-	    Pluggable Authentication Modules (PAM)
-	        /etc/pam.d/system-auth
-	    Additional parameters, ensure consistency
-	        /etc/security/pwquality.conf
-Manage System Resources
-    View current shell session soft and hard limits 
-        ulimit (-S/H) -a
-    Set
-        ulimit (-S/H) <resource_flag> <value>
-    Set permanently for username
-        /etc/security/limits.conf
-```
-### Reset root password
+| Shadow Utils Config / Command    | Description                                                                                |
+|:---------------------------------|:-------------------------------------------------------------------------------------------|
+| `/etc/login.defs`                | System-wide account & password policy defaults (e.g., aging, min/max days, warning period) |
+| `/etc/shadow`                    | Encrypted user passwords and per-user password/account aging policies                      |
+| `chage -m 7 -M 90 -W 7 username` | Set min, max, and warning days for password expiry for a specific user                     |
+
+| PAM Config                     | Description                                                    |
+|:-------------------------------|:---------------------------------------------------------------|
+| `/etc/pam.d/`                  | Configs for each service to control which PAM modules are used |
+| `/etc/security/pwquality.conf` | Password quality module settings used by services like passwd  |
+
+#### Reset root password
 - reboot to GRUB, press e
 - **Mount root file system as rw instead of ro during early boot, run sh as init (PID 1)** 
 - add to the end of linux16 boot params:
