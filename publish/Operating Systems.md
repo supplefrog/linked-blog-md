@@ -502,8 +502,6 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `vmstat`                  | Virtual memory statistics           |
 | `iostat`                  | CPU and I/O stats for block devices |
 
-### Network Management
-
 | Networking Command                       | Description                                                                                          |
 |:-----------------------------------------|:-----------------------------------------------------------------------------------------------------|
 | `nmcli`                                  | BSD style command line tool for NetworkManager                                                       |
@@ -511,7 +509,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | `      d show device_name`               | Show network device details                                                                          |
 | `      d connect/disconnect device_name` | Connect or disconnect a device                                                                       |
 | `      d wifi connect "SSID" password "your_password"` | Connect to WiFi network with SSID and password                                         |
-| `netstat` / `ss -tu`                     | Show network connections and sockets, TCP, UDP sockets                                               |
+| `netstat` / `ss -tu`                     | Show network connections and sockets: TCP, UDP sockets                                               |
 | `        -l`                             | Listening/open ports                                                                                 |
 | `        -n`                             | Numerical output, show IP instead of hostname                                                        |
 
@@ -519,36 +517,14 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 |------------------------|------|
 | `ssh`{`scp` -> `sftp`} | 22   |
 
-| Change IP Command                           | Description                                                       |
+| IP Command                           	      | Description                                                       |
 |---------------------------------------------|-------------------------------------------------------------------|
 | `dhclient -r && dhclient p8p1`              | DHCP client: release current IP and request new one for interface |
+| `ip a[ddr] show [dev p8p1]` 		          | Show interface IPs                          			          |
+| `          add/del 192.168.x.x/24 dev p8p1` | Add/delete specific IP to/from interface                          |
 | `nmcli d reapply p8p1`                      | Reapply network configuration for interface without restart       |
-| `ip a[ddr] add/del 192.168.x.x/24 dev p8p1` | Add/delete specific IP to/from interface                          |
-| `ip a flush dev p8p1`                       | Remove all IPs from interface                                     |
+| `ip a flush dev p8p1`                       | Remove all IPs from interface, including v6                       |
 
-```
-    nmcli
-    	BSD style command
-    	d[evice] show devices
-    	    connect/disconnect device_name
-    	    wifi connect "SSID" password "your_password"
-    netstat/ss
-    	-t tcp sockets
-    	-u udp sockets
-    	-l listening/open ports
-    	-n numerical, ip instead of hostname
-    Change IP
-    	dhclient -r && dhclient p8p1
-			DHCP Client
-            Release the current IP and request a new one for specific interface
-        nmcli d reapply p8p1
-
-        ip a[ddr] add/del 192.168.x.x/24 dev p8p1
-			Add/del specific IP to/from interface
-    	ip a flush dev p8p1
-	 		Remove all IPs from interface
-    scp uses sftp uses ssh uses port 22
-```
 #### SSH key-based authentication
 **Generate key on client**
 
