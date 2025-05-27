@@ -806,9 +806,9 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 ```
 -R - routines (stored procedures & functions)
 
--E - events
+-E - events - scheduled tasks
 
---single-transaction - for both backup and R/W by other user, no table lock
+--single-transaction - no table lock, for both backup and R/W by other user
 
 --no-data - only table structure
 ```
