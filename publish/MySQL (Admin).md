@@ -125,9 +125,9 @@ Default `/bin -> /usr/bin`
 | mysqlbinlog            | Read binary logs                                                                  |
 | myisamlog              | Read MyISAM log                                                                   |
 | mysqlcheck             | -c check -a analyze -o optimize db [table_name]                                   |
-| mysql_config_editor    | Store encrypted authentication credentials in .mylogin.cnf for easier secure login, useful for scripts |
+| mysql_config_editor    | Client - store encrypted authentication credentials in .mylogin.cnf for secure passwordless login, useful for scripts |
 | mysqldump              | Logical backup                                                                    |
-| mysqlimport            | Import CSV/TSV - text format data files directly into tables                  |
+| mysqlimport            | Import CSV/TSV - text format data files directly into tables                      |
 | mysql_migrate_keyring  | Migrate encryption keys between keyring components                                |
 | mysqlshow              | Quick overview of databases, tables, columns, or indexes                          |
 | mysqlslap              | Simulate load from multiple clients and measure performance by the timing of each stage |
@@ -267,12 +267,12 @@ Default shared tablespace for internal InnoDB structures
 - Smaller and faster than InnoDB
 - More suitable for read-heavy applications
 
-| **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                 | **MyISAM**          |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails                                                                                                                 | X |
+| **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                       | **MyISAM**                          |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails   | X |
 | **Consistency**   | Supports **foreign keys**, **referential integrity**, and other constraints to maintain data consistency                | X |
 | **Isolation**     | Supports **row-level locking**, **transaction isolation levels**, and prevents interference between transactions        | **Table-level locking** leads to lack of isolation |
-| **Durability**    | Uses **redo log** (**write-ahead logging**), **doublewrite buffer**, and **crash recovery** for durability              | No recovery in case of crashes  |
+| **Durability**    | Uses **redo log** (**write-ahead logging**), **doublewrite buffer**, and **crash recovery** for durability              | No recovery in case of crashes             |
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 
