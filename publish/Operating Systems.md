@@ -335,13 +335,13 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | /tmp      | Temporary files                                  |
 
 ## CLI (Terminal Emulators)
-- Terminal app 
-    - e.g. Gnome Terminal
+Terminal app 
+- e.g. Gnome Terminal
 
 ## Shell
-- Userspace interface to interact with applications
-    - Interactive: User can enter commands
-    - Non-interactive: `/sbin/nologin`
+(Userspace) interface to interact with applications
+- Interactive: User can enter commands
+- Non-interactive: `/sbin/nologin`
 - **Login**
     - Loads user environment
 - **Non-login**
