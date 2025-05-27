@@ -316,9 +316,8 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 
 ## Directory Structure
 
-| Directory | Description                                    |
-|:----------|:-----------------------------------------------|
 | /         | Root directory                                 |
+|:----------|:-----------------------------------------------|
 | /bin      | User command binaries                          |
 | /boot     | Bootloader and kernel files                    |
 | /etc      | Configuration/setting files                    |
