@@ -280,9 +280,9 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 
 ## Linux
 ### Multiple distributions
-- Individual maintainers/orgs
+- Individual maintainers, or orgs
 - Different package managers
-    - Packages hosted on org servers
+    - Main packages hosted on distro repos
     - Easy update and install through shell instead of searching for binaries
 
 ### Kernel
