@@ -192,8 +192,7 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
 
 ## 3. Bootloader
 #### 3.a. GRUB
-- Reads `/boot`.
-- `/efi/EFI/redhat/grub.cfg`:
+`/boot/efi/EFI/redhat/grub.cfg`:
   - Boot menu
   - Command line parameters (can customize kernel behavior)
 - Loads into RAM:
