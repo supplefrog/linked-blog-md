@@ -294,7 +294,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
     - Has a GitHub repo without active commits
 
 ### File Systems
-| File System | Crash Protection   | Data Integrity Checks  | Snapshots | Built-in RAID Support | Use Case               |
+| File System | Crash Protection    | Data Integrity Checks  | Snapshots | Built-in RAID Support | Use Case                            |
 |-------------|---------------------|------------------------|-----------|-----------------------|-------------------------------------|
 | **ext4**    | Journaling          | None                   | No        | No                    | Small-med file RW, Desktops         |
 | **Btrfs**   | Copy-on-Write (COW) | Checksumming           | Yes       | Yes                   | Desktops                            |
@@ -315,6 +315,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
         - LVM RAID
 
 ## Directory Structure
+
 | /         | Root directory                                   |
 |:----------|:-------------------------------------------------|
 | /bin      | User command binaries                            |
@@ -356,7 +357,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 |:----------------------------------------|:----------------------------------------------------------------------------------------------------|
 | `which`                                 | List path of binary                                                                                 |
 | `find dir -name [file]`                 | Search for files in a directory hierarchy; can use * (wildcard)                                     |
-| `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                        |
+| `find dir -wholename [*/dir]`           | Search for dir in a directory hierarchy			                                                    |
 | `locate [file/dir]`                     | List files & directories with substring and subdirectories from database                            |
 | `updatedb`                              | Updates locate's database (`/etc/updatedb.conf`);                                                   |
 | `whatis cmd`                            | Short description of a command                                                                      |
