@@ -802,7 +802,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqldump (Full Backup)**
 
-`mysqldump [authentication] -A [--all-databases / --databases db1 db2 / db3 tb1 tb2] -R -E --triggers --single-transaction > full_backup.sql`
+`mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] > backup.sql`
 ```
 -R - routines (stored procedures & functions)
 
