@@ -106,12 +106,20 @@ e.g. SELinux
 
 ### Kernel Services
 - Manage software interrupts:
-  - Exception Handling
-  - System calls:
-    - Examples: `read()`, `write()`, `getpid()`, `time()`, `pipe()`, `socket()`, `exec()`
-    - Processor Mode switch: user to kernel mode (OS core functions)
-    - Execute privileged operation
-    - Return to user mode
+    - Exception Handling
+    - System calls:
+        - Examples: `read()`, `write()`, `getpid()`, `time()`, `pipe()`, `socket()`, `exec()`
+        - Processor Mode switch: user to kernel mode (OS core functions)
+        - Execute privileged operation
+        - Return to user mode
+- Namespaces
+
+Used to isolate process IDs, network, mount points, users, etc between groups of processes
+for containerization / sandboxing
+
+- Control groups (cgroups)
+
+Manage CPU, memory, I/O resource usage for groups of processes
 
 ---
 
@@ -147,45 +155,42 @@ e.g. SELinux
 ---
 
 # Boot Process
-## Power ON
+## 1. Power ON
 CPU fetches reset vector (addr) from Firmware ROM which points to first instruction of firmware
 
-## Firmware
-#### BIOS
-- POST (Power On Self-Test):
-  - Checks CPU, RAM, MoBo, I/O devices
-  - If successful:
-    - Locates bootable media
-  - Else:
-    - Stops and shows error (Beeps/LED codes)
+## 2. Firmware
 
-- Load boot sector from SD.
-- **MBR** (Master Boot Record) - 512 bytes data structure stored in LBA 0:
-  - Contains:
-    - Bootstrap loader: scans partition table for a primary partition marked bootable mounted on `/boot`
-    - Partition table
-    - Disk signature
-  - Loads bootloader
+### 2.a. BIOS
+1. POST (Power On Self-Test):
+    1. Checks CPU, RAM, MoBo, I/O devices
+    2. If successful:
+        1. Locates bootable media
+    3. Else:
+        1. Stops and shows error (Beeps/LED codes)
+2. Reads storage boot sector (**LBA 0**) - contains **Master Boot Record**
 
-#### UEFI
-- SEC (Security Initialization)
-- PEI (Pre-EFI Initialization)
-- DXE (Driver Execution Environment)
-- BDS (Boot Device Selection)
-- Reads GPT header & partition table:
-  - LBA 0: Protective MBR
-  - LBA 1: Primary GPT Header (partitioning scheme)
-  - LBA 2: Primary partition table
-  - Backup header and PT at the end of the disk
+| MBR (512 B)              | -                                                                           |
+|--------------------------|-----------------------------------------------------------------------------|
+| 0x0000–0x01BD, 446 bytes | Bootstrap code: scans parition table                                        |
+| 0x01BE–0x01FD, 64 bytes  | Partition table (4 entries)  - 1 partition marked active (bootable) - contains bootloader |
+| 0x01FE–0x01FF, 2 bytes   | Boot signature (0x55AA)                                                     |
 
-- **ESP (EFI System Partition - FAT32)** mounted on `/boot/efi`:
-  - Contains `.efi` executable files:
-    - Bootloader (systemd-boot, GRUB2)
-    - Secure boot ensures only signed `.efi` are executed
-  - Loads bootloader
+### 2.b. UEFI
+1. SEC (Security Initialization)
+2. PEI (Pre-EFI Initialization)
+3. DXE (Driver Execution Environment)
+4. BDS (Boot Device Selection)
+5. Reads storage primary GPT header (LBA 1) -> partition table -> identifies ESP by its special GUID
 
-## Bootloader
-#### GRUB
+![GPT](https://uefi.org/specs/UEFI/2.10/_images/GUID_Partition_Table_Format-5.png)
+
+**EFI System Partition (ESP)** - FAT32
+- Contains `.efi` executable files like bootloader e.g. systemd-boot, GRUB2
+- Later mounted on `/boot/efi`
+- Secure boot ensures only signed `.efi` are executed
+
+## 3. Bootloader
+#### 3.a. GRUB
 - Reads `/boot`.
 - `/efi/EFI/redhat/grub.cfg`:
   - Boot menu
@@ -194,12 +199,12 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
   - **vmlinuz** (supports virtual memory)
   - **initramfs img**
 
-#### systemd-boot
+#### 3.b. systemd-boot
 `/boot/efi/EFI/systemd/systemd-bootx64.efi`
 - Boot menu
 - Loads `vmlinuz` and `initramfs` into RAM and hands over execution
 
-## Kernel
+## 4. Kernel
 - `vmlinuz` contains a small stub (decompression code) that extracts itself
 - Initializes:
   - **CPU**:
@@ -222,7 +227,7 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
   - Mounts storage `/` as Read-only -> fsck (file system check) -> remounts `/` as RW and then chroot
   - Executes PID 1 (`/sbin/init`, sym-linked to `/usr/lib/systemd/systemd`)
 
-## Init System
+## 5. Init System
 - `/etc/fstab` invoked:
   - Filesystem Table - mounts defined filesystems on boot
     - Example: `Device Mount_point Filesystem Options Dump Pass`
@@ -257,35 +262,29 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
 
 `systemctl set-default name.target`
 
-### Namespaces
-Isolate processes within their own environments
-
-### Control groups (cgroups)
-Manage system resources distribution amongst processes
-
-## User Login & Session Management
+## 6. User Login & Session Management
 Init starts processes like getty or display managers that handle user login
 
 After login, the user’s shell (CLI/GUI) or session manager initializes user-specific configurations
 
-## Win
-### CLI (Terminal Emulators)
+# Windows
+## CLI (Terminal Emulators)
 - Windows Terminal
-### Shell
+## Shell
 - PowerShell
-#### Corporate License
+## Corporate License
 - Employees/competitors can report unlicensed software to organizations like BSA through their channels for investigation and potential enforcement actions
 
 - Software vendors often engage intermediary audit firms, such as KPMG, whose compliance and regulatory officers conduct audits to ensure corps comply with software license agreements
 
-## Linux
-### Multiple distributions
+# Linux
+## Multiple distributions
 - Individual maintainers, or orgs
 - Different package managers
     - Main packages hosted on distro repos
     - Easy update and install through shell instead of searching for binaries
 
-### Kernel
+## Kernel
 - Analogous to UNIX kernel written from scratch
 - Originally developed by Linus Torvalds, written in C
 - Rust used for new modules
@@ -293,7 +292,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
     - Now on GitLab
     - Has a GitHub repo without active commits
 
-### File Systems
+## File Systems
 | File System | Crash Protection    | Data Integrity Checks  | Snapshots | Built-in RAID Support | Use Case                            |
 |-------------|---------------------|------------------------|-----------|-----------------------|-------------------------------------|
 | **ext4**    | Journaling          | None                   | No        | No                    | Small-med file RW, Desktops         |
@@ -301,11 +300,11 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 | **XFS**     | Journaling          | Metadata Checksums     | No        | No                    | Large file servers                  |
 | **ZFS**     | Copy-on-Write (COW) | End-to-End Checksums   | Yes       | Yes                   | High-capacity servers, data centers |
 
-#### ext4
+### ext4
 - Linux File System
     - Directories stored as files -> point to inodes -> point to data blocks
 
-### RAID
+## RAID
 - Redundant Array of Independent Disks
 - Data redundancy, performance
     - Hardware
