@@ -315,23 +315,25 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
         - LVM RAID
 
 ## Directory Structure
-| /         | Root directory                                   |
-|:----------|:-------------------------------------------------|
-| /bin      | User command binaries                            |
-| /boot     | Bootloader and kernel files                      |
-| /etc      | Configuration/setting files                      |
-| /sbin     | System binaries                                  |
-| /usr      | Read-only app data and binaries                  |
-| /var      | Variable data files                              |
-| /dev      | Device files                                     |
-| /home     | User home directories                            |
-| /lib      | Libraries and kernel modules                     |
-| /mnt      | Temporary mount point for external file systems  |
-| /opt      | Optional software applications                   |
-| /proc     | Virtual file system for system and process info  |
-| /root     | Root user home directory                         |
-| /sys      | System and hardware information                  |
-| /tmp      | Temporary files                                  |
+
+| Directory | Description                                    |
+|:----------|:-----------------------------------------------|
+| /         | Root directory                                 |
+| /bin      | User command binaries                          |
+| /boot     | Bootloader and kernel files                    |
+| /etc      | Configuration/setting files                    |
+| /sbin     | System binaries                                |
+| /usr      | Read-only app data and binaries                |
+| /var      | Variable data files                            |
+| /dev      | Device files                                   |
+| /home     | User home directories                          |
+| /lib      | Libraries and kernel modules                   |
+| /mnt      | Temporary mount point for external file systems|
+| /opt      | Optional software applications                 |
+| /proc     | Virtual file system for system and process info|
+| /root     | Root user home directory                       |
+| /sys      | System and hardware information                |
+| /tmp      | Temporary files                                |
 
 ## CLI (Terminal Emulators)
 Terminal app 
