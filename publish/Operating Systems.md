@@ -335,7 +335,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 
 ## CLI (Terminal Emulators)
 Terminal app 
-- e.g. Gnome Terminal
+- Gnome Terminal, st
 
 ## Shell
 (Userspace) interface to interact with applications
