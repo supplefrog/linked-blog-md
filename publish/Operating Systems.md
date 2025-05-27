@@ -315,8 +315,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
         - LVM RAID
 
 ## Directory Structure
-
-| /         | Root directory                                 |
+| \/         | Root directory                                |
 |:----------|:-----------------------------------------------|
 | /bin      | User command binaries                          |
 | /boot     | Bootloader and kernel files                    |
