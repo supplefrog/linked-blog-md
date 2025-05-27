@@ -112,12 +112,13 @@ e.g. SELinux
         - Processor Mode switch: user to kernel mode (OS core functions)
         - Execute privileged operation
         - Return to user mode
-- Namespaces
+
+**Namespaces**
 
 Used to isolate process IDs, network, mount points, users, etc between groups of processes
 for containerization / sandboxing
 
-- Control groups (cgroups)
+**Control groups (cgroups)**
 
 Manage CPU, memory, I/O resource usage for groups of processes
 
