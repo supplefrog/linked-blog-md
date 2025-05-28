@@ -821,6 +821,12 @@ mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 
 
 **Binlog for PITR (Point in Time Recovery - Incremental)**
 
+| Binary Log Type     | Description                                                                                                                    |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Statement-Based     | Logs SQL statements that modify data. Efficient, but can be unreliable for non-deterministic operations like NOW().            |
+| Row-Based           | Logs actual row changes. Most reliable for replication, but uses more storage.                                                 |
+| Mixed               | Uses statement-based by default, switches to row-based for unsafe (non-deterministic or complex) statements. Efficient + safe. |
+
 `SHOW BINARY LOGS;`
 
 Delete logs before a specific date / upto a log file
