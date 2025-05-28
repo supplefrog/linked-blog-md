@@ -435,7 +435,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
-# user = root  # not recommended
+# user = root    # not recommended
 # password = P@55w0rd
 ```
 
@@ -689,7 +689,7 @@ Run mysql as mysql user, not root (my.cnf/param)
 
 `mysqld --skip-grant-tables --skip-networking &`
 ```mysql
-flush privileges;` # Loads the grant tables
+flush privileges;`    # Loads the grant tables
 alter user 'root'@'localhost' identified by 'P@55w0rd';
 
 exit
@@ -724,12 +724,12 @@ SELECT SHA2(n, 256) FROM cte;
 
 **Change auto-increment value**
 
-`ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect`
+`ALTER TABLE table_name AUTO_INCREMENT = value;    # if greater than max - next insertion starts w value, else no effect`
 
 **Create general tablespace and add tables**
 ```mysql
 CREATE TABLESPACE ts
-    ADD DATAFILE 'ts.ibd'  # base dir is datadir by default
+    ADD DATAFILE 'ts.ibd'    # base dir is datadir by default
     ENGINE=InnoDB;
 
 CREATE TABLE t1 (
@@ -746,10 +746,10 @@ mkdir /newpath
 chown -R mysql:mysql /newpath
 chmod -R 750 /newpath
 
-systemctl stop mysqld  # copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
+systemctl stop mysqld    # copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
 cp -r /var/lib/mysql /newpath
 
-vi /etc/my.cnf # datadir=/newpath
+vi /etc/my.cnf    # datadir=/newpath
 systemctl restart mysqld
 ```
 
