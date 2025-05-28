@@ -164,10 +164,10 @@ CPU fetches reset vector (addr) from Firmware ROM which points to first instruct
 ### 2.a. BIOS
 1. POST (Power On Self-Test):
     1. Checks CPU, RAM, MoBo, I/O devices
-    2. If successful:
-        1. Locates bootable media
-    3. Else:
-        1. Stops and shows error (Beeps/LED codes)
+    2. If successful:  
+       Locates bootable media
+    2. Else:  
+       Stops and shows error (Beeps/LED codes)
 2. Reads storage boot sector (**LBA 0**) - contains **Master Boot Record**
 
 | MBR (512 B)              | -                                                                           |
