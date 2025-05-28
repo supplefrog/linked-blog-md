@@ -13,7 +13,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     - [Distributions](#distributions)
     - [File Systems](#file-systems)
     - [Directory Structure](#directory-structure)
-    - [Shell](#shell)
+    - [Shell](#shell-1)
     - [Commands](#commands)
 
 ---
