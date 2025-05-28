@@ -829,8 +829,9 @@ PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00' # or NOW();
 
 PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```
-- View binary logs with `-v`
-- Convert binary logs to SQL statements and pipe them into the server
+1. View binary logs with `-v`
+    1. `/*! ... */` is a MySQL versioned comment that specifies minimum MySQL version to execute the code inside it, ignored by other DBMS 
+2. Convert binary logs to SQL statements and pipe them into the server
 ```sh
 `mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
