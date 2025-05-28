@@ -2,19 +2,19 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 # Table of Contents
 - [Components](#components)
-  - [Process Scheduling](#process-scheduling)
-  - [Memory Management](#memory-management)
-  - [Device Management](#device-management)
-  - [File System Management](#file-system-management)
-  - [Security](#security)
+    - [Process Scheduling](#process-scheduling)
+    - [Memory Management](#memory-management)
+    - [Device Management](#device-management)
+    - [File System Management](#file-system-management)
+    - [Security](#security)
 - [Boot Process](#boot-process)
 - [Windows](#windows)
 - [Linux](#linux)
-  - [Directory Structure](#directory-structure)
-  - [CLI (Terminal Emulators)](#cli-terminal-emulators)
-  - [Shell](#shell)
-  - [GNU Utils](#gnu-utils)
-  - [Commands](#commands)
+    - [Distributions](#distributions)
+    - [File Systems](#file-systems)
+    - [Directory Structure](#directory-structure)
+    - [Shell](#shell)
+    - [Commands](#commands)
 
 ---
 
@@ -278,7 +278,7 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 - Software vendors often engage intermediary audit firms, such as KPMG, whose compliance and regulatory officers conduct audits to ensure corps comply with software license agreements
 
 # Linux
-## Multiple distributions
+## Distributions
 - Individual maintainers, or orgs
 - Different package managers
     - Main packages hosted on distro repos
