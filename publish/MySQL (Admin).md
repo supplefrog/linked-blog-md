@@ -795,6 +795,9 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 | Cold     | DB offline (locked)                                          |
 | Warm     | Table locks (partial access)                                 |
 | Hot      | No locks (full access)                                       |
+
+| -        | -                                                            |
+|----------|--------------------------------------------------------------|
 | Restore  | Return to original state                                     |
 | Recover  | Salvage missing data using specialized tools, partial/full   |
 
