@@ -867,7 +867,7 @@ Actual DB data dir files
 [set login-path=client](#authentication)
 
 `/etc/logrotate.d/mysql`
-```
+```ini
 /var/log/mysql/mysql_error.log /var/log/mysql/slow_query.log {
 compress
 create 660 mysql mysql
