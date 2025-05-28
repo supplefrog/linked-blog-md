@@ -790,16 +790,16 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 
 ## Backup and Restore
 
-| Term     | Meaning                                                      |
-|----------|--------------------------------------------------------------|
-| Cold     | DB offline (locked)                                          |
-| Warm     | Table locks (partial access)                                 |
-| Hot      | No locks (full access)                                       |
+| Term     | Meaning                                                    |
+|----------|------------------------------------------------------------|
+| Cold     | DB offline (locked)                                        |
+| Warm     | Table locks (partial access)                               |
+| Hot      | No locks (full access)                                     |
 
-| -        | -                                                            |
-|----------|--------------------------------------------------------------|
-| Restore  | Return to original state                                     |
-| Recover  | Salvage missing data using specialized tools, partial/full   |
+| -        | -                                                          |
+|----------|------------------------------------------------------------|
+| Restore  | Return to original state                                   |
+| Recover  | Salvage missing data using specialized tools, partial/full |
 
 ### Logical
 
