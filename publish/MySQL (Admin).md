@@ -818,7 +818,7 @@ mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 
 --no-data    # only schema (database and its objects' structure)
 ```
 
-- Restore
+**Restore**
 
 `mysql [authentication] database_name < backup.sql`
 
