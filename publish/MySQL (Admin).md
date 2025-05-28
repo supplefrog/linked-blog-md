@@ -1,7 +1,7 @@
 Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
-- [MySQL Community vs Enterprise](#rdbms---tables-have-relations)
+- [MySQL Community vs Enterprise](#diction)
 - [MySQL Architecture](#mysql-architecture)
     - [Logical](#logical)
     - [Physical](#physical)
@@ -12,7 +12,10 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Backup and Restore](#backup-and-restore)
 ---
 
-### RDBMS - Tables have relations
+### Diction
+- MySQL -> relational database management system (RDBMS) - database have schemas
+- Schema - table structures (columns, data types) + relationships through primary / foreign keys
+
 | Feature Category              | Community Edition                                                                  | Enterprise Edition                                                                                                                       |
 |-------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **License**                   | FOSS (Free and Open Source Software)                                               | Commercial License                                                                                                                                                                                                                                                                                |
