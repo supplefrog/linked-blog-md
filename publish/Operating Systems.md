@@ -400,9 +400,9 @@ Terminal app
 | `rmdir dir`                            | Remove empty directory                                                                          |
 | `touch file`                           | Create empty file                                                                               |
 | `echo "text"`                          | Print text on stdout                                                                            |
-| `cat [file1] [file2] 			         | Concatenate files and print on stdout                                     					   |
-| `  [1 / 2 / &]> file`                  | Redirect stdout/stderr/both, overwrite file                                                     |
-| `            >> file`                  | Append to file                                                                                  |
+| `cat [file1] [file2]` 			         | Concatenate files and print on stdout                                     					               |
+| `   [1 / 2 / &]> file`                  | Redirect stdout/stderr/both, overwrite file                                                    |
+| `             >> file`                  | Append to file                                                                                 |
 | `grep -v word`                         | Exclude lines containing word                                                                   |
 | `     -w word`                         | Search for whole word                                                                           |
 | `awk '{print $1, $2}' filename`        | Print specified columns                                                                         |
