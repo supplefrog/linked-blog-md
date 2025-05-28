@@ -800,9 +800,9 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
-**mysqldump (Full Backup)**
+**mysqldump**
 
-`mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] > backup.sql`
+`mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 ```
 -R - routines (stored procedures & functions)
 
@@ -810,7 +810,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 --single-transaction - no table lock, for both backup and R/W by other user
 
---no-data - only table structure
+--no-data - only schema (database and its objects' structure)
 ```
 
 - Restore
@@ -820,6 +820,13 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 **Binlog for PITR (Point in Time Recovery - Incremental)**
 
 `SHOW BINARY LOGS;`
+
+Delete logs before a specific date/log file
+```mysql
+PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00';
+
+PURGE BINARY LOGS TO 'mysql-bin.000123';
+```
 
 - Convert binary logs to SQL statements and pipe them into the server
 ```
