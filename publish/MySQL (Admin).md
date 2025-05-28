@@ -803,16 +803,16 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
 **mysqldump**
+```sh
+mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 
-`mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
-```
--R - routines (stored procedures & functions)
+-R    # routines (stored procedures & functions)
 
--E - events - scheduled tasks
+-E    # events (scheduled tasks)
 
---single-transaction - no table lock, for both backup and R/W by other user
+--single-transaction     # no table lock, for both backup and R/W by other user
 
---no-data - only schema (database and its objects' structure)
+--no-data    # only schema (database and its objects' structure)
 ```
 
 - Restore
@@ -829,12 +829,15 @@ PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00' # or NOW();
 
 PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```
-
+- View binary logs with `-v`
 - Convert binary logs to SQL statements and pipe them into the server
-```
+```sh
 `mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
---read-from-remote-server - if binlog encrypted
+# modified output w flags may not be able to be used to replay changes
+-v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
+--base64-output=    # whether to display base64-encoded binlog statements, never/decode-rows w/o -v disables row-based events, default auto
+--read-from-remote-server    # if binlog encrypted
 ```
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
