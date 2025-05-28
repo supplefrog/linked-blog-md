@@ -829,7 +829,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 
 - Convert binary logs to SQL statements and pipe them into the server
 ```
-`mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`  # only replay changes for specific time/position
+`mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
 --read-from-remote-server - if binlog encrypted
 ```
@@ -851,7 +851,7 @@ Actual DB data dir files
 **Tables - Warm Backup**
 - **Source**
   ```mysql
-  flush tables db.table_name for export;  # locks table for export - copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
+  flush tables db.table_name for export;    # locks table for export - copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
   cp table_name.ibd table_name.cfg destination/
   unlock tables;
   ```
