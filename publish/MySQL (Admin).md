@@ -233,10 +233,6 @@ Default shared tablespace for internal InnoDB structures
 - Binary Log
     - Used for replication and point-in-time recovery
     - Events that describe changes to DB
-    - Server decides which format to use depending on the query:
-        - Statement Based Logging - queries that modify data
-        - Row-Based Logging - row level data changes - before and after
-        - Mixed Logging - combines both
 - Relay Log
     - Replica server data dir/replica-server-name-relay.bin.000001
     - Store events read from source's bin log
@@ -824,11 +820,11 @@ mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 
 
 **Binlog for PITR (Point in Time Recovery - Incremental)**
 
-| Binary Log Type     | Description                                                                                                                    |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| Statement-Based     | Logs SQL statements that modify data. Efficient, but can be unreliable for non-deterministic operations like NOW().            |
-| Row-Based           | Logs actual row changes. Most reliable for replication, but uses more storage.                                                 |
-| Mixed               | Uses statement-based by default, switches to row-based for unsafe (non-deterministic or complex) statements. Efficient + safe. |
+| Binary Log Type | Description                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Statement     | Logs SQL statements that modify data. Efficient, but can be unreliable for non-deterministic operations like NOW().            |
+| Row (Default) | Logs actual row changes. Most reliable for replication, but uses more storage.                                                 |
+| Mixed         | Uses statement-based by default, switches to row-based for unsafe (non-deterministic or complex) statements. Efficient + safe. |
 
 `SHOW BINARY LOGS;`
 
