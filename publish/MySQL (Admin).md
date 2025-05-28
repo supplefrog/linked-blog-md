@@ -822,7 +822,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 Delete logs before a specific date/log file
 ```mysql
-PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00';
+PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00' # or NOW();
 
 PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```
