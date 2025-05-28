@@ -41,7 +41,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ### Server
 
 **Authentication**
-```
+```mysql
 'username'@'hostname' identified by 'password';
 ```
 
@@ -328,7 +328,7 @@ Default shared tablespace for internal InnoDB structures
     - **Temporary Tablespace**
         - Session (#innodb_temp dir)
             - User-created
-                ```
+                ```mysql
                 CREATE TEMPORARY TABLE table_name ();
                 ```
             - Internal temp tables - auto created by optimizer for operations like sorting, grouping
@@ -402,7 +402,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
         - SysVinit service files for backward compatibility
 
 ## my.cnf
-```
+```ini
 [mysqld1]
 # server-id = 1
 port = 3307
@@ -474,7 +474,7 @@ innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
 **Used to start daemon(s) on boot**
 
 `/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
-```
+```ini
 [Unit]
 Description=MySQL Server
 Documentation=man:mysqld(8)
@@ -540,7 +540,7 @@ PrivateTmp=false
 ### firewalld
 - Identifies incoming traffic from data frame **Network/IP** Layer & **Transport/TCP** Layer **headers** 
 - Use rich rules to block service names based on source ips, destination ports
-```
+```sh
 firewall-cmd --list-all #services, ports
 firewall-cmd --permanent --add-service=mysql
 firewall-cmd --permanent --add-service=portid/protocol
@@ -559,7 +559,7 @@ firewall-cmd --reload
 `semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
 
 - set file context for custom datadir
-```
+```sh
 semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
 restorecon -Rv /datadir
 ```
@@ -596,7 +596,7 @@ Each row = active client connection - connection id, username, hostname, db in u
 
 **Query Table Data without using DB**
 
-```
+```mysql
 SELECT table_name
 FROM information_schema.tables
 WHERE table_schema = 'db_name' AND table_type = '';
@@ -685,31 +685,30 @@ Login:
 Run mysql as mysql user, not root (my.cnf/param)
 
 `mysqld --skip-grant-tables --skip-networking &`
-```
+```mysql
 flush privileges;` # Loads the grant tables
 alter user 'root'@'localhost' identified by 'P@55w0rd';
-```
-```
+
 exit
-pkill mysql
 ```
+`pkill mysql`
 
 ### Table Management
 
 [**Create dummy test data**](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
 
-`use test;`
+```mysql
+CREATE DATABASE IF NOT EXISTS test;
 
-```
+use test;
+
 CREATE TABLE hashes (
   id INT PRIMARY KEY AUTO_INCREMENT, # or UNIQUE
   hash CHAR(64)
 );
-```
 
-`SET SESSION cte_max_recursion_depth = 1000000;`
+SET SESSION cte_max_recursion_depth = 1000000;
 
-```
 INSERT INTO hashes(hash)
 WITH RECURSIVE cte (n) AS
 (
@@ -725,7 +724,7 @@ SELECT SHA2(n, 256) FROM cte;
 `ALTER TABLE table_name AUTO_INCREMENT = value; # if greater than max - next insertion starts w value, else no effect`
 
 **Create general tablespace and add tables**
-```
+```mysql
 CREATE TABLESPACE ts
     ADD DATAFILE 'ts.ibd'  # base dir is datadir by default
     ENGINE=InnoDB;
@@ -739,7 +738,7 @@ CREATE TABLE t1 (
 
 **Switch data dir after install**
 
-```
+```sh
 mkdir /newpath
 chown -R mysql:mysql /newpath
 chmod -R 750 /newpath
@@ -759,7 +758,7 @@ systemctl restart mysqld
 
 **Stored procedure to convert all MyISAM tables in DB**
 
-```
+```mysql
 DROP PROCEDURE IF EXISTS convertToInnodb;
 DELIMITER //
 
@@ -851,13 +850,13 @@ Actual DB data dir files
 
 **Tables - Warm Backup**
 - **Source**
-  ```
+  ```mysql
   flush tables db.table_name for export;  # locks table for export - copying mid insertion causes parital or mismatched data & index or corruption if copied mid-modification
   cp table_name.ibd table_name.cfg destination/
   unlock tables;
   ```
 - **Destination**
-  ```
+  ```mysql
   create table db.table_name(exact table_definition);
   alter table db.table_name discard tablespace;
   alter table db.table_name import tablespace;
