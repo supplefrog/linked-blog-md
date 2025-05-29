@@ -844,7 +844,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 `mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= ] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
 --read-from-remote-server    # if binlog encrypted
---include-gtids=server_uuid:tr_id --exclude-gtids=    # used for replication only, 
+--include-gtids=server_uuid:tr_id --exclude-gtids=    # used for replication only, gtid_executed gtids aren't replayed
 
 # modified output w flags may not be able to be used to replay changes
 -v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
