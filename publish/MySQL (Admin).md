@@ -839,7 +839,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
     1. `/*! ... */` is a MySQL versioned comment that specifies minimum MySQL version to execute the code inside it, ignored by other DBMS 
 2. Convert binary logs to SQL statements and pipe them into the server
 ```sh
-`mysqlbinlog [--start-datetime, --stop-datetime="2025-05-21 18:00:00" / --start-position, --stop-position] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
+`mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= / --include-gtids=server_uuid:tr_id --exclude-gtids=] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
 # modified output w flags may not be able to be used to replay changes
 -v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
