@@ -403,31 +403,32 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ## my.cnf
 ```ini
 [mysqld1]
-# server-id = 1
-port = 3307
-datadir = /var/lib/mysql1
 
-log-error = /var/log/mysqld1.log
-lc-messages-dir = /usr/local/mysql/share/english
-user = mysql
+enforce_gtid_consistency = 1
+gtid_mode = 1
 
-# socket = /var/run/mysql/mysql1.sock
-# pid-file = /var/run/mysql/mysqld1.pid
-
-# binlog_encryption = ON
 # expire_logs_days = 7 # binlog expiry
 # binlog_expire_logs_seconds = 604800
-
+# binlog_encryption = ON
 # log_bin = /var/lib/mysql/mysql-bin.index  # creates bin logs and index file with specified name instead of binlog
 # general_log = 1
 # general_log_file =
-# slow_query_log =
+slow_query_log = 1
 # slow_query_log_file =
 # long_query_time = 2
 
-default_authentication_plugin = sha256_password  # 8.0 -> authentication_policy
-default_storage_engine = InnoDB
-innodb_buffer_pool_size = 128M  # default, can be increased up to 80% server RAM
+innodb_buffer_pool_size = 128M    # default, can be increased up to 80% server RAM
+# default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
+# default_storage_engine = InnoDB
+
+# server-id = 1
+port = 3307
+datadir = /var/lib/mysql1
+log-error = /var/log/mysqld1.log
+lc-messages-dir = /usr/local/mysql/share/english
+# socket = /var/run/mysql/mysql1.sock
+# pid-file = /var/run/mysql/mysqld1.pid
+user = mysql
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
@@ -803,7 +804,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqldump**
 ```sh
-mysqldump [authentication] [-A, --all-databases / --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
+mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 
 -R    # routines (stored procedures & functions)
 
@@ -851,6 +852,10 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 **MySQL Shell**
 
 **mysqlpump**
+
+`mysqlpump [authentication] -B db1 --parallel-schemas=4:db1,db2 --default-parallelism=4 dbname > pump.sql
+mysqlpump -u root -p  --default-parallelism=6  > backup_$(date '+%Y-%m-%H-%M-%S').sql
+mysqlpump -u root -p --databases dbname.table1 > pump.table1$(date '+%Y-%m-%H-%M-%S').sql`
 
 ### Physical
 
