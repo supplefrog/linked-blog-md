@@ -829,8 +829,10 @@ mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 
 
 `SHOW BINARY LOGS;`
 
-Delete logs before a specific date / upto a log file
+Reset binary logs and gtids, delete logs before a specific date / upto a log file
 ```mysql
+RESET BINARY LOGS and GTIDS;
+
 PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00';    # or NOW()
 
 PURGE BINARY LOGS TO 'mysql-bin.000123';
@@ -839,9 +841,10 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
     1. `/*! ... */` is a MySQL versioned comment that specifies minimum MySQL version to execute the code inside it, ignored by other DBMS 
 2. Convert binary logs to SQL statements and pipe them into the server
 ```sh
-`mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= / --include-gtids=server_uuid:tr_id --exclude-gtids=] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
+`mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= ] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
 --read-from-remote-server    # if binlog encrypted
+--include-gtids=server_uuid:tr_id --exclude-gtids=    # used for replication only, 
 
 # modified output w flags may not be able to be used to replay changes
 -v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
@@ -855,7 +858,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 **mysqlpump**
 
 `mysqlpump [authentication] -B db1 --parallel-schemas=4:db1,db2 --default-parallelism=4 dbname > pump.sql
-mysqlpump -u root -p  --default-parallelism=6  > backup_$(date '+%Y-%m-%H-%M-%S').sql
+mysqlpump --default-parallelism=6  > backup_$(date '+%Y-%m-%H-%M-%S').sql
 mysqlpump -u root -p --databases dbname.table1 > pump.table1$(date '+%Y-%m-%H-%M-%S').sql`
 
 ### Physical
