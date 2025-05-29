@@ -407,25 +407,25 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 enforce_gtid_consistency = 1
 gtid_mode = 1
 
-# expire_logs_days = 7 # binlog expiry
+# expire_logs_days = 7    # binlog expiry
 # binlog_expire_logs_seconds = 604800
 # binlog_encryption = ON
-# log_bin = /var/lib/mysql/mysql-bin.index  # creates bin logs and index file with specified name instead of binlog
-# general_log = 1
+# log_bin = /var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
+general_log = 1
 # general_log_file =
 slow_query_log = 1
 # slow_query_log_file =
 # long_query_time = 2
 
-innodb_buffer_pool_size = 128M    # default, can be increased up to 80% server RAM
+# innodb_buffer_pool_size = 128M    # default, can be increased up to 80% server RAM
 # default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
 # default_storage_engine = InnoDB
 
-# server-id = 1
-port = 3307
-datadir = /var/lib/mysql1
-log-error = /var/log/mysqld1.log
-lc-messages-dir = /usr/local/mysql/share/english
+server-id = 1
+# port = 3307
+# datadir = /var/lib/mysql1
+# log-error = /var/log/mysqld1.log
+# lc-messages-dir = /usr/local/mysql/share/
 # socket = /var/run/mysql/mysql1.sock
 # pid-file = /var/run/mysql/mysqld1.pid
 user = mysql
