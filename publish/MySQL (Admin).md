@@ -841,10 +841,11 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```sh
 `mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= / --include-gtids=server_uuid:tr_id --exclude-gtids=] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
+--read-from-remote-server    # if binlog encrypted
+
 # modified output w flags may not be able to be used to replay changes
 -v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
---base64-output=    # whether to display base64-encoded binlog statements, never/decode-rows w/o -v disables row-based events, default auto
---read-from-remote-server    # if binlog encrypted
+--base64-output=    # whether to display base64-encoded binlog statements: never, decode-rows disables row-based events, default auto
 ```
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
