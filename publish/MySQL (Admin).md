@@ -831,7 +831,7 @@ mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 
 
 Reset binary logs and gtids, delete logs before a specific date / upto a log file
 ```mysql
-RESET BINARY LOGS and GTIDS;
+RESET BINARY LOGS AND GTIDS;
 
 PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00';    # or NOW()
 
