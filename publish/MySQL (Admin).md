@@ -804,7 +804,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqldump**
 ```sh
-mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
+mysqldump [authentication] [--add-drop-database] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 
 -R    # routines (stored procedures & functions)
 
