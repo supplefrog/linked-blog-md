@@ -852,7 +852,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 --base64-output=    # whether to display base64-encoded binlog statements: never, decode-rows disables row-based events, default auto
 ```
 
-[**mydumper**](https://github.com/mydumper/mydumper/releases)
+[**mydumper / myloader**](https://github.com/mydumper/mydumper/releases)
 
 ```bash
 mydumper -u user -p pa55 [-t, --threads 4] [-d, --database dbname] -o [--outputdir] /backups/dbname
