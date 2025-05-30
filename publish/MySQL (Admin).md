@@ -856,6 +856,19 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 
 **MySQL Shell**
 
+| Action/Utility      | Syntax Example                                                                                   |
+|---------------------|--------------------------------------------------------------------------------------------------|
+| Instance Backup     | `util.dumpInstance('/path/to/backup-directory')`                                                 |
+| Schema(s) Backup    | `util.dumpSchemas(['database_name'], '/path/to/backup-directory')`                               |
+| Table(s) Backup     | `util.dumpTables('database_name', ['table1', 'table2'], '/path/to/backup-directory')`            |
+| With Options        | `util.dumpInstance('/backup/dir', {threads: 4, ocimds: true, consistent: true})`                 |
+
+| Option       | Description                                                                                              |
+|--------------|----------------------------------------------------------------------------------------------------------|
+| `ocimds`     | Checks and prepares the dump for compatibility with MySQL HeatWave Service (Oracle Cloud). Use `true` if targeting HeatWave.  |
+| `threads`    | Sets the number of parallel worker threads for the backup. Cannot assign threads to specific queues; only total count is set. |
+| `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies.       |
+
 ### Physical
 
 Actual DB data dir files
