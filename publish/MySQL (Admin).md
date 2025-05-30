@@ -857,9 +857,13 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 
 **mysqlpump**
 
-`mysqlpump [authentication] -B db1 --parallel-schemas=4:db1,db2 --default-parallelism=4 dbname > pump.sql
-mysqlpump --default-parallelism=6  > backup_$(date '+%Y-%m-%H-%M-%S').sql
-mysqlpump -u root -p --databases dbname.table1 > pump.table1$(date '+%Y-%m-%H-%M-%S').sql`
+```bash
+mysqlpump [authentication] -B db1 dbname > pump.sql
+
+--parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
+
+--default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
+```
 
 ### Physical
 
