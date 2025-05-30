@@ -806,7 +806,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 ```bash
 mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 
---add-drop-database    # add drop database if exists statement
+--add-drop-database    # drop database if exists, useful if consistent DBs are needed e.g. across replicas
 -R    # routines (stored procedures & functions)
 -E    # events (scheduled tasks)
 --set-gtid-purged=off    # for DBs w GTIDs, excludes them in backup, creates new tr_ids upon restore
