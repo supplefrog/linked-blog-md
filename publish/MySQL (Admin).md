@@ -819,9 +819,20 @@ mysqldump [authentication] [--add-drop-database] [-A, --all-databases / -B, --da
 
 `mysql [authentication] database_name < backup.sql`
 
+**mysqlpump**
+
+```bash
+mysqlpump [authentication] -B db1 dbname > pump.sql
+
+# number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
+--parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
+
+--default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
+```
+
 **Point in Time Recovery** (PITR - Incremental) **using binlog**
 
-| Binary Log Type | Description                                                                                                                    |
+| Binary Log Type | Description                                                                                                                  |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------|
 | Statement     | Logs SQL statements that modify data. Efficient, but can be unreliable for non-deterministic operations like NOW().            |
 | Row (Default) | Logs actual row changes. Most reliable for replication, but uses more storage.                                                 |
@@ -840,7 +851,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 1. View binary logs with `-v`
     1. `/*! ... */` is a MySQL versioned comment that specifies minimum MySQL version to execute the code inside it, ignored by other DBMS 
 2. Convert binary logs to SQL statements and pipe them into the server
-```sh
+```bash
 `mysqlbinlog [--start-datetime=, --stop-datetime="2025-05-21 18:00:00" / --start-position=, --stop-position= ] binlog.000001 binlog.000002 | mysql [authentication]`    # only replay changes for specific time/position
 
 --read-from-remote-server    # if binlog encrypted
@@ -854,17 +865,6 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
 **MySQL Shell**
-
-**mysqlpump**
-
-```bash
-mysqlpump [authentication] -B db1 dbname > pump.sql
-
-# number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
---parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
-
---default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
-```
 
 ### Physical
 
