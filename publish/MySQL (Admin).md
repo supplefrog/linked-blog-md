@@ -856,12 +856,14 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 
 **MySQL Shell**
 
+**`\js`**
 | Action/Utility      | Syntax Example                                                                                   |
 |---------------------|--------------------------------------------------------------------------------------------------|
 | Instance Backup     | `util.dumpInstance('/path/to/backup-directory')`                                                 |
 | Schema(s) Backup    | `util.dumpSchemas(['database_name'], '/path/to/backup-directory')`                               |
 | Table(s) Backup     | `util.dumpTables('database_name', ['table1', 'table2'], '/path/to/backup-directory')`            |
 | With Options        | `util.dumpInstance('/backup/dir', {threads: 4, ocimds: true, consistent: true})`                 |
+| Import Dump         | `util.loadDump('/path/to/backup-directory')`                                                     |
 
 | Option       | Description                                                                                              |
 |--------------|----------------------------------------------------------------------------------------------------------|
