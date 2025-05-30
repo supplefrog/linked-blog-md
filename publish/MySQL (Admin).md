@@ -819,7 +819,7 @@ mysqldump [authentication] [--add-drop-database] [-A, --all-databases / -B, --da
 
 `mysql [authentication] database_name < backup.sql`
 
-**Binlog for PITR (Point in Time Recovery - Incremental)**
+**Point in Time Recovery** (PITR - Incremental) **using binlog**
 
 | Binary Log Type | Description                                                                                                                    |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------|
