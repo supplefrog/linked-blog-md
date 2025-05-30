@@ -854,6 +854,11 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 
 [**mydumper**](https://github.com/mydumper/mydumper/releases)
 
+```bash
+mydumper -u user -p pa55 [-t, --threads 4] [-d, --database dbname] -o [--outputdir] /backups/dbname
+myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
+```
+
 **MySQL Shell**
 
 **`\js`**
