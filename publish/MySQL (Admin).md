@@ -566,6 +566,16 @@ restorecon -Rv /datadir
 
 ## mysqld Management
 
+## SELECT
+| Object Type  | MySQL Query Example                                 |
+|--------------|-----------------------------------------------------|
+| Tables       | `SHOW TABLES FROM your_database;`                   |
+| Views        | `SHOW FULL TABLES IN your_database WHERE Table_type = 'VIEW';` |
+| Procedures   | `SHOW PROCEDURE STATUS WHERE Db = 'your_database';` |
+| Functions    | `SHOW FUNCTION STATUS WHERE Db = 'your_database';`  |
+| Triggers     | `SHOW TRIGGERS FROM your_database;`                 |
+| Events       | `SHOW EVENTS FROM your_database;`                   |
+
 ### Status
 
 Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
