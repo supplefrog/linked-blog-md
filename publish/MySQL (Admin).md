@@ -810,7 +810,7 @@ mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 
 -R    # routines (stored procedures & functions)
 -E    # events (scheduled tasks)
 --set-gtid-purged=off    # for DBs w GTIDs, excludes them in backup, creates new tr_ids upon restore
---single-transaction     # no table lock, for both backup and R/W by other user
+--single-transaction     # no table lock, allows changes during dump
 
 --no-data    # only schema (database and its objects' structure)
 ```
