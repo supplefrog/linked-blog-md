@@ -803,13 +803,13 @@ DROP PROCEDURE IF EXISTS convertToInnodb;
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
 **mysqldump**
-```sh
-mysqldump [authentication] [--add-drop-database] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--single-transaction] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
+```bash
+mysqldump [authentication] [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
 
+--add-drop-database    # add drop database if exists statement
 -R    # routines (stored procedures & functions)
-
 -E    # events (scheduled tasks)
-
+--set-gtid-purged=off    # for DBs w GTIDs, excludes them in backup, creates new tr_ids upon restore
 --single-transaction     # no table lock, for both backup and R/W by other user
 
 --no-data    # only schema (database and its objects' structure)
@@ -817,12 +817,12 @@ mysqldump [authentication] [--add-drop-database] [-A, --all-databases / -B, --da
 
 **Restore**
 
-`mysql [authentication] database_name < backup.sql`
+`mysql [authentication] db_name < backup.sql`
 
 **mysqlpump**
 
 ```bash
-mysqlpump [authentication] -B db1 dbname > pump.sql
+mysqlpump [authentication] -B db1 db2 > pump.sql
 
 # number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
 --parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
