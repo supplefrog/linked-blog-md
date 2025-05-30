@@ -695,28 +695,37 @@ exit
 
 ### Table Management
 
+### Stored Procedure
+
 [**Create dummy test data**](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
 
 ```mysql
-CREATE DATABASE IF NOT EXISTS test;
+DELIMITER $$
 
-use test;
+CREATE PROCEDURE test.create_dummy_data()
+BEGIN
+  DECLARE n INT;
+  -- Find next table number
+  SELECT IFNULL(MAX(CAST(SUBSTRING(table_name,2) AS UNSIGNED)),0)+1 INTO n
+    FROM information_schema.tables
+   WHERE table_schema='test' AND table_name REGEXP '^t[0-9]+$';
 
-CREATE TABLE hashes (
-  id INT PRIMARY KEY AUTO_INCREMENT, # or UNIQUE
-  hash CHAR(64)
-);
+  SET @tbl := CONCAT('test.t', n);
+  -- Create new table
+  SET @sql := CONCAT('CREATE TABLE ', @tbl, ' (id INT AUTO_INCREMENT PRIMARY KEY, hash CHAR(64))');
+  PREPARE s FROM @sql; EXECUTE s; DEALLOCATE PREPARE s;
 
-SET SESSION cte_max_recursion_depth = 1000000;
+  -- Insert 1 million hashes using recursive CTE
+  SET SESSION cte_max_recursion_depth = 1000000;
+  SET @sql := CONCAT(
+    'INSERT INTO ', @tbl, ' (hash) ',
+    'WITH RECURSIVE cte(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM cte WHERE n<1000000) ',
+    'SELECT SHA2(n,256) FROM cte'
+  );
+  PREPARE s FROM @sql; EXECUTE s; DEALLOCATE PREPARE s;
+END$$
 
-INSERT INTO hashes(hash)
-WITH RECURSIVE cte (n) AS
-(
-  SELECT 1
-  UNION ALL
-  SELECT n + 1 FROM cte WHERE n < 1000000
-)
-SELECT SHA2(n, 256) FROM cte;
+DELIMITER ;
 ```
 
 **Change auto-increment value**
@@ -755,35 +764,6 @@ systemctl restart mysqld
 [Backup](#backup-and-restore) before conversion
 
 `ALTER TABLE table_name ENGINE = InnoDB;`
-
-**Stored procedure to convert all MyISAM tables in DB**
-
-```mysql
-DROP PROCEDURE IF EXISTS convertToInnodb;
-DELIMITER //
-
-CREATE PROCEDURE convertToInnodb()
-BEGIN
-  mainloop: LOOP
-    SELECT TABLE_NAME INTO @convertTable FROM information_schema.TABLES
-      WHERE TABLE_SCHEMA = DATABASE()
-        AND ENGINE = 'MyISAM'
-      ORDER BY TABLE_NAME LIMIT 1;
-    IF @convertTable IS NULL THEN
-      LEAVE mainloop;
-    END IF;
-    SET @sqltext := CONCAT('ALTER TABLE `', DATABASE(), '`.`', @convertTable, '` ENGINE = InnoDB');
-    PREPARE convertTables FROM @sqltext;
-    EXECUTE convertTables;
-    DEALLOCATE PREPARE convertTables;
-    SET @convertTable = NULL;
-  END LOOP mainloop;
-END//
-
-DELIMITER ;
-CALL convertToInnodb();
-DROP PROCEDURE IF EXISTS convertToInnodb;
-```
 
 ## Backup and Restore
 
