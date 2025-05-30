@@ -860,6 +860,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```bash
 mysqlpump [authentication] -B db1 dbname > pump.sql
 
+# number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
 --parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
 
 --default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
