@@ -788,6 +788,13 @@ systemctl restart mysqld
 | Restore  | Return to original state                                   |
 | Recover  | Salvage missing data using specialized tools, partial/full |
 
+```bash
+SIZE=$(printf "%.0f" "$(echo "$(mysql -N -B -e "SELECT SUM(data_length) FROM information_schema.tables
+WHERE table_schema = 'db_name';") * 1.5" | bc)")
+
+mysqldump --single-transaction --set-gtid-purged=off db_name | pv -p -s $SIZE > dumb
+```
+
 ### Logical
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
