@@ -927,8 +927,6 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 - `[other_options]`: Any additional flags as needed  
 - `[]`: Optional parameters
 
-[**Percona XtraBackup**](https://www.percona.com/downloads) 
-
 **Tables - Warm Backup**
 - **Source**
   ```mysql
