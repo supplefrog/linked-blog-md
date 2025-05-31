@@ -882,9 +882,50 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 
 ### Physical
 
-Actual DB data dir files
+## MySQL Enterprise Backup (mysqlbackup)
 
-**MySQL Enterprise Backup**
+| Operation            | Command Syntax                                                                                                                                                                                                                                                                                           |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Backup          | `mysqlbackup --user=<user> [--password=<password>] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> --with-timestamp [--compress] [--encrypt] [--include-tables=<db.tbl>] [--exclude-tables=<db.tbl>] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--read-threads=<N>] [--process-threads=<N>] [--write-threads=<N>] [other_options] backup` |
+| Incremental Backup   | `mysqlbackup --user=<user> [--password=<password>] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> --incremental --incremental-base=dir:<base_dir> --with-timestamp [--compress] [--encrypt] [--include-tables=<db.tbl>] [--exclude-tables=<db.tbl>] [--include-purge-gtids=off] [--read-threads=<N>] [--process-threads=<N>] [--write-threads=<N>] [other_options] backup` |
+| Prepare Backup       | `mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] [other_options] apply-log`                                                                                                                                                                                                             |
+| Restore Backup       | `mysqlbackup --user=<user> [--password=<password>] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> [--uncompress] [--decrypt] [other_options] copy-back`                                                                                                                                        |
+
+**Legend:**  
+- `<user>`: MySQL username  
+- `<password>`: MySQL password  
+- `<host>`: Hostname (default: localhost)  
+- `<port>`: Port (default: 3306)  
+- `<backup_dir>`: Directory for backup  
+- `<base_dir>`: Directory of previous backup for incremental  
+- `<db.tbl>`: Database/table pattern  
+- `<N>`: Number of threads  
+- `[other_options]`: Any additional options as needed  
+- `[]`: Optional parameters
+
+---
+
+## [Percona XtraBackup (xtrabackup)](https://www.percona.com/downloads)
+
+| Operation            | Command Syntax                                                                                                                                                                                                                  |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Full Backup          | `xtrabackup --backup --target-dir=<dir> --user=<user> [--password=<pw>] [--host=<host>] [--port=<port>] [--parallel=<N>] [--compress] [--encrypt] [--no-timestamp] [--throttle=<rate>] [--tables=<db.tbl>] [other_options]`        |
+| Incremental Backup   | `xtrabackup --backup --target-dir=<inc_dir> --incremental-basedir=<base_dir> --user=<user> [--password=<pw>] [--host=<host>] [--port=<port>] [--parallel=<N>] [--compress] [--encrypt] [other_options]`                          |
+| Prepare Backup       | `xtrabackup --prepare --target-dir=<dir> [--apply-log-only] [--use-memory=<size>] [--parallel=<N>] [other_options]`                                                                                                             |
+| Restore Backup       | `xtrabackup --copy-back --target-dir=<dir> [other_options]`                                                                                                                              |
+
+**Legend:**  
+- `<user>`: MySQL username  
+- `<pw>`: MySQL password  
+- `<host>`: Hostname  
+- `<port>`: Port  
+- `<dir>` / `<inc_dir>` / `<base_dir>`: Directory paths  
+- `<N>`: Number of parallel threads  
+- `<rate>`: Throttle rate (MB/s)  
+- `<db.tbl>`: Database/table pattern  
+- `<size>`: Memory allocation for prepare  
+- `[other_options]`: Any additional flags as needed  
+- `[]`: Optional parameters
 
 [**Percona XtraBackup**](https://www.percona.com/downloads) 
 
