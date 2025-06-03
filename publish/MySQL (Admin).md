@@ -823,6 +823,8 @@ Restore on test server and check integrity prior to restore
 mysqlcheck [auth] [--databases] < [filename].sql
 ```
 
+Run queries from stored procedure to verify integrity
+
 **mysqlpump**
 
 ```bash
