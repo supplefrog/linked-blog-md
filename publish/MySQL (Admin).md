@@ -811,7 +811,17 @@ mysqldump [authentication] -h host_ip [-A, --all-databases / -B, --databases db1
 
 **Restore**
 
-`mysql [authentication] db_name < backup.sql`
+Verify backup (Enterprise)
+
+```mysql
+mysqlbackup --backup-image=/path/to/backup.mbi validate
+```
+
+Restore on test server and check integrity prior to restore
+
+```mysql
+mysqlcheck [auth] [--databases] < [filename].sql
+```
 
 **mysqlpump**
 
