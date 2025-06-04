@@ -907,11 +907,11 @@ mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir
 ### Restore
 
 ```bash
-xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
+xtrabackup --<prepare/apply-log> --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
 xtrabackup [auth] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
 
-mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] <apply-log/prepare>
-mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] copy-back
+mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] prepare
+mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] <copy-back/restore>
 ```
 
 **Tables - Warm Backup**
