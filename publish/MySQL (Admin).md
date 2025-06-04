@@ -896,13 +896,15 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 
 [Percona XtraBackup (xtrabackup)](https://www.percona.com/downloads)
 
+### Backup
+
 ```bash
 xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
 
 mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
 ```
 
-Restore
+### Restore
 
 ```bash
 xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
