@@ -894,26 +894,23 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 
 ## Physical
 
-## MySQL Enterprise Backup (mysqlbackup)
+[Percona XtraBackup (xtrabackup)](https://www.percona.com/downloads)
 
-| Operation               | Command Syntax |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Backup             | `mysqlbackup [authentication] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> --with-timestamp [--compress] [--encrypt] [--include-tables=<db.tbl>] [--exclude-tables=<db.tbl>] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--read-threads=<N>] [--process-threads=<N>] [--write-threads=<N>] backup`                                                                                                         |
-| Incremental Backup      | `mysqlbackup [authentication] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> --incremental --incremental-base=dir:<base_dir> --with-timestamp [--compress] [--encrypt] [--include-tables=<db.tbl>] [--exclude-tables=<db.tbl>] [--include-purge-gtids=off] [--read-threads=<N>] [--process-threads=<N>] [--write-threads=<N>] backup`                                                                                  |
-| Differential Backup     | `mysqlbackup [authentication] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> --incremental --incremental-base=history:last_full_backup --with-timestamp [--compress] [--encrypt] [--include-tables=<db.tbl>] [--exclude-tables=<db.tbl>] [--include-purge-gtids=off] [--read-threads=<N>] [--process-threads=<N>] [--write-threads=<N>] backup`                                                                             |
-| Prepare Backup          | `mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] apply-log`                                                                                                                                                                                                                                                                                                                                                                            |
-| Restore Backup          | `mysqlbackup [authentication] [--host=<host>] [--port=<port>] --backup-dir=<backup_dir> [--uncompress] [--decrypt] copy-back`                                                                                                                                                                                                                                                               |
+```bash
+xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
 
----
+mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
+```
 
-## [Percona XtraBackup (xtrabackup)](https://www.percona.com/downloads)
+Restore
 
-| Operation            | Command Syntax                                                                                                                                                                                                                  |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Full Backup          | `xtrabackup [authentication] --backup --target-dir=<dir> [--host=] [--port=] [--parallel=<N>] [--compress] [--encrypt] [--no-timestamp] [--throttle=<rate>] [--tables=<db.tbl>]`        |
-| Incremental Backup   | `xtrabackup [authentication] --backup --target-dir=<inc_dir> --incremental-basedir=<fullbkp_dir> [--host=] [--port=] [--parallel=<N>] [--compress] [--encrypt]`                          |
-| Prepare Backup       | `xtrabackup --prepare --target-dir=<dir> [--apply-log-only] [--use-memory=<size>] [--parallel=<N>]`|
-| Restore Backup       | `xtrabackup --copy-back --target-dir=<dir>`|
+```bash
+xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
+xtrabackup [auth] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
+
+mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] <apply-log/prepare>
+mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] copy-back
+```
 
 **Tables - Warm Backup**
 - **Source**
