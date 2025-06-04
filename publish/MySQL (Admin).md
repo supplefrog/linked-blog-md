@@ -928,7 +928,7 @@ mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt
   alter table db.table_name import tablespace;
   ```
 
-**Logs**
+**Compress and Delete Old Text Logs**
 
 [set login-path=client](#authentication)
 
