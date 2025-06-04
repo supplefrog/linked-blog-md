@@ -360,9 +360,7 @@ Default shared tablespace for internal InnoDB structures
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
 
-# Administration
-
-## [Installation](https://dev.mysql.com/downloads/repo/yum/)
+# [Installation](https://dev.mysql.com/downloads/repo/yum/)
 
 **Packages**
 - Import gpg keys to `/etc/pki/rpm-gpg`
@@ -411,7 +409,10 @@ gtid_mode = 1
 # binlog_expire_logs_seconds = 604800
 # binlog_encryption = ON
 # log_bin = /var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
-general_log = 1
+# binlog_do_db = test
+relay-log=/var/lib/mysql/mysql-relay-bin.log
+
+# general_log = 1
 # general_log_file =
 slow_query_log = 1
 # slow_query_log_file =
@@ -432,8 +433,6 @@ user = mysql
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
-# user = root    # unencrypted, not recommended
-# password = P@55w0rd
 ```
 
 ### Multiple Instances
