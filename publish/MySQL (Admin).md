@@ -397,7 +397,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
     - support-files
         - SysVinit service files for backward compatibility
 
-## my.cnf
+# my.cnf
 ```ini
 [mysqld1]
 
@@ -434,7 +434,7 @@ user = mysql
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
 ```
 
-## Troubleshoot
+# Troubleshoot
 - systemctl status
 - journalctl -xe
 - Reset start limit
@@ -445,7 +445,7 @@ user = mysql
 
 ## Security Management
 ### firewalld
-- Identifies incoming traffic from data frame **Network/IP** Layer & **Transport/TCP** Layer **headers** 
+- Identifies incoming traffic from data frame **Network/IP** & **Transport/TCP** layer **headers** 
 - Use rich rules to block service names based on source ips, destination ports
 ```sh
 firewall-cmd --list-all    # services, ports
@@ -564,8 +564,8 @@ PrivateTmp=false
 
 # Administration
 
-## SELECT
-| Object Type  | MySQL Query Example                                 |
+## Display
+| Object Type  | Query Example                                 |
 |--------------|-----------------------------------------------------|
 | Tables       | `SHOW TABLES FROM your_database;`                   |
 | Views        | `SHOW FULL TABLES IN your_database WHERE Table_type = 'VIEW';` |
@@ -576,25 +576,28 @@ PrivateTmp=false
 
 ### Status
 
-Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
-
 `status` or `\s`
 
-`mysqladmin [ -u root -p | login-path=local ] status`
+`mysqladmin [ auth ] status`
 
-**List currently running threads/processes**
+Displays
 
-Each row = active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
+> Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
-`show processlist -i 2;` # interval = 2s
+### Show active threads (connections) and their processes
 
-`mysqladmin [ -u root -p | login-path=local ] processlist -i 2`
+`mysqladmin [ auth ] processlist -i 2`    # interval = 2s
+`show processlist;` 
+`SELECT * FROM sys.processlist;`
+
+Each row displays:
+> active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
+
+### kill process
 
 `mysqladmin kill pid`
 
-`SELECT * FROM sys.processlist;`
-
-**Identify high load users/problematic queries**
+### Identify high load users/problematic queries**
 
 `SELECT * FROM sys.user_summary;`
 
@@ -602,7 +605,7 @@ Each row = active client connection - connection id, username, hostname, db in u
 
 `PROMPT (\u@\h) [\d]\`
 
-**Query Table Data without using DB**
+**Query Table Data without `use DB`**
 
 ```mysql
 SELECT table_name
