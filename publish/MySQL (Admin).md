@@ -947,14 +947,21 @@ rotate 30
 }
 ```
 
-## Upgrade/Downgrade
+## Upgrade
 
---upgrade=AUTO (or omitting the option): This is the default behavior. The server automatically determines if upgrades are needed for the data dictionary and system tables based on the detected versions. If an upgrade is required, it will be performed.
+| Path                | Method                                     |
+|---------------------|--------------------------------------------|
+| < 5.7   -> 5.7      | Update binary, run `mysql_upgrade`         |
+| 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`         |
+| 5.7    -> 8.0.16+   | Update binary, start server (auto-upgrade) |
+| 8.0.x  -> 8.4       | Update binary, start server (auto-upgrade) |
+| 8.4    -> 9.x       | Update binary, start server (auto-upgrade) |
 
---upgrade=MINIMAL: This option tells the server to upgrade the data dictionary, Performance Schema, and INFORMATION_SCHEMA if necessary. It skips the upgrade of other system tables and user schemas. This can be useful for a faster startup when you intend to run mysql_upgrade later to handle the remaining upgrades.
+**8.0.16 +** mysql_upgrade (data dir) deprecated, functions embedded into server
 
---upgrade=FORCE: This option forces the server to upgrade the data dictionary, Performance Schema, INFORMATION_SCHEMA, and all other system tables and user schemas, even if it doesn't detect a version mismatch. This can be useful in certain troubleshooting scenarios or when you want to ensure all tables are checked and upgraded. Be aware that this can significantly increase startup time as the server will check all objects.
-
---upgrade=NONE: This is the option you're likely remembering as a way to avoid automatic upgrades. When you use --upgrade=NONE, the server skips all automatic upgrade attempts.
-
-Crucially, if the data dictionary requires an upgrade when you use --upgrade=NONE, the server will refuse to start and exit with an error. This option is not intended for regular use but rather for specific situations where you want to prevent any automatic upgrade and handle it entirely manually (if needed) using mysql_upgrade.
+| mysqld --upgrade= (8.0.16+) | Upgrades                                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| AUTO (default)              | Data dictionary (DD), system schemas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, if not upgraded. |
+| MINIMAL                     | Core metadata: DD, Performance Schema, INFORMATION_SCHEMA. Skip mysql (incl help tables), sys schemas, user schemas. Useful for faster startup and upgrading user schemas later |
+| FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs. |
+| NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                           |
