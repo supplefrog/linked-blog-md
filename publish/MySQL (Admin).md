@@ -949,6 +949,8 @@ rotate 30
 
 ## Upgrade
 
+Take logical backup for failsafe (can be used for downgrade too), physical backup for faster restoration
+
 | Path                | Method                                     |
 |---------------------|--------------------------------------------|
 | < 5.7   -> 5.7      | Update binary, run `mysql_upgrade`         |
