@@ -789,19 +789,17 @@ systemctl restart mysqld
 | Restore  | Return to original state                                   |
 | Recover  | Salvage missing data using specialized tools, partial/full |
 
-```bash
-mysqldump --single-transaction --set-gtid-purged=off db_name | pv -trb > dumb
-```
-
 ## Logical
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
 **mysqldump**
 ```bash
-mysqldump [authentication] -h host_ip [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [ | gzip ] > $(date +"%F_%T").sql[.gz]`
+mysqldump [auth] -h host_ip [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--no-data / --no-create-info] [--single-transaction] [--set-gtid-purged=off] [| pv -trb] [ | gzip ] > $(date +"%F_%T").sql[.gz]
 
 --add-drop-database    # drop database if exists, useful if consistent DBs are needed e.g. across replicas
+--compact    # less verbose output, removes comments
+pv -trb    # time, rate, bytes (data)
 -R    # routines (stored procedures & functions)
 -E    # events (scheduled tasks)
 --set-gtid-purged=off    # for DBs w GTIDs, excludes them in backup, creates new tr_ids upon restore
@@ -900,7 +898,7 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 ### Backup
 
 ```bash
-xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
+xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] [--databases<-exclude>=] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
 
 mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
 ```
