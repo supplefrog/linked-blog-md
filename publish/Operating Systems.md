@@ -511,8 +511,9 @@ Terminal app
 | System Resource Management Command            | Description                                                        |
 |:----------------------------------------------|:-------------------------------------------------------------------|
 | `ulimit [-S/H] -a`                            | View current shell session soft and hard limits                    |
-| `ulimit [-S/H] <resource_flag> <value>`       | Set soft/hard resource limit for current shell session             |
-| `/etc/security/limits.conf`                   | Set resource limits permanently for specific users or groups       |
+| `ulimit [-S/H] <resource_flag> <value>`       | Set soft/hard resource limit for current shell session        |
+| `/etc/security/limits.conf`                   | Set resource limits permanently for specific users or groups      |
+| `yum autoremove`                              | Remove orphaned pacakges                                           |
 
 ### Networking
 
