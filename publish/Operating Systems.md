@@ -512,8 +512,9 @@ Terminal app
 |:----------------------------------------------|:-------------------------------------------------------------------|
 | `ulimit [-S/H] -a`                            | View current shell session soft and hard limits                    |
 | `ulimit [-S/H] <resource_flag> <value>`       | Set soft/hard resource limit for current shell session        |
-| `/etc/security/limits.conf`                   | Set resource limits permanently for specific users or groups      |
-| `yum autoremove`                              | Remove orphaned pacakges                                           |
+| `/etc/security/limits.conf`                   | Set resource limits permanently for specific users or groups       |
+| `yum autoremove`                              | Remove orphaned packages                                           |
+| `rpm --rebuilddb`                             | Rebuild RPM DB in case it becomes inconsistent                     |
 
 ### Networking
 
