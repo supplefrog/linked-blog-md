@@ -9,6 +9,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Installation](#installation)
 - [Administration](#administration)
 - [Backup and Restore](#backup-and-restore)
+- [Upgrade](#upgrade)
 ---
 
 ### Diction
