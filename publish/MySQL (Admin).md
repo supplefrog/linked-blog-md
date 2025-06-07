@@ -808,6 +808,17 @@ pv -trb    # time, rate, bytes (data)
 --no-data    # only schema (database and its objects' structure)
 ```
 
+**mysqlpump**
+
+```bash
+mysqlpump [auth] -B db1 db2 > pump.sql
+
+# number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
+--parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
+
+--default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
+```
+
 **Restore**
 
 Verify backup (Enterprise)
@@ -824,17 +835,6 @@ mysqlcheck [auth] [--databases] < [filename].sql
 
 Run queries from stored procedure to verify integrity
 
-**mysqlpump**
-
-```bash
-mysqlpump [authentication] -B db1 db2 > pump.sql
-
-# number of threads = physical cores should give most perf; if >, context switching will consume CPU time 
---parallel-schemas=4:db1,db2    # number of threads for a new queue for specific DBs
-
---default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
-```
-
 **Point in Time Recovery** (PITR - Incremental) **using binlog**
 
 | Binary Log Type | Description                                                                                                                  |
@@ -846,6 +846,7 @@ mysqlpump [authentication] -B db1 db2 > pump.sql
 `SHOW BINARY LOGS;`
 
 Reset binary logs and gtids, delete logs before a specific date / upto a log file
+
 ```mysql
 RESET BINARY LOGS AND GTIDS;
 
@@ -853,6 +854,7 @@ PURGE BINARY LOGS BEFORE '2025-05-01 00:00:00';    # or NOW()
 
 PURGE BINARY LOGS TO 'mysql-bin.000123';
 ```
+
 1. View binary logs with `-v`
     1. `/*! ... */` is a MySQL versioned comment that specifies minimum MySQL version to execute the code inside it, ignored by other DBMS 
 2. Convert binary logs to SQL statements and pipe them into the server
