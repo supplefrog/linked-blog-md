@@ -19,11 +19,11 @@ excerpt: Eliminate needless suffering
 > Now begins the dawn of your new life."**  
 
 
+## [[Operating Systems]]  
+## [[MySQL (Admin)|MySQL for Admins]]
+
 
 *Paste in terminal for dot files:*
 ```bash
 sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
 ```
-
-## [[Operating Systems]]  
-## [[MySQL (Admin)|MySQL for Admins]]
