@@ -2,7 +2,7 @@
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
 ---
-### Thou hast struck gold.  
+### Thou hast struck [gold](attachments/pot.jpg).  
 
 
 > **"त्यज दुःखमात्मनः — संसारेण तव क्लेशं समूलं नाशय।  
@@ -16,7 +16,6 @@ excerpt: Eliminate needless suffering
 > With your purified essence, be reborn anew.  
 > Now begins the dawn of your new life."**  
 
-![[pot.jpg]]  
 ![[horse.jpg]]
 
 > Paste in terminal for dot files:
@@ -24,5 +23,5 @@ excerpt: Eliminate needless suffering
 sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
 ```
 
-[[Operating Systems]]  
-[[MySQL (Admin)]]
+## [Operating Systems](Operating Systems.md)  
+## [MySQL for Admins](MySQL (Admin).md)
