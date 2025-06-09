@@ -913,7 +913,7 @@ xtrabackup --<prepare/apply-log> --target-dir=/full --incremental-dir=/inc [--ap
 xtrabackup [auth] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
 
 mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] prepare
-mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] <copy-back/restore>
+mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] copy-back
 ```
 
 **Tables - Warm Backup**
