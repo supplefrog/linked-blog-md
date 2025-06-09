@@ -820,21 +820,22 @@ mysqlpump [auth] -B db1 db2 > pump.sql
 --default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
 ```
 
-**Restore**
+**Prerequisites to Restoring on Production**
+
+Import on test server and check table integrity
+
+```mysql
+mysql [auth] --database=test < data.sql
+mysqlcheck [auth] [--databases] test
+```
+
+Run queries from stored procedure to verify data integrity
 
 Verify backup (Enterprise)
 
 ```mysql
 mysqlbackup --backup-image=/path/to/backup.mbi validate
 ```
-
-Restore on test server and check integrity prior to restore
-
-```mysql
-mysqlcheck [auth] [--databases] < [filename].sql
-```
-
-Run queries from stored procedure to verify integrity
 
 **Point in Time Recovery** (PITR - Incremental) **using binlog**
 
