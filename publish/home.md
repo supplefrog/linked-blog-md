@@ -24,4 +24,4 @@ sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/h
 ```
 
 [[Operating Systems|Operating Systems]]  
-[[MySQL for Admins|MySQL (Admin)]]
+[[MySQL (Admin)|MySQL for Admins]]
