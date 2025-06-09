@@ -23,5 +23,5 @@ excerpt: Eliminate needless suffering
 sudo curl -fsSL https://raw.githubusercontent.com/supplefrog/suckless-dot/refs/heads/main/bootstrap.sh | bash
 ```
 
-[[Operating Systems|Operating Systems]]  
-[[MySQL (Admin)|MySQL for Admins]]
+## [[Operating Systems]]  
+## [[MySQL (Admin)|MySQL for Admins]]
