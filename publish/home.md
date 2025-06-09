@@ -2,7 +2,7 @@
 title: Welcome, peasant.
 excerpt: Eliminate needless suffering
 ---
-## Thou hast struck ![[gold.png]] [(gold)](attachments/pot.jpg).  
+## Thou hast struck [(🪙 gold)](attachments/pot.jpg).  
 
 
 ![[horse.jpg]]
