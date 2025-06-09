@@ -796,9 +796,15 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 **mysqldump**
 ```bash
-mysqldump [auth] -h host_ip [-A, --all-databases / -B, --databases db1 db2 / db3 tb1 tb2] [-R] [-E] [--triggers] [--no-data / --no-create-info] [--single-transaction] [--set-gtid-purged=off] [| pv -trb] [ | gzip ] > $(date +"%F_%T").sql[.gz]
+mysqldump [auth] -h host_ip [-A, --all-databases] [-B, --databases db1 db2] [db3 tb1 tb2] [-R] [-E] [--triggers] [--set-gtid-purged=off] [| pv -trb] [ | gzip ] > $(date +"%F_%T").sql[.gz]
 
+--ignore-table=db1.tb1,
 --add-drop-database    # drop database if exists, useful if consistent DBs are needed e.g. across replicas
+--no-create-db    # no `CREATE DB IF NOT EXISTS` statement
+--no-create-info    # no `DROP TABLE IF EXISTS` statement
+--no-data    # no row information
+--single-transaction    # dump tables in a single transaction, turns off `LOCK TABLES`
+--lock-all-tables
 --compact    # less verbose output, removes comments
 pv -trb    # time, rate, bytes (data)
 -R    # routines (stored procedures & functions)
