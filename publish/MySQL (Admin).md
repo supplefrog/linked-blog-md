@@ -10,6 +10,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Administration](#administration)
 - [Backup and Restore](#backup-and-restore)
 - [Upgrade](#upgrade)
+- [Replication](#replication)
 ---
 
 ### Diction
@@ -410,7 +411,7 @@ gtid_mode = 1
 # binlog_encryption = ON
 # log_bin = /var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
 # binlog_do_db = test
-relay-log=/var/lib/mysql/mysql-relay-bin.log
+relay_log = /var/lib/mysql/mysql-relay-bin.log
 
 # general_log = 1
 # general_log_file =
@@ -422,13 +423,14 @@ slow_query_log = 1
 # default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
 # default_storage_engine = InnoDB
 
-server-id = 1
+server_id = 1
+# bind_address = 0.0.0.0    # single argument, use firewall for control
 # port = 3307
 # datadir = /var/lib/mysql1
-# log-error = /var/log/mysqld1.log
-# lc-messages-dir = /usr/local/mysql/share/
+# log_error = /var/log/mysqld1.log
+# lc_messages_dir = /usr/local/mysql/share/
 # socket = /var/run/mysql/mysql1.sock
-# pid-file = /var/run/mysql/mysqld1.pid
+# pid_file = /var/run/mysql/mysqld1.pid
 user = mysql
 
 [mysql]
@@ -978,3 +980,9 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 | MINIMAL                     | Core metadata: DD, Performance Schema, INFORMATION_SCHEMA. Skip mysql (incl help tables), sys schemas, user schemas. Useful for faster startup and upgrading user schemas later |
 | FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs. |
 | NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                           |
+
+# Replication
+
+```mysql
+
+```
