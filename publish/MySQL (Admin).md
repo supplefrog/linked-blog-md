@@ -5,7 +5,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [MySQL Architecture](#mysql-architecture)
     - [Logical](#logical)
     - [Physical](#physical)
-    - [InnoDB](#storage-engines)
+    - [InnoDB Engine](#storage-engines)
 - [Installation](#installation)
 - [Administration](#administration)
 - [Backup and Restore](#backup-and-restore)
@@ -38,84 +38,82 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ![Logical Architecture](https://minervadb.xyz/wp-content/uploads/2024/01/MySQL-Thread-Diagram-768x366.jpg)
 
 ### Client
-- Contains server connectors and APIs
-- Sends connection request to server
+- Contains server connectors and APIs that send connection request to server
 - CLI - mysql, required by GUI - MySQL Workbench     
 
 ### Server
 
-**Authentication**
+1. **Authentication**
 ```mysql
 'username'@'hostname' identified by 'password';
 ```
 
-**Connection Manager**
-> Check thread cache;  
-> if thread available: provide thread; else create new thread, 1 per client  
-> Establish connection
+2. **Connection Manager**
+    1. Check thread cache;  
+    2. if thread available: provide thread; else create new thread, 1 per client  
+    3. Establish connection
 
-**Security**
+3. **Security**
 
-Verify if user has privilege for each query
+    Verify if user has privilege for each query
 
-**Parsing**
+4. **Parsing**
 
-**Lexer/Lexical Analyzer/Tokenizer/Scanner**
+    1. **Lexer/Lexical Analyzer/Tokenizer/Scanner**
+        Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals  
+    2. **Parser**
+        1. Checks if tokens follow syntax structure based on rules
+        2. If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
+            - Each node represents a SQL operation
+            - Edges represent relationships between operations
 
-Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals
+6. **Optimizer**
+    1. Reads AST
+    2. Generates multiple candidate execution plans compatible with storage engine:
+        - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
+        - Evaluates possible primary/secondary index usage
+        - Considers various join orders (sequence of joining tables)
+        - Chooses join methods (e.g., nested loop, hash join)
+        - Reorders operations (e.g., applies filters before or after joins) to improve efficiency
+        - Considers data distribution and available indexes for join strategies
+    - Can be influenced by index and join hints:
 
-**Parser**
-- Checks if tokens follow syntax structure based on rules
-- If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
-    - Each node represents a SQL operation
-    - Edges represent relationships between operations
+      `USE INDEX, FORCE INDEX, IGNORE INDEX, STRAIGHT_JOIN`
+    3. Does cost-based optimization:
+        - References the cost model (I/O, CPU, memory) for every operation in each plan
+        - Uses data statistics (row counts, index selectivity, data distribution)
+    4. selects plan with lowest total estimated cost as optimized query plan
 
-**Optimizer**
-- Reads AST
-- Generates multiple candidate execution plans compatible with storage engine:
-    - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
-    - Evaluates possible primary/secondary index usage
-    - Considers various join orders (sequence of joining tables)
-    - Chooses join methods (e.g., nested loop, hash join)
-    - Reorders operations (e.g., applies filters before or after joins) to improve efficiency
-    - Considers data distribution and available indexes for join strategies
-- Can be influenced by index and join hints:
+    **Display query execution plan:**
 
-  `USE INDEX, FORCE INDEX, IGNORE INDEX, STRAIGHT_JOIN`
-- Cost-based optimization:
-    - References the cost model (I/O, CPU, memory) for every operation in each plan
-    - Uses data statistics (row counts, index selectivity, data distribution)
-- selects plan with lowest total estimated cost as optimized query plan
-- **display query execution plan:**
-
-  `EXPLAIN QUERY;`
+      `EXPLAIN QUERY;`
   
-  `EXPLAIN ANALYZE QUERY;` (8.0+)
+      `EXPLAIN ANALYZE QUERY;` (8.0+)
 
-**Storage engine performs data lookup in caches & buffers**
-- if not found, fetch from disk
-- updates to disk
+6. **Storage engine performs data lookup in caches & buffers**
+    1. if not found, fetch from disk
+    2. updates to disk
 
-**Query Cache**
+    **Query Cache**
 
-Query + result set
+    Query + result set
 
-- 5.7.20 deprecated
-- 8.0 removed (hard to scale)
-- Frequently served result sets cached in Redis
+    - 5.7.20 deprecated
+    - 8.0 removed (hard to scale)
+    - Frequently served result sets cached in Redis
 
-**Key Cache stores index blocks**
+    **Key Cache stores index blocks**
 
-Used by MyISAM
+    Used by MyISAM
 
-**Table Open Cache (I/O)**
+    **Table Open Cache (I/O)**
 
-- Caches file descriptors for open table files
-- Used to avoid reopening tables
+    - Caches file descriptors for open table files
+    - Used to avoid reopening tables
 
-**Metadata Cache**
+    **Metadata Cache**
 
-Caches structural info e.g., schema, column info
+    Caches structural info e.g., schema, column info
 
 ## Physical
 
@@ -982,7 +980,7 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 | NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                           |
 
 # Replication
-
+Supports ABBA, ABCA
 ```mysql
 
 ```
