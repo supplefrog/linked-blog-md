@@ -990,7 +990,7 @@ Add server_id to my.cnf
 
 `RESET MASTER`
 
-### /> 8
+### \> 8
 
 `RESET BINARY LOGS AND GTIDS`
 
