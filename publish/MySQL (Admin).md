@@ -990,7 +990,7 @@ Add server_id to my.cnf
 
 `RESET MASTER`
 
-### \> 8
+### > 8
 
 `RESET BINARY LOGS AND GTIDS`
 
@@ -1011,7 +1011,7 @@ CHANGE MASTER TO
   GET_MASTER_PUBLIC_KEY = 1;
 ```
 
-### \> 8
+### > 8
 ```mysql
 RESET BINARY LOGS AND GTIDS;
 RESET REPLICA;
