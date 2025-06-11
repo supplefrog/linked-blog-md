@@ -411,7 +411,7 @@ gtid_mode = 1
 # binlog_encryption = ON
 # log_bin = /var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
 # binlog_do_db = test
-relay_log = /var/lib/mysql/mysql-relay-bin.log
+relay_log = /var/lib/mysql/relaylog.log
 
 # general_log = 1
 # general_log_file =
