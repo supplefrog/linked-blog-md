@@ -360,9 +360,6 @@ Default shared tablespace for internal InnoDB structures
         - Non-clustering - Do not influence data storage order
 
 # [Installation](#table-of-contents) 
-## 1. Using Yum Repository
-
-[Download](https://dev.mysql.com/downloads/repo/yum/) and install repository
 
 **Import gpg keys** to RPM Database (`/var/lib/rpm`)
 ```
@@ -370,6 +367,11 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ```
+
+## 1. Using Yum Repository
+
+1. [Download](https://dev.mysql.com/downloads/repo/yum/) and install repository
+2. Use package manager to search and install packages
 
 ## 2. Using packages
 - Check .rpm package integrity
