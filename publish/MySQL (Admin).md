@@ -369,19 +369,22 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ```
 
 ## 1. Using Yum Repository
-
+*Auto-installs missing dependencies*
 1. [Download](https://dev.mysql.com/downloads/repo/yum/) and install repository
 2. Use package manager to search and install packages
 
 ## 2. Using packages
-- Check .rpm package integrity
+
+1. [Download](https://downloads.mysql.com/archives/community/) required packages, older versions from archives
+2. Check .rpm package integrity
 
   `rpm -K pkg.rpm`
-- Dependency resolution including glibc version
-- Auto install in dirs
-- Additional files for compatibility e.g. Systemd service file - configured to initialize server on first boot
+3. Use package manager to install packages
 
-- Components divided amongst packages as per function:
+- Automatically installs binaries or libraries in respective directories
+- include additional files for compatibility compared to generic archive e.g. Systemd service file configured to initialize server on first start
+
+### Dependency Tree
 
 `mysql-community-server (`[server apps](#base-directory---executables)`, my.cnf, datadir w ownership, mysqld.service)`
 
@@ -398,7 +401,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
     - devel - development header files and libraries
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
 
-### [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
+## [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
 - All components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
