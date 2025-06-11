@@ -981,6 +981,45 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 
 # Replication
 Supports ABBA, ABCA
-```mysql
 
+## Source
+
+Add server_id to my.cnf
+
+### < 8
+
+`RESET MASTER`
+
+### /> 8
+
+`RESET BINARY LOGS AND GTIDS`
+
+## Replica
+
+Add server_id and relay_log= to my.cnf
+
+### < 8
+```mysql
+RESET MASTER;
+RESET SLAVE;
+
+CHANGE MASTER TO
+  MASTER_HOST = '192.168.8.2',
+  MASTER_USER = 'replica',
+  MASTER_PASSWORD = 'Redhat@1',
+  MASTER_AUTO_POSITION = 1,
+  GET_MASTER_PUBLIC_KEY = 1;
+```
+
+### \> 8
+```mysql
+RESET BINARY LOGS AND GTIDS;
+RESET REPLICA;
+
+CHANGE SOURCE TO
+  SOURCE_HOST = '192.168.8.2',
+  SOURCE_USER = 'replica',
+  SOURCE_PASSWORD = 'Redhat@1',
+  SOURCE_AUTO_POSITION = 1,
+  GET_SOURCE_PUBLIC_KEY = 1;
 ```
