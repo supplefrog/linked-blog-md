@@ -13,7 +13,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Replication](#replication)
 ---
 
-### Diction
+### [Diction](#table-of-contents)
 - MySQL -> relational database management system (RDBMS) - database have schemas
 - Schema - table structures (columns, data types) + relationships through primary / foreign keys
 
@@ -31,9 +31,9 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 | **Security: Auditing**        | x | MySQL Enterprise Audit Plugin |
 | **Monitoring/Management**     | `SHOW PROCESSLIST, SHOW STATUS, EXPLAIN, and SHOW ENGINE INNODB STATUS`, MySQL Workbench, Percona Monitoring and Management | MySQL Enterprise Monitor, MySQL Enterprise Manager |
 
-# MySQL Architecture
+# [MySQL Architecture](#table-of-contents)
 
-## Logical
+## [Logical](#table-of-contents)
 
 ![Logical Architecture](https://minervadb.xyz/wp-content/uploads/2024/01/MySQL-Thread-Diagram-768x366.jpg)
 
@@ -115,7 +115,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
     Caches structural info e.g., schema, column info
 
-## Physical
+## [Physical](#table-of-contents)
 
 ### Base Directory - Executables
 Default `/bin -> /usr/bin`
@@ -242,7 +242,7 @@ Default shared tablespace for internal InnoDB structures
 - Socket File - temp file generated w service start, deleted upon stop
 -  File for *PIDs under Socket*
 
-### Storage Engines
+### [Storage Engines](#table-of-contents)
 
 **NDBCluster**
 - Clustered storage engine for high-availability and scalability
@@ -359,15 +359,17 @@ Default shared tablespace for internal InnoDB structures
         - Explicitly created by user to optimize query performance
         - Non-clustering - Do not influence data storage order
 
-# [Installation](https://dev.mysql.com/downloads/repo/yum/)
+# [Installation](#table-of-contents) 
+## [Yum Repo](https://dev.mysql.com/downloads/repo/yum/)
 
-**Packages**
 - Import gpg keys to `/etc/pki/rpm-gpg`
 ```
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ```
+
+**Packages**
 - Check package integrity
 
   `rpm -K pkg.rpm`
@@ -563,7 +565,7 @@ PrivateTmp=false
 
 ---
 
-# Administration
+# [Administration](#table-of-contents)
 
 ## Display
 | Object Type  | Query Example                                 |
@@ -777,7 +779,7 @@ systemctl restart mysqld
 
 `ALTER TABLE table_name ENGINE = InnoDB;`
 
-# Backup and Restore
+# [Backup and Restore](#table-of-contents)
 
 | Term     | Meaning                                                    |
 |----------|------------------------------------------------------------|
@@ -958,7 +960,7 @@ rotate 30
 }
 ```
 
-## Upgrade
+## [Upgrade](#table-of-contents)
 
 Take logical backup for failsafe (can be used for downgrade too), physical backup for faster restoration
 
@@ -979,7 +981,7 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 | FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs. |
 | NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                           |
 
-# Replication
+# [Replication](#table-of-contents)
 Supports ABBA, ABCA
 
 ## Source
