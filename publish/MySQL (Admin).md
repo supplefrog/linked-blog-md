@@ -360,9 +360,9 @@ Default shared tablespace for internal InnoDB structures
         - Non-clustering - Do not influence data storage order
 
 # [Installation](#table-of-contents) 
-## [Yum Repo](https://dev.mysql.com/downloads/repo/yum/)
+## [Install Yum Repository](https://dev.mysql.com/downloads/repo/yum/)
 
-- Import gpg keys to `/etc/pki/rpm-gpg`
+**Import gpg keys** to `/etc/pki/rpm-gpg`
 ```
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
