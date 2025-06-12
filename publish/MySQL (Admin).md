@@ -1,6 +1,7 @@
 Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
+(not clickable right now)
 - [MySQL Community vs Enterprise](#diction)
 - [MySQL Architecture](#mysql-architecture)
     - [Logical](#logical)
