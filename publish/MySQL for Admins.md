@@ -585,7 +585,7 @@ PrivateTmp=false
 
 `status` or `\s`
 
-`mysqladmin [ auth ] status`
+`mysqladmin [auth] status`
 
 Displays
 
