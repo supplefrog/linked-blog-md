@@ -20,7 +20,7 @@ excerpt: Eliminate needless suffering
 
 
 ## [[Operating Systems]]  
-## [[MySQL (Admin)|MySQL for Admins]]
+## [[MySQL for Admins]]
 
 
 *Paste in terminal for dot files:*
