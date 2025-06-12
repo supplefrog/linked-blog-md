@@ -403,7 +403,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
     - devel - development header files and libraries
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
 
-## Generic Linux - Tarball
+## 3. Generic Linux - Tarball
 
 - Contains all - prebuilt binaries for specific glibc dependency, libs, docs,
 
