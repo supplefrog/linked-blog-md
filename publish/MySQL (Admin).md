@@ -376,15 +376,15 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 ## 2. Using packages
 
+- Automatically installs binaries or libraries in respective directories
+- Includes additional files for compatibility compared to generic archive e.g. Systemd service file configured to initialize server on first start
+
 1. [Download](https://downloads.mysql.com/archives/community/) required packages, older versions from archives
 2. Check .rpm package integrity
 
   `rpm -K pkg.rpm`
   
 3. Use package manager to install packages from dir
-
-- Automatically installs binaries or libraries in respective directories
-- Includes additional files for compatibility compared to generic archive e.g. Systemd service file configured to initialize server on first start
 
 ### Dependency Tree
 
@@ -405,14 +405,13 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 ## Generic Linux - Tarball
 
-1. [Download](https://downloads.mysql.com/archives/community/), extract to required directories
-2. Copy below templates to their respective directories
-3. Edit my.cnf file, specifying custom directories and config
-
-
 - Contains all components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
+
+1. [Download](https://downloads.mysql.com/archives/community/), extract to required directories
+2. Copy below templates to their respective directories
+3. Edit my.cnf file, specifying custom directories and config
 
 # my.cnf
 `/etc/my.cnf`
