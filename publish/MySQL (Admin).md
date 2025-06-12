@@ -499,13 +499,14 @@ PrivateTmp=false
 ```
 
 # [Troubleshoot](#table-of-contents)
-- systemctl status
-- journalctl -xe
+1. `systemctl status`
+2. `journalctl -xe`
+
 - Reset start limit
 
 `sudo systemctl reset-failed mysqld`
-- --help --verbose
-    - lists referenced variables
+
+- `mysqld --verbose --help` - lists referenced variables
 
 ## Security Management
 ### firewalld
