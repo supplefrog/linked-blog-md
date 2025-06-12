@@ -156,7 +156,8 @@ Default `/bin -> /usr/bin`
 | mysqluc              | Unified CLI for multiple MySQL utilities                                 |
 | mysqluserclone       | Clone MySQL user accounts and privileges                                 |
 
-### [MySQL Config File](#my.cnf)
+### MySQL Config File
+`/etc/my.cnf`
 
 ### Data Directory
 `/var/lib/mysql/`
