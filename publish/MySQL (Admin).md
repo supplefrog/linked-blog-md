@@ -1,7 +1,7 @@
 Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
-(not clickable right now)
+(not clickable for now)
 - [MySQL Community vs Enterprise](#diction)
 - [MySQL Architecture](#mysql-architecture)
     - [Logical](#logical)
@@ -156,8 +156,7 @@ Default `/bin -> /usr/bin`
 | mysqluc              | Unified CLI for multiple MySQL utilities                                 |
 | mysqluserclone       | Clone MySQL user accounts and privileges                                 |
 
-### MySQL Config File
-`/etc/my.cnf`
+### [MySQL Config File](#my.cnf)
 
 ### Data Directory
 `/var/lib/mysql/`
