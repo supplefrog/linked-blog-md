@@ -1017,6 +1017,10 @@ GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 
 ### < 8
 ```mysql
+# For multi-source replica channels
+#SET GLOBAL master_info_repository = 'TABLE';
+#SET GLOBAL relay_log_info_repository = 'TABLE';
+
 RESET MASTER;
 RESET SLAVE;
 
