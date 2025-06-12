@@ -380,10 +380,10 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
   `rpm -K pkg.rpm`
   
-3. Use package manager to install packages
+3. Use package manager to install packages from dir
 
 - Automatically installs binaries or libraries in respective directories
-- include additional files for compatibility compared to generic archive e.g. Systemd service file configured to initialize server on first start
+- Includes additional files for compatibility compared to generic archive e.g. Systemd service file configured to initialize server on first start
 
 ### Dependency Tree
 
