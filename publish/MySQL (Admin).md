@@ -825,6 +825,27 @@ pv -trb    # time, rate, bytes (data)
 --no-data    # only schema (database and its objects' structure)
 ```
 
+| Flag                      | Description                                                                                                 |
+|---------------------------|-------------------------------------------------------------------------------------------------------------|
+| `-A`, `--all-databases`   | Dump all databases                                                                                          |
+| `-B`, `--databases`       | Dump specified databases, add create DB statement                                                           |
+| `-R`                      | Include stored routines (procedures & functions)                                                            |
+| `-E`                      | Include events (scheduled tasks)                                                                            |
+| `--triggers`              | Include triggers                                                                                            |
+| `--set-gtid-purged=off`   | Exclude GTIDs in backup, creates new transaction IDs upon restore                                           |
+| `--ignore-table='db1.tb1,'` | Ignore specified table(s)                                                                                 |
+| `--add-drop-database`     | Add 'DROP DATABASE IF EXISTS' before each database, useful for replication                                  |
+| `--no-create-db`          | Do not include 'CREATE DATABASE IF NOT EXISTS' statement                                                    |
+| `--no-create-info`        | Do not include table creation info (no 'CREATE TABLE' statements)                                           |
+| `--no-data`               | Do not include row information (only schema)                                                                |
+| `--single-transaction`    | Dump tables in a single transaction, disables 'LOCK TABLES', allows changes during dump                     |
+| `--lock-all-tables`       | Lock all tables across all databases before dumping                                                         |
+| `--compact`               | Produce less verbose output by removing comments                                                            |
+| `| pv -trb >`             | Show progress: time, rate, bytes (when piping output through pv utility)                                    |
+| `| gzip >`                | Compress output using gzip (when piping output through gzip utility)                                        |
+| `> $(date +"%F_%T").sql[.gz]` | Redirect output to a timestamped file (optionally compressed if .gz is used)                            |
+
+
 **mysqlpump**
 
 ```bash
@@ -994,7 +1015,7 @@ Supports ABBA, ABCA
 
 ## Source
 
-Add server_id to my.cnf
+- Add server_id to my.cnf
 
 ### < 8
 
@@ -1006,7 +1027,7 @@ Add server_id to my.cnf
 
 ## Replica
 
-Add server_id and relay_log= to my.cnf
+- Add server_id and relay_log= to my.cnf
 
 ### < 8
 ```mysql
