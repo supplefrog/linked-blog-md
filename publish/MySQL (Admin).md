@@ -403,12 +403,20 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
     - devel - development header files and libraries
     - libs-compat - older versions of client libraries for legacy applications that require specific version or binary interface
 
-## [Generic Linux - Tarball](https://downloads.mysql.com/archives/community/)
-- All components, and prebuilt binaries for specific glibc dependency
+## Generic Linux - Tarball
+
+1. [Download](https://downloads.mysql.com/archives/community/), extract to required directories
+2. Copy below templates to their respective directories
+3. Edit my.cnf file, specifying custom directories and config
+
+
+- Contains all components, and prebuilt binaries for specific glibc dependency
     - support-files
         - SysVinit service files for backward compatibility
 
 # my.cnf
+`/etc/my.cnf`
+
 ```ini
 [mysqld1]
 
@@ -446,47 +454,11 @@ user = mysql
 # socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
 ```
 
-# Troubleshoot
-- systemctl status
-- journalctl -xe
-- Reset start limit
-
-`sudo systemctl reset-failed mysqld`
-- --help --verbose
-    - lists referenced variables
-
-## Security Management
-### firewalld
-- Identifies incoming traffic from data frame **Network/IP** & **Transport/TCP** layer **headers** 
-- Use rich rules to block service names based on source ips, destination ports
-```sh
-firewall-cmd --list-all    # services, ports
-firewall-cmd --permanent --add-service=mysql
-firewall-cmd --permanent --add-service=portid/protocol
-firewall-cmd --reload
-```
-
-### selinux
-`semanage [-h]`
-
-- show ports enabled for specific service
-
-`semanage port -l | grep mysql`
-
-- add/delete port for specific service
-
-`semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
-
-- set file context for custom datadir
-```sh
-semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
-restorecon -Rv /datadir
-```
-
 ## Systemd Service(s)
 **Used to start daemon(s) on boot**
 
 `/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
+
 ```ini
 [Unit]
 Description=MySQL Server
@@ -538,6 +510,43 @@ RestartPreventExitStatus=1
 Environment=MYSQLD_PARENT_PID=1
 
 PrivateTmp=false
+```
+
+# [Troubleshoot](#table-of-contents)
+- systemctl status
+- journalctl -xe
+- Reset start limit
+
+`sudo systemctl reset-failed mysqld`
+- --help --verbose
+    - lists referenced variables
+
+## Security Management
+### firewalld
+- Identifies incoming traffic from data frame **Network/IP** & **Transport/TCP** layer **headers** 
+- Use rich rules to block service names based on source ips, destination ports
+```sh
+firewall-cmd --list-all    # services, ports
+firewall-cmd --permanent --add-service=mysql
+firewall-cmd --permanent --add-service=portid/protocol
+firewall-cmd --reload
+```
+
+### selinux
+`semanage [-h]`
+
+- show ports enabled for specific service
+
+`semanage port -l | grep mysql`
+
+- add/delete port for specific service
+
+`semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
+
+- set file context for custom datadir
+```sh
+semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
+restorecon -Rv /datadir
 ```
 
 ### Start background process 
