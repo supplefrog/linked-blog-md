@@ -686,7 +686,7 @@ Login:
 
 `SELECT * FROM information_schema.table_privileges;`
 
-`GRANT select (column1, column2), insert, update, delete, create, drop ON db_name.table_name to 'user'[@'hostname'];`
+`GRANT SELECT (column1, column2), INSERT, UPDATE, DELETE, CREATE, DROP ON db_name.table_name TO 'user'[@'hostname'];`
 
 `GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
 
