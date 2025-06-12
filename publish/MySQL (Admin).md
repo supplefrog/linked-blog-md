@@ -382,7 +382,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 1. [Download](https://downloads.mysql.com/archives/community/) required packages, older versions from archives
 2. Check .rpm package integrity
 
-  `rpm -K pkg.rpm`
+    `rpm -K pkg.rpm`
   
 3. Use package manager to install packages from dir
 
