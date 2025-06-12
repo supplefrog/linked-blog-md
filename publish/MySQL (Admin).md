@@ -997,7 +997,7 @@ Supports ABBA, ABCA
 ## Source
 
 - Add server_id to my.cnf
-- Create user for only replication
+- Create user only for replication
 ```mysql
 CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1';
 GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
