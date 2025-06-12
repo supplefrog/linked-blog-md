@@ -501,12 +501,10 @@ PrivateTmp=false
 # [Troubleshoot](#table-of-contents)
 1. `systemctl status`
 2. `journalctl -xe`
-
+3. `mysqld --verbose --help` - lists referenced variables
 - Reset start limit
 
 `sudo systemctl reset-failed mysqld`
-
-- `mysqld --verbose --help` - lists referenced variables
 
 ## Security Management
 ### firewalld
