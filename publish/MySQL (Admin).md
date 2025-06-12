@@ -548,7 +548,7 @@ PrivateTmp=false
 - Sets process to ignore SIGHUP (hangup signal) TTY sends to its children when it closes
 - Closes stidn, redirects stdout and stderr to nohup.out
 
-`nohup mysqld --defaults-group-suffix=1 &`
+    `nohup mysqld --defaults-group-suffix=1 &`
 
 **Completely make process independent from TTY:**
 - setsid (set session id)
