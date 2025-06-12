@@ -95,22 +95,12 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     1. if not found, fetch from disk
     2. updates to disk
 
-
-    **Query Cache** - stores queries and their result sets
-    - 5.7.20 deprecated
-    - 8.0 removed (hard to scale)
-    - Frequently served result sets cached in Redis
-
-
-    **Key Cache** - stores index blocks
-    - Used by MyISAM
-
-    **Table Open Cache (I/O)**
-    - Caches file descriptors for open table files
-    - Used to avoid reopening tables
-
-    **Metadata Cache**
-    - Caches structural info e.g., schema, column info
+| Cache Name       | Description                                                                |
+|------------------|----------------------------------------------------------------------------|
+| Table Open Cache | Caches file descriptors to avoid repeated table opening overhead           |
+| Metadata Cache   | Caches schema and column metadata to reduce lookup cost in data dictionary |
+| Query Cache      | Caches query strings and result sets; deprecated in 5.7.20, removed in 8.0; use Redis or app-level caching instead|
+| Key Cache        | Caches MyISAM index blocks to speed up index reads                         |
 
 ## [Physical](#table-of-contents)
 
