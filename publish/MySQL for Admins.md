@@ -896,6 +896,7 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 **MySQL Shell**
 
 **`\js`**
+
 | Action/Utility      | Syntax Example                                                                                   |
 |---------------------|--------------------------------------------------------------------------------------------------|
 | Instance Backup     | `util.dumpInstance('/path/to/backup-directory')`                                                 |
