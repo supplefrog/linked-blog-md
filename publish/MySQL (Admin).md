@@ -379,6 +379,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 2. Check .rpm package integrity
 
   `rpm -K pkg.rpm`
+  
 3. Use package manager to install packages
 
 - Automatically installs binaries or libraries in respective directories
