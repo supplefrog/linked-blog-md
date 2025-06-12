@@ -316,21 +316,21 @@ After login, the user’s shell (CLI/GUI) or session manager initializes user-sp
 ## Directory Structure
 | `/`         | Root directory                                 |
 |:------------|:-----------------------------------------------|
-| `/bin`      | User command binaries                          |
 | `/boot`     | Bootloader and kernel files                    |
-| `/etc`      | Configuration/setting files                    |
-| `/sbin`     | System binaries                                |
-| `/usr`      | Read-only app data and binaries                |
-| `/var`      | Variable data files                            |
 | `/dev`      | Device files                                   |
-| `/home`     | User home directories                          |
-| `/lib`      | Libraries and kernel modules                   |
-| `/mnt`      | Temporary mount point for external file systems|
+| `/bin`      | User command binaries                          |
+| `/sbin`     | System binaries                                |
+| `/usr`      | User binaries, data; typically read only       |
 | `/opt`      | Optional software applications                 |
-| `/proc`     | Virtual file system for system and process info|
+| `/lib`      | Essential shared libraries and kernel modules  |
+| `/home`     | User home directories                          |
 | `/root`     | Root user home directory                       |
-| `/sys`      | System and hardware information                |
-| `/tmp`      | Temporary files                                |
+| `/etc`      | Configuration/setting files                    |
+| `/var`      | Variable data files e.g. logs, tmp (persistent)|
+| `/tmp`      | Session (short-lived) temporary files          |
+| `/mnt`      | Temporary mount point for external file systems|
+| `/proc`     | Virtual FS interface for kernel data structures, contains dir for each PID |
+| `/sys`      | Virtual FS for kernel data structures          |
 
 ## CLI (Terminal Emulators)
 Terminal app 
