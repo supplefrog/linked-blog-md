@@ -504,35 +504,36 @@ PrivateTmp=false
 3. `mysqld --verbose --help` - lists referenced variables
 - Reset start limit
 
-`sudo systemctl reset-failed mysqld`
+    `sudo systemctl reset-failed mysqld`
 
 ## Security Management
 ### firewalld
 - Identifies incoming traffic from data frame **Network/IP** & **Transport/TCP** layer **headers** 
 - Use rich rules to block service names based on source ips, destination ports
-```sh
-firewall-cmd --list-all    # services, ports
-firewall-cmd --permanent --add-service=mysql
-firewall-cmd --permanent --add-service=portid/protocol
-firewall-cmd --reload
-```
+    ```sh
+    firewall-cmd --list-all    # services, ports
+    firewall-cmd --permanent --add-service=mysql
+    firewall-cmd --permanent --add-service=portid/protocol
+    firewall-cmd --reload
+    ```
 
 ### selinux
+
 `semanage [-h]`
 
 - show ports enabled for specific service
 
-`semanage port -l | grep mysql`
+    `semanage port -l | grep mysql`
 
 - add/delete port for specific service
 
-`semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
+    `semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
 
 - set file context for custom datadir
-```sh
-semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
-restorecon -Rv /datadir
-```
+    ```sh
+    semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
+    restorecon -Rv /datadir
+    ```
 
 ### Start background process 
 **Exits if TTY (parent) closes**
@@ -553,7 +554,7 @@ restorecon -Rv /datadir
 - setsid (set session id)
 - creates a new session and process group and makes process its leader, fully independent from TTY, no accidental read or write to closed terminal
 
-`setsid mysqld --defaults-group-suffix=1 &` **or** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
+    `setsid mysqld --defaults-group-suffix=1 &` **or** `setsid bash -c 'mysqld --defaults-group-suffix=1' & # bash run command`
 
 ### Multiple Instances
 | Parameter             | Multiple Instances                                   | Multiple Databases                                |
