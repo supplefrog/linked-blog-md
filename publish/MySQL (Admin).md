@@ -821,7 +821,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 | `--no-data`               | Do not include row information (only schema)                                                                |
 | `--single-transaction`    | Dump tables in a single transaction, disables 'LOCK TABLES', allows changes during dump                     |
 | `--lock-all-tables`       | Lock all tables across all databases before dumping                                                         |
-| `--source-data <1/2>`     | Include source_log_file and source_log_pos statements (`1`) or comments (`2`) used for replication. Replaces `--master-data` |
+| `--source-data <1/2>`     | Include `1` - `CHANGE REPLICATION SOURCE TO SOURCE_LOG_FILE, SOURCE_LOG_POS` statement or `2` - comment (for information) used for replication. Replaces `--master-data` |
 | `--compact`               | Produce less verbose output by removing comments                                                            |
 | `| pv -trb >`             | Show progress: time, rate, bytes (when piping output through pv utility)                                    |
 | `| gzip >`                | Compress output using gzip (when piping output through gzip utility)                                        |
