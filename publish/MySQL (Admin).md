@@ -804,28 +804,9 @@ systemctl restart mysqld
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
-**mysqldump**
-```bash
-mysqldump [auth] -h host_ip [-A, --all-databases] [-B, --databases db1 db2] [db3 tb1 tb2] [-R] [-E] [--triggers] [--set-gtid-purged=off] [| pv -trb] [ | gzip ] > $(date +"%F_%T").sql[.gz]
+### mysqldump
 
---ignore-table=db1.tb1,
---add-drop-database    # drop database if exists, useful if consistent DBs are needed e.g. across replicas
---no-create-db    # no `CREATE DB IF NOT EXISTS` statement
---no-create-info    # no `DROP TABLE IF EXISTS` statement
---no-data    # no row information
---single-transaction    # dump tables in a single transaction, turns off `LOCK TABLES`
---lock-all-tables
---compact    # less verbose output, removes comments
-pv -trb    # time, rate, bytes (data)
--R    # routines (stored procedures & functions)
--E    # events (scheduled tasks)
---set-gtid-purged=off    # for DBs w GTIDs, excludes them in backup, creates new tr_ids upon restore
---single-transaction     # no table lock, allows changes during dump
-
---no-data    # only schema (database and its objects' structure)
-```
-
-| Flag                      | Description                                                                                                 |
+| mysqldump flag            | Description                                                                                                 |
 |---------------------------|-------------------------------------------------------------------------------------------------------------|
 | `-A`, `--all-databases`   | Dump all databases                                                                                          |
 | `-B`, `--databases`       | Dump specified databases, add create DB statement                                                           |
@@ -857,7 +838,7 @@ mysqlpump [auth] -B db1 db2 > pump.sql
 --default-parallelism=4    # number of threads for the default queue that processes all DBs not in separate queues, default 2
 ```
 
-**Prerequisites to Restoring on Production**
+### Prerequisites to Restoring on Production
 
 Import on test server and check table integrity
 
