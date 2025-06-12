@@ -886,7 +886,7 @@ PURGE BINARY LOGS TO 'mysql-bin.000123';
 --include-gtids=server_uuid:tr_id --exclude-gtids=    # used for replication only, gtid_executed gtids aren't replayed
 
 # modified output w flags may not be able to be used to replay changes
--v --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
+-v, --verbose [--base64-output=decode-rows]    # Comment reconstructed pseudo-SQL statements out of row events
 --base64-output=    # whether to display base64-encoded binlog statements: never, decode-rows disables row-based events, default auto
 ```
 
