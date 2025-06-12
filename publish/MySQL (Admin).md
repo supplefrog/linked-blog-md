@@ -405,11 +405,12 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 ## Generic Linux - Tarball
 
-- Contains all components, and prebuilt binaries for specific glibc dependency
-    - support-files
-        - SysVinit service files for backward compatibility
+- Contains all - prebuilt binaries for specific glibc dependency, libs, docs,
 
-1. [Download](https://downloads.mysql.com/archives/community/), extract to required directories
+  support-files
+  - SysVinit service files for backward compatibility
+
+1. [Download](https://downloads.mysql.com/archives/community/) and extract to required directories
 2. Copy below templates to their respective directories
 3. Edit my.cnf file, specifying custom directories and config
 
