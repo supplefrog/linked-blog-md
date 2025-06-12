@@ -612,7 +612,7 @@ Each row displays:
 
 `PROMPT (\u@\h) [\d]\`
 
-**Query Table Data without `use DB`**
+**Query Table Data without `USE Db`**
 
 ```mysql
 SELECT table_name
@@ -622,11 +622,11 @@ WHERE table_schema = 'db_name' AND table_type = '';
 
 **Log client statements and output**
 
-`tee filename`    # appends
+`TEE filename`    # appends
 
 Stop
 
-`notee`
+`NOTEEE`
 
 ### Performance Monitoring / Tuning
 
@@ -648,15 +648,15 @@ Monitor buffer pool usage:
 
 **Show variables**
 
-`show [global/session/ ] variables [like '%var%'];`
+`SHOW [GLOBAL/SESSION/ ] VARIABLES [LIKE '%var%'];`
 
 **Set for session**
 
-`set [global/local] variable_name='value';`
+`SET [GLOBAL/LOCAL] variable_name='value';`
 
 **Set persist** - stored in `data_dir/mysqld-auto.cnf`
 
-`set persist variable_name = value;`
+`SET PERSIST variable_name = value;`
 
 ### User Management
 
@@ -678,13 +678,13 @@ Login:
 
 **Privileges**
 
-`show grants [for current_user/'username'@'hostname']` 
+`SHOW GRANTS [FOR CURRENT_USER/'username'@'hostname']` 
 
 **or**
 
-`select user, host, select_priv, insert_priv, update_priv, delete_priv from mysql.user;`
+`SELECT user, host, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user;`
 
-`select * from information_schema.table_privileges;`
+`SELECT * FROM information_schema.table_privileges;`
 
 `GRANT select (column1, column2), insert, update, delete, create, drop ON db_name.table_name to 'user'[@'hostname'];`
 
@@ -692,9 +692,9 @@ Login:
 
 **Create/drop user**
 
-`create user 'user'[@'hostname'] identified by 'P@55w0rd';`
+`CREATE USER 'user'[@'hostname'] IDENTIFIED BY 'P@55w0rd';`
 
-`drop user 'user1'[@'hostname'], 'user2'[@'hostname'];`
+`DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];`
 
 **Reset root password**
 
@@ -704,10 +704,10 @@ Run mysql as mysql user, not root (my.cnf/param)
 
 `mysqld --skip-grant-tables --skip-networking &`
 ```mysql
-flush privileges;`    # Loads the grant tables
-alter user 'root'@'localhost' identified by 'P@55w0rd';
+FLUSH PRIVILEGES;`    # Loads the grant tables
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'P@55w0rd';
 
-exit
+EXIT
 ```
 `pkill mysql`
 
