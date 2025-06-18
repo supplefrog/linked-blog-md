@@ -429,12 +429,14 @@ slow_query_log = 1
 
 # bind_address = 0.0.0.0    # single argument, use firewall for control
 # port = 3307
-# datadir = /var/lib/mysql1
+
+datadir = /var/lib/mysql
+socket = /var/run/mysql/mysql.sock
+
 log_error = /var/log/mysqld.log
 # lc_messages_dir = /usr/local/mysql/share/
-# socket = /var/run/mysql/mysql1.sock
-# pid_file = /var/run/mysql/mysqld1.pid
-log_timestamps=SYSTEM
+pid_file = /var/run/mysql/mysqld.pid
+log_timestamps = SYSTEM
 user = mysql
 
 [mysql]
