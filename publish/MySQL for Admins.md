@@ -404,7 +404,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 `/etc/my.cnf`
 
 ```ini
-[mysqld1]
+[mysqld]    #[mysqld1]
 
 enforce_gtid_consistency = 1
 gtid_mode = 1
@@ -437,7 +437,7 @@ server_id = 1
 user = mysql
 
 [mysql]
-# socket = /var/run/mysql/mysql1.sock # for single instance; client connects to multi instances through socket
+# socket = /var/run/mysql/mysql1.sock    # for single instance; client connects to multi instances through socket
 ```
 
 ## Systemd Service(s)
