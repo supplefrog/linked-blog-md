@@ -404,7 +404,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 `/etc/my.cnf`
 
 ```ini
-[mysqld]    #[mysqld1]
+[mysqld]    # [mysqld1]
 
 server_id = 1
 enforce_gtid_consistency = 1
