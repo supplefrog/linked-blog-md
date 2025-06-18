@@ -421,7 +421,7 @@ relay_log = /var/lib/mysql/relaylog.log
 # general_log_file =
 slow_query_log = 1
 # slow_query_log_file =
-# long_query_time = 2
+# long_query_time = 10    # s
 
 # innodb_buffer_pool_size = 128M    # default, can be increased up to 80% server RAM
 # default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
@@ -430,10 +430,11 @@ slow_query_log = 1
 # bind_address = 0.0.0.0    # single argument, use firewall for control
 # port = 3307
 # datadir = /var/lib/mysql1
-# log_error = /var/log/mysqld1.log
+log_error = /var/log/mysqld.log
 # lc_messages_dir = /usr/local/mysql/share/
 # socket = /var/run/mysql/mysql1.sock
 # pid_file = /var/run/mysql/mysqld1.pid
+log_timestamps=SYSTEM
 user = mysql
 
 [mysql]
