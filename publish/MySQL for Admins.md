@@ -406,6 +406,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 ```ini
 [mysqld]    #[mysqld1]
 
+server_id = 1
 enforce_gtid_consistency = 1
 gtid_mode = 1
 
@@ -426,7 +427,6 @@ slow_query_log = 1
 # default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
 # default_storage_engine = InnoDB
 
-server_id = 1
 # bind_address = 0.0.0.0    # single argument, use firewall for control
 # port = 3307
 # datadir = /var/lib/mysql1
