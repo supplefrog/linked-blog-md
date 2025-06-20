@@ -431,7 +431,7 @@ slow_query_log = 1
 # port = 3307
 
 datadir = /var/lib/mysql
-socket = /var/run/mysql/mysql.sock
+socket = /var/lib/mysql/mysql.sock
 
 log_error = /var/log/mysqld.log
 # lc_messages_dir = /usr/local/mysql/share/
