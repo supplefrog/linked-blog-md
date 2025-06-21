@@ -1082,6 +1082,7 @@ SHOW REPLICA STATUS\G
 
 ## 1. Add on all hosts
 ### a. `/etc/hosts` (to correctly resolve hostname):
+
 ```ini
 192.168.8.135 mysql1
 192.168.8.164 mysql2
@@ -1102,4 +1103,29 @@ group_replication_bootstrap_group=off
 server_id=1
 gtid_mode=ON
 enforce_gtid_consistency=ON
+```
+
+### c.
+
+```mysql
+SET SQL_LOG_BIN=0;
+CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
+GRANT REPLICATION SLAVE ON *.* TO rpl_user@'%';
+GRANT CONNECTION_ADMIN ON *.* TO rpl_user@'%';
+GRANT BACKUP_ADMIN ON *.* TO rpl_user@'%';
+GRANT GROUP_REPLICATION_STREAM ON *.* TO rpl_user@'%';
+FLUSH PRIVILEGES;
+SET SQL_LOG_BIN=1;
+```
+
+## d.
+
+### On donor
+```bash
+scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
+```
+
+### On joining member
+```mysql
+set persist group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
 ```
