@@ -169,7 +169,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 └── System Schemas
     ├── mysql (System Schema)
     │   ├── Objects
-    │   │   ├── Data Dictionary (DD) Tables
+    │   │   ├── Data Dictionary Tables (DD)
     │   │   │   └── Internal InnoDB tables containing metadata about all database objects
     │   │   ├── Tables
     │   │   │   ├── user
