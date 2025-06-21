@@ -1101,6 +1101,10 @@ group_replication_local_address="mysql1:33061"
 group_replication_group_seeds="mysql1:33061,mysql2:33061"
 group_replication_bootstrap_group=off
 
+# for multi-primary
+# group_replication_single_primary_mode=OFF
+# group_replication_enforce_update_everywhere_checks=ON
+
 server_id=1
 gtid_mode=ON
 enforce_gtid_consistency=ON
@@ -1163,4 +1167,12 @@ START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
 ii. View status
 ```mysql
 SHOW REPLICATION STATUS FOR CHANNEL 'group_replication_recovery';
+```
+
+## 4. Switch replication modes on an active setup
+
+```mysql
+SELECT group_replication_switch_to_multi_primary_mode();
+
+SELECT group_replication_switch_to_single_primary_mode();
 ```
