@@ -157,11 +157,14 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ### Schemas and their corresponding files in Data Directory (default `/var/lib/mysql`)
 ```
-Schemas
 ├── User Schemas
 │   └── User-created databases
 │       ├── Tables (InnoDB .ibd or MyISAM .FRM .MYI .MYD .PAR)
-│       └── Triggers, routines (MyISAM .TRG)
+│       ├── Routines - reusable SQL statements
+│       │   ├── Stored Procedures
+│       │   └── Stored Functions
+|       ├── Triggers - auto-execute procedures in response to events like DML (MyISAM .TRG)
+|       └── Views - virtual tables (representing query result)
 │
 └── System Schemas
     ├── mysql (System Schema)
@@ -178,37 +181,35 @@ Schemas
     │   │   │   ├── columns
     │   │   │   ├── indexes
     │   │   │   └── events
-    │   │   ├── Routines - reusable SQL statements
-    │   │   │   ├── Stored Procedures
-    │   │   │   └── Stored Functions
-    │   │   ├── Triggers - auto-execute procedures in response to events like DML
-    │   │   └── Views - virtual tables (representing query result)
+    │   │   ├── Routines
+    │   │   ├── Triggers
+    │   │   └── Views
     │   │
     │   └── Files
     │       └── mysql.ibd (InnoDB tablespace containing DD and all mysql schema tables)
     │
-    ├── Virtual Schemas
-    │   ├── information_schema
-    │   │   ├── Objects
-    │   │   │   └── Read-only views exposing metadata from DD and privileges from mysql schema
-    |       |   └── Referred by `SHOW` command
-    │   │   └── Files
-    │   │       └── None (virtual)
-    │   │
-    │   ├── performance_schema
-    │   │   ├── Objects
-    │   │   │   └── In-memory tables of type performance_schema engine for runtime monitoring
-    │   │   └── Files
-    │   │       ├── *.sdi (metadata)
-    │   │       └── None (in-memory)
-    │   │
-    │   └── sys
-    │       ├── Objects
-    │       │   ├── Views (actionable performance and info schema summaries for I/O latency, memory usage etc)
-    │       │   ├── Stored Procedures (diagnostics, reports)
-    │       │   └── Stored Functions (formatting/querying)
-    │       └── Files
-    │           └── sysconfig.ibd - sys schema config
+    └── Virtual Schemas
+        ├── information_schema
+        │   ├── Objects
+        │   │   └── Read-only views exposing metadata from DD and privileges from mysql schema
+            |   └── Referred by `SHOW` command
+        │   └── Files
+        │       └── None (virtual)
+        │
+        ├── performance_schema
+        │   ├── Objects
+        │   │   └── In-memory tables of type performance_schema engine for runtime monitoring
+        │   └── Files
+        │       ├── *.sdi (metadata)
+        │       └── None (in-memory)
+        │
+        └── sys
+            ├── Objects
+            │   ├── Views (actionable performance and info schema summaries for I/O latency, memory usage, schema info, etc)
+            │   ├── Stored Procedures (diagnostics, reports)
+            │   └── Stored Functions (formatting/querying perf schema data)
+            └── Files
+                └── sysconfig.ibd - sys schema config
 ```
 
 ### Non-schema files
