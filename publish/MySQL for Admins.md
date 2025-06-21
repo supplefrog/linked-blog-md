@@ -1037,7 +1037,7 @@ Supports ABBA, ABCA
 
 ## Source
 
-- Addto my.cnf:
+- Add to my.cnf:
 
 ```ini
 server_id=1
