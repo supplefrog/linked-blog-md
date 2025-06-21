@@ -1105,6 +1105,7 @@ server_id=1
 gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
+`systemctl restart mysqld`
 
 ### c. Create rpl_user and grant privileges
 
