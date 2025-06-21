@@ -159,9 +159,9 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ```
 Schemas
 ├── User Schemas
-│   └── [User-created databases]
-│       ├── Tables (InnoDB .ibd or MyISAM .MYD/.MYI)
-│       └── Other objects (indexes, triggers, routines)
+│   └── User-created databases
+│       ├── Tables (InnoDB .ibd or MyISAM .FRM .MYI .MYD .PAR)
+│       └── Triggers, routines (MyISAM .TRG)
 │
 └── System Schemas
     ├── mysql (System Schema)
@@ -239,30 +239,6 @@ Schemas
 └── MySQL config file
 ```
 
-
-contains: 
-- **mysql**. (8.0 - removed .frm, .trg, .par files)
-  
-    user, db, tables_priv, columns_priv, tables, columns, indexes, schemata,
-    - mysql.events
-    - mysql.routines - stored procedures, reusable SQL statements
-    - mysql.triggers - auto-execute procedures in response to events like DML
-    - mysql.views - virtual tables rep. query result 
-
-- Data dictionary - internal InnoDB tables for table metadata (Used to create .cfg during table export)
-
-**information_schema** 
-- Provides (read only) views (virtual tables) on metadata stored in data dictionary and privilege and grant info in mysql system schema
-- refered by `SHOW` command 
-
-`performance_schema/`
-
-.sdi - Serialized Dictionary Information, metadata for objects within performance_schema db
-
-**performance_schema** contains in-memory **tables** of the type performance schema engine for monitoring server execution at runtime
-
-`sys/`
-
 `sysconfig.ibd` - sys_config table - stores sys schema configuration settings
 
 **sys** schema
@@ -276,13 +252,6 @@ Stored Functions: Provide formatting and querying services related to Performanc
 `ibdata1`
 
 Default shared tablespace for internal InnoDB structures
-
-**User databases**
-
-`dbname/` 
-- (data subdirectory)
-- InnoDB File-Per-Table Tablespace (.ibd) - contains table and all its indexes (primary & secondary)
-- MyISAM - .myd (data ) & .myi (index)
 
 **Logs**
 - General Query Log - all SQL queries received by the server regardless of execution time
