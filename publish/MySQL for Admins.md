@@ -1016,13 +1016,12 @@ CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1';
 GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 ```
 
-### < 8
+c.
 
-c. `RESET MASTER`
-
-### > 8
-
-c. `RESET BINARY LOGS AND GTIDS`
+| Version | Command                        |
+|---------|--------------------------------|
+| < 8     | `RESET MASTER;`                |
+| > 8     | `RESET BINARY LOGS AND GTIDS;` |
 
 ## 2. Replica
 
