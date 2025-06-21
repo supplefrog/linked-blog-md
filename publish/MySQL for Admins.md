@@ -403,41 +403,39 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 # my.cnf
 `/etc/my.cnf`
 
+Paste below the commented section:
+
 ```ini
 [mysqld]    # [mysqld1]
 
-server_id = 1
-enforce_gtid_consistency = 1
-gtid_mode = 1
+innodb_buffer_pool_size=5.6G    # default 128M, start at 70%, up to 80% total RAM
 
-# expire_logs_days = 7    # binlog expiry
-# binlog_expire_logs_seconds = 604800
-# binlog_encryption = ON
-# log_bin = /var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
-# binlog_do_db = test
-relay_log = /var/lib/mysql/relaylog.log
+# general_log=1
+# general_log_file=
+slow_query_log=1
+# slow_query_log_file=
+# long_query_time=10    # default, in s
 
-# general_log = 1
-# general_log_file =
-slow_query_log = 1
-# slow_query_log_file =
-# long_query_time = 10    # s
+# binlog_expire_logs_seconds=604800    # expire_logs_days=7    # < 8
+# binlog_encryption=ON
+# log_bin=/var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
+# binlog_do_db=test
 
-# innodb_buffer_pool_size = 128M    # default, can be increased up to 80% server RAM
-# default_authentication_plugin = sha256_password    # 8.0 -> authentication_policy
-# default_storage_engine = InnoDB
+# port=3307
+# bind_address=0.0.0.0    # single argument, use firewall for control
 
-# bind_address = 0.0.0.0    # single argument, use firewall for control
-# port = 3307
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
 
-datadir = /var/lib/mysql
-socket = /var/lib/mysql/mysql.sock
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
 
-log_error = /var/log/mysqld.log
-# lc_messages_dir = /usr/local/mysql/share/
-pid_file = /var/run/mysql/mysqld.pid
-log_timestamps = SYSTEM
-user = mysql
+# lc_messages_dir=/usr/local/mysql/share/
+
+# default_authentication_plugin=caching_sha2_password    # 8 default
+# default_storage_engine=InnoDB
+log_timestamps=SYSTEM
+user=mysql
 
 [mysql]
 # socket = /var/run/mysql/mysql1.sock    # for single instance; client connects to multi instances through socket
@@ -997,7 +995,12 @@ Supports ABBA, ABCA
 
 ## Source
 
-- Add server_id to my.cnf
+- Addto my.cnf:
+
+```ini
+server_id=1
+```
+
 - Create a user only for replication
 ```mysql
 CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1';
@@ -1014,7 +1017,12 @@ GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 
 ## Replica
 
-- Add server_id and relay_log= to my.cnf
+- Add to my.cnf:
+
+```ini
+server_id=2
+relay_log=/var/lib/mysql/relaylog.log
+```
 
 ### < 8
 ```mysql
@@ -1050,4 +1058,30 @@ CHANGE REPLICATION SOURCE TO
   SOURCE_LOG_POS = 157,
   GET_SOURCE_PUBLIC_KEY = 1;
 #FOR CHANNEL 'channel_name';
+```
+
+# Group Replication
+
+## Add on all hosts
+### /etc/hosts (to correctly resolve hostname):
+```ini
+192.168.8.135 mysql1
+192.168.8.164 mysql2
+```
+
+### my.cnf (change local address for each host):
+
+```ini
+plugin_load_add='group_replication.so'
+plugin_load_add='mysql_clone.so'
+
+group_replication_group_name="744bce81-a89c-4526-8841-ec030bd1a8f7"
+group_replication_start_on_boot=off
+group_replication_local_address="mysql1:33061"
+group_replication_group_seeds="mysql1:33061,mysql2:33061"
+group_replication_bootstrap_group=off
+
+server_id=1
+gtid_mode=ON
+enforce_gtid_consistency=ON
 ```
