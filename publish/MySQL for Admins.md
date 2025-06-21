@@ -1129,7 +1129,7 @@ scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
 
 ### b. On joining member
 ```mysql
-set persist group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
+SET PERSIST group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
 ```
 
 ## 3. Start replication
