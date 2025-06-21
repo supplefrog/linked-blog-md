@@ -1134,7 +1134,7 @@ set persist group_replication_recovery_public_key_path='/etc/mysql/public_key.pe
 ## 3. Start replication
 
 ### Prechecks
-Show binlogs events on each server to avoid distributed recovery conflicts
+Show and modify binlogs events on each server to avoid distributed recovery conflicts
 ```mysql
 SHOW BINLOG EVENTS;
 ```
