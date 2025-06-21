@@ -1174,6 +1174,7 @@ SHOW REPLICATION STATUS FOR CHANNEL 'group_replication_recovery';
 
 ```mysql
 SELECT group_replication_switch_to_multi_primary_mode();
-
+```
+```mysql
 SELECT group_replication_switch_to_single_primary_mode();
 ```
