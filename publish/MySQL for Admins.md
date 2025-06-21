@@ -1081,6 +1081,7 @@ SHOW REPLICA STATUS\G
 # Group Replication
 
 ## 1. Add on all hosts
+
 ### a. `/etc/hosts` (to correctly resolve hostname):
 
 ```ini
@@ -1105,7 +1106,7 @@ gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
 
-### c.
+### c. Create rpl_user and grant privileges
 
 ```mysql
 SET SQL_LOG_BIN=0;
@@ -1118,14 +1119,46 @@ FLUSH PRIVILEGES;
 SET SQL_LOG_BIN=1;
 ```
 
-## d.
+## 2. Copy ssl key to joining member
 
-### On donor
+### a. On donor
 ```bash
 scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
 ```
 
-### On joining member
+### b. On joining member
 ```mysql
 set persist group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
+```
+
+## 3. Start replication
+
+### Prechecks
+Show binlogs events on each server to avoid distributed recovery conflicts
+```mysql
+SHOW BINLOG EVENTS;
+```
+
+### a. Primary member
+i. Start
+```mysql
+SET GLOBAL group_replication_bootstrap_group=ON;    # start group as primary member
+START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
+SET GLOBAL group_replication_bootstrap_group=OFF;
+```
+
+ii. View status
+```mysql
+SELECT * FROM performance_schema.replication_group_members;
+```
+
+### b. Joining Member
+i. Join
+```mysql
+START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
+```
+
+ii. View status
+```mysql
+SHOW REPLICATION STATUS FOR CHANNEL 'group_replication_recovery';
 ```
