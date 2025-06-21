@@ -1002,15 +1002,15 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 # [Replication](#table-of-contents)
 Supports ABBA, ABCA
 
-## Source
+## 1. Source
 
-- Add to my.cnf:
+a. Add to my.cnf:
 
 ```ini
 server_id=1
 ```
 
-- Create a user only for replication
+b. Create a user only for replication
 ```mysql
 CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1';
 GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
@@ -1018,15 +1018,15 @@ GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 
 ### < 8
 
-`RESET MASTER`
+c. `RESET MASTER`
 
 ### > 8
 
-`RESET BINARY LOGS AND GTIDS`
+c. `RESET BINARY LOGS AND GTIDS`
 
-## Replica
+## 2. Replica
 
-- Add to my.cnf:
+a. Add to my.cnf:
 
 ```ini
 server_id=2
@@ -1034,6 +1034,8 @@ relay_log=/var/lib/mysql/relaylog.log
 ```
 
 ### < 8
+
+b. 
 ```mysql
 # For multi-source replica channels
 #SET GLOBAL master_info_repository = 'TABLE';
@@ -1051,9 +1053,14 @@ CHANGE MASTER TO
   MASTER_LOG_POS = 157,
   GET_MASTER_PUBLIC_KEY = 1
 #FOR CHANNEL 'channel_name';
+
+START SLAVE;
+SHOW SLAVE STATUS\G
 ```
 
 ### > 8
+
+b.
 ```mysql
 RESET BINARY LOGS AND GTIDS;
 RESET REPLICA;
@@ -1067,18 +1074,21 @@ CHANGE REPLICATION SOURCE TO
   SOURCE_LOG_POS = 157,
   GET_SOURCE_PUBLIC_KEY = 1;
 #FOR CHANNEL 'channel_name';
+
+START REPLICA;
+SHOW REPLICA STATUS\G
 ```
 
 # Group Replication
 
-## Add on all hosts
-### `/etc/hosts` (to correctly resolve hostname):
+## 1. Add on all hosts
+### a. `/etc/hosts` (to correctly resolve hostname):
 ```ini
 192.168.8.135 mysql1
 192.168.8.164 mysql2
 ```
 
-### `my.cnf` (change local address for each host):
+### b. `my.cnf` (change local address for each host):
 
 ```ini
 plugin_load_add='group_replication.so'
