@@ -104,8 +104,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ## [Physical](#table-of-contents)
 
-### Base Directory - Executables
-Default `/bin -> /usr/bin`
+### Base Directory -> Executables (default `/usr/bin`)
 
 | Client Apps            | Use                                                                               |
 |:-----------------------|:----------------------------------------------------------------------------------|
@@ -156,17 +155,90 @@ Default `/bin -> /usr/bin`
 | mysqluc              | Unified CLI for multiple MySQL utilities                                 |
 | mysqluserclone       | Clone MySQL user accounts and privileges                                 |
 
-### MySQL Config File
-`/etc/my.cnf`
+### Schemas and their corresponding files in Data Directory (default `/var/lib/mysql`)
+```
+Schemas
+├── User Schemas
+│   └── [User-created databases]
+│       ├── Tables (InnoDB .ibd or MyISAM .MYD/.MYI)
+│       └── Other objects (indexes, triggers, routines)
+│
+└── System Schemas
+    ├── mysql (System Schema)
+    │   ├── Objects (practical use order)
+    │   │   ├── Data Dictionary Tables (DD)
+    │   │   │   └── Internal InnoDB tables containing metadata about all database objects
+    │   │   ├── Tables
+    │   │   │   ├── user
+    │   │   │   ├── db
+    │   │   │   ├── tables_priv
+    │   │   │   ├── columns_priv
+    │   │   │   ├── schemata
+    │   │   │   ├── tables
+    │   │   │   ├── columns
+    │   │   │   ├── indexes
+    │   │   │   └── events
+    │   │   ├── Routines - reusable SQL statements
+    │   │   │   ├── Stored Procedures
+    │   │   │   └── Stored Functions
+    │   │   ├── Triggers - auto-execute procedures in response to events like DML
+    │   │   └── Views - virtual tables (representing query result)
+    │   │
+    │   └── Files
+    │       └── mysql.ibd (InnoDB tablespace containing DD and all mysql schema tables)
+    │
+    ├── Virtual Schemas
+    │   ├── information_schema
+    │   │   ├── Objects
+    │   │   │   └── Read-only views exposing metadata from DD and privileges from mysql schema
+    |       |   └── Referred by `SHOW` command
+    │   │   └── Files
+    │   │       └── None (virtual)
+    │   │
+    │   ├── performance_schema
+    │   │   ├── Objects
+    │   │   │   └── In-memory tables of type performance_schema engine for runtime monitoring
+    │   │   └── Files
+    │   │       ├── *.sdi (metadata)
+    │   │       └── None (in-memory)
+    │   │
+    │   └── sys
+    │       ├── Objects
+    │       │   ├── Views (actionable performance and info schema summaries for I/O latency, memory usage etc)
+    │       │   ├── Stored Procedures (diagnostics, reports)
+    │       │   └── Stored Functions (formatting/querying)
+    │       └── Files
+    │           └── sysconfig.ibd - sys schema config
+```
 
-### Data Directory
-`/var/lib/mysql/`
+### Non-schema files
 
-Contains databases and their objects
+```
+/var/lib/mysql
+├── ibdata1
+│   └── Shared InnoDB tablespace (undo logs, internal InnoDB metadata, doublewrite buffer)
+│
+├── Logs
+│   ├── General Query Log
+│   ├── Slow Query Log
+│   ├── DDL Log
+│   ├── Binary Log
+│   └── Relay Log
+│
+├── InnoDB Log Files
+│   ├── Redo Logs
+│   └── Undo Logs
+│
+├── Socket File
+│   └── Temporary communication socket
+│
+└── PID File
+    └── Server process ID
 
-**Tablespaces and their system schemas**
+/etc/my.cnf
+└── MySQL config file
+```
 
-`mysql.ibd`
 
 contains: 
 - **mysql**. (8.0 - removed .frm, .trg, .par files)
