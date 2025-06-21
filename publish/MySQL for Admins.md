@@ -1063,13 +1063,13 @@ CHANGE REPLICATION SOURCE TO
 # Group Replication
 
 ## Add on all hosts
-### /etc/hosts (to correctly resolve hostname):
+### `/etc/hosts` (to correctly resolve hostname):
 ```ini
 192.168.8.135 mysql1
 192.168.8.164 mysql2
 ```
 
-### my.cnf (change local address for each host):
+### `my.cnf` (change local address for each host):
 
 ```ini
 plugin_load_add='group_replication.so'
