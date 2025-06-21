@@ -12,6 +12,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Backup and Restore](#backup-and-restore)
 - [Upgrade](#upgrade)
 - [Replication](#replication)
+    - [Group Replication](#group-replication)
 ---
 
 ### [Diction](#table-of-contents)
