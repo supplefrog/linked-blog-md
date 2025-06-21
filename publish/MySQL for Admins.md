@@ -1178,3 +1178,10 @@ SELECT group_replication_switch_to_multi_primary_mode();
 ```mysql
 SELECT group_replication_switch_to_single_primary_mode();
 ```
+
+Monitor its progress
+```mysql
+SELECT event_name, work_completed, work_estimated 
+FROM performance_schema.events_stages_current 
+WHERE event_name LIKE "%stage/group_rpl%";
+```
