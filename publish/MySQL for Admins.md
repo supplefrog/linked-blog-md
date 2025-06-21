@@ -157,17 +157,16 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ### Schemas and their corresponding files in Data Directory (default `/var/lib/mysql`)
 ```
-├── User Schemas
-│   └── User-created databases
-│       ├── Tables (InnoDB .ibd or MyISAM .FRM .MYI .MYD .PAR)
-│       ├── Routines - reusable SQL statements
-│       │   ├── Stored Procedures
-│       │   └── Stored Functions
-|       ├── Triggers - auto-execute procedures in response to events like DML (MyISAM .TRG)
-|       └── Views - virtual tables (representing query result)
+├── User Schemas (Subdirectory)
+│   ├── Tables (InnoDB .ibd or MyISAM .FRM .MYI .MYD .PAR)
+│   ├── Routines - reusable SQL statements
+│   │   ├── Stored Procedures
+│   │   └── Stored Functions
+|   ├── Triggers - auto-execute procedures in response to events like DML (MyISAM .TRG)
+|   └── Views - virtual tables (representing query result)
 │
 └── System Schemas
-    ├── mysql (System Schema)
+    ├── mysql
     │   ├── Objects
     │   │   ├── Data Dictionary Tables (DD)
     │   │   │   └── Internal InnoDB tables containing metadata about all database objects
@@ -206,10 +205,10 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
         └── sys
             ├── Objects
             │   ├── Views (actionable performance and info schema summaries for I/O latency, memory usage, schema info, etc)
-            │   ├── Stored Procedures (diagnostics, reports)
-            │   └── Stored Functions (formatting/querying perf schema data)
+            │   ├── Stored Procedures (for generating diagnostics reports, configuring perf schema)
+            │   └── Stored Functions (querying/formatting perf schema data)
             └── Files
-                └── sysconfig.ibd - sys schema config
+                └── sysconfig.ibd - configuration settings for sys schema
 ```
 
 ### Non-schema files
@@ -217,59 +216,27 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ```
 /var/lib/mysql
 ├── ibdata1
-│   └── Shared InnoDB tablespace (undo logs, internal InnoDB metadata, doublewrite buffer)
+│   └── Shared InnoDB tablespace (internal InnoDB metadata, doublewrite buffer, undo logs)
 │
 ├── Logs
-│   ├── General Query Log
-│   ├── Slow Query Log
-│   ├── DDL Log
-│   ├── Binary Log
-│   └── Relay Log
+│   ├── General Query Log - all SQL statements
+│   ├── Slow Query Log - queries > specified execution time
+│   ├── DDL Log - DDL queries
+│   ├── Binary Log - for PITR and replication - events that describe changes to DB 
+│   └── Relay Log - for replication - events read from source's binlog
 │
 ├── InnoDB Log Files
-│   ├── Redo Logs
-│   └── Undo Logs
+│   ├── `#innodb_redo/` - redo logs
+│   └── `undo_001` - undo logs
 │
-├── Socket File
-│   └── Temporary communication socket
+├── mysql.sock
+│   └── Temporary communication socket -- server start - generates, stop - deletes
 │
-└── PID File
-    └── Server process ID
+└── mysql.sock.lock - contains mysqld PID that owns the socket, useful for multiple instances 
 
 /etc/my.cnf
 └── MySQL config file
 ```
-
-`sysconfig.ibd` - sys_config table - stores sys schema configuration settings
-
-**sys** schema
-
-Views: Summarize and present Performance Schema (and sometimes Information Schema) data in a more user-friendly and actionable format. e.g., views for I/O latency, memory usage, statement summaries, wait events, schema information, etc
-
-Stored Procedures: Automate common diagnostic and performance tasks, such as configuring the Performance Schema or generating reports
-
-Stored Functions: Provide formatting and querying services related to Performance Schema data
-
-`ibdata1`
-
-Default shared tablespace for internal InnoDB structures
-
-**Logs**
-- General Query Log - all SQL queries received by the server regardless of execution time
-- Slow Query Log - queries > specified exec time
-- DDL Log - DDL statements
-- Binary Log
-    - Used for replication and point-in-time recovery
-    - Events that describe changes to DB
-- Relay Log
-    - Replica server data dir/replica-server-name-relay.bin.000001
-    - Store events read from source's bin log
-    - Processed to replicated changes
-- InnoDB Log Files
-    - Redo Logs
-    - Undo Logs
-- Socket File - temp file generated w service start, deleted upon stop
--  File for *PIDs under Socket*
 
 ### [Storage Engines](#table-of-contents)
 
