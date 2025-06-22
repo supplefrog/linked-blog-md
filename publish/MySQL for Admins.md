@@ -191,8 +191,8 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     └── Virtual Schemas
         ├── information_schema
         │   ├── Objects
-        │   │   └── Read-only views exposing metadata from DD and privileges from mysql schema
-            |   └── Referred by `SHOW` command
+        │   │   ├── Read-only views exposing metadata from DD and privileges from mysql schema
+        |   |   └── Referred by `SHOW` command
         │   └── Files
         │       └── None (virtual)
         │
