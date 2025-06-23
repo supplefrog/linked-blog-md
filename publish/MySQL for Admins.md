@@ -1003,6 +1003,8 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 # [Replication](#table-of-contents)
 Supports ABBA, ABCA
 
+![Replication Architecture](https://www.percona.com/blog/wp-content/uploads/2024/12/mysqlreplication-diagram-1-980x457.png)
+
 ## 1. Source
 
 a. Add to my.cnf:
