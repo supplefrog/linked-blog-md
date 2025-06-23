@@ -305,43 +305,43 @@ Located completely in RAM
     - Flush to redo log files
 
 ### On-Disk Data
-- **Redo Logs**
-    - Write-ahead logging
-        - Persistent log of changes, before applied to on-disk pages
-    - Changes can be reapplied to data pages if system crashes before/during writing
-    - Durability - committed transactions are not lost
-    - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
-- **Tablespaces**
-    - **InnoDB** (System) **Tablespace** (`ibdata1`)
-        - Change buffer
-            - Persists secondary index buffered changes across restarts (durability)
-        - Doublewrite Buffer
-            - Protects against partial page writes due to crash while writing pages to tables
-        - Undo logs
-            - In case instance isn't started with undo tablespace
-        - Data Dictionary (**8.0 -> mysql.ibd**)
-        - Table and Index Data (**5.7 -> For tables without innodb_file_per_table option**)
-    - **General Tablespace .ibd**
-        - Can host multiple tables
-    - **File-Per-Table Tablespace .ibd**
-        - Each table has its own .ibd file
-    - **Temporary Tablespace**
-        - Session (#innodb_temp dir)
-            - User-created
-                ```mysql
-                CREATE TEMPORARY TABLE table_name ();
-                ```
-            - Internal temp tables - auto created by optimizer for operations like sorting, grouping
-                - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
-        - Global (ibtmp1)
-            - Stores rollback segments for changes to  user-created temp tables
-            - Redo logs not needed since not persistent
-            - Auto-extending
-            - Removed on normal shutdown, recreated on server startup
-    - **Undo Tablespaces**
-        - Store undo logs
-            - Records original data before changes
-            - Enable rollback in case transaction not reflected on receiver's end
+**Redo Logs**
+- Write-ahead logging
+    - Persistent log of changes, before applied to on-disk pages
+- Changes can be reapplied to data pages if system crashes before/during writing
+- Durability - committed transactions are not lost
+- Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
+**Tablespaces**
+- **InnoDB** (System) **Tablespace** (`ibdata1`)
+    - Change buffer
+        - Persists secondary index buffered changes across restarts (durability)
+    - Doublewrite Buffer
+        - Protects against partial page writes due to crash while writing pages to tables
+    - Undo logs
+        - In case instance isn't started with undo tablespace
+    - Data Dictionary (**8.0 -> mysql.ibd**)
+    - Table and Index Data (**5.7 -> For tables without innodb_file_per_table option**)
+- **General Tablespace .ibd**
+    - Can host multiple tables
+- **File-Per-Table Tablespace .ibd**
+    - Each table has its own .ibd file
+- **Temporary Tablespace**
+    - Session (#innodb_temp dir)
+        - User-created
+            ```mysql
+            CREATE TEMPORARY TABLE table_name ();
+            ```
+        - Internal temp tables - auto created by optimizer for operations like sorting, grouping
+            - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
+    - Global (ibtmp1)
+        - Stores rollback segments for changes to  user-created temp tables
+        - Redo logs not needed since not persistent
+        - Auto-extending
+        - Removed on normal shutdown, recreated on server startup
+- **Undo Tablespaces**
+    - Store undo logs
+        - Records original data before changes
+        - Enable rollback in case transaction not reflected on receiver's end
 
 ### Glossary
 **Data**
