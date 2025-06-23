@@ -615,7 +615,7 @@ Each row displays:
 
 `mysqladmin kill pid`
 
-### Identify high load users/problematic queries**
+### Identify high load users/problematic queries
 
 `SELECT * FROM sys.user_summary;`
 
