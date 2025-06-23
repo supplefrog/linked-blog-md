@@ -1068,6 +1068,11 @@ SET GLOBAL sql_replica_skip_counter = N
 START REPLICA;
 ```
 
+### Automated crash recovery
+```mysql
+SET GLOBAL relay_log_recovery=ON;
+```
+
 # Group Replication
 
 ## 1. Add on all hosts
