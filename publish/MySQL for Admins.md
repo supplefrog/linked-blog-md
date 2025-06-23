@@ -1094,8 +1094,9 @@ Replica
 plugin_load_add='semisync_replica.so'
 rpl_semi_sync_replica_enabled=1
 ```
+Restart server
 
-While server online with async replication
+**While server online with async replication**
 
 Source
 ```mysql
