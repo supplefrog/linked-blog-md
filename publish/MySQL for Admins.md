@@ -1156,7 +1156,7 @@ START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
 
 ii. View status
 ```mysql
-SHOW REPLICATION STATUS FOR CHANNEL 'group_replication_recovery';
+SHOW REPLICA STATUS FOR CHANNEL 'group_replication_recovery';
 ```
 
 ## 4. Switch replication modes on an active setup
