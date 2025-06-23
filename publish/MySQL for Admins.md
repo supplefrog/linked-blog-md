@@ -1078,6 +1078,8 @@ START REPLICA;
 
 ### b. `my.cnf` (change local address for each host):
 
+[`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
+
 ```ini
 plugin_load_add='group_replication.so'
 plugin_load_add='mysql_clone.so'
