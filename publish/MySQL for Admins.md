@@ -524,7 +524,7 @@ PrivateTmp=false
     ```sh
     firewall-cmd --list-all    # services, ports
     firewall-cmd --permanent --add-service=mysql
-    firewall-cmd --permanent --add-service=portid/protocol
+    firewall-cmd --permanent --add-port=port_no/protocol
     firewall-cmd --reload
     ```
 
@@ -1079,6 +1079,22 @@ START REPLICA;
 SET GLOBAL relay_log_recovery=ON;
 ```
 
+### Semi-sync replication
+Source waits for confirmation from replica if transaction committed to its relay log prior to committing in its own redo log
+
+Add to my.cnf:
+
+Source
+```ini
+plugin_load_add='semisync_source.so'
+rpl_semi_sync_source_enabled=1
+```
+Replica
+```ini
+plugin_load_add='semisync_replica.so'
+rpl_semi_sync_replica_enabled=1
+```
+
 # Group Replication
 
 ## 1. Add on all hosts
@@ -1111,6 +1127,11 @@ gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
 ```bash
+firewall-cmd --permanent --add-service mysql
+firewall-cmd --permanent --add-port 3306/tcp
+firewall-cmd --permanent --add-port 33061/tcp
+firewall-cmd --reload
+
 systemctl restart mysqld
 ```
 ### c. Create rpl_user and grant privileges
