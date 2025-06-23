@@ -1034,6 +1034,9 @@ relay_log=/var/lib/mysql/relaylog.log
 ```
 
 b.
+
+[`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
+
 ```mysql
 # < 8 statements for multi-source replica channels
 # SET GLOBAL master_info_repository = 'TABLE';
@@ -1077,8 +1080,6 @@ START REPLICA;
 ```
 
 ### b. `my.cnf` (change local address for each host):
-
-[`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
 
 ```ini
 plugin_load_add='group_replication.so'
