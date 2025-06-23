@@ -1127,6 +1127,7 @@ gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
 ```bash
+semanage port -a -t mysqld_port_t -p tcp 33061
 firewall-cmd --permanent --add-service mysql
 firewall-cmd --permanent --add-port 3306/tcp
 firewall-cmd --permanent --add-port 33061/tcp
