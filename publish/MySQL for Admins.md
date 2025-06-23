@@ -411,7 +411,7 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 1. [Download](https://downloads.mysql.com/archives/community/) and extract to required directories
 2. Copy below templates to their respective directories
-3. Edit my.cnf file, specifying custom directories and config
+3. Edit `my.cnf`, specifying custom directories and config
 
 # my.cnf
 `/etc/my.cnf`
@@ -1011,7 +1011,7 @@ Supports ABBA, ABCA
 
 ## 1. Source
 
-a. Add to my.cnf:
+a. Add to `my.cnf`:
 
 ```ini
 server_id=1
@@ -1032,7 +1032,7 @@ c.
 
 ## 2. Replica
 
-a. Add to my.cnf:
+a. Add to `my.cnf`:
 
 ```ini
 server_id=2
@@ -1086,7 +1086,7 @@ SET GLOBAL relay_log_recovery=ON;
 ### Semi-sync replication
 Source waits for confirmation from replica if transaction committed to its relay log prior to committing in its own redo log
 
-Add to my.cnf:
+Add to `my.cnf`:
 
 Source
 ```ini
