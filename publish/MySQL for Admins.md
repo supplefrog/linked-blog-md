@@ -609,7 +609,7 @@ Displays
 `SELECT * FROM sys.processlist;`
 
 Each row displays:
-> active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
+> Active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
 
 ### kill process
 
