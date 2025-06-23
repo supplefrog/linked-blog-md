@@ -1137,7 +1137,13 @@ enforce_gtid_consistency=ON
 systemctl restart mysqld
 ```
 
-### d. Create rpl_user and grant privileges
+### d. Enable GTID
+```mysql
+SET PERSIST gtid_mode=ON_PERMISSIVE;
+SET PERSIST gtid_mode=ON;
+```
+
+### e. Create rpl_user and grant privileges
 ```mysql
 SET SQL_LOG_BIN=0;
 CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
