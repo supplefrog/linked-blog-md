@@ -985,7 +985,7 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 
 | Path                | Method                                     |
 |---------------------|--------------------------------------------|
-| < 5.7   -> 5.7      | Update binary, run `mysql_upgrade`         |
+| < 5.7  -> 5.7       | Update binary, run `mysql_upgrade`         |
 | 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`         |
 | 5.7    -> 8.0.16+   | Update binary, start server (auto-upgrade) |
 | 8.0.x  -> 8.4       | Update binary, start server (auto-upgrade) |
@@ -1033,36 +1033,14 @@ server_id=2
 relay_log=/var/lib/mysql/relaylog.log
 ```
 
-### < 8
-
-b. 
-```mysql
-# For multi-source replica channels
-#SET GLOBAL master_info_repository = 'TABLE';
-#SET GLOBAL relay_log_info_repository = 'TABLE';
-
-RESET MASTER;
-RESET SLAVE;
-
-CHANGE MASTER TO
-  MASTER_HOST = '192.168.8.2',
-  MASTER_USER = 'replica',
-  MASTER_PASSWORD = 'Redhat@1',
-  #MASTER_AUTO_POSITION = 1,    # If GTIDs enabled
-  MASTER_LOG_FILE = 'binlog.000001',
-  MASTER_LOG_POS = 157,
-  GET_MASTER_PUBLIC_KEY = 1
-#FOR CHANNEL 'channel_name';
-
-START SLAVE;
-SHOW SLAVE STATUS\G
-```
-
-### > 8
-
 b.
 ```mysql
-RESET BINARY LOGS AND GTIDS;
+# < 8 statements for multi-source replica channels
+# SET GLOBAL master_info_repository = 'TABLE';
+# SET GLOBAL relay_log_info_repository = 'TABLE';
+
+# < 8 - replace %SOURCE with MASTER and REPLICA with SLAVE
+RESET BINARY LOGS AND GTIDS;    # < 8 - RESET MASTER
 RESET REPLICA;
 
 CHANGE REPLICATION SOURCE TO
@@ -1077,6 +1055,14 @@ CHANGE REPLICATION SOURCE TO
 
 START REPLICA;
 SHOW REPLICA STATUS\G
+```
+
+### Skip problematic statements
+```mysql
+# < 8 - replace replica with slave
+STOP REPLICA;
+SET GLOBAL sql_replica_skip_counter = N
+START REPLICA;
 ```
 
 # Group Replication
