@@ -1100,14 +1100,21 @@ rpl_semi_sync_replica_enabled=1
 ## 1. Add on all hosts
 
 ### a. `/etc/hosts` (to correctly resolve hostname):
-
 ```ini
 192.168.8.135 mysql1
 192.168.8.164 mysql2
 ```
 
-### b. `my.cnf` (change local address for each host):
+### b. Configure security modules
+```bash
+semanage port -a -t mysqld_port_t -p tcp 33061
+firewall-cmd --permanent --add-service mysql
+firewall-cmd --permanent --add-port 3306/tcp
+firewall-cmd --permanent --add-port 33061/tcp
+firewall-cmd --reload
+```
 
+### c. `my.cnf` (change local address for each host):
 ```ini
 plugin_load_add='group_replication.so'
 plugin_load_add='mysql_clone.so'
@@ -1127,16 +1134,10 @@ gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
 ```bash
-semanage port -a -t mysqld_port_t -p tcp 33061
-firewall-cmd --permanent --add-service mysql
-firewall-cmd --permanent --add-port 3306/tcp
-firewall-cmd --permanent --add-port 33061/tcp
-firewall-cmd --reload
-
 systemctl restart mysqld
 ```
-### c. Create rpl_user and grant privileges
 
+### d. Create rpl_user and grant privileges
 ```mysql
 SET SQL_LOG_BIN=0;
 CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
@@ -1193,7 +1194,6 @@ SHOW REPLICA STATUS FOR CHANNEL 'group_replication_recovery';
 ```
 
 ## 4. Switch replication modes on an active setup
-
 ```mysql
 SELECT group_replication_switch_to_multi_primary_mode();
 ```
