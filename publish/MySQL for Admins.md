@@ -583,14 +583,14 @@ PrivateTmp=false
 # [Administration](#table-of-contents)
 
 ## Display
-| Object Type  | Query Example                                 |
-|--------------|-----------------------------------------------------|
-| Tables       | `SHOW TABLES FROM your_database;`                   |
+| Object Type  | Query Example                                                  |
+|--------------|----------------------------------------------------------------|
+| Tables       | `SHOW TABLES FROM your_database;`                              |
 | Views        | `SHOW FULL TABLES IN your_database WHERE Table_type = 'VIEW';` |
-| Procedures   | `SHOW PROCEDURE STATUS WHERE Db = 'your_database';` |
-| Functions    | `SHOW FUNCTION STATUS WHERE Db = 'your_database';`  |
-| Triggers     | `SHOW TRIGGERS FROM your_database;`                 |
-| Events       | `SHOW EVENTS FROM your_database;`                   |
+| Procedures   | `SHOW PROCEDURE STATUS WHERE Db = 'your_database';`            |
+| Functions    | `SHOW FUNCTION STATUS WHERE Db = 'your_database';`             |
+| Triggers     | `SHOW TRIGGERS FROM your_database;`                            |
+| Events       | `SHOW EVENTS FROM your_database;`                              |
 
 ### Status
 
