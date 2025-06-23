@@ -601,7 +601,7 @@ PrivateTmp=false
 
 `mysqladmin [auth] status`
 
-Displays
+> Displays
 
 > Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
@@ -611,7 +611,8 @@ Displays
 `show processlist;` 
 `SELECT * FROM sys.processlist;`
 
-Each row displays:
+> Each row displays:
+
 > Active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
 
 ### kill process
