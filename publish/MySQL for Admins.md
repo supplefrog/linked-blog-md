@@ -807,7 +807,7 @@ systemctl restart mysqld
 | Restore  | Return to original state                                   |
 | Recover  | Salvage missing data using specialized tools, partial/full |
 
-## Logical
+## [Logical](#table-of-contents)
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
@@ -922,7 +922,7 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 | `threads`    | Sets the number of parallel worker threads for the backup. Cannot assign threads to specific queues; only total count is set. |
 | `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies.       |
 
-## Physical
+## [Physical](#table-of-contents)
 
 [Percona XtraBackup (xtrabackup)](https://www.percona.com/downloads)
 
