@@ -298,6 +298,7 @@ Located completely in RAM
     - Stores frequently used indexes
     - Speeds up data retrieval from buffer pool
         - B-Tree index lookups -> faster hash-based search
+
 **Log Buffer**
 - Maintains record of dirty pages in buffer pool
 - Transaction commit/log buffer reaches threshold/regular interval
