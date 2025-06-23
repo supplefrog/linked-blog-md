@@ -1118,7 +1118,7 @@ STOP REPLICA IO_THREAD;
 START REPLICA IO_THREAD;
 ```
 
-# Group Replication
+# [Group Replication](#table-of-contents)
 
 ## 1. Add on all hosts
 
