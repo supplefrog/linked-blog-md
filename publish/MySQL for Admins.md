@@ -1095,6 +1095,28 @@ plugin_load_add='semisync_replica.so'
 rpl_semi_sync_replica_enabled=1
 ```
 
+While server online with async replication
+
+Source
+```mysql
+INSTALL PLUGIN rpl_semi_sync_source SONAME 'semisync_source.so';
+SET GLOBAL rpl_semi_sync_source_enabled=1;
+```
+
+Replica
+```mysql
+INSTALL PLUGIN rpl_semi_sync_replica SONAME 'semisync_replica.so';
+SET GLOBAL rpl_semi_sync_replica_enabled=1;
+
+# Verify if enabled
+SHOW PLUGINS;
+SHOW VARIABLES LIKE 'rpl_semi_sync_source_enabled';
+
+# Restart I/O thread to load plugin settings
+STOP REPLICA IO_THREAD;
+START REPLICA IO_THREAD;
+```
+
 # Group Replication
 
 ## 1. Add on all hosts
