@@ -239,7 +239,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 └── MySQL config file
 ```
 
-### [Storage Engines](#table-of-contents)
+## [Storage Engines](#table-of-contents)
 
 **NDBCluster**
 - Clustered storage engine for high-availability and scalability
@@ -262,6 +262,8 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - Smaller and faster than InnoDB
 - More suitable for read-heavy applications
 
+## [InnoDB](#table-of-contents)
+
 | **ACID Property** | **InnoDB (Default in 5.5)**                                                                                                       | **MyISAM**                          |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | **Atomicity**     | Each transaction is treated as a single unit, either fully completing (commit) or rollback using **undo tablespaces/logs** if any part of the transaction fails   | X |
@@ -271,7 +273,8 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ![InnoDB Architecture](https://dev.mysql.com/doc/refman/8.4/en/images/innodb-architecture-8-0.png)
 
-**In-Memory Data** - located completely in RAM
+### In-Memory Data 
+Located completely in RAM
 - **Buffer Pool**
     - Default 128M, up to 80% server
     - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
@@ -299,7 +302,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     - Transaction commit/log buffer reaches threshold/regular interval
         - Flush to redo log files
 
-**On-Disk Data**
+### On-Disk Data
 - **Redo Logs**
     - Write-ahead logging
         - Persistent log of changes, before applied to on-disk pages
@@ -338,7 +341,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
             - Records original data before changes
             - Enable rollback in case transaction not reflected on receiver's end
 
-#### Glossary
+### Glossary
 **Data**
 - Page
     - Unit of data storage - block
