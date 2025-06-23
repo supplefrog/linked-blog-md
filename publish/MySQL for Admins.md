@@ -1071,6 +1071,10 @@ START REPLICA;
 ```
 
 ### Automated crash recovery
+
+> SQL thread checks last committed pos from relay-log.info or GTID from mysql.gtid_replica_pos for transactions committed in replica's redo logs
+> Applies remaining relay log statements, purges relay log files
+> I/O thread requests new binlog events from the source starting from the last committed transaction recorded by SQL thread
 ```mysql
 SET GLOBAL relay_log_recovery=ON;
 ```
