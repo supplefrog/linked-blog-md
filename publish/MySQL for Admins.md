@@ -311,7 +311,9 @@ Located completely in RAM
 - Changes can be reapplied to data pages if system crashes before/during writing
 - Durability - committed transactions are not lost
 - Temporary redo logs (#ib_redoXXX_tmp) - internal, pre-created spare files to handle log resizing and rotation
+
 **Tablespaces**
+
 - **InnoDB** (System) **Tablespace** (`ibdata1`)
     - Change buffer
         - Persists secondary index buffered changes across restarts (durability)
