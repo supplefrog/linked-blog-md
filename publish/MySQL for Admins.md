@@ -983,7 +983,7 @@ rotate 30
 
 Take logical backup for failsafe (can be used for downgrade too), physical backup for faster restoration
 
-| Path                | Method                                     |
+| Supported Paths     | Method                                     |
 |---------------------|--------------------------------------------|
 | < 5.7  -> 5.7       | Update binary, run `mysql_upgrade`         |
 | 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`         |
