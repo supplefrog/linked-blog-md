@@ -1099,7 +1099,7 @@ rpl_semi_sync_replica_enabled=1
 ```
 > Restart server
 
-**While server online with async replication**
+**Enable at runtime**
 
 Source
 ```mysql
