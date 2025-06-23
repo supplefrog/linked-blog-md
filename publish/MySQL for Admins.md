@@ -418,7 +418,7 @@ Paste below the commented section:
 ```ini
 [mysqld]    # [mysqld1]
 
-innodb_buffer_pool_size=5.6G    # default 128M, start at 70%, up to 80% total RAM
+innodb_buffer_pool_size=5600M    # default 128M, start at 70%, up to 80% total RAM
 
 # general_log=1
 # general_log_file=
