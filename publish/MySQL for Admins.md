@@ -601,7 +601,7 @@ PrivateTmp=false
 
 `mysqladmin [auth] status`
 
-> Displays
+> Displays:
 
 > Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
