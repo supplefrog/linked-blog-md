@@ -1095,12 +1095,12 @@ Add to `my.cnf`:
 Source
 ```ini
 plugin_load_add='semisync_source.so'
-rpl_semi_sync_source_enabled=1
+SET GLOBAL rpl_semi_sync_source_enabled=1
 ```
 Replica
 ```ini
 plugin_load_add='semisync_replica.so'
-rpl_semi_sync_replica_enabled=1
+SET GLOBAL rpl_semi_sync_replica_enabled=1
 ```
 > Restart server
 
