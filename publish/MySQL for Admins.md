@@ -439,7 +439,7 @@ slow_query_log=1
 # binlog_do_db=test
 
 # port=3307
-# bind_address=0.0.0.0    # single argument, use firewall for control
+# bind_address=192.168.1.10,192.168.1.11    # < 8.0.13 - single argument, use firewall for control
 
 datadir=/var/lib/mysql
 socket=/var/lib/mysql/mysql.sock
