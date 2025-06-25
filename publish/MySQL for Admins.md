@@ -1127,6 +1127,7 @@ START REPLICA IO_THREAD;
 ```
 
 # [Group Replication](#table-of-contents)
+Uses synchronous consensus protocol before a primary can commit a transaction to its own redo log.
 
 ## 1. Add on all hosts
 
