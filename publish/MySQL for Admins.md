@@ -1222,7 +1222,7 @@ SELECT * FROM performance_schema.replication_group_members;
 ### b. Joining Member
 i. Join
 ```mysql
-START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
+START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1'\G
 ```
 
 ii. View status
