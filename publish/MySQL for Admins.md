@@ -821,6 +821,17 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 
 ### mysqldump
 
+--single-transaction - starts a transaction (a logical unit of work)
+```mysql
+SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;    # default level for InnoDB transactions
+START TRANSACTION;
+```
+- **REPEATABLE READ**: ensures the transaction sees a stable snapshot of committed data at its start, preventing dirty and non-repeatable reads.
+- At transaction start, InnoDB creates a **Read View** - maintains list of trx_ids that represent transactions whose changes should not be visible to the current transaction for consistent reads.
+- **MVCC** stores multiple row versions; undo logs keep old versions to reconstruct the snapshot dynamically without copying data pages.
+- Snapshot creation is logical and instant; readers (dump) and writers (other transactions) do not block each other.
+- Only transactional (InnoDB) tables get consistent snapshots; avoid DDL during dump to prevent inconsistencies.
+
 | mysqldump flag            | Description                                                                                                 |
 |---------------------------|-------------------------------------------------------------------------------------------------------------|
 | `-A`, `--all-databases`   | Dump all databases                                                                                          |
@@ -828,14 +839,14 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 | `-R`                      | Include stored routines (procedures & functions)                                                            |
 | `-E`                      | Include events (scheduled tasks)                                                                            |
 | `--triggers`              | Include triggers                                                                                            |
+| `--single-transaction`    | Dump tables in a single transaction, disables 'LOCK TABLES', allows changes during dump                     |
+| `--lock-all-tables`       | Lock all tables across all databases before dumping                                                         |
 | `--set-gtid-purged=off`   | Exclude GTIDs in backup, creates new transaction IDs upon restore                                           |
 | `--ignore-table='db1.tb1,'` | Ignore specified table(s)                                                                                 |
 | `--add-drop-database`     | Add 'DROP DATABASE IF EXISTS' before each database, useful for replication                                  |
 | `--no-create-db`          | Do not include 'CREATE DATABASE IF NOT EXISTS' statement                                                    |
 | `--no-create-info`        | Do not include table creation info (no 'CREATE TABLE' statements)                                           |
 | `--no-data`               | Do not include row information (only schema)                                                                |
-| `--single-transaction`    | Dump tables in a single transaction, disables 'LOCK TABLES', allows changes during dump                     |
-| `--lock-all-tables`       | Lock all tables across all databases before dumping                                                         |
 | `--source-data <1/2>`     | Include `1` - `CHANGE REPLICATION SOURCE TO SOURCE_LOG_FILE, SOURCE_LOG_POS` statement or `2` - comment (for information) used for replication. Replaces `--master-data` |
 | `--compact`               | Produce less verbose output by removing comments                                                            |
 | `| pv -trb >`             | Show progress: time, rate, bytes (when piping output through pv utility)                                    |
