@@ -426,13 +426,6 @@ wget https://linked-blog-blush.vercel.app/md_assets/mysqld.service https://linke
 sudo systemctl daemon-reload
 ```
 
-| Type   | Description                     |
-|--------|---------------------------------|
-| simple | Runs in foreground, no forking  |
-| exec   | Like simple, starts after exec  |
-| daemonize | Forks and parent exits       |
-| notify | Sends readiness notification    |
-
 # [Troubleshoot](#table-of-contents)
 1. `systemctl status`
 2. `journalctl -xe`
