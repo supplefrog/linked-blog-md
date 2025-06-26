@@ -1131,9 +1131,7 @@ START REPLICA IO_THREAD;
 # [Group Replication](#table-of-contents)
 Uses synchronous consensus protocol before a primary can commit a transaction to its own redo log.
 
-## > 8.0.27
-
-## On all hosts
+## Primary Member
 
 ### 1. Set hostnames for IPs (for correct resolution) 
 `/etc/hosts`
@@ -1142,16 +1140,17 @@ Uses synchronous consensus protocol before a primary can commit a transaction to
 192.168.8.96 mysql2
 ```
 
-### 2. Add variables to `my.cnf`:
+### 2. a. Add variables to `my.cnf`:
 ```ini
 plugin_load_add='group_replication.so'
 plugin_load_add='mysql_clone.so'
 
-group_replication_communication_stack=MYSQL
+group_replication_communication_stack=MYSQL    # > 8.0.27
 group_replication_group_name="744bce81-a89c-4526-8841-ec030bd1a8f7"    # uuidgen or select UUID();
 group_replication_start_on_boot=off
+# Change ports to 33061 for default (XCOM) stack
 group_replication_local_address="mysql1:3306"    # Current host's IP
-group_replication_group_seeds="mysql1:3306,mysql2:3306"
+group_replication_group_seeds="mysql1:3306,mysql2:3306"    
 group_replication_bootstrap_group=off
 
 # for multi-primary
@@ -1166,69 +1165,76 @@ enforce_gtid_consistency=ON
 systemctl restart mysqld
 ```
 
-### 3. Enable GTID
+### b. Ensure gtid_mode=ON
 ```mysql
 SET PERSIST gtid_mode=ON_PERMISSIVE;
 SET PERSIST gtid_mode=ON;
 ```
 
+### 3. Temporary Change Clone threshold
+```mysql
+SET GLOBAL group_replication_clone_threshold=1;
+```
+
 ### 4. Create rpl_user and grant privileges
 ```mysql
-SET SQL_LOG_BIN=0;
+# SET SQL_LOG_BIN=0;
 CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
 GRANT REPLICATION SLAVE ON *.* TO rpl_user@'%';
 GRANT CONNECTION_ADMIN ON *.* TO rpl_user@'%';
 GRANT BACKUP_ADMIN ON *.* TO rpl_user@'%';
 GRANT GROUP_REPLICATION_STREAM ON *.* TO rpl_user@'%';
 FLUSH PRIVILEGES;
-SET SQL_LOG_BIN=1;
+# SET SQL_LOG_BIN=1;
 ```
 
-## Copy ssl key to joining member
-
-### 1. On donor
-```bash
-scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
-```
-
-### 2. On joining member
+### 5. Start 
 ```mysql
-SET PERSIST group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
+SET GLOBAL group_replication_bootstrap_group=ON;
+START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';    # Include credentials to copy user during distributed recovery
+SET GLOBAL group_replication_bootstrap_group=OFF;    # if ON, ^ spawns new groups with current host as primary member
 ```
 
-## 3. Start replication
+## Joining Member
 
-### Prechecks
-Show and modify binlogs events on each server to avoid distributed recovery conflicts
+1. Precheck: 
 ```mysql
-SHOW BINLOG EVENTS;
+SHOW BINLOG EVENTS
 ```
-
-### a. Primary member
-i. Start
+if events conflict
 ```mysql
-SET GLOBAL group_replication_bootstrap_group=ON;    # start group as primary member
+RESET BINARY LOGS AND GTIDS    # RESET MASTER
+```
+2. Follow [above](#primary-member) steps 1-3
+
+3. Start
+```
 START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
-SET GLOBAL group_replication_bootstrap_group=OFF;
 ```
 
-ii. View status
+### Troubleshooting
+
+**View status**
 ```mysql
 SELECT * FROM performance_schema.replication_group_members;
 ```
-
-### b. Joining Member
-i. Join
-```mysql
-START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1'\G
-```
-
-ii. View status
 ```mysql
 SHOW REPLICA STATUS FOR CHANNEL 'group_replication_recovery';
 ```
 
-## 4. Switch replication modes on an active setup
+- Create rpl_user
+- Connect each member to corresponding ssh server to exchange keys, else
+- Copy ssl key to joining member
+    1. On donor
+    ```bash
+    scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
+    ```
+    2. On joining member
+    ```mysql
+    SET PERSIST group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
+    ```
+
+## Switch replication modes on an active setup
 ```mysql
 SELECT group_replication_switch_to_multi_primary_mode();
 ```
