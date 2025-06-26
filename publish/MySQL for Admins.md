@@ -346,22 +346,13 @@ Located completely in RAM
         - Enable rollback in case transaction not reflected on receiver's end
 
 ### Glossary
-**Data**
-- Page
-    - Unit of data storage - block
-    - Default - 16kb
-- Table Data
-    - Rows
-- **Index**
-    - Used to locate rows
-    - **Primary**
-        - Automatically generated with primary keys
-        - Each entry in primary index corresponds to unique value in primary key column
-        - Clustering - Data stored in same order as index
-    - **Secondary**
-        - Created on non-primary key/unique column
-        - Explicitly created by user to optimize query performance
-        - Non-clustering - Do not influence data storage order
+| Term                | Definition                                                                                       |
+|---------------------|--------------------------------------------------------------------------------------------------|
+| **Page**            | Smallest writable unit of data. Default 16KB.                                                    |
+| **Clustered Key**   | PRIMARY KEY, UNIQUE NOT NULL key/column, or a hidden system-generated row ID                     |
+| **Clustered Index** | A data structure (usually B-tree) that physically stores the full row data ordered by the clustered key; there is exactly one clustered index per InnoDB table. |
+| **Secondary Key**   | Columns other than the clustered key used to speed up queries on those columns. e.g. `SELECT * WHERE NAME='A';` |
+| **Secondary Index** | A B-tree index built on secondary key columns that stores those columns plus the clustered key to locate full rows in the clustered index; multiple secondary indexes can exist per table. Explicitly created by user to increase query performance. |
 
 # [Installation](#table-of-contents) 
 
