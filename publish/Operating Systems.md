@@ -349,6 +349,16 @@ Terminal app
 ## GNU Utils
 - FOSS utilities analogous to UNIX OS in function written from scratch
 
+## Systemd Service Types
+
+| Type     | Description                                                                                                           |
+|----------|-----------------------------------------------------------------------------------------------------------------------|
+| simple   | Starts the service binary as a child process running in the foreground immediately; systemd tracks the child process but considers the service started once fork succeeds. |
+| notify   | Like simple, runs in foreground but waits for a "ready" signal from the service before marking it started.             |
+| exec     | Starts a child process that replaces itself with the service binary (execve); systemd waits for successful exec, ensuring accurate startup detection and tracking the actual service process. |
+| forking  | Service forks and parent exits; the orphaned child is reparented by the kernel to PID 1 (systemd), which tracks it as the main process. Used for traditional daemonizing services. |
+| oneshot  | Runs one or more short tasks sequentially, waits for completion, then stops; ideal for scripts or one-time jobs.       |
+
 ## Commands  
 `command [-f] [--flag] arguments  #case sensitive`
 
