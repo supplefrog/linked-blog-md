@@ -1197,11 +1197,11 @@ SET GLOBAL group_replication_bootstrap_group=OFF;    # if ON, ^ spawns new group
 
 ## Joining Member
 
-1. Precheck: 
+1. a. Precheck: 
 ```mysql
 SHOW BINLOG EVENTS
 ```
-if events conflict
+b. if events conflict
 ```mysql
 RESET BINARY LOGS AND GTIDS    # RESET MASTER
 ```
