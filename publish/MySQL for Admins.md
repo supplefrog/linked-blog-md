@@ -409,69 +409,29 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 3. Edit according to preference
 
 # [[my.cnf]]
-Place in `/etc/my.cnf`
+Move to `/etc/my.cnf` or 
+```bash
+wget https://linked-blog-blush.vercel.app/md_assets/my.cnf -P /etc/
+```
 
-## [[mysqld.service|Systemd Service]]
-## [[mysqld@.service|Systemd Service for Multi-Instances]]
+## [[mysqld.service|Systemd Service File]]
+## [[mysqld@.service|Systemd Service File for Multiple Instances]]
 **Used to start daemon(s) on boot**
 
-`/etc/systemd/system/mysqld@.service` - preferred over `/usr/lib/systemd/system/` to prevent overwriting during updates
-
-```ini
-[Unit]
-Description=MySQL Server
-Documentation=man:mysqld(8)
-Documentation=http://dev.mysql.com/doc/refman/en/using-systemd.html
-After=network-online.target
-Wants=network-online.target
-After=syslog.target
-
-[Install]
-WantedBy=multi-user.target
-
-[Service]
-# Type=exec    # default - service considered started if binary running, or simple/forking - immediately after daemon forks/waiting for parent to exit; for classic daemons - fork and detach. Requires mysqld --daemonize
-
-User=mysql
-Group=mysql
-
-# StartLimitIntervalSec=500
-# StartLimitBurst=5
-
-Type=notify
-
-# Disable service start and stop timeout logic of systemd for mysqld service.
-TimeoutSec=0
-
-# Execute pre and post scripts as root
-PermissionsStartOnly=true
-
-# Needed to create system tables
-ExecStartPre=/usr/bin/mysqld_pre_systemd %I
-
-# Start main service
-# ExecStart=/usr/bin/mysqld_mutli start 1,2 $MYSQLD_OPTS
-ExecStart=/usr/sbin/mysqld --defaults-group-suffix=@%I $MYSQLD_OPTS
-
-# Use to reference $MYSQLD_OPTS including to switch malloc implementation
-# EnvironmentFile=/etc/sysconfig/mysql
-EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
-
-# Sets open_files_limit
-LimitNOFILE=10000
-
-Restart=on-failure
-
-RestartPreventExitStatus=1
-
-# Set enviroment variable MYSQLD_PARENT_PID. This is required for restart.
-Environment=MYSQLD_PARENT_PID=1
-
-PrivateTmp=false
+^^Move to `/etc/systemd/system/mysqld.service` - preferred over `/usr/lib/systemd/system/mysqld.service` to prevent overwriting during updates or 
+```bash
+wget https://linked-blog-blush.vercel.app/md_assets/mysqld.service https://linked-blog-blush.vercel.app/md_assets/mysqld@.service -P /etc/systemd/system/
 ```
 ```bash
 sudo systemctl daemon-reload
 ```
+
+| Type   | Description                     |
+|--------|---------------------------------|
+| simple | Runs in foreground, no forking  |
+| exec   | Like simple, starts after exec  |
+| daemonize | Forks and parent exits       |
+| notify | Sends readiness notification    |
 
 # [Troubleshoot](#table-of-contents)
 1. `systemctl status`
