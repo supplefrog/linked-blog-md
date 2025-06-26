@@ -1131,32 +1131,27 @@ START REPLICA IO_THREAD;
 # [Group Replication](#table-of-contents)
 Uses synchronous consensus protocol before a primary can commit a transaction to its own redo log.
 
-## 1. Add on all hosts
+## > 8.0.27
 
-### a. `/etc/hosts` (to correctly resolve hostname):
+## On all hosts
+
+### 1. Set hostnames for IPs (for correct resolution) 
+`/etc/hosts`
 ```ini
-192.168.8.135 mysql1
-192.168.8.164 mysql2
+192.168.8.69 mysql1
+192.168.8.96 mysql2
 ```
 
-### b. Configure security modules
-```bash
-semanage port -a -t mysqld_port_t -p tcp 33061
-firewall-cmd --permanent --add-service mysql
-firewall-cmd --permanent --add-port 3306/tcp
-firewall-cmd --permanent --add-port 33061/tcp
-firewall-cmd --reload
-```
-
-### c. `my.cnf` (change local address for each host):
+### 2. Add variables to `my.cnf`:
 ```ini
 plugin_load_add='group_replication.so'
 plugin_load_add='mysql_clone.so'
 
-group_replication_group_name="744bce81-a89c-4526-8841-ec030bd1a8f7"
+group_replication_communication_stack=MYSQL
+group_replication_group_name="744bce81-a89c-4526-8841-ec030bd1a8f7"    # uuidgen or select UUID();
 group_replication_start_on_boot=off
-group_replication_local_address="mysql1:33061"
-group_replication_group_seeds="mysql1:33061,mysql2:33061"
+group_replication_local_address="mysql1:3306"    # Current host's IP
+group_replication_group_seeds="mysql1:3306,mysql2:3306"
 group_replication_bootstrap_group=off
 
 # for multi-primary
@@ -1171,13 +1166,13 @@ enforce_gtid_consistency=ON
 systemctl restart mysqld
 ```
 
-### d. Enable GTID
+### 3. Enable GTID
 ```mysql
 SET PERSIST gtid_mode=ON_PERMISSIVE;
 SET PERSIST gtid_mode=ON;
 ```
 
-### e. Create rpl_user and grant privileges
+### 4. Create rpl_user and grant privileges
 ```mysql
 SET SQL_LOG_BIN=0;
 CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
@@ -1189,14 +1184,14 @@ FLUSH PRIVILEGES;
 SET SQL_LOG_BIN=1;
 ```
 
-## 2. Copy ssl key to joining member
+## Copy ssl key to joining member
 
-### a. On donor
+### 1. On donor
 ```bash
 scp /var/lib/mysql/public_key.pem mysql2:/etc/mysql
 ```
 
-### b. On joining member
+### 2. On joining member
 ```mysql
 SET PERSIST group_replication_recovery_public_key_path='/etc/mysql/public_key.pem'
 ```
