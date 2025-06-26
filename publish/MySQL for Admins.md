@@ -409,7 +409,10 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 3. Edit according to preference
 
 # [[my.cnf]]
-Move to `/etc/my.cnf` **or** 
+Move to `/etc/my.cnf` 
+
+**or** 
+
 ```bash
 wget https://linked-blog-blush.vercel.app/md_assets/my.cnf -P /etc/
 ```
@@ -418,7 +421,10 @@ wget https://linked-blog-blush.vercel.app/md_assets/my.cnf -P /etc/
 ## [[mysqld@.service|Systemd Service File for Multiple Instances]]
 **Used to start daemon(s) on boot**
 
-^^Move to `/etc/systemd/system/mysqld.service`, preferred over `/usr/lib/systemd/system/mysqld.service` to prevent overwriting during updates **or** 
+^^Move to `/etc/systemd/system/mysqld.service`, preferred over `/usr/lib/systemd/system/mysqld.service` to prevent overwriting during updates 
+
+**or** 
+
 ```bash
 wget https://linked-blog-blush.vercel.app/md_assets/mysqld.service https://linked-blog-blush.vercel.app/md_assets/mysqld@.service -P /etc/systemd/system/
 ```
