@@ -1212,9 +1212,9 @@ RESET BINARY LOGS AND GTIDS    # RESET MASTER
 START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
 ```
 
-### Troubleshooting
+## Troubleshooting
 
-**View status**
+#### View status
 ```mysql
 SELECT * FROM performance_schema.replication_group_members;
 ```
@@ -1242,7 +1242,7 @@ SELECT group_replication_switch_to_multi_primary_mode();
 SELECT group_replication_switch_to_single_primary_mode();
 ```
 
-Monitor its progress
+#### Monitor switch progress
 ```mysql
 SELECT event_name, work_completed, work_estimated 
 FROM performance_schema.events_stages_current 
