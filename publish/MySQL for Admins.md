@@ -1171,7 +1171,7 @@ SET PERSIST gtid_mode=ON_PERMISSIVE;
 SET PERSIST gtid_mode=ON;
 ```
 
-### 3. Temporary Change Clone threshold
+### 3. Temporarily change clone threshold
 ```mysql
 SET GLOBAL group_replication_clone_threshold=1;
 ```
