@@ -54,7 +54,8 @@ ExecStartPre=/usr/bin/mysqld_pre_systemd %I
 ExecStart=/usr/sbin/mysqld --defaults-group-suffix=@%I $MYSQLD_OPTS
 
 # Use this to switch malloc implementation
-EnvironmentFile=-/etc/sysconfig/mysql
+# EnvironmentFile=-/etc/sysconfig/mysql
+EnvironmentFile="MYSQLD_OPTS=--defaults-file=/etc/my.cnf"
 
 # Sets open_files_limit
 LimitNOFILE = 10000
