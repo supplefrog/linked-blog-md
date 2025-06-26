@@ -1133,14 +1133,14 @@ Uses synchronous consensus protocol before a primary can commit a transaction to
 
 ## Primary Member
 
-### 1. Set hostnames for IPs (for correct resolution) 
+#### 1. Set hostnames for IPs (for correct resolution) 
 `/etc/hosts`
 ```ini
 192.168.8.69 mysql1
 192.168.8.96 mysql2
 ```
 
-### 2. a. Add variables to `my.cnf`:
+#### 2. a. Add variables to `my.cnf`:
 ```ini
 plugin_load_add='group_replication.so'
 plugin_load_add='mysql_clone.so'
@@ -1165,18 +1165,18 @@ enforce_gtid_consistency=ON
 systemctl restart mysqld
 ```
 
-### b. Ensure gtid_mode=ON
+#### b. Ensure gtid_mode=ON
 ```mysql
 SET PERSIST gtid_mode=ON_PERMISSIVE;
 SET PERSIST gtid_mode=ON;
 ```
 
-### 3. Temporarily change clone threshold
+#### 3. Temporarily change clone threshold
 ```mysql
 SET GLOBAL group_replication_clone_threshold=1;
 ```
 
-### 4. Create rpl_user and grant privileges
+#### 4. Create rpl_user and grant privileges
 ```mysql
 # SET SQL_LOG_BIN=0;
 CREATE USER rpl_user@'%' IDENTIFIED BY 'Redhat@1';
@@ -1188,7 +1188,7 @@ FLUSH PRIVILEGES;
 # SET SQL_LOG_BIN=1;
 ```
 
-### 5. Start 
+#### 5. Start 
 ```mysql
 SET GLOBAL group_replication_bootstrap_group=ON;
 START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';    # Include credentials to copy user during distributed recovery
@@ -1197,17 +1197,17 @@ SET GLOBAL group_replication_bootstrap_group=OFF;    # if ON, ^ spawns new group
 
 ## Joining Member
 
-1. a. Precheck: 
+#### 1. a. Precheck: 
 ```mysql
 SHOW BINLOG EVENTS
 ```
-b. if events conflict
+#### b. if GTIDs conflict
 ```mysql
 RESET BINARY LOGS AND GTIDS    # RESET MASTER
 ```
-2. Follow [above](#primary-member) steps 1-3
+#### 2. Follow [above](#primary-member) steps 1-3
 
-3. Start
+#### 3. Start
 ```
 START GROUP_REPLICATION USER='rpl_user', PASSWORD='Redhat@1';
 ```
