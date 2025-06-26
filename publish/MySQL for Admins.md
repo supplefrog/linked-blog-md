@@ -405,11 +405,11 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
   - SysVinit service files for backward compatibility
 
 1. [Download](https://downloads.mysql.com/archives/community/) and extract to required directories
-2. Download and move below templates to their respective directories
-3. Edit `my.cnf`, specifying custom directories and config
+2. Download and move the below config and service to their respective directories
+3. Edit according to preference
 
 # [[my.cnf]]
-`/etc/my.cnf`
+Place in `/etc/my.cnf`
 
 ## [[mysqld.service|Systemd Service]]
 ## [[mysqld@.service|Systemd Service for Multi-Instances]]
