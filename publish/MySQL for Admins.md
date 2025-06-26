@@ -506,6 +506,9 @@ Environment=MYSQLD_PARENT_PID=1
 
 PrivateTmp=false
 ```
+```bash
+sudo systemctl daemon-reload
+```
 
 # [Troubleshoot](#table-of-contents)
 1. `systemctl status`
