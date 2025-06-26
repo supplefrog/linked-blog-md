@@ -411,45 +411,8 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 # [[my.cnf]]
 `/etc/my.cnf`
 
-Paste below the commented section:
-
-```ini
-[mysqld]    # [mysqld1]
-
-innodb_buffer_pool_size=5600M    # default 128M, start at 70%, up to 80% total RAM
-
-# general_log=1
-# general_log_file=
-slow_query_log=1
-# slow_query_log_file=
-# long_query_time=10    # default, in s
-
-# binlog_expire_logs_seconds=604800    # expire_logs_days=7    # < 8
-# binlog_encryption=ON
-# log_bin=/var/lib/mysql/mysql-bin.index    # creates bin logs and index file with specified name instead of binlog
-# binlog_do_db=test
-
-# port=3307
-# bind_address=192.168.1.10,192.168.1.11    # < 8.0.13 - single argument, use firewall for control
-
-datadir=/var/lib/mysql
-socket=/var/lib/mysql/mysql.sock
-
-log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid
-
-# lc_messages_dir=/usr/local/mysql/share/
-
-# default_authentication_plugin=caching_sha2_password    # 8 default
-# default_storage_engine=InnoDB
-log_timestamps=SYSTEM
-user=mysql
-
-[mysql]
-# socket = /var/run/mysql/mysql1.sock    # for single instance; client connects to multi instances through socket
-```
-
-## Systemd Service(s)
+## [[mysqld.service|Systemd Service]]
+## [[mysqld@.service|Systemd Service for Multi-Instances]]
 **Used to start daemon(s) on boot**
 
 `/etc/systemd/system/mysqld@.service` - preferred over `/usr/lib/systemd/system/` to prevent overwriting during updates
