@@ -452,7 +452,7 @@ user=mysql
 ## Systemd Service(s)
 **Used to start daemon(s) on boot**
 
-`/etc/systemd/system/service/mysqld@.service` - preferred over `/usr/lib/` to prevent overwriting during updates
+`/etc/systemd/system/mysqld@.service` - preferred over `/usr/lib/systemd/system/` to prevent overwriting during updates
 
 ```ini
 [Unit]
