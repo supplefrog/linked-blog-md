@@ -365,8 +365,14 @@ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 
 ## 1. Using Yum Repository
 *Auto-installs missing dependencies*
-1. [Download](https://dev.mysql.com/downloads/repo/yum/) and install repository
-2. Use package manager to search and install packages
+1. Install repository
+```bash
+sudo yum install https://repo.mysql.com/mysql84-community-release-el8-1.noarch.rpm
+```
+2. Install server and other required packages
+```bash
+sudo yum install mysql-community-server -y
+```
 
 ## 2. Using packages
 
