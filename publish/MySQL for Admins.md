@@ -87,11 +87,11 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     4. selects plan with lowest total estimated cost as optimized query plan
 
 #### Display query execution plan:
-    ```mysql
-    EXPLAIN QUERY;
-  
-    EXPLAIN ANALYZE QUERY;    # (8.0+)
-    ```
+```mysql
+EXPLAIN QUERY;
+
+EXPLAIN ANALYZE QUERY;    # (8.0+)
+```
 
 6. **Storage engine performs data lookup in caches & buffers**
     1. if not found, fetch from disk
