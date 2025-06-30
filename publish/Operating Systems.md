@@ -540,7 +540,7 @@ Terminal app
 | `        -l`                             | Listening/open ports                                                                                 |
 | `        -n`                             | Numerical output, show IP instead of hostname                                                        |
 
-| rysnc [option] src:/dir dest:/dir | Description                                                                         |
+| rsync [option] src:/dir dest:/dir | Description                                                                         |
 |---------------------|---------------------------------------------------------------------------------------------------|
 | `-a`                | Archive mode: recursive + preserve permissions, timestamps, symlinks, ownership                   |
 | `-r`                | Recursive (without preserving metadata)                                                           |
