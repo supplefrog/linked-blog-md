@@ -92,9 +92,9 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
   
       `EXPLAIN ANALYZE QUERY;` (8.0+)
 
-6. **Storage engine performs data lookup in caches & buffers**
-    1. if not found, fetch from disk
-    2. updates to disk
+    5. **Storage engine performs data lookup in caches & buffers**
+        1. if not found, fetch from disk
+        2. updates to disk
 
 | Cache Name       | Description                                                                |
 |------------------|----------------------------------------------------------------------------|
