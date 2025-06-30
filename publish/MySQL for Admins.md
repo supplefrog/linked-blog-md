@@ -772,8 +772,8 @@ START TRANSACTION;
 | `--no-data`               | Do not include row information (only schema)                                                                |
 | `--source-data <1/2>`     | Include `1` - `CHANGE REPLICATION SOURCE TO SOURCE_LOG_FILE, SOURCE_LOG_POS` statement or `2` - comment (for information) used for replication. Replaces `--master-data` |
 | `--compact`               | Produce less verbose output by removing comments                                                            |
-| `\| pv -trb >`             | Show progress: time, rate, bytes (when piping output through pv utility)                                   |
-| `\| gzip >`                | Compress output using gzip (when piping output through gzip utility)                                       |
+| `\| pv -trb >`            | Show progress: time, rate, bytes (when piping output through pv utility)                                    |
+| `\| gzip >`               | Compress output using gzip (when piping output through gzip utility)                                        |
 | `> $(date +"%F_%T").sql[.gz]` | Redirect output to a timestamped file (optionally compressed if .gz is used)                            |
 
 
