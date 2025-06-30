@@ -540,17 +540,28 @@ Terminal app
 | `        -l`                             | Listening/open ports                                                                                 |
 | `        -n`                             | Numerical output, show IP instead of hostname                                                        |
 
+| rysnc [option] src:/dir dest:/dir | Description                                                                         |
+|---------------------|---------------------------------------------------------------------------------------------------|
+| `-a`                | Archive mode: recursive + preserve permissions, timestamps, symlinks, ownership                   |
+| `-r`                | Recursive (without preserving metadata)                                                           |
+| `-v`                | Verbose output                                                                                    |
+| `-z`                | Compress data during transfer                                                                     |
+| `-P --inplace`      | **Show progress, keep partial files, and write directly to the destination file** for efficient and reliable resuming of interrupted transfers |
+| `--delete`          | Delete files in destination that are not in source (for exact mirroring)                          |
+| `--exclude=PATTERN` | Exclude files matching pattern                                                                    |
+| `-n` or `--dry-run` | Show what would be done without making changes                                                    |
+
 | Protocol               | Port |
 |------------------------|------|
 | `ssh`{`scp` -> `sftp`} | 22   |
 
 | SSH Command                                      | Description                                                                                |
 |--------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `ssh user@host`                                  | Log into remote shell                                                                      |
-| `scp [-r] user@host1:/path user@host2:/path`     | Copy files/directories between hosts - remote or local (doesn't require explicit hostname) |
+| `scp [-r] [user@]host1:/dir [user@]host2:/dir`   | Copy files/directories between hosts - remote or local (doesn't require explicit hostname) |
 | `ssh-keygen -t rsa -b 4096 -C "abc@example.com"` | Generate SSH key pair on client                                                            |
 | `ssh-copy-id user@server_ip`                     | Copy public key to server for passwordless authentication                                  |
-| `ssh-keygen -R server_ip`                        | Remove server entry from client's known hosts file (fixes host key mismatch errors)        |
+| `ssh-keygen -R server_ip`                        | Remove server entry from client's known hosts file (fixes host key mismatch errors)  |
+| `ssh user@host`                                  | Log into remote shell                                                                      |
 
 | IP Command                           	      | Description                                                       |
 |:--------------------------------------------|:------------------------------------------------------------------|
