@@ -86,6 +86,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
         - Uses data statistics (row counts, index selectivity, data distribution)
     4. selects plan with lowest total estimated cost as optimized query plan
 
+
     **Display query execution plan:**
 
       `EXPLAIN QUERY;`
