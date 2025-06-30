@@ -546,7 +546,7 @@ Terminal app
 | `-r`                | Recursive (without preserving metadata)                                                           |
 | `-v`                | Verbose output                                                                                    |
 | `-z`                | Compress data during transfer                                                                     |
-| `-P --inplace`      | Show progress, keep partial files, and write directly to the destination file instead of tmp file (which gets recreated upon restart) for resuming of interrupted transfers |
+| `-P`                | Keep partial files `-p` and show progress `--progress` for resuming of interrupted transfers      |
 | `--delete`          | Delete files in destination that are not in source (for exact mirroring)                          |
 | `--exclude=PATTERN` | Exclude files matching pattern                                                                    |
 | `-n` or `--dry-run` | Show what would be done without making changes                                                    |
