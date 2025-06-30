@@ -69,7 +69,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
             - Each node represents a SQL operation
             - Edges represent relationships between operations
 
-6. **Optimizer**
+5. **Optimizer**
     1. Reads AST
     2. Generates multiple candidate execution plans compatible with storage engine:
         - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
@@ -93,7 +93,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     EXPLAIN ANALYZE QUERY;    # (8.0+)
     ```
 
-5. **Storage engine performs data lookup in caches & buffers**
+6. **Storage engine performs data lookup in caches & buffers**
     1. if not found, fetch from disk
     2. updates to disk
 
