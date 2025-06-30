@@ -952,6 +952,9 @@ a. Add to `my.cnf`:
 
 ```ini
 server_id=1
+# for source-source replication
+# auto-increment-increment=2    # increment by 2, set to number of sources
+# auto-increment-offset=1    # primary-key start value, add 1 for each source
 ```
 
 b. Create a user only for replication
@@ -974,6 +977,9 @@ a. Add to `my.cnf`:
 ```ini
 server_id=2
 relay_log=/var/lib/mysql/relaylog.log
+# for source-source replication
+# auto-increment-increment=2    # increment by 2, set to number of sources
+# auto-increment-offset=2    # primary-key start value, add 1 for each source
 ```
 
 b.
