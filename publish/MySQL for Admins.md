@@ -2,7 +2,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 # Table of Contents
 (not clickable for now)
-- [MySQL Community vs Enterprise](#diction)
+- [MySQL Community vs Enterprise](#mysql-enterprise)
 - [MySQL Architecture](#mysql-architecture)
     - [Logical](#logical)
     - [Physical](#physical)
@@ -19,19 +19,14 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - MySQL -> relational database management system (RDBMS) - database have schemas
 - Schema - table structures (columns, data types) + relationships through primary / foreign keys
 
-| Feature Category              | Community Edition                                                                  | Enterprise Edition                                                                                                                       |
-|-------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **License**                   | FOSS (Free and Open Source Software)                                               | Commercial License |
-| **Kubernetes Support**        | Operator for Kubernetes (InnoDB & NDB clusters, full lifecycle management)         | ✔ |
-| **Backup**                    | logical backup utils - mysqldump, mysqlbinlog for PITR                                                        | physical backup util - mysqlbackup -> hot backup, faster, compression with heuristics, zero-storage streaming backup and restore, selective TTS-based backup and restore with table renaming |
-| **Availability**              | Manual failover and clustering setups                                              | InnoDB Cluster: fault tolerance, data consistency; InnoDB ClusterSet: primary-replica clusters with automatic failover (replacement) |
-| **Scalability**               | Basic concurrency features                                                         | Thread pool for scalable thread management, reduced overhead |
-| **Stored Programs**           | Stored procedures/functions                                           | JavaScript Stored Programs – run inside server, reduce client-server data movement |
-| **Security: Authentication**  | Native MySQL users/passwords                                                       | External authentication modules (Linux PAM, Windows AD), single sign-on, (OS - DBMS) unified credential management, enhanced password policies |
-| **Security: Encryption**      | Basic support (e.g., SSL/TLS)                                                      | Transparent Data Encryption (TDE) for data-at-rest, PCI DSS and GDPR compliance |
-| **Security: Firewall**        | x                                                                      | mysql_firewall - query allowlist (per user/group of users), monitoring, |
-| **Security: Auditing**        | x | MySQL Enterprise Audit Plugin |
-| **Monitoring/Management**     | `SHOW PROCESSLIST, SHOW STATUS, EXPLAIN, and SHOW ENGINE INNODB STATUS`, MySQL Workbench, Percona Monitoring and Management | MySQL Enterprise Monitor, MySQL Enterprise Manager |
+## MySQL Enterprise
+**Compared to community**, is only packaged with the following additional utilities:
+
+| Type      | Name/Component                                      |
+|-----------|-----------------------------------------------------|
+| Binary    | mysqlbackup, mysqlmonitoragent, mysqlrouter         |
+| Plugin    | Audit, Firewall, Thread Pool, PAM, LDAP, Keyring    |
+| Other     | Enterprise Monitor, Advanced Connectors             |
 
 # [MySQL Architecture](#table-of-contents)
 
