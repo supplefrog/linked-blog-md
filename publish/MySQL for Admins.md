@@ -858,11 +858,11 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 | With Options        | `util.dumpInstance('/backup/dir', {threads: 4, ocimds: true, consistent: true})`                 |
 | Import Dump         | `util.loadDump('/path/to/backup-directory')`                                                     |
 
-| Option       | Description                                                                                              |
-|--------------|----------------------------------------------------------------------------------------------------------|
-| `ocimds`     | Checks and prepares the dump for compatibility with MySQL HeatWave Service (Oracle Cloud). Use `true` if targeting HeatWave.  |
+| Option       | Description                                                                                             |
+|--------------|---------------------------------------------------------------------------------------------------------|
+| `ocimds`     | Checks and prepares the dump for compatibility with MySQL HeatWave Service (Oracle Cloud). Use `true` if targeting HeatWave. |
 | `threads`    | Sets the number of parallel worker threads for the backup. Cannot assign threads to specific queues; only total count is set. |
-| `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies.       |
+| `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies. |
 
 ## [Physical](#table-of-contents)
 
@@ -871,20 +871,20 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 ### Backup
 
 ```bash
-xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] [--databases<-exclude>=] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
+xtrabackup [conn] --backup [--tables=<db.tb1>] [--databases<-exclude>=] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
 
-mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
-mysqlbackup [auth] --backup-image=/dir/backup.mbi --backup-dir=/backup-tmp backup-to-image
+mysqlbackup [conn] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
+mysqlbackup [conn] [--host=] --backup-image=/dir/backup.mbi --backup-dir=/backup-tmp backup-to-image
 ```
 
 ### Restore
 
 ```bash
-xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
-xtrabackup [auth] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
+xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]    # uses an embedded InnoDB engine internally
+xtrabackup [conn] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
 
-mysqlbackup [--backup-image=] --backup-dir= [--uncompress] [--decrypt] apply-log
-mysqlbackup [auth] [--backup-image=] --backup-dir= --datadir=/var/lib/mysql [--uncompress] [--decrypt] copy-back
+mysqlbackup [--backup-image=] --backup-dir= [--uncompress] [--decrypt] apply-log    # uses an embedded InnoDB engine internally
+mysqlbackup [conn] [--backup-image=] --backup-dir= --datadir=/var/lib/mysql [--uncompress] [--decrypt] copy-back
 # copy-back-and-apply-log
 ```
 
