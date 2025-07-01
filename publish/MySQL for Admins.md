@@ -776,8 +776,7 @@ START TRANSACTION;
 | `\| gzip >`               | Compress output using gzip (when piping output through gzip utility)                                        |
 | `> $(date +"%F_%T").sql[.gz]` | Redirect output to a timestamped file (optionally compressed if .gz is used)                            |
 
-
-**mysqlpump**
+#### mysqlpump
 
 ```bash
 mysqlpump [auth] -B db1 db2 > pump.sql
@@ -790,20 +789,21 @@ mysqlpump [auth] -B db1 db2 > pump.sql
 
 ### Prerequisites to Restoring on Production
 
-Import on test server and check table integrity
+1. Verify backup (Enterprise)
+
+```mysql
+mysqlbackup --backup-dir=/dir [--backup-image=/dir/backup.mbi] validate
+```
+
+2. Import on test server and check table integrity
 
 ```mysql
 mysql [auth] --database=test < data.sql
 mysqlcheck [auth] [--databases] test
 ```
 
-Run queries from stored procedure to verify data integrity
+3. Run queries from stored procedure to verify data integrity
 
-Verify backup (Enterprise)
-
-```mysql
-mysqlbackup --backup-image=/path/to/backup.mbi validate
-```
 
 **Point in Time Recovery** (PITR - Incremental) **using binlog**
 
@@ -874,16 +874,18 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 xtrabackup [auth] [--host=] --backup [--tables=<db.tb1>] [--databases<-exclude>=] --target-dir=</inc \| /full> --incremental-basedir=<prev-backup> [--encrypt] [--compress] [--no-timestamp] [--parallel=] [--throttle=]
 
 mysqlbackup [auth] [--host=] --backup-dir= --incremental --incremental-base=<dir:/prev or history:/full> [--<include/exclude>-tables=db.tb1,] [--include-purge-gtids=off] [--no-locking] [--skip-binlog] [--encrypt] [--compress] [--with-timestamp] [--<process/read/write>-threads=] backup
+mysqlbackup [auth] --backup-image=/dir/backup.mbi --backup-dir=/backup-tmp backup-to-image
 ```
 
 ### Restore
 
 ```bash
-xtrabackup --<prepare/apply-log> --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
+xtrabackup --prepare --target-dir=/full --incremental-dir=/inc [--apply-log-only] [--parallel=] [-use-memory=]
 xtrabackup [auth] --copy-back --target-dir= --incremental-dir= --data-dir=<new_datadir>
 
-mysqlbackup --backup-dir=<backup_dir> [--uncompress] [--decrypt] prepare
-mysqlbackup [auth] [--host=] --backup-dir=<backup_dir> [--uncompress] [--decrypt] copy-back
+mysqlbackup [--backup-image=] --backup-dir= [--uncompress] [--decrypt] apply-log
+mysqlbackup [auth] [--backup-image=] --backup-dir= --datadir=/var/lib/mysql [--uncompress] [--decrypt] copy-back
+# copy-back-and-apply-log
 ```
 
 **Tables - Warm Backup**
