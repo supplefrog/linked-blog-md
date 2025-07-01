@@ -545,11 +545,11 @@ sudo systemctl daemon-reload
 
 `SELECT * FROM sys.user_summary;`
 
-**Change prompt**
+#### Change prompt
 
 `PROMPT (\u@\h) [\d]\`
 
-**Query Table Data without `USE Db`**
+#### Query Table Data without `USE Db`
 
 ```mysql
 SELECT table_name
@@ -557,7 +557,7 @@ FROM information_schema.tables
 WHERE table_schema = 'db_name' AND table_type = '';
 ```
 
-**Log client statements and output**
+#### Log client statements and output
 
 `TEE filename`    # appends
 
@@ -584,16 +584,19 @@ Monitor buffer pool usage:
 ### System Variables
 
 **Show variables**
-
-`SHOW [GLOBAL/SESSION/ ] VARIABLES [LIKE '%var%'];`
+```mysql
+SHOW [GLOBAL/SESSION/ ] VARIABLES [LIKE '%var%'];
+```
 
 **Set for session**
-
-`SET [GLOBAL/LOCAL] variable_name='value';`
+```mysql
+SET [GLOBAL/LOCAL] variable_name='value';
+```
 
 **Set persist** - stored in `data_dir/mysqld-auto.cnf`
-
-`SET PERSIST variable_name = value;`
+```mysql
+SET PERSIST variable_name = value;
+```
 
 ### User Management
 
@@ -634,10 +637,11 @@ REVOKE [PRIVILEGES] ON db_name.table_name FROM 'user'[@'hostname'];
 ```
 
 **Create/drop user**
+```mysql
+CREATE USER 'user'[@'hostname'] IDENTIFIED BY 'P@55w0rd';
 
-`CREATE USER 'user'[@'hostname'] IDENTIFIED BY 'P@55w0rd';`
-
-`DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];`
+DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];
+```
 
 **Reset root password**
 
@@ -646,6 +650,7 @@ REVOKE [PRIVILEGES] ON db_name.table_name FROM 'user'[@'hostname'];
 Run mysql as mysql user, not root (my.cnf/param)
 
 `mysqld --skip-grant-tables --skip-networking &`
+
 ```mysql
 FLUSH PRIVILEGES;`    # Loads the grant tables
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'P@55w0rd';
