@@ -615,17 +615,23 @@ Login:
 
 **Privileges**
 
-`SHOW GRANTS [FOR CURRENT_USER/'username'@'hostname']` 
+```mysql
+SHOW GRANTS [FOR CURRENT_USER/'username'@'hostname']
+``` 
 
 **or**
 
-`SELECT user, host, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user;`
+```mysql
+SELECT user, host, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user;
 
-`SELECT * FROM information_schema.table_privileges;`
+SELECT * FROM information_schema.table_privileges;
 
-`GRANT SELECT (column1, column2), INSERT, UPDATE, DELETE, CREATE, DROP ON db_name.table_name TO 'user'[@'hostname'];`
+GRANT SELECT (column1, column2), INSERT, UPDATE, DELETE, CREATE, DROP ON db_name.table_name TO 'user'[@'hostname'];
 
-`GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;`
+GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;
+
+REVOKE [PRIVILEGES] ON db_name.table_name FROM 'user'[@'hostname'];
+```
 
 **Create/drop user**
 
