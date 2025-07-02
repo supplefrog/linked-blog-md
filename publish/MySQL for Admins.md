@@ -54,9 +54,9 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     ```
 
 2. **Connection Manager**
-    - Establish logical connection:
-        1. Assign cached thread if available in thread cache
-        2. Else create new thread (one thread per client)
+- Establish logical connection:
+    1. Assign cached thread if available in thread cache
+    2. Else create new thread (one thread per client)
 
 3. **Security**
 
