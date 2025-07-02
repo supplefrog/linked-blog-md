@@ -42,7 +42,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 1. **Authentication**
 ```mysql
-'username'@'hostname' identified by 'password';
+'username'@'hostname' IDENTIFIED BY 'password';
 ```
 
 2. **Connection Manager**
