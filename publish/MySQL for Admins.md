@@ -109,7 +109,7 @@ EXPLAIN ANALYZE QUERY;    # (8.0+)
 | mysqladmin             | CLI for quick server management - status, processlist, kill, flush (reload) tables/logs/privileges, create/drop db, shutdown |
 | mysqlbinlog            | Read binary logs                                                                  |
 | myisamlog              | Read MyISAM log                                                                   |
-| mysqlcheck             | -c check -a analyze -o optimize db [table_name]                                   |
+| mysqlcheck             | `-c` check `-a` analyze `-o` optimize `db [table_name]`                           |
 | mysql_config_editor    | Client - store encrypted authentication credentials in .mylogin.cnf for secure passwordless login, useful for scripts |
 | mysqldump              | Logical backup                                                                    |
 | mysqlimport            | Import CSV/TSV - text format data files directly into tables                      |
