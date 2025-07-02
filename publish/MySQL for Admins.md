@@ -15,7 +15,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     - [Group Replication](#group-replication)
 ---
 
-### [Diction](#table-of-contents)
+### [Diction]
 - MySQL -> relational database management system (RDBMS) - database have schemas
 - Schema - table structures (columns, data types) + relationships through primary / foreign keys
 
