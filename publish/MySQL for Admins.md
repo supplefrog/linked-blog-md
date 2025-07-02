@@ -41,20 +41,28 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 ### Server
 
 1. **Authentication**
-```mysql
-'username'@'hostname' IDENTIFIED BY 'password';
-```
+    0. Flush privilege tables (reload and sort by Host, then User)  
+    1. Client connects; server sends Initial Handshake (version, capabilities, auth plugin, salt)  
+    2. Client sends Handshake Response (username, plugin, auth data)  
+    3. Server finds first matching user@host from sorted list and selects auth plugin  
+    4. Server may send AuthSwitchRequest to change plugin  
+    5. Server verifies credentials via plugin  
+    6. Server sends OK (accept) or ERR (reject) packet
+    7. To disallow users: 
+    ```mysql
+    ALTER USER 'username'@'host' ACCOUNT LOCK;
+    ```
 
-2. **Connection Manager**
-    1. Check thread cache;  
+3. **Connection Manager**
+    1. Check thread cache;
     2. if thread available: provide thread; else create new thread, 1 per client  
     3. Establish connection
 
-3. **Security**
+4. **Security**
 
     Verify if user has privilege for each query
 
-4. **Parsing**
+5. **Parsing**
 
     1. **Lexer/Lexical Analyzer/Tokenizer/Scanner**
         Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals  
@@ -64,7 +72,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
             - Each node represents a SQL operation
             - Edges represent relationships between operations
 
-5. **Optimizer**
+6. **Optimizer**
     1. Reads AST
     2. Generates multiple candidate execution plans compatible with storage engine:
         - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
