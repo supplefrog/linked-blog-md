@@ -526,7 +526,10 @@ sudo systemctl daemon-reload
 
 ### Status
 
-`status` or `\s`
+```mysql
+STATUS    #or
+\s
+```
 
 `mysqladmin [auth] status`
 
