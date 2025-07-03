@@ -965,7 +965,7 @@ Take logical backup for failsafe (can be used for downgrade too), physical backu
 | AUTO (default)              | Data dictionary (DD), system schemas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, if not upgraded. |
 | MINIMAL                     | Core metadata: DD, Performance Schema, INFORMATION_SCHEMA. Skip mysql (incl help tables), sys schemas, user schemas. Useful for faster startup and upgrading user schemas later |
 | FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs. |
-| NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                           |
+| NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling |
 
 # [Replication](#table-of-contents)
 Supports ABBA, ABCA
@@ -981,6 +981,9 @@ server_id=1
 # for source-source replication
 # auto-increment-increment=2    # increment by 2, set to number of sources
 # auto-increment-offset=1    # primary-key start value, add 1 for each source
+
+gtid_mode=ON
+enforce_gtid_consistency=ON
 ```
 
 b. Create a user only for replication
@@ -1006,6 +1009,9 @@ relay_log=/var/lib/mysql/relaylog.log
 # for source-source replication
 # auto-increment-increment=2    # increment by 2, set to number of sources
 # auto-increment-offset=2    # primary-key start value, add 1 for each source
+
+gtid_mode=ON
+enforce_gtid_consistency=ON
 ```
 
 b.
@@ -1025,9 +1031,10 @@ CHANGE REPLICATION SOURCE TO
   SOURCE_HOST = '192.168.8.2',
   SOURCE_USER = 'replica',
   SOURCE_PASSWORD = 'Redhat@1',
-  #SOURCE_AUTO_POSITION = 1,    # If GTIDs enabled
-  SOURCE_LOG_FILE = 'binlog.000001',
-  SOURCE_LOG_POS = 157,
+  SOURCE_AUTO_POSITION = 1,
+  SOURCE_CONNECTION_AUTO_FAILOVER = 1,
+  # SOURCE_LOG_FILE = 'binlog.000001',
+  # SOURCE_LOG_POS = 157,
   GET_SOURCE_PUBLIC_KEY = 1;
 #FOR CHANNEL 'channel_name';
 
