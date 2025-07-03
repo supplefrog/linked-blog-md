@@ -349,6 +349,24 @@ Located completely in RAM
         - Enable rollback in case transaction not reflected on receiver's end
 
 ### Glossary
+
+InnoDB is a transactional engine - every statement is run in a transaction (logical unit of work) (`START TRANSACTION`)
+
+InnoDB REPEATABLE READ isolation level (default) mechanism:
+
+- Transaction starts; read view created at first consistent read.
+- Read view records:
+  - Uncommitted trx_ids at snapshot.
+  - Committed trx_ids after snapshot.
+- On row read:
+  - If row trx_id ∈ (uncommitted ∪ committed-after-snapshot), row invisible.
+  - Follow undo log (DB_ROLL_PTR) to last visible committed version.
+- Snapshot = data state at read view time; ignores later commits/uncommitted.
+- Non-locking SELECTs use snapshot (repeatable read).
+- Modifying statements acquire locks; see latest committed data.
+- Undo logs store old versions + uncommitted changes.
+- MVCC via read view + undo logs ensures consistent, repeatable reads.
+
 | Term                | Definition                                                                                       |
 |---------------------|--------------------------------------------------------------------------------------------------|
 | **Page**            | Smallest writable unit of data. Default 16KB.                                                    |
@@ -759,17 +777,6 @@ systemctl restart mysqld
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
 
 ### mysqldump
-
---single-transaction - starts a transaction (a logical unit of work)
-```mysql
-SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;    # default level for InnoDB transactions
-START TRANSACTION;
-```
-- **REPEATABLE READ**: ensures the transaction sees a stable snapshot of committed data at its start, preventing dirty and non-repeatable reads.
-- At transaction start, InnoDB creates a **Read View** - maintains list of trx_ids that represent transactions whose changes should not be visible to the current transaction for consistent reads.
-- **MVCC** stores multiple row versions; undo logs keep old versions to reconstruct the snapshot dynamically without copying data pages.
-- Snapshot creation is logical and instant; readers (dump) and writers (other transactions) do not block each other.
-- Only transactional (InnoDB) tables get consistent snapshots; avoid DDL during dump to prevent inconsistencies.
 
 | mysqldump flag            | Description                                                                                                 |
 |---------------------------|-------------------------------------------------------------------------------------------------------------|
