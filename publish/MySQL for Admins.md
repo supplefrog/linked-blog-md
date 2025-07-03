@@ -352,7 +352,7 @@ Located completely in RAM
 
 InnoDB is a transactional engine - every statement is run in a transaction (logical unit of work) (`START TRANSACTION`)
 
-InnoDB REPEATABLE READ isolation level (default) mechanism:
+Default transaction isolation level - REPEATABLE READ mechanism:
 
 - Transaction starts; read view created at first consistent read.
 - Read view records:
@@ -785,7 +785,7 @@ Produce a set of SQL statements (.sql, csv, other text) to restore the original 
 | `-R`                      | Include stored routines (procedures & functions)                                                            |
 | `-E`                      | Include events (scheduled tasks)                                                                            |
 | `--triggers`              | Include triggers                                                                                            |
-| `--single-transaction`    | Dump tables in a single transaction, disables 'LOCK TABLES', allows changes during dump                     |
+| `--single-transaction`    | Dump tables in a single transaction-disables 'LOCK TABLES'-allows changes during dump                     |
 | `--lock-all-tables`       | Lock all tables across all databases before dumping                                                         |
 | `--set-gtid-purged=off`   | Exclude GTIDs in backup, creates new transaction IDs upon restore                                           |
 | `--ignore-table='db1.tb1,'` | Ignore specified table(s)                                                                                 |
