@@ -1041,7 +1041,11 @@ CHANGE REPLICATION SOURCE TO
 START REPLICA;
 SHOW REPLICA STATUS\G
 ```
+```mysql
+SELECT asynchronous_connection_failover_add_source('channel_name', 'source1_host', 3306, '', 100);    # or delete. 100 is weight (priority) from 1 to 100
 
+SELECT * FROM performance_schema.replication_asynchronous_connection_failover;
+```
 ### Skip problematic statements
 ```mysql
 # < 8 - replace replica with slave
