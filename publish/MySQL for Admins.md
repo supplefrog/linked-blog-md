@@ -48,10 +48,6 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     5. Server may send AuthSwitchRequest to change plugin  
     6. Server verifies credentials via plugin  
     7. Server sends OK (accept) or ERR (reject) packet
-    8. To disallow users: 
-    ```mysql
-    ALTER USER 'username'@'host' ACCOUNT LOCK;
-    ```
 
 2. **Connection Manager**
 - Establish logical connection:
@@ -630,6 +626,11 @@ DROP INDEX idx_name ON your_table;
 ## User Management
 
 **mysql.user**: User, Host, authentication_string, plugin, and global privilege columns
+
+### Lock user (prevent login)
+```mysql
+ALTER USER 'username'@'host' ACCOUNT LOCK;
+```
 
 ### Display privileges
 ```mysql
