@@ -518,15 +518,14 @@ sudo systemctl daemon-reload
 
 # [Administration](#table-of-contents)
 
-## Display
-| Object Type  | Query Example                                                  |
-|--------------|----------------------------------------------------------------|
-| Tables       | `SHOW TABLES FROM your_database;`                              |
-| Views        | `SHOW FULL TABLES IN your_database WHERE Table_type = 'VIEW';` |
-| Procedures   | `SHOW PROCEDURE STATUS WHERE Db = 'your_database';`            |
-| Functions    | `SHOW FUNCTION STATUS WHERE Db = 'your_database';`             |
-| Triggers     | `SHOW TRIGGERS FROM your_database;`                            |
-| Events       | `SHOW EVENTS FROM your_database;`                              |
+## Manage database objects
+| Object Type       | List Objects Command                              | Show Definition Command               |
+|-------------------|--------------------------------------------------|-------------------------------------|
+| Stored Procedure  | `SHOW PROCEDURE STATUS WHERE Db='your_database';` | `SHOW CREATE PROCEDURE procedure_name\G` |
+| Function          | `SHOW FUNCTION STATUS WHERE Db='your_database';`  | `SHOW CREATE FUNCTION function_name\G`   |
+| View              | `SHOW FULL TABLES IN your_database WHERE Table_type='VIEW';` | `SHOW CREATE VIEW view_name\G`           |
+| Trigger           | `SHOW TRIGGERS FROM your_database;`               | Query `information_schema.TRIGGERS` for `ACTION_STATEMENT` |
+| Event             | `SHOW EVENTS FROM your_database;`                  | `SHOW CREATE EVENT event_name\G`           |
 
 ## Server status and process management
 These statements can also be queried from mysqladmin
