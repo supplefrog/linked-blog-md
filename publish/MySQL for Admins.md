@@ -542,107 +542,98 @@ sudo systemctl daemon-reload
 | Triggers     | `SHOW TRIGGERS FROM your_database;`                            |
 | Events       | `SHOW EVENTS FROM your_database;`                              |
 
-### Status
-
+## Server status and process management
+These statements can also be queried from mysqladmin
 ```mysql
 STATUS    #or
 \s
 ```
+> Displays Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
 
-`mysqladmin [auth] status`
+```mysql
+SHOW PROCESSLIST;
+```
+`mysqladmin [ auth ] processlist -i 2    # interval = 2s`
 
-> Displays:
+> Displays Active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
 
-> Connection/thread id, (server) uptime, connection (socket), threads, open tables, slow queries, query per sec avg
-
-### Show active threads (connections) and their processes
-
-`mysqladmin [ auth ] processlist -i 2`    # interval = 2s
-`show processlist;` 
-`SELECT * FROM sys.processlist;`
-
-> Each row displays:
-
-> Active client connection - connection id, username, hostname, db in use, time (duration of state), state (sorting result, waiting for table metadata lock)
-
-### kill process
-
-`mysqladmin kill pid`
-
-### Identify high load users/problematic queries
-
-`SELECT * FROM sys.user_summary;`
+### Kill process
+```mysql
+KILL [PID]
+```
 
 #### Change prompt
-
-`PROMPT (\u@\h) [\d]\`
-
-#### Query Table Data without `USE Db`
-
 ```mysql
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'db_name' AND table_type = '';
+PROMPT (\u@\h) [\d]\
 ```
 
-#### Log client statements and output
+#### Log client statements and their output
 
-`TEE filename`    # appends
-
-Stop
-
-`NOTEEE`
-
-### Performance Monitoring / Tuning
-
-**high I/O latency files**
-
-`sys.user_summary_by_file_io`
-
-**full table scan tables**
-
-`sys.schema_tables_with_full_table_scans`
-
-**Database Maintenance**
-
-Monitor buffer pool usage:
-
-`sys.innodb_buffer_stats_by_table`
-
-### System Variables
-
-**Show variables**
 ```mysql
-SHOW [GLOBAL/SESSION/ ] VARIABLES [LIKE '%var%'];
+TEE filename    # start, append output to filename
+
+NOTEEE    # stop
 ```
 
-**Set for session**
+## Performance Monitoring / Tuning
+### Optimizer
 ```mysql
-SET [GLOBAL/LOCAL] variable_name='value';
+-- Update optimizer statistics
+ANALYZE TABLE your_table;
+
+-- Show query execution plan
+EXPLAIN FORMAT=JSON SELECT * FROM your_table WHERE your_condition;
+
+-- Enable optimizer trace for detailed info
+SET optimizer_trace="enabled=on";
+SELECT * FROM your_table WHERE your_condition;
+SET optimizer_trace="enabled=off";
+SELECT * FROM information_schema.OPTIMIZER_TRACE\G;
+
+-- Force index usage (replace idx_name with your index)
+SELECT * FROM your_table USE INDEX (idx_name) WHERE your_condition;
+
+-- Disable index merge (if needed)
+SET optimizer_switch='index_merge=off';
+
+-- Reset optimizer_switch to default
+SET optimizer_switch='default';
+
+-- Show current optimizer settings
+SHOW VARIABLES LIKE 'optimizer_switch';
+
+-- Check all indexes on a table
+SHOW INDEX FROM your_table;
+
+-- Create a covering secondary index (example)
+CREATE INDEX idx_covering ON your_table(col1, col2, col3);
+
+-- Drop an index
+DROP INDEX idx_name ON your_table;
 ```
 
-**Set persist** - stored in `data_dir/mysqld-auto.cnf`
-```mysql
-SET PERSIST variable_name = value;
-```
+## sys schema
+| Table | Description |
+|-----------------------------------------|------------------------------------------------------------------------------|
+| `sys.user_summary`       | Summarizes resource usage and performance metrics aggregated by MySQL user, useful for user-level monitoring and troubleshooting. |
+| `sys.user_summary_by_file_io`           | Provides aggregated I/O statistics per user, summarizing file I/O operations by MySQL users. |
+| `sys.innodb_buffer_stats_by_table`       | Shows InnoDB buffer pool usage statistics broken down by table, useful for tuning buffer pool usage. |
+| `sys.schema_tables_with_full_table_scans` | Lists tables that have experienced full table scans, helping identify potential indexing issues. |
+| `sys.processlist` | View current MySQL threads and queries with detailed info, similar to `SHOW PROCESSLIST` but richer and easier to query. |
 
-### User Management
+## Information Schema
+| Table | Description |
+|-------|-------------|
+| information_schema.tables | Provides metadata about all tables in all databases - table names, types (BASE TABLE, VIEW), storage engine, row counts, creation times. Useful for schema inspection and management. |
 
-**Authentication**
+### Change system variables
+| Command                                         | Description                                               |
+|-------------------------------------------------|-----------------------------------------------------------|
+| SHOW [GLOBAL/SESSION] VARIABLES [LIKE '%var%']; | Display system variables and their current values.        |
+| SET [GLOBAL/LOCAL] variable_name='value';       | Set variable value for session or globally.               |
+| SET PERSIST variable_name = value;              | Persistently set variable, saved in mysqld-auto.cnf file. |
 
-`mysql_config_editor print --all` 
-
-Set:
-
-`mysql_config_editor set --login-path=client --host=localhost --user=root --password`
-
-Remove:
-
-`mysql_config_editor remove --login-path=client`
-
-Login:
-
-`mysql --login-path=client`
+## User Management
 
 **Privileges**
 
@@ -687,7 +678,14 @@ EXIT
 ```
 `pkill mysql`
 
-### Table Management
+| Login Path Command                             | Description                                            |
+|------------------------------------------------|--------------------------------------------------------|
+| `mysql_config_editor print --all`              | Display all saved MySQL login paths and credentials.   |
+| `mysql_config_editor set --login-path=client --host=localhost --user=root --password` | Save login credentials under a named login path. |
+| `mysql_config_editor remove --login-path=client` | Remove saved login path and its credentials.         |
+| `mysql --login-path=client    # redundant`     | Connect to MySQL using saved login path credentials.   |
+
+## Table Management
 
 ### Stored Procedure
 
