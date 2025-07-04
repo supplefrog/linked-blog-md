@@ -766,6 +766,14 @@ systemctl restart mysqld
 | Restore  | Return to original state                                   |
 | Recover  | Salvage missing data using specialized tools, partial/full |
 
+### Disaster Recovery
+- Balance cost, complexity, and recovery objectives (RPO/RTO) when choosing DR solutions
+- Services like Amazon Aurora MySQL offer simplified DR
+- Full and incremental backups, offsite storage, encryption
+- Asynchronous replication to hot sites, cluster solutions
+- Regular automated restore tests to verify backup usability
+- Maintain DR documentation, monitor backups and replication health
+
 ## [Logical](#table-of-contents)
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
