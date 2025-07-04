@@ -20,7 +20,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - Schema - table structures (columns, data types) + relationships through primary / foreign keys
 
 ## MySQL Enterprise
-**Compared to community**, is only packaged with the following additional utilities:
+**Compared to community**, it is only packaged with the following additional utilities:
 
 | Type      | Name/Component                                      |
 |-----------|-----------------------------------------------------|
