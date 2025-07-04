@@ -80,20 +80,10 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
         - Chooses join methods (e.g., nested loop, hash join)
         - Reorders operations (e.g., applies filters before or after joins) to improve efficiency
         - Considers data distribution and available indexes for join strategies
-    - Can be influenced by index and join hints:
-
-      `USE INDEX, FORCE INDEX, IGNORE INDEX, STRAIGHT_JOIN`
     3. Does cost-based optimization:
         - References the cost model (I/O, CPU, memory) for every operation in each plan
         - Uses data statistics (row counts, index selectivity, data distribution)
     4. selects plan with lowest total estimated cost as optimized query plan
-
-#### Display query execution plan:
-```mysql
-EXPLAIN QUERY;
-
-EXPLAIN ANALYZE QUERY;    # (8.0+)
-```
 
 6. **Storage engine performs data lookup in caches & buffers**
     1. if not found, fetch from disk
