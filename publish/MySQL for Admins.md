@@ -578,31 +578,34 @@ NOTEEE    # stop
 ## Performance Monitoring / Tuning
 ### Optimizer
 ```mysql
--- Update optimizer statistics
+-- Update optimizer statistics (refreshes table stats used by EXPLAIN)
 ANALYZE TABLE your_table;
 
--- Show query execution plan
+-- Show estimated query execution plan (no execution, static info)
 EXPLAIN FORMAT=JSON SELECT * FROM your_table WHERE your_condition;
 
--- Enable optimizer trace for detailed info
+-- Show actual execution plan with runtime stats (MySQL 8.0.18+)
+EXPLAIN ANALYZE SELECT * FROM your_table WHERE your_condition;
+
+-- Enable optimizer trace for detailed step-by-step info
 SET optimizer_trace="enabled=on";
 SELECT * FROM your_table WHERE your_condition;
 SET optimizer_trace="enabled=off";
 SELECT * FROM information_schema.OPTIMIZER_TRACE\G;
 
--- Force index usage (replace idx_name with your index)
+-- Force usage of a specific index (override optimizer choice)
 SELECT * FROM your_table USE INDEX (idx_name) WHERE your_condition;
 
--- Disable index merge (if needed)
+-- Disable index merge optimization if needed
 SET optimizer_switch='index_merge=off';
 
--- Reset optimizer_switch to default
+-- Reset optimizer_switch to default settings
 SET optimizer_switch='default';
 
 -- Show current optimizer settings
 SHOW VARIABLES LIKE 'optimizer_switch';
 
--- Check all indexes on a table
+-- List all indexes on a table
 SHOW INDEX FROM your_table;
 
 -- Create a covering secondary index (example)
