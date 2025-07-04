@@ -710,11 +710,19 @@ END$$
 DELIMITER ;
 ```
 
-**Change auto-increment value**
+### Change auto-increment value
+```mysql
+ALTER TABLE table_name AUTO_INCREMENT = value;    # if greater than max - next insertion starts w value, else no effect
+```
 
-`ALTER TABLE table_name AUTO_INCREMENT = value;    # if greater than max - next insertion starts w value, else no effect`
+### Change tablespace sizes
+| Variable / Command                    | Description                                                        |
+|-------------------------------------|--------------------------------------------------------------------|
+| `innodb_data_file_path=ibdata1:10M:autoextend:max:512M` | Sets InnoDB system tablespace initial size to 10MB, enables autoextend, with a max size of 512MB. |
+| `innodb_autoextend_increment=64`    | Specifies InnoDB tablespace autoextend increment size as 64MB.     |
+| `CREATE TABLESPACE ts1 ... INITIAL_SIZE = 100M` | Creates a general tablespace `ts1` with a datafile of initial size 100MB. |
 
-**Create general tablespace and add tables**
+### Create general tablespace and add tables
 ```mysql
 CREATE TABLESPACE ts
     ADD DATAFILE 'ts.ibd'    # base dir is datadir by default
@@ -727,7 +735,7 @@ CREATE TABLE t1 (
   TABLESPACE ts;
 ```
 
-**Switch data dir after install**
+#### Switch data dir of existing server
 
 ```sh
 mkdir /newpath
@@ -741,7 +749,7 @@ vi /etc/my.cnf    # datadir=/newpath
 systemctl restart mysqld
 ```
 
-**Change storage engine**
+#### Change storage engine
 
 [Backup](#backup-and-restore) before conversion
 
