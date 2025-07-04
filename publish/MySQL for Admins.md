@@ -656,8 +656,6 @@ DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];
 
 `systemctl stop mysqld`
 
-Run mysql as mysql user, not root (my.cnf/param)
-
 `mysqld --skip-grant-tables --skip-networking &`
 
 ```mysql
