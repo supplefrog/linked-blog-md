@@ -613,19 +613,19 @@ DROP INDEX idx_name ON your_table;
 ## Information Schema
 | Table | Description |
 |-------|-------------|
-| information_schema.tables | Provides metadata about all tables in all databases - table names, types (BASE TABLE, VIEW), storage engine, row counts, creation times. Useful for schema inspection and management. |
+| `information_schema.tables` | Provides metadata about all tables in all databases - table names, types (BASE TABLE, VIEW), storage engine, row counts, creation times. Useful for schema inspection and management. |
 | `information_schema.table_privileges` | Provides detailed information about table-level privileges granted to users. Useful for auditing and managing access control without querying low-level system tables or using `SHOW GRANTS`. |
 
 ### Change system variables
 | Command                                         | Description                                               |
 |-------------------------------------------------|-----------------------------------------------------------|
-| SHOW [GLOBAL/SESSION] VARIABLES [LIKE '%var%']; | Display system variables and their current values.        |
-| SET [GLOBAL/LOCAL] variable_name='value';       | Set variable value for session or globally.               |
-| SET PERSIST variable_name = value;              | Persistently set variable, saved in mysqld-auto.cnf file. |
+| `SHOW [GLOBAL/SESSION] VARIABLES [LIKE '%var%'];` | Display system variables and their current values.        |
+| `SET [GLOBAL/LOCAL] variable_name='value';`       | Set variable value for session or globally.               |
+| `SET PERSIST variable_name = value;`              | Persistently set variable, saved in mysqld-auto.cnf file. |
 
 ## User Management
 
-**mysql.user**: User, Host, authentication_string, plugin, and global privilege columns
+**`mysql.user`**: User, Host, authentication_string, plugin, and global privilege columns
 
 ### Lock user (prevent login)
 ```mysql
