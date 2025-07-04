@@ -618,6 +618,7 @@ DROP INDEX idx_name ON your_table;
 | Table | Description |
 |-------|-------------|
 | information_schema.tables | Provides metadata about all tables in all databases - table names, types (BASE TABLE, VIEW), storage engine, row counts, creation times. Useful for schema inspection and management. |
+| `information_schema.table_privileges` | Provides detailed information about table-level privileges granted to users. Useful for auditing and managing access control without querying low-level system tables or using `SHOW GRANTS`. |
 
 ### Change system variables
 | Command                                         | Description                                               |
@@ -628,19 +629,15 @@ DROP INDEX idx_name ON your_table;
 
 ## User Management
 
-**Privileges**
+**mysql.user**: User, Host, authentication_string, plugin, and global privilege columns
 
+### Display privileges
 ```mysql
 SHOW GRANTS [FOR CURRENT_USER/'username'@'hostname']
-``` 
+```
 
-**or**
-
+### Grant privileges
 ```mysql
-SELECT user, host, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user;
-
-SELECT * FROM information_schema.table_privileges;
-
 GRANT SELECT (column1, column2), INSERT, UPDATE, DELETE, CREATE, DROP ON db_name.table_name TO 'user'[@'hostname'];
 
 GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;
@@ -648,14 +645,14 @@ GRANT ALL ON db_name.* to 'user'[@'hostname'] WITH GRANT OPTION;
 REVOKE [PRIVILEGES] ON db_name.table_name FROM 'user'[@'hostname'];
 ```
 
-**Create/drop user**
+#### Create/drop user
 ```mysql
 CREATE USER 'user'[@'hostname'] IDENTIFIED BY 'P@55w0rd';
 
 DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];
 ```
 
-**Reset root password**
+### Reset root password
 
 `systemctl stop mysqld`
 
