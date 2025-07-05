@@ -775,9 +775,9 @@ systemctl restart mysqld
 - Maintain DR documentation, monitor backups and replication health
 
 The need to keep a DR plan up to date and test it regularly:
-1. To be able to cope with disaster faults
-2. To always have access to recent back-ups that are located outside the office
-3. In the event of a far-reaching disruption, ensure the measures taken and the incident procedures are adequate and not outdated
+- To be able to cope with disaster faults
+- To always have access to recent back-ups that are located outside the office
+- In the event of a far-reaching disruption, ensure the measures taken and the incident procedures are adequate and not outdated
 
 ## [Logical](#table-of-contents)
 
