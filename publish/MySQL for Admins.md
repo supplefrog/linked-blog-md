@@ -270,15 +270,15 @@ Located completely in RAM
 - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
 - Least Recently Used (LRU) algorithm
     - New (Young) Sublist (5/8)
-        - Head
+        - Head <-- Most recently accessed page
             - Most accessed pages
         - Tail
     - Old Sublist (3/8)
-        - Head
-            - New pages
-            - Less accessed pages
+        - Head <-- New pages
+        - Less accessed pages
         - Tail
-        - Flushed to data files
+
+          └─ Flushed to data files
 - **Change Buffer (25%, up to 50%)**
     - Caches changes to secondary index pages not currently in buffer pool
     - Merged later when index pages are loaded by buffer pool
