@@ -1267,7 +1267,7 @@ SHOW BINLOG EVENTS
 ```mysql
 RESET BINARY LOGS AND GTIDS    # RESET MASTER
 ```
-#### 2. Follow [previous](#primary-member) steps 1-3
+#### 2. Follow [previous](#primary-member) steps, 1-3
 
 #### 3. Start
 ```
