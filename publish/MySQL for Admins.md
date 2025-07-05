@@ -60,8 +60,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 4. **Parsing**
     1. **Lexer/Lexical Analyzer/Tokenizer/Scanner**
-        
-        Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals  
+        - Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals  
     3. **Parser**
         1. Checks if tokens follow syntax structure based on rules
         2. If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
