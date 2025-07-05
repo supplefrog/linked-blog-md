@@ -1,8 +1,3 @@
-| Temporary Tablespace Type             | Description & Key Options                                                                                    |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| Global `datadir/ibtmp1` (deprecated in 8.0) | - Single shared file for all sessions' non-compressed temp tables.<br>- Stores temp data and rollback segments.<br>- Auto-extends, no shrink.<br>- Controlled by `innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:1G`.<br>- Queries fail if max size reached.<br>- Non-persistent across restarts; reused if unclean shutdown (delete manually). |
-| Session Pool `#innodb_temp/temp_*.ibt` files | - Multiple `.ibt` files in pool, assigned per session; improves concurrency and isolation.<br>- Pool starts with 10 files, grows dynamically.<br>- Files truncated and reused after session ends; non-persistent across restarts.<br>- Supports user and internal temp tables.<br>- Config defaults: `internal_tmp_mem_storage_engine=TempTable`, `temptable_max_ram` (64MB), `temptable_max_mmap` (1GB).<br>- No explicit per-file max size. |
-
 Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
