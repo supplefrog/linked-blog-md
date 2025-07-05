@@ -22,6 +22,7 @@ excerpt: Eliminate needless suffering
 ## [[Operating Systems]]  
 ## [[MySQL for Admins]]
 
+## [[mysql_admins_obsidian]]
 
 *Paste in terminal for dot files:*
 ```bash
