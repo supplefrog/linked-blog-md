@@ -631,6 +631,18 @@ DROP INDEX idx_name ON your_table;
 ALTER USER 'username'@'host' ACCOUNT LOCK;
 ```
 
+### Roles
+- A role is a set of privileges introduced in MySQL 8
+- Roles can be created, dropped and granted privileges
+
+| Command                          | Description                                             |
+|----------------------------------|---------------------------------------------------------|
+| `GRANT 'role1', 'role2' TO 'user_name'@'host';` | Grant roles to a user                    |
+| `SET DEFAULT ROLE`               | User sets their own default active roles                |
+| `SET DEFAULT ROLE ... TO other_user@host` | Admin sets default roles for other users       |
+| `SET ROLE NONE` / `SET ROLE DEFAULT` | Activate or deactivate roles in the current session |
+| `CURRENT_ROLE()`                 | Show roles active in the current session                |
+
 ### Display privileges
 ```mysql
 SHOW GRANTS [FOR CURRENT_USER/'username'@'hostname']
