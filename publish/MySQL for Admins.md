@@ -268,25 +268,37 @@ Located completely in RAM
 **Buffer Pool**
 - Default 128M, up to 80% server
 - Stores modified pages that haven't been written to disk (dirty pages) - table and index data
-- Least Recently Used (LRU) algorithm
-    - New (Young) Sublist (5/8)
-        - Head <-- Most recently accessed page
-            - Most accessed pages
-        - Tail
-    - Old Sublist (3/8)
-        - Head <-- New pages
-        - Less accessed pages
-        - Tail
+```
++-----------------------------+
+|      InnoDB LRU List        |
++-----------------------------+
+|                             |
+|   Young (New) Sublist (5/8) |
+|   +---------------------+   |
+|   | Head                |<--+-- Most recently accessed page
+|   | Most accessed pages |   |
+|   | ...                 |   |
+|   | Tail                |   |
+|   +---------------------+   |
+|                             |
+|   Old Sublist (3/8)         |
+|   +---------------------+   |
+|   | Head                |<--+-- Newly loaded page
+|   | Less accessed pages |   |
+|   | ...                 |   |
+|   | Tail                |<--+-- Flushed to data files
+|   +---------------------+   |
++-----------------------------+
+```
+**Change Buffer (25%, up to 50%)**
+- Caches changes to secondary index pages not currently in buffer pool
+- Merged later when index pages are loaded by buffer pool
 
-          └─ Flushed to data files
-- **Change Buffer (25%, up to 50%)**
-    - Caches changes to secondary index pages not currently in buffer pool
-    - Merged later when index pages are loaded by buffer pool
-- **Adaptive Hash Index**
-    - Constructed dynamically by InnoDB
-    - Stores frequently used indexes
-    - Speeds up data retrieval from buffer pool
-        - B-Tree index lookups -> faster hash-based search
+**Adaptive Hash Index**
+- Constructed dynamically by InnoDB
+- Stores frequently used indexes
+- Speeds up data retrieval from buffer pool
+    - B-Tree index lookups -> faster hash-based search
 
 **Log Buffer**
 - Maintains record of dirty pages in buffer pool
