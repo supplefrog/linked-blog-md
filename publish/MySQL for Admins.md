@@ -519,13 +519,13 @@ sudo systemctl daemon-reload
 # [Administration](#table-of-contents)
 
 ## Manage database objects
-| Object Type       | List Objects Command                              | Show Definition Command               |
-|-------------------|--------------------------------------------------|-------------------------------------|
-| Stored Procedure  | `SHOW PROCEDURE STATUS WHERE Db='your_database';` | `SHOW CREATE PROCEDURE procedure_name\G` |
-| Function          | `SHOW FUNCTION STATUS WHERE Db='your_database';`  | `SHOW CREATE FUNCTION function_name\G`   |
-| View              | `SHOW FULL TABLES IN your_database WHERE Table_type='VIEW';` | `SHOW CREATE VIEW view_name\G`           |
+| Object Type       | List Objects Command                              | Show Definition Command                   |
+|-------------------|---------------------------------------------------|-------------------------------------------|
+| Stored Procedure  | `SHOW PROCEDURE STATUS WHERE Db='your_database';` | `SHOW CREATE PROCEDURE procedure_name\G`  |
+| Function          | `SHOW FUNCTION STATUS WHERE Db='your_database';`  | `SHOW CREATE FUNCTION function_name\G`    |
+| View              | `SHOW FULL TABLES IN your_database WHERE Table_type='VIEW';` | `SHOW CREATE VIEW view_name\G` |
 | Trigger           | `SHOW TRIGGERS FROM your_database;`               | Query `information_schema.TRIGGERS` for `ACTION_STATEMENT` |
-| Event             | `SHOW EVENTS FROM your_database;`                  | `SHOW CREATE EVENT event_name\G`           |
+| Event             | `SHOW EVENTS FROM your_database;`                 | `SHOW CREATE EVENT event_name\G`          |
 
 ## Server status and process management
 These statements can also be queried from mysqladmin
@@ -545,19 +545,6 @@ SHOW PROCESSLIST;
 ### Kill process
 ```mysql
 KILL [PID]
-```
-
-#### Change prompt
-```mysql
-PROMPT (\u@\h) [\d]\
-```
-
-#### Log client statements and their output
-
-```mysql
-TEE filename    # start, append output to filename
-
-NOTEEE    # stop
 ```
 
 ## Performance Monitoring / Tuning
@@ -616,8 +603,8 @@ DROP INDEX idx_name ON your_table;
 | `information_schema.table_privileges` | Provides detailed information about table-level privileges granted to users. Useful for auditing and managing access control without querying low-level system tables or using `SHOW GRANTS`. |
 
 ### Change system variables
-| Command                                         | Description                                               |
-|-------------------------------------------------|-----------------------------------------------------------|
+| Command                                         | Description                                                 |
+|-------------------------------------------------|-------------------------------------------------------------|
 | `SHOW [GLOBAL/SESSION] VARIABLES [LIKE '%var%'];` | Display system variables and their current values.        |
 | `SET [GLOBAL/LOCAL] variable_name='value';`       | Set variable value for session or globally.               |
 | `SET PERSIST variable_name = value;`              | Persistently set variable, saved in mysqld-auto.cnf file. |
@@ -664,6 +651,13 @@ CREATE USER 'user'[@'hostname'] IDENTIFIED BY 'P@55w0rd';
 DROP USER 'user1'[@'hostname'], 'user2'[@'hostname'];
 ```
 
+| Login Path Command                             | Description                                            |
+|------------------------------------------------|--------------------------------------------------------|
+| `mysql_config_editor print --all`              | Display all saved MySQL login paths and credentials.   |
+| `mysql_config_editor set --login-path=client --host=localhost --user=root --password` | Save login credentials under a named login path. |
+| `mysql_config_editor remove --login-path=client` | Remove saved login path and its credentials.         |
+| `mysql --login-path=client    # redundant`     | Connect to MySQL using saved login path credentials.   |
+
 ### Reset root password
 
 `systemctl stop mysqld`
@@ -678,18 +672,47 @@ EXIT
 ```
 `pkill mysql`
 
-| Login Path Command                             | Description                                            |
-|------------------------------------------------|--------------------------------------------------------|
-| `mysql_config_editor print --all`              | Display all saved MySQL login paths and credentials.   |
-| `mysql_config_editor set --login-path=client --host=localhost --user=root --password` | Save login credentials under a named login path. |
-| `mysql_config_editor remove --login-path=client` | Remove saved login path and its credentials.         |
-| `mysql --login-path=client    # redundant`     | Connect to MySQL using saved login path credentials.   |
-
 ## Table Management
 
-### Stored Procedure
+### Change tablespace sizes
+| Variable / Command                  | Description                                                        |
+|-------------------------------------|--------------------------------------------------------------------|
+| `innodb_data_file_path=ibdata1:10M:autoextend:max:512M` | Sets InnoDB system tablespace initial size to 10MB, enables autoextend, with a max size of 512MB. |
+| `innodb_autoextend_increment=64`    | Specifies InnoDB tablespace autoextend increment size as 64MB.     |
+| `CREATE TABLESPACE ts1 ... INITIAL_SIZE = 100M` | Creates a general tablespace `ts1` with a datafile of initial size 100MB. |
 
-[**Create dummy test data**](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
+### Change auto-increment value
+```mysql
+ALTER TABLE table_name AUTO_INCREMENT = value;    # if greater than max - next insertion starts w value, else no effect
+```
+
+### Create temporary table
+```mysql
+CREATE TEMPORARY TABLE customers (
+...
+);
+```
+
+### Create general tablespace and add tables
+```mysql
+CREATE TABLESPACE ts
+    ADD DATAFILE 'ts.ibd'    # base dir is datadir by default
+    ENGINE=InnoDB;
+
+CREATE TABLE t1 (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+) ENGINE=InnoDB
+  TABLESPACE ts;
+```
+
+#### Change storage engine
+
+[Backup](#backup-and-restore) before conversion
+
+`ALTER TABLE table_name ENGINE = InnoDB;`
+
+### [Create stored procedure to generate dummy data](https://dev.to/siddhantkcode/how-to-inject-simple-dummy-data-at-a-large-scale-in-mysql-eci)
 
 ```mysql
 DELIMITER $$
@@ -720,29 +743,19 @@ END$$
 DELIMITER ;
 ```
 
-### Change auto-increment value
+## Misc
+
+#### Change prompt
 ```mysql
-ALTER TABLE table_name AUTO_INCREMENT = value;    # if greater than max - next insertion starts w value, else no effect
+PROMPT (\u@\h) [\d]\
 ```
 
-### Change tablespace sizes
-| Variable / Command                    | Description                                                        |
-|-------------------------------------|--------------------------------------------------------------------|
-| `innodb_data_file_path=ibdata1:10M:autoextend:max:512M` | Sets InnoDB system tablespace initial size to 10MB, enables autoextend, with a max size of 512MB. |
-| `innodb_autoextend_increment=64`    | Specifies InnoDB tablespace autoextend increment size as 64MB.     |
-| `CREATE TABLESPACE ts1 ... INITIAL_SIZE = 100M` | Creates a general tablespace `ts1` with a datafile of initial size 100MB. |
+#### Log statements and their output
 
-### Create general tablespace and add tables
 ```mysql
-CREATE TABLESPACE ts
-    ADD DATAFILE 'ts.ibd'    # base dir is datadir by default
-    ENGINE=InnoDB;
+TEE filename    # start, append output to filename
 
-CREATE TABLE t1 (
-    id INT PRIMARY KEY,
-    name VARCHAR(50)
-) ENGINE=InnoDB
-  TABLESPACE ts;
+NOTEEE    # stop
 ```
 
 #### Switch data dir of existing server
@@ -758,12 +771,6 @@ cp -r /var/lib/mysql /newpath
 vi /etc/my.cnf    # datadir=/newpath
 systemctl restart mysqld
 ```
-
-#### Change storage engine
-
-[Backup](#backup-and-restore) before conversion
-
-`ALTER TABLE table_name ENGINE = InnoDB;`
 
 # [Backup and Restore](#table-of-contents)
 
