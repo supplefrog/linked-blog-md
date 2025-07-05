@@ -13,6 +13,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Upgrade](#upgrade)
 - [Replication](#replication)
     - [Group Replication](#group-replication)
+- [Migration](#migration)
 ---
 
 ### Diction
@@ -1309,3 +1310,65 @@ SELECT event_name, work_completed, work_estimated
 FROM performance_schema.events_stages_current 
 WHERE event_name LIKE "%stage/group_rpl%";
 ```
+
+# [Migration](#table-of-contents)
+
+# MySQL to Oracle Migration
+
+## 1. Prep
+- **Backup** MySQL and Oracle databases.
+- **Download MySQL Connector/J** (JDBC):  
+  https://dev.mysql.com/downloads/connector/j/
+
+## 2. Oracle SQL Developer Setup
+- **Open** Oracle SQL Developer.
+- **Add JDBC Driver:**  
+  Tools → Preferences → Database → Third Party JDBC Drivers → Add MySQL Connector/J JAR.
+- **Restart** SQL Developer.
+
+## 3. Connections
+- **MySQL:**  
+  Connections → New Connection → MySQL tab → Enter details → Test & Save.
+- **Oracle:**  
+  Connections → New Connection → Oracle tab → Enter details → Test & Connect.
+
+## 4. (Optional) Oracle Migration Repository
+- **Create repository user** on Oracle:
+```sql
+GRANT CONNECT, RESOURCE, CREATE SESSION, CREATE VIEW, CREATE MATERIALIZED VIEW TO migrep IDENTIFIED BY migrep;
+ALTER USER migrep QUOTA UNLIMITED ON SYSTEM;
+```
+- **Associate repository**:  
+Right-click Oracle connection → Migration Repository → Associate.
+
+## 5. Migration Wizard
+- Tools → Migration → Migrate.
+- **Repository:**  
+Connect to MySQL (add if needed).
+- **Project:**  
+Enter project details.
+- **Source Database:**  
+Mode: Online, select MySQL connection.
+- **Capture:**  
+Select MySQL DB.
+- **Convert:**  
+Accept defaults or adjust mappings.
+- **Target Database:**  
+Mode: Online, select Oracle connection.
+- **Move Data:**  
+Source: MySQL, Target: Oracle.
+- **Summary:**  
+Review & Finish.
+
+## 6. Post-Migration
+- **Rename indexes, set defaults** as needed.
+- **Verify data integrity.**
+- **Test application.**
+
+---
+
+## Key Notes
+- **Data types**: MySQL types (e.g., TINYINT, INT) map to Oracle NUMBER.
+- **Stored procedures, triggers** may require manual conversion.
+- **Offline alternative**:  
+`mysqldump` → convert SQL → import to Oracle (SQL*Loader or manual).
