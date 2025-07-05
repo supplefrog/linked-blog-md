@@ -774,6 +774,11 @@ systemctl restart mysqld
 - Regular automated restore tests to verify backup usability
 - Maintain DR documentation, monitor backups and replication health
 
+The need to keep a DR plan up to date and test it regularly:
+1. To be able to cope with disaster faults
+2. To always have access to recent back-ups that are located outside the office
+3. In the event of a far-reaching disruption, ensure the measures taken and the incident procedures are adequate and not outdated
+
 ## [Logical](#table-of-contents)
 
 Produce a set of SQL statements (.sql, csv, other text) to restore the original database object definitions and data
