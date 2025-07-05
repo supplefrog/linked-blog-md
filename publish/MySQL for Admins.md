@@ -559,6 +559,55 @@ SHOW PROCESSLIST;
 KILL [PID]
 ```
 
+## Audit
+
+### Download preferred 3rd party plugin to plugin_dir (/usr/lib64/mysql/plugin/) and install
+### or
+### Install enterprise plugin
+```mysql
+INSTALL PLUGIN audit_log SONAME 'audit_log.so';    # Enterprise
+```
+### MySQL Enterprise Audit
+
+| Parameter                        | Description                                              |
+|-----------------------------------|---------------------------------------------------------|
+| plugin-load=audit_log.so          | Loads the Enterprise Audit plugin                       |
+| audit_log_policy                  | What to log: ALL, LOGINS, QUERIES, NONE                 |
+| audit_log_file                    | Audit log file path                                     |
+| audit_log_format                  | Log format: JSON, XML                                   |
+| audit_log_rotate_on_size          | Rotate log at this size (bytes)                         |
+| audit_log_compression             | Compress logs: NONE, ZLIB                               |
+| audit_log_encryption              | Encrypt logs: NONE, AES256                              |
+| audit_log_include_accounts        | Comma-separated list of accounts to audit               |
+| audit_log_exclude_accounts        | Comma-separated list of accounts to exclude from audit  |
+| audit_log_filter_id               | Use custom filter by ID                                 |
+
+### mysqlauditadmin
+
+| Option                                           | Description                                        |
+|--------------------------------------------------|----------------------------------------------------|
+| `--list-filters`                                 | List all audit filters                             |
+| `--create-filter --name=NAME --filter=EXPR`      | Create a new filter                                |
+| `--create-policy --name=NAME --filter=FILTER --log=ON/OFF` | Create a new policy using a filter       |
+| `--apply-policy --name=POLICY --user=USER`       | Apply a policy to a user                           |
+| `--drop-filter --name=NAME`                      | Delete a filter                                    |
+| `--drop-policy --name=NAME`                      | Delete a policy                                    |
+
+### mysqlauditgrep
+
+| Option                     | Description                                                                                |
+|----------------------------|--------------------------------------------------------------------------------------------|
+| `--pattern=PATTERN`, `-e`  | Search for entries matching a pattern (SQL LIKE by default, REGEXP if `--regexp` is set)   |
+| `--regexp`                 | Use regular expression matching instead of SQL LIKE                                        |
+| `--users=USERLIST`         | Only show entries for specified users (comma-separated)                                    |
+| `--start-date=YYYY-MM-DD`  | Start of date/time range for search                                                        |
+| `--end-date=YYYY-MM-DD`    | End of date/time range for search                                                          |
+| `--event-type=TYPELIST`    | Filter by event types (e.g., Query, Connect, Create DB, Drop DB; comma-separated)          |
+| `--query-type=TYPELIST`    | Filter by SQL statement types (e.g., SELECT, INSERT, UPDATE; comma-separated)              |
+| `--status=CODE`            | Filter by status code (e.g., 0 for OK, 1 for error)                                        |
+| `--file-stats`             | Show audit log file statistics in CSV format                                               |
+| `--license`                | Display license information and exit                                                       |
+
 ## Performance Monitoring / Tuning
 ### Optimizer
 ```mysql
