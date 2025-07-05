@@ -1,3 +1,8 @@
+| Temporary Tablespace Type             | Description & Key Options                                                                                    |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| Global `datadir/ibtmp1` (deprecated in 8.0) | - Single shared file for all sessions' non-compressed temp tables.<br>- Stores temp data and rollback segments.<br>- Auto-extends, no shrink.<br>- Controlled by `innodb_temp_data_file_path=ibtmp1:12M:autoextend:max:1G`.<br>- Queries fail if max size reached.<br>- Non-persistent across restarts; reused if unclean shutdown (delete manually). |
+| Session Pool `#innodb_temp/temp_*.ibt` files | - Multiple `.ibt` files in pool, assigned per session; improves concurrency and isolation.<br>- Pool starts with 10 files, grows dynamically.<br>- Files truncated and reused after session ends; non-persistent across restarts.<br>- Supports user and internal temp tables.<br>- Config defaults: `internal_tmp_mem_storage_engine=TempTable`, `temptable_max_ram` (64MB), `temptable_max_mmap` (1GB).<br>- No explicit per-file max size. |
+
 Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blog-md/issues)
 
 # Table of Contents
@@ -316,19 +321,19 @@ Located completely in RAM
     - Can host multiple tables
 - **File-Per-Table Tablespace .ibd**
     - Each table has its own .ibd file
-- **Temporary Tablespace**
-    - Session (#innodb_temp dir)
-        - User-created
-            ```mysql
-            CREATE TEMPORARY TABLE table_name ();
-            ```
-        - Internal temp tables - auto created by optimizer for operations like sorting, grouping
-            - Optimizer may materialize Common Table Expressions' (CTE - modular query, introduced in 8.0) result sets into temp table if they are frequently referenced in a query
-    - Global (ibtmp1)
-        - Stores rollback segments for changes to  user-created temp tables
-        - Redo logs not needed since not persistent
-        - Auto-extending
-        - Removed on normal shutdown, recreated on server startup
+- **Temporary Tablespaces**
+
+  - **Session Temporary Tablespaces** (`#innodb_temp/*.ibt`)  
+    - Enhances concurrency and isolation by avoiding contention on a single shared tablespace.  
+    - Allocated per session from a dynamic pool (starting at 10 files), truncated and reused at session end; non-persistent across restarts.  
+    - Up to two tablespaces per session: user-created and internal (auto-created by optimizer for sorting, grouping, CTE materialization).  
+    - Metadata available in `INNODB_SESSION_TEMP_TABLESPACES`.
+
+  - **Global Temporary Tablespace** (`ibtmp1`, MySQL 5.7, deprecated since 8.0)  
+    - Single shared file for all sessions' non-compressed temp tables; stores temp data and rollback segments; no redo logs.  
+    - Auto-extends from 12MB, does not shrink. Non-persistent across restarts, if unclean shutdown, delete manually to avoid reuse.  
+    - Controlled by `innodb_temp_data_file_path` (e.g., `ibtmp1:12M:autoextend:max:1G`).
+
 - **Undo Tablespaces**
     - Store undo logs
         - Records original data before changes
