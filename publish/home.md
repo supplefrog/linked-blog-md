@@ -1,5 +1,5 @@
 ---
-title: Welcome, peasant.
+title: Welcome, [Blank].
 excerpt: Eliminate needless suffering
 ---
 ## Thou hast struck [🪙](attachments/pot.jpg).  
