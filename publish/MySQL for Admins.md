@@ -1102,9 +1102,9 @@ gtid_mode=ON
 enforce_gtid_consistency=ON
 ```
 
-b.
+- Add filtering rules in `my.cnf` or [`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
 
-[`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
+b.
 
 ```mysql
 # < 8 statements for multi-source replica channels
