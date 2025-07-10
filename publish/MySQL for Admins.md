@@ -481,17 +481,17 @@ sudo systemctl daemon-reload
 
 `semanage [-h]`
 
-- show ports enabled for specific service
+- show ports enabled for specific service:
 
     `semanage port -l | grep mysql`
 
-- add/delete port for specific service
+- add/delete port for specific service:
 
     `semanage port [-a][-d] -t mysqld_port_t -p tcp 3307`
 
-- set file context for custom datadir
+- set file context for dir starting with string and its subdirs:
     ```sh
-    semanage fcontext -a -t mysqld_db_t "/datadir(/.*)?"
+    semanage fcontext -a -t mysqld_db_t "/datadir[^/]*(/.*)?"
     restorecon -Rv /datadir
     ```
 
