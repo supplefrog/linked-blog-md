@@ -41,7 +41,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ### Server
 
-1. Startup, including flush privilege tables
+1. Startup, including flushing privilege tables
 2. Connection
     1. Client establishes TCP connection
     2. Server sends handshake packet (version, TLS support, auth plugin, salt)
@@ -61,14 +61,12 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
        
     5. MySQL authentication and protocol continue inside TLS tunnel
 
-3. **Authentication**
-    1. Flush privilege tables (reload and sort by Host, then User)  
-    2. Client establishes TCP connection; server sends Initial Handshake (version, capabilities, auth plugin, salt)  
-    3. Client sends Handshake Response (username, plugin, auth data)  
-    4. Server finds first matching user@host from sorted list and selects auth plugin  
-    5. Server may send AuthSwitchRequest to change plugin  
-    6. Server verifies credentials via plugin  
-    7. Server sends OK (accept) or ERR (reject) packet
+3. **Authentication**  
+    1. Client sends HandshakeResponse packet (username, password hash, plugin)  
+    2. Server finds first matching user@host from sorted list and selects auth plugin  
+    3. Server may send AuthSwitchRequest to change plugin  
+    4. Server verifies credentials via plugin  
+    5. Server sends OK (accept) or ERR (reject) packet
 
 4. **Connection Manager**
 - Establish logical connection:
