@@ -50,6 +50,19 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     6. Server verifies credentials via plugin  
     7. Server sends OK (accept) or ERR (reject) packet
 
+TLS Handshake
+
+| Step | Action |
+|------|--------|
+| 1 | Client Hello: proposes settings, sends client random |
+| 2 | Server Hello: chooses settings, sends server random, cert |
+| 3 | Client validates certificate with CA |
+| 4 | Client encrypts premaster secret with server public key and sends it |
+| 5 | Server decrypts premaster secret with its private key |
+| 6 | Both generate session key from premaster secret |
+| 7 | Client and server exchange finished messages using session key |
+| 8 | Secure, encrypted communication begins |
+
 2. **Connection Manager**
 - Establish logical connection:
     1. Assign cached thread if available in thread cache
