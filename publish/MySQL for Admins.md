@@ -41,7 +41,27 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 
 ### Server
 
-1. **Authentication**
+1. Startup, including flush privilege tables
+2. Connection
+    1. Client establishes TCP connection
+    2. Server sends handshake packet (version, TLS support, auth plugin, salt)
+    3. Client sends SSLRequest if TLS desired.
+    4. TLS handshake performed over TCP
+
+        | Step | Action |
+        |------|--------|
+        | 1 | Client Hello: proposes settings, sends client random |
+        | 2 | Server Hello: chooses settings, sends server random, cert |
+        | 3 | Client validates certificate with CA |
+        | 4 | Client encrypts premaster secret with server public key and sends it |
+        | 5 | Server decrypts premaster secret with its private key |
+        | 6 | Both generate session key from premaster secret |
+        | 7 | Client and server exchange finished messages using session key |
+        | 8 | Encrypted tunnel established |
+       
+    5. MySQL authentication and protocol continue inside TLS tunnel
+
+3. **Authentication**
     1. Flush privilege tables (reload and sort by Host, then User)  
     2. Client establishes TCP connection; server sends Initial Handshake (version, capabilities, auth plugin, salt)  
     3. Client sends Handshake Response (username, plugin, auth data)  
@@ -50,38 +70,25 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     6. Server verifies credentials via plugin  
     7. Server sends OK (accept) or ERR (reject) packet
 
-TLS Handshake
-
-| Step | Action |
-|------|--------|
-| 1 | Client Hello: proposes settings, sends client random |
-| 2 | Server Hello: chooses settings, sends server random, cert |
-| 3 | Client validates certificate with CA |
-| 4 | Client encrypts premaster secret with server public key and sends it |
-| 5 | Server decrypts premaster secret with its private key |
-| 6 | Both generate session key from premaster secret |
-| 7 | Client and server exchange finished messages using session key |
-| 8 | Secure, encrypted communication begins |
-
-2. **Connection Manager**
+4. **Connection Manager**
 - Establish logical connection:
     1. Assign cached thread if available in thread cache
     2. Else create new thread (one thread per client)
 
-3. **Security**
+5. **Security**
 
     Verify if user has privilege for each query
 
-4. **Parsing**
+6. **Parsing**
     1. **Lexer/Lexical Analyzer/Tokenizer/Scanner**
         - Breaks string into tokens (meaningful elements) - keywords, identifiers, operators, literals  
-    3. **Parser**
+    2. **Parser**
         1. Checks if tokens follow syntax structure based on rules
         2. If valid, creates parse tree (Abstract Syntax Tree) - represents logical structure of query
             - Each node represents a SQL operation
             - Edges represent relationships between operations
 
-5. **Optimizer**
+7. **Optimizer**
     1. Reads AST
     2. Generates multiple candidate execution plans compatible with storage engine:
         - Explores different table access methods - no index/full scan, single/multi-column index, Adapative Hash Index
@@ -95,7 +102,7 @@ TLS Handshake
         - Uses data statistics (row counts, index selectivity, data distribution)
     4. selects plan with lowest total estimated cost as optimized query plan
 
-6. **Storage engine performs data lookup in caches & buffers**
+8. **Storage engine performs data lookup in caches & buffers**
     1. if not found, fetch from disk
     2. updates to disk
 
