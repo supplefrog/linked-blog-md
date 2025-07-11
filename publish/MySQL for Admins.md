@@ -1078,11 +1078,41 @@ Supports ABBA, ABCA
 
 ![Replication Architecture](https://www.percona.com/blog/wp-content/uploads/2024/12/mysqlreplication-diagram-1-980x457.png)
 
+Generate SSL keys using trusted external CA
+
+```bash
+# Create CA
+openssl genrsa 2048 > ca-key.pem
+openssl req -new -x509 -nodes -days 3650 \
+  -key ca-key.pem -out ca.pem \
+  -subj "/CN=MySQL CA"
+
+# Server cert
+openssl req -newkey rsa:2048 -days 3650 \
+  -nodes -keyout server-key.pem -out server-req.pem \
+  -subj "/CN=MySQL Server"
+openssl x509 -req -in server-req.pem -days 3650 \
+  -CA ca.pem -CAkey ca-key.pem -set_serial 01 \
+  -out server-cert.pem
+
+# Client cert
+openssl req -newkey rsa:2048 -days 3650 \
+  -nodes -keyout client-key.pem -out client-req.pem \
+  -subj "/CN=MySQL Client"
+openssl x509 -req -in client-req.pem -days 3650 \
+  -CA ca.pem -CAkey ca-key.pem -set_serial 02 \
+  -out client-cert.pem
+
+# Permissions (optional)
+chmod 600 *key.pem
+```
+
 ## 1. Source
 
 a. Add to `my.cnf`:
 
 ```ini
+[mysqld]
 server_id=1
 # for source-source replication
 # auto-increment-increment=2    # increment by 2, set to number of sources
@@ -1090,11 +1120,21 @@ server_id=1
 
 gtid_mode=ON
 enforce_gtid_consistency=ON
+
+ssl-ca=/etc/mysql/certs/ca.pem
+ssl-cert=/etc/mysql/certs/server-cert.pem
+ssl-key=/etc/mysql/certs/server-key.pem
+require_secure_transport=ON
+
+[client]
+ssl-ca=/etc/mysql/certs/ca.pem
+ssl-cert=/etc/mysql/certs/client-cert.pem
+ssl-key=/etc/mysql/certs/client-key.pem
 ```
 
 b. Create a user only for replication
 ```mysql
-CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1';
+CREATE USER replica@'hostname' IDENTIFIED BY 'Redhat@1' REQUIRE SSL;
 GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 ```
 
@@ -1110,6 +1150,7 @@ c.
 a. Add to `my.cnf`:
 
 ```ini
+[mysqld]
 server_id=2
 relay_log=/var/lib/mysql/relaylog.log
 # for source-source replication
@@ -1118,6 +1159,16 @@ relay_log=/var/lib/mysql/relaylog.log
 
 gtid_mode=ON
 enforce_gtid_consistency=ON
+
+ssl-ca=/etc/mysql/certs/ca.pem
+ssl-cert=/etc/mysql/certs/server-cert.pem
+ssl-key=/etc/mysql/certs/server-key.pem
+require_secure_transport=ON
+
+[client]
+ssl-ca=/etc/mysql/certs/ca.pem
+ssl-cert=/etc/mysql/certs/client-cert.pem
+ssl-key=/etc/mysql/certs/client-key.pem
 ```
 
 - Add filtering rules in `my.cnf` or [`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
@@ -1142,6 +1193,10 @@ CHANGE REPLICATION SOURCE TO
   # SOURCE_LOG_FILE = 'binlog.000001',
   # SOURCE_LOG_POS = 157,
   GET_SOURCE_PUBLIC_KEY = 1;
+  SOURCE_SSL=1,
+  SOURCE_SSL_CA='/etc/mysql/certs/ca.pem',
+  SOURCE_SSL_CERT='/etc/mysql/certs/client-cert.pem',
+  SOURCE_SSL_KEY='/etc/mysql/certs/client-key.pem',
 #FOR CHANNEL 'channel_name';
 
 START REPLICA;
