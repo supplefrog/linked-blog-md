@@ -47,9 +47,10 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     2. Server sends handshake packet (version, TLS support, auth plugin, salt)
     3. Client sends SSLRequest if TLS desired.
     4. TLS handshake performed over TCP
+    5. MySQL authentication and protocol continue inside TLS tunnel
 
-| Step | Action |
-|------|--------|
+| TLS Step | Action |
+|----------|--------|
 | 1 | Client Hello: proposes settings, sends client random |
 | 2 | Server Hello: chooses settings, sends server random, cert |
 | 3 | Client validates certificate with CA |
@@ -58,8 +59,6 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 | 6 | Both generate session key from premaster secret |
 | 7 | Client and server exchange finished messages using session key |
 | 8 | Encrypted tunnel established |
-
-    5. MySQL authentication and protocol continue inside TLS tunnel
 
 3. **Authentication**  
     1. Client sends HandshakeResponse packet (username, password hash, plugin)  
