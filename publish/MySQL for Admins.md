@@ -48,19 +48,17 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
     3. Client sends SSLRequest if TLS desired.
     4. TLS handshake performed over TCP
 
+| Step | Action |
+|------|--------|
+| 1 | Client Hello: proposes settings, sends client random |
+| 2 | Server Hello: chooses settings, sends server random, cert |
+| 3 | Client validates certificate with CA |
+| 4 | Client encrypts premaster secret with server public key and sends it |
+| 5 | Server decrypts premaster secret with its private key |
+| 6 | Both generate session key from premaster secret |
+| 7 | Client and server exchange finished messages using session key |
+| 8 | Encrypted tunnel established |
 
-    | Step | Action |
-    |------|--------|
-    | 1 | Client Hello: proposes settings, sends client random |
-    | 2 | Server Hello: chooses settings, sends server random, cert |
-    | 3 | Client validates certificate with CA |
-    | 4 | Client encrypts premaster secret with server public key and sends it |
-    | 5 | Server decrypts premaster secret with its private key |
-    | 6 | Both generate session key from premaster secret |
-    | 7 | Client and server exchange finished messages using session key |
-    | 8 | Encrypted tunnel established |
-
-       
     5. MySQL authentication and protocol continue inside TLS tunnel
 
 3. **Authentication**  
