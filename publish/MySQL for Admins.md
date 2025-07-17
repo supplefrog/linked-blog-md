@@ -832,7 +832,7 @@ PROMPT (\u@\h) [\d]\
 #### Log statements and their output
 
 ```mysql
-TEE filename    # start, append output to filename
+TEE log    # start, append output to file named 'log'
 SELECT DATABASE();
 SELECT NOW();
 NOTEEE    # stop
