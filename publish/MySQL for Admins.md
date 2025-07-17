@@ -833,8 +833,8 @@ PROMPT (\u@\h) [\d]\
 
 ```mysql
 TEE log    # start, append output to file named 'log'
-SELECT DATABASE();
 SELECT NOW();
+SELECT DATABASE();
 NOTEEE    # stop
 ```
 
