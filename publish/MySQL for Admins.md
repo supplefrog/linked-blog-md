@@ -987,11 +987,11 @@ myloader -u user -p pa55 [-t] -d [--directory] /backups/dbname
 | With Options        | `util.dumpInstance('/backup/dir', {threads: 4, ocimds: true, consistent: true})`                 |
 | Import Dump         | `util.loadDump('/path/to/backup-directory')`                                                     |
 
-| Option       | Description                                                                                             |
-|--------------|---------------------------------------------------------------------------------------------------------|
-| `ocimds`     | Checks and prepares the dump for compatibility with MySQL HeatWave Service (Oracle Cloud). Use `true` if targeting HeatWave. |
+| Option       | Description                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `ocimds`     | Checks and prepares the dump for compatibility with MySQL HeatWave Service (Oracle Cloud). Use `true` if targeting HeatWave.  |
 | `threads`    | Sets the number of parallel worker threads for the backup. Cannot assign threads to specific queues; only total count is set. |
-| `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies. |
+| `consistent` | Ensures a consistent snapshot by locking tables during the dump (default: `true`). Disabling may cause inconsistencies.       |
 
 ## [Physical](#table-of-contents)
 
