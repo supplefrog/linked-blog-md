@@ -380,7 +380,7 @@ Terminal app
 | `mount /dev/devicename /mountpoint`     | Mount block device to mount point                                                                   |
 | `umount /mountpoint`                    | Unmount block device from mount point                                                               |
 | **`w`**                                 | List users, host/IP, login time, tty, CPU usage, shell                                              |
-| **`who`**                               | List users, tty, and login time                                                                     |
+| `who`                                   | List users, tty, and login time                                                                     |
 | **`last`**                              | Show login history with IP and login duration                                                       |
 | `whoami`                                | Show current shell logged-in username                                                               |
 | `who am i`                              | Show username, tty, and login time                                                                  |
@@ -393,7 +393,7 @@ Terminal app
 
 | File Management Command                | Description                                                                                     |
 |:---------------------------------------|:------------------------------------------------------------------------------------------------|
-| `cd [absolute / relative path]`        | Change directory                                                                                |
+| `cd [absolute / relative path]`        | Change directory. `-` for previous dir                                                          |
 | `ls`                                   | List directory contents                                                                         |
 | `   -l` -> `ll`                        | Long listing format                                                                             |
 | `   -a`                                | Show all entries (including those starting with `.`)                                            |
@@ -411,9 +411,9 @@ Terminal app
 | `rmdir dir`                            | Remove empty directory                                                                          |
 | `touch file`                           | Create empty file                                                                               |
 | `echo "text"`                          | Print text on stdout                                                                            |
-| `cat [file1] [file2]` 			         | Concatenate files and print on stdout                                     					               |
-| `   [1 / 2 / &]> file`                  | Redirect stdout/stderr/both, overwrite file                                                    |
-| `             >> file`                  | Append to file                                                                                 |
+| `cat [file1] [file2]` 			     | Concatenate files and print on stdout                           					               |
+| `   [1 / 2 / &]> file`                 | Redirect stdout/stderr/both, overwrite file                                                     |
+| `             >> file`                 | Append to file                                                                                  |
 | `grep -v word`                         | Exclude lines containing word                                                                   |
 | `     -w word`                         | Search for whole word                                                                           |
 | `awk '{print $1, $2}' filename`        | Print specified columns                                                                         |
