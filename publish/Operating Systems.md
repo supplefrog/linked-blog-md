@@ -379,7 +379,7 @@ Terminal app
 | `findmnt`                               | Display currently mounted filesystems                                                               |
 | `mount /dev/devicename /mountpoint`     | Mount block device to mount point                                                                   |
 | `umount /mountpoint`                    | Unmount block device from mount point                                                               |
-| `Ctrl + r / history`                    | Navigate Bash history                                                                               |
+| `Ctrl + r` ` history`                   | Navigate Bash history                                                                               |
 | **`w`**                                 | List users, host/IP, login time, tty, CPU usage, shell                                              |
 | `who`                                   | List users, tty, and login time                                                                     |
 | **`last`**                              | Show login history with IP and login duration                                                       |
