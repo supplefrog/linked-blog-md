@@ -1054,22 +1054,24 @@ rotate 30
 
 ## [Upgrade](#table-of-contents)
 
-1. Backup datadir, my.cnf, older packages. Physical for large DBs to avoid restoration downtime in case packages are reverted.
+1. Backup datadir, my.cnf, older packages. Physical for large DBs to avoid restoration downtime in case packages are reverted
 2. Check if server configs are ready for upgrade:
 ```
 mysqlsh --uri user@host:port    # user must have RELOAD PROCESS and SELECT privileges
 util.checkForServerUpgrade({targetVersion: '8.4.6'})
 ```
 
+3. Update required packages using `yum localupdate`
+
 Upgrades only supported from one major release up to another
 
-| Supported Paths     | Method                                                                         |
-|---------------------|--------------------------------------------------------------------------------|
-| < 5.7  -> 5.7       | Update binary, run `mysql_upgrade`                                             |
-| 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`                                             |
-| 5.7    -> 8.0.16+   | Update binary, start server (auto-upgrades on start, mysql_upgrade deprecated) |
-| 8.0.x  -> 8.4       | Update binary, start server                                                    |
-| 8.4    -> 9.x       | Update binary, start server                                                    |
+| Supported Paths     | Method                                                                           |
+|---------------------|----------------------------------------------------------------------------------|
+| < 5.7  -> 5.7       | Update binaries, run `mysql_upgrade`                                             |
+| 5.7    -> 8.0.15    | Update binaries, run `mysql_upgrade`                                             |
+| 5.7    -> 8.0.16+   | Update binaries, start server (auto-upgrades on start, mysql_upgrade deprecated) |
+| 8.0.x  -> 8.4       | Update binaries, start server                                                    |
+| 8.4    -> 9.x       | Update binaries, start server                                                    |
 
 | mysqld --upgrade= (8.0.16+) | Upgrades                                                                                                                                                                        |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
