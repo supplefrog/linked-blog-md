@@ -1054,24 +1054,31 @@ rotate 30
 
 ## [Upgrade](#table-of-contents)
 
-Take logical backup for failsafe (can be used for downgrade too), physical backup for faster restoration
+1. Backup datadir, my.cnf, older packages. Physical for large DBs to avoid restoration downtime in case packages are reverted.
+2. Check if server configs are ready for upgrade:
+```
+mysqlsh --uri user@host:port    # user must have RELOAD PROCESS and SELECT privileges
+util.checkForServerUpgrade({targetVersion: '8.4.6'})
+```
 
-| Supported Paths     | Method                                     |
-|---------------------|--------------------------------------------|
-| < 5.7  -> 5.7       | Update binary, run `mysql_upgrade`         |
-| 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`         |
-| 5.7    -> 8.0.16+   | Update binary, start server (auto-upgrade) |
-| 8.0.x  -> 8.4       | Update binary, start server (auto-upgrade) |
-| 8.4    -> 9.x       | Update binary, start server (auto-upgrade) |
+Upgrades only supported from one major release up to another
 
-**8.0.16 +** mysql_upgrade (data dir) deprecated, functions embedded into server
+| Supported Paths     | Method                                                                         |
+|---------------------|--------------------------------------------------------------------------------|
+| < 5.7  -> 5.7       | Update binary, run `mysql_upgrade`                                             |
+| 5.7    -> 8.0.15    | Update binary, run `mysql_upgrade`                                             |
+| 5.7    -> 8.0.16+   | Update binary, start server (auto-upgrades on start, mysql_upgrade deprecated) |
+| 8.0.x  -> 8.4       | Update binary, start server                                                    |
+| 8.4    -> 9.x       | Update binary, start server                                                    |
 
-| mysqld --upgrade= (8.0.16+) | Upgrades                                                                                                             |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| AUTO (default)              | Data dictionary (DD), system schemas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, if not upgraded. |
+| mysqld --upgrade= (8.0.16+) | Upgrades                                                                                                                                                                        |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AUTO (default)              | Data dictionary (DD), system schemas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, if not upgraded.                                    |
 | MINIMAL                     | Core metadata: DD, Performance Schema, INFORMATION_SCHEMA. Skip mysql (incl help tables), sys schemas, user schemas. Useful for faster startup and upgrading user schemas later |
-| FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs. |
-| NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling |
+| FORCE                       | All: DD, system schmas (mysql (incl help tables), Performance Schema, INFORMATION_SCHEMA, sys), user schemas, even if prev upgraded. Useful for checking and forcing repairs.   |
+| NONE                        | Skip server auto upgrade; server will not start if DD upgrade is required. Used for manual handling                                                                             |
+
+For downgrade, use modified logical backup to restore data
 
 # [Replication](#table-of-contents)
 Supports ABBA, ABCA
