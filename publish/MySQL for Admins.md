@@ -314,7 +314,7 @@ Located completely in RAM
 
 **Adaptive Hash Index**
 - Constructed dynamically by InnoDB
-- Stores frequently used indexes
+- Stores pointer to frequently used indexes
 - Speeds up data retrieval from buffer pool
     - B-Tree index lookups -> faster hash-based search
 
