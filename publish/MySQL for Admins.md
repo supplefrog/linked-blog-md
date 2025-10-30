@@ -1057,7 +1057,7 @@ rotate 30
 1. Backup datadir, my.cnf, older packages. Physical for large DBs to avoid restoration downtime in case packages are reverted
 2. Check if server configs are ready for upgrade:
 ```
-mysqlsh --uri user@host:port    # user must have RELOAD PROCESS and SELECT privileges
+mysqlsh   # login, user must have RELOAD PROCESS and SELECT privileges
 util.checkForServerUpgrade({targetVersion: '8.4.6'})
 ```
 
