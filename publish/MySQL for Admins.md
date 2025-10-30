@@ -1058,7 +1058,7 @@ rotate 30
 2. Check if server configs are ready for upgrade:
 ```
 mysqlsh   # login, user must have RELOAD PROCESS and SELECT privileges
-util.checkForServerUpgrade({targetVersion: '8.4.6'})
+util.checkForServerUpgrade({targetVersion: '8.4.7'})
 ```
 
 3. Update required packages using `yum localupdate`
