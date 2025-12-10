@@ -1058,8 +1058,8 @@ rotate 30
 2. Check if server configs are ready for upgrade. Use mysqlsh of the version you plan to upgrade to:
 ```
 mysqlsh [auth]    # login, user must have RELOAD PROCESS and SELECT privileges
-\js    # switch to js version
-util.checkForServerUpgrade()    # some builds don't support target version
+\js    # switch to JS mode
+util.checkForServerUpgrade()    # some builds don't support "target version" option
 ```
 
 3. Update required packages using `yum localupdate`
