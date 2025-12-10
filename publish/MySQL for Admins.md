@@ -1055,10 +1055,11 @@ rotate 30
 ## [Upgrade](#table-of-contents)
 
 1. Backup datadir, my.cnf, older packages. Physical for large DBs to avoid restoration downtime in case packages are reverted
-2. Check if server configs are ready for upgrade:
+2. Check if server configs are ready for upgrade. Use mysqlsh of the version you plan to upgrade to:
 ```
-mysqlsh   # login, user must have RELOAD PROCESS and SELECT privileges
-util.checkForServerUpgrade({targetVersion: '8.4.7'})
+mysqlsh [auth]    # login, user must have RELOAD PROCESS and SELECT privileges
+\js    # switch to js version
+util.checkForServerUpgrade()    # some builds don't support target version
 ```
 
 3. Update required packages using `yum localupdate`
