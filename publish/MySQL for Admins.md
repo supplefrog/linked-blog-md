@@ -1161,6 +1161,7 @@ CHANGE REPLICATION SOURCE TO
   SOURCE_SSL_KEY='/data/mysql/client-key.pem',
 # FOR CHANNEL 'channel_name';
 
+SET GLOBAL read_only=1;
 START REPLICA;
 SHOW REPLICA STATUS\G
 ```
