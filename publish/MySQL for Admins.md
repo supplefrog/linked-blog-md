@@ -13,6 +13,7 @@ Offer suggestions by opening an [issue](https://github.com/supplefrog/linked-blo
 - [Upgrade](#upgrade)
 - [Replication](#replication)
     - [Group Replication](#group-replication)
+- [Hardening](#hardening)
 - [Migration](#migration)
 ---
 
@@ -1379,6 +1380,11 @@ SELECT event_name, work_completed, work_estimated
 FROM performance_schema.events_stages_current 
 WHERE event_name LIKE "%stage/group_rpl%";
 ```
+
+# [Hardening](#table-of-contents)
+
+[[TDE.sh]]
+[[SSL.sh]]
 
 # [Migration](#table-of-contents)
 
