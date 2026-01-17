@@ -1089,35 +1089,6 @@ Supports ABBA, ABCA
 
 ![Replication Architecture](https://www.percona.com/blog/wp-content/uploads/2024/12/mysqlreplication-diagram-1-980x457.png)
 
-Generate SSL keys using trusted external CA
-
-```bash
-# Create CA
-openssl genrsa 2048 > ca-key.pem
-openssl req -new -x509 -nodes -days 3650 \
-  -key ca-key.pem -out ca.pem \
-  -subj "/CN=MySQL CA"
-
-# Server cert
-openssl req -newkey rsa:2048 -days 3650 \
-  -nodes -keyout server-key.pem -out server-req.pem \
-  -subj "/CN=MySQL Server"
-openssl x509 -req -in server-req.pem -days 3650 \
-  -CA ca.pem -CAkey ca-key.pem -set_serial 01 \
-  -out server-cert.pem
-
-# Client cert
-openssl req -newkey rsa:2048 -days 3650 \
-  -nodes -keyout client-key.pem -out client-req.pem \
-  -subj "/CN=MySQL Client"
-openssl x509 -req -in client-req.pem -days 3650 \
-  -CA ca.pem -CAkey ca-key.pem -set_serial 02 \
-  -out client-cert.pem
-
-# Permissions (optional)
-chmod 600 *key.pem
-```
-
 ## 1. Source
 
 a. Add to `my.cnf`:
@@ -1129,18 +1100,8 @@ server_id=1
 # auto-increment-increment=2    # increment by 2, set to number of sources
 # auto-increment-offset=1    # primary-key start value, add 1 for each source
 
-gtid_mode=ON
-enforce_gtid_consistency=ON
-
-ssl-ca=/etc/mysql/certs/ca.pem
-ssl-cert=/etc/mysql/certs/server-cert.pem
-ssl-key=/etc/mysql/certs/server-key.pem
-require_secure_transport=ON
-
-[client]
-ssl-ca=/etc/mysql/certs/ca.pem
-ssl-cert=/etc/mysql/certs/client-cert.pem
-ssl-key=/etc/mysql/certs/client-key.pem
+# gtid_mode=ON
+# enforce_gtid_consistency=ON
 ```
 
 b. Create a user only for replication
@@ -1151,10 +1112,10 @@ GRANT REPLICATION SLAVE ON *.* TO replica@'hostname';
 
 c.
 
-| Version | Command                        |
-|---------|--------------------------------|
-| < 8     | `RESET MASTER;`                |
-| > 8     | `RESET BINARY LOGS AND GTIDS;` |
+| Version | Command                                                |
+|---------|--------------------------------------------------------|
+| < 8     | `RESET MASTER; SHOW MASTER STATUS;`                    |
+| > 8     | `RESET BINARY LOGS AND GTIDS; SHOW BINARY LOG STATUS;` |
 
 ## 2. Replica
 
@@ -1168,18 +1129,8 @@ relay_log=/var/lib/mysql/relaylog.log
 # auto-increment-increment=2    # increment by 2, set to number of sources
 # auto-increment-offset=2    # primary-key start value, add 1 for each source
 
-gtid_mode=ON
-enforce_gtid_consistency=ON
-
-ssl-ca=/etc/mysql/certs/ca.pem
-ssl-cert=/etc/mysql/certs/server-cert.pem
-ssl-key=/etc/mysql/certs/server-key.pem
-require_secure_transport=ON
-
-[client]
-ssl-ca=/etc/mysql/certs/ca.pem
-ssl-cert=/etc/mysql/certs/client-cert.pem
-ssl-key=/etc/mysql/certs/client-key.pem
+# gtid_mode=ON
+# enforce_gtid_consistency=ON
 ```
 
 - Add filtering rules in `my.cnf` or [`CHANGE REPLICATION FILTER`](https://dev.mysql.com/doc/refman/8.4/en/change-replication-filter.html)
@@ -1196,28 +1147,30 @@ RESET BINARY LOGS AND GTIDS;    # < 8 - RESET MASTER
 RESET REPLICA;
 
 CHANGE REPLICATION SOURCE TO
-  SOURCE_HOST = '192.168.8.2',
-  SOURCE_USER = 'replica',
-  SOURCE_PASSWORD = 'Redhat@1',
-  SOURCE_AUTO_POSITION = 1,
+  SOURCE_HOST = '',    # IP
+  SOURCE_USER = '',
+  SOURCE_PASSWORD = '',
+  # SOURCE_AUTO_POSITION = 1,
   SOURCE_CONNECTION_AUTO_FAILOVER = 1,
-  # SOURCE_LOG_FILE = 'binlog.000001',
-  # SOURCE_LOG_POS = 157,
+  SOURCE_LOG_FILE = '',
+  SOURCE_LOG_POS = ,
   GET_SOURCE_PUBLIC_KEY = 1;
   SOURCE_SSL=1,
-  SOURCE_SSL_CA='/etc/mysql/certs/ca.pem',
-  SOURCE_SSL_CERT='/etc/mysql/certs/client-cert.pem',
-  SOURCE_SSL_KEY='/etc/mysql/certs/client-key.pem',
-#FOR CHANNEL 'channel_name';
+  SOURCE_SSL_CA='/data/mysql/ca.pem',
+  SOURCE_SSL_CERT='/data/mysql/client-cert.pem',
+  SOURCE_SSL_KEY='/data/mysql/client-key.pem',
+# FOR CHANNEL 'channel_name';
 
 START REPLICA;
 SHOW REPLICA STATUS\G
 ```
+
 ```mysql
 SELECT asynchronous_connection_failover_add_source('channel_name', 'source1_host', 3306, '', 100);    # or delete. 100 is weight (priority) from 1 to 100
 
 SELECT * FROM performance_schema.replication_asynchronous_connection_failover;
 ```
+
 ### Skip problematic statements
 ```mysql
 # < 8 - replace replica with slave
