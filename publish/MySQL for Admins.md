@@ -1237,38 +1237,24 @@ SET GLOBAL relay_log_recovery=ON;
 ### Semi-sync replication
 Source waits for confirmation from replica if transaction committed to its relay log prior to committing in its own redo log
 
-Add to `my.cnf`:
+1. Install and enable plugin on both source and replica
 
-Source
+my.cnf
 ```ini
-plugin_load_add='semisync_source.so'
-SET GLOBAL rpl_semi_sync_source_enabled=1
+plugin_load_add='semisync_source.so'    # plugin_load_add='semisync_replica.so'
+rpl_semi_sync_source_enabled=1    # rpl_semi_sync_replica_enabled=1
 ```
-Replica
-```ini
-plugin_load_add='semisync_replica.so'
-SET GLOBAL rpl_semi_sync_replica_enabled=1
-```
-> Restart server
 
-**Enable at runtime**
+**or** 
 
-Source
+at runtime
 ```mysql
-INSTALL PLUGIN rpl_semi_sync_source SONAME 'semisync_source.so';
-SET GLOBAL rpl_semi_sync_source_enabled=1;
+INSTALL PLUGIN rpl_semi_sync_source SONAME 'semisync_source.so';    # INSTALL PLUGIN rpl_semi_sync_replica SONAME 'semisync_replica.so';
+SET GLOBAL rpl_semi_sync_source_enabled=1;    # SET GLOBAL rpl_semi_sync_replica_enabled=1;
 ```
 
-Replica
+2. Restart I/O thread to load plugin settings
 ```mysql
-INSTALL PLUGIN rpl_semi_sync_replica SONAME 'semisync_replica.so';
-SET GLOBAL rpl_semi_sync_replica_enabled=1;
-
-# Verify if enabled
-SHOW PLUGINS;
-SHOW VARIABLES LIKE 'rpl_semi_sync_source_enabled';
-
-# Restart I/O thread to load plugin settings
 STOP REPLICA IO_THREAD;
 START REPLICA IO_THREAD;
 ```
