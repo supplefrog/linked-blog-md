@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-APP_NAME="OEM"
-IP="10.50.11.71"
+APP_NAME=""
+IP=""
 DAYS=3650
 
 DATA_DIR="/data/mysql"
